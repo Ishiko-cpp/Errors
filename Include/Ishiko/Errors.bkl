@@ -1,0 +1,12 @@
+setting ISHIKO_ERRORS_ROOT
+{
+    help = "Path to the Ishiko Errors installation";
+    default = '$(ISHIKO)/Errors';
+}
+
+template IshikoErrors
+{
+    includedirs += $(ISHIKO_ERRORS_ROOT)/Include;
+
+    libdirs += $(ISHIKO_ERRORS_ROOT)/Lib/$(arch);
+}

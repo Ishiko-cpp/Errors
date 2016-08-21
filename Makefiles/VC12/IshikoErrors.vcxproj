@@ -155,6 +155,7 @@
   <ItemGroup>
     <ClInclude Include="..\..\Include\Ishiko\Errors.h" />
     <ClInclude Include="..\..\Include\Ishiko\Errors\Exception.h" />
+    <ClInclude Include="..\..\Include\Ishiko\Errors\linkoptions.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
