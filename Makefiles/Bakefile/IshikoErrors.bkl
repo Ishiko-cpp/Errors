@@ -1,0 +1,23 @@
+toolsets = vs2015 vs2013;
+
+vs2015.solutionfile = ../VC14/IshikoErrors.sln;
+vs2013.solutionfile = ../VC12/IshikoErrors.sln;
+
+library IshikoErrors
+{
+    archs = x86 x86_64;
+
+    includedirs += ../../Include/Ishiko/Errors;
+
+    outputdir = ../../Lib/$(arch);
+
+    if ($(config) == Debug)
+    {
+        basename = IshikoErrors-d;
+    }
+
+    headers
+    {
+        ../../Include/Ishiko/Errors.h
+    }
+}
