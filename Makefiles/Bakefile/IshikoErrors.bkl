@@ -19,5 +19,12 @@ library IshikoErrors
     headers
     {
         ../../Include/Ishiko/Errors.h
+
+        ../../Include/Ishiko/Errors/Exception.h
+    }
+
+    sources
+    {
+        ../Source/Errors/Exception.cpp
     }
 }
