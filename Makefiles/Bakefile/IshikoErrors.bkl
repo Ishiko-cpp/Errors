@@ -25,6 +25,6 @@ library IshikoErrors
 
     sources
     {
-        ../Source/Errors/Exception.cpp
+        ../../Source/Exception.cpp
     }
 }
