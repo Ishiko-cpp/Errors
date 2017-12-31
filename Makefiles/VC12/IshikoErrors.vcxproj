@@ -150,10 +150,12 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\Source\Error.cpp" />
     <ClCompile Include="..\..\Source\Exception.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\Include\Ishiko\Errors.h" />
+    <ClInclude Include="..\..\Include\Ishiko\Errors\Error.h" />
     <ClInclude Include="..\..\Include\Ishiko\Errors\Exception.h" />
     <ClInclude Include="..\..\Include\Ishiko\Errors\linkoptions.h" />
   </ItemGroup>
