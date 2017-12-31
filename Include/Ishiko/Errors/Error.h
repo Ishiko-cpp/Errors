@@ -23,4 +23,25 @@
 #ifndef _ISHIKO_ERRORS_ERROR_H_
 #define _ISHIKO_ERRORS_ERROR_H_
 
+namespace Ishiko
+{
+
+class Error
+{
+public:
+    Error();
+    ~Error();
+
+    explicit operator bool() const;
+    bool operator!() const;
+    Error& operator=(int code);
+
+private:
+    int m_code;
+};
+
+}
+
+#include "linkoptions.h"
+
 #endif

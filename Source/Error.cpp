@@ -21,3 +21,33 @@
 */
 
 #include "Error.h"
+
+namespace Ishiko
+{
+
+Error::Error()
+    : m_code(0)
+{
+}
+
+Error::~Error()
+{
+}
+
+Error::operator bool() const
+{
+    return (m_code != 0);
+}
+
+bool Error::operator!() const
+{
+    return (m_code == 0);
+}
+
+Error& Error::operator=(int code)
+{
+    m_code = code;
+    return *this;
+}
+
+}
