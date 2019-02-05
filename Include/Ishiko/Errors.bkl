@@ -8,5 +8,13 @@ template IshikoErrors
 {
     includedirs += $(ISHIKO_ERRORS_ROOT)/Include;
 
-    libdirs += $(ISHIKO_ERRORS_ROOT)/Lib/$(arch);
+    if ($(toolset) == gnu)
+    {
+        libdirs += $(ISHIKO_ERRORS_ROOT)/Lib;
+    }
+
+    if ($(toolset) != gnu)
+    {
+        libdirs += $(ISHIKO_ERRORS_ROOT)/Lib/$(arch);
+    }
 }
