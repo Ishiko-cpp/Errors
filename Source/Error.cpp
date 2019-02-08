@@ -26,13 +26,21 @@ namespace Ishiko
 {
 
 Error::Error()
-    : m_code(-1)
+    : m_code(-1), m_extension(0)
 {
 }
 
 Error::Error(int code)
-    : m_code(code)
+    : m_code(code), m_extension(0)
 {
+}
+
+Error::~Error()
+{
+    if (m_extension)
+    {
+        m_extension->release();
+    }
 }
 
 Error::operator bool() const

@@ -151,6 +151,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="..\..\Source\Error.cpp" />
+    <ClCompile Include="..\..\Source\ErrorExtension.cpp" />
     <ClCompile Include="..\..\Source\Exception.cpp" />
   </ItemGroup>
   <ItemGroup>

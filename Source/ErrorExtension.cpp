@@ -20,18 +20,14 @@
     IN THE SOFTWARE.
 */
 
-#ifndef _ISHIKO_ERRORS_ERROREXTENSION_H_
-#define _ISHIKO_ERRORS_ERROREXTENSION_H_
+#include "ErrorExtension.h"
 
 namespace Ishiko
 {
 
-class ErrorExtension
+void ErrorExtension::release()
 {
-public:
-    virtual void release();
-};
-
+    delete this;
 }
 
-#endif
+}

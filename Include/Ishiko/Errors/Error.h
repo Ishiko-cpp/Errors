@@ -23,6 +23,8 @@
 #ifndef _ISHIKO_ERRORS_ERROR_H_
 #define _ISHIKO_ERRORS_ERROR_H_
 
+#include "ErrorExtension.h"
+
 namespace Ishiko
 {
 
@@ -36,6 +38,7 @@ public:
     Error();
     /// This constructor creates a new error from the error code passed in as argument.
     explicit Error(int code);
+    ~Error();
 
     explicit operator bool() const;
     bool operator!() const;
@@ -49,6 +52,7 @@ public:
 
 private:
     int m_code;
+    ErrorExtension* m_extension;
 };
 
 }
