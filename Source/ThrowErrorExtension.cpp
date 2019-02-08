@@ -21,3 +21,13 @@
 */
 
 #include "ThrowErrorExtension.h"
+
+namespace Ishiko
+{
+
+void ThrowErrorExtension::release()
+{
+    // Do nothing as this class is to be used as a global singleton
+}
+
+}

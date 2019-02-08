@@ -20,7 +20,20 @@
     IN THE SOFTWARE.
 */
 
-#ifndef _ISHIKO_ERRORS_ERROREXTENSION_H_
-#define _ISHIKO_ERRORS_ERROREXTENSION_H_
+#ifndef _ISHIKO_ERRORS_THROWERROREXTENSION_H_
+#define _ISHIKO_ERRORS_THROWERROREXTENSION_H_
+
+#include "ErrorExtension.h"
+
+namespace Ishiko
+{
+
+class ThrowErrorExtension : public ErrorExtension
+{
+public:
+    void release() override;
+};
+
+}
 
 #endif

@@ -34,10 +34,16 @@ namespace Ishiko
 class Error
 {
 public:
+    enum Extension
+    {
+        ThrowException
+    };
+
     /// This constructor creates a new error with an error code set to -1.
     Error();
     /// This constructor creates a new error from the error code passed in as argument.
     explicit Error(int code);
+    explicit Error(Extension e);
     ~Error();
 
     explicit operator bool() const;

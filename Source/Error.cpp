@@ -21,9 +21,12 @@
 */
 
 #include "Error.h"
+#include "ThrowErrorExtension.h"
 
 namespace Ishiko
 {
+
+static ThrowErrorExtension s_throwErrorExtension;
 
 Error::Error()
     : m_code(-1), m_extension(0)
@@ -33,6 +36,12 @@ Error::Error()
 Error::Error(int code)
     : m_code(code), m_extension(0)
 {
+}
+
+Error::Error(Extension e)
+    : m_code(0)
+{
+    m_extension = &s_throwErrorExtension;
 }
 
 Error::~Error()
@@ -60,7 +69,11 @@ int Error::code() const
 
 void Error::fail(int code)
 {
-    if (m_code == 0)
+    if (m_extension == &s_throwErrorExtension)
+    {
+        throw 0;
+    }
+    else if (m_code == 0)
     {
         m_code = code;
     }

@@ -34,8 +34,10 @@ private:
     static Ishiko::TestFramework::TestResult::EOutcome CreationTest1();
     static Ishiko::TestFramework::TestResult::EOutcome CreationTest2();
     static Ishiko::TestFramework::TestResult::EOutcome CreationTest3();
+    static Ishiko::TestFramework::TestResult::EOutcome CreationTest4();
     static Ishiko::TestFramework::TestResult::EOutcome FailTest1();
     static Ishiko::TestFramework::TestResult::EOutcome FailTest2();
+    static Ishiko::TestFramework::TestResult::EOutcome FailTest3();
     static Ishiko::TestFramework::TestResult::EOutcome SucceedTest1();
 };
 
