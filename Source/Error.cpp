@@ -58,4 +58,9 @@ void Error::fail(int code)
     }
 }
 
+void Error::succeed()
+{
+    m_code = 0;
+}
+
 }

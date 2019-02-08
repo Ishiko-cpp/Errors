@@ -35,7 +35,7 @@ public:
     /// This constructor creates a new error with an error code set to -1.
     Error();
     /// This constructor creates a new error from the error code passed in as argument.
-    Error(int code);
+    explicit Error(int code);
 
     explicit operator bool() const;
     bool operator!() const;
@@ -44,6 +44,8 @@ public:
     /// If the current error code is 0 then this function will set it to the value passed in as argument. But the error
     /// code will remain unchanged if it was different from 0.
     void fail(int code);
+    /// Sets the error code to 0 regardless of its current value.
+    void succeed();
 
 private:
     int m_code;

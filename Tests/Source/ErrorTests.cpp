@@ -35,6 +35,8 @@ void ErrorTests::AddTests(TestHarness& theTestHarness)
 
     new HeapAllocationErrorsTest("fail test 1", FailTest1, errorTestSequence);
     new HeapAllocationErrorsTest("fail test 2", FailTest2, errorTestSequence);
+
+    new HeapAllocationErrorsTest("succeed test 1", SucceedTest1, errorTestSequence);
 }
 
 TestResult::EOutcome ErrorTests::CreationTest1()
@@ -97,6 +99,20 @@ TestResult::EOutcome ErrorTests::FailTest2()
     Ishiko::Error error(4);
     error.fail(-3);
     if (error && (error.code() == 4))
+    {
+        result = TestResult::ePassed;
+    }
+
+    return result;
+}
+
+TestResult::EOutcome ErrorTests::SucceedTest1()
+{
+    TestResult::EOutcome result = TestResult::eFailed;
+
+    Ishiko::Error error;
+    error.succeed();
+    if (!error && (error.code() == 0))
     {
         result = TestResult::ePassed;
     }
