@@ -25,6 +25,8 @@ library IshikoErrors
         ../../Include/Ishiko/Errors/ErrorExtension.h
         ../../Include/Ishiko/Errors/Exception.h
         ../../Include/Ishiko/Errors/linkoptions.h
+
+        ../../Source/ThrowErrorExtension.h
     }
 
     sources
@@ -32,5 +34,7 @@ library IshikoErrors
         ../../Source/Error.cpp
         ../../Source/ErrorExtension.cpp
         ../../Source/Exception.cpp
+
+        ../../Source/ThrowErrorExtension.cpp
     }
 }
