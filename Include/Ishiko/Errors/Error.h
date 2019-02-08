@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2017 Xavier Leclercq
+    Copyright (c) 2017-2019 Xavier Leclercq
 
     Permission is hereby granted, free of charge, to any person obtaining a
     copy of this software and associated documentation files (the "Software"),
@@ -26,10 +26,16 @@
 namespace Ishiko
 {
 
+/// A class to represent errors.
+
+/// An error code of 0 indicates success. Anything else is an error whether it is positive or negative.
 class Error
 {
 public:
+    /// This constructor creates a new error with an error code set to -1.
     Error();
+    /// This constructor creates a new error from the error code specified as argument.
+    Error(int code);
     ~Error();
 
     explicit operator bool() const;

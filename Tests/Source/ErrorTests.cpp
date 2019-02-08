@@ -21,10 +21,54 @@
 */
 
 #include "ErrorTests.h"
+#include "Ishiko/Errors/Error.h"
 
 using namespace Ishiko::TestFramework;
 
 void ErrorTests::AddTests(TestHarness& theTestHarness)
 {
     TestSequence& errorTestSequence = theTestHarness.appendTestSequence("Error tests");
+
+    new HeapAllocationErrorsTest("Creation test 1", CreationTest1, errorTestSequence);
+    new HeapAllocationErrorsTest("Creation test 2", CreationTest2, errorTestSequence);
+    new HeapAllocationErrorsTest("Creation test 3", CreationTest3, errorTestSequence);
+}
+
+TestResult::EOutcome ErrorTests::CreationTest1()
+{
+    TestResult::EOutcome result = TestResult::eFailed;
+
+    Ishiko::Error error;
+    if (error)
+    {
+        result = TestResult::ePassed;
+    }
+
+    return result;
+}
+
+TestResult::EOutcome ErrorTests::CreationTest2()
+{
+    TestResult::EOutcome result = TestResult::eFailed;
+
+    Ishiko::Error error(0);
+    if (!error)
+    {
+        result = TestResult::ePassed;
+    }
+
+    return result;
+}
+
+TestResult::EOutcome ErrorTests::CreationTest3()
+{
+    TestResult::EOutcome result = TestResult::eFailed;
+
+    Ishiko::Error error(-2);
+    if (error)
+    {
+        result = TestResult::ePassed;
+    }
+
+    return result;
 }
