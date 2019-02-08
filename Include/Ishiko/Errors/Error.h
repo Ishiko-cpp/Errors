@@ -24,6 +24,7 @@
 #define _ISHIKO_ERRORS_ERROR_H_
 
 #include "ErrorExtension.h"
+#include <string>
 
 namespace Ishiko
 {
@@ -53,6 +54,7 @@ public:
     /// If the current error code is 0 then this function will set it to the value passed in as argument. But the error
     /// code will remain unchanged if it was different from 0.
     void fail(int code);
+    void fail(int code, const std::string& message, const char* file, int line);
     /// Sets the error code to 0 regardless of its current value.
     void succeed();
 

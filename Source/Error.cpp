@@ -22,6 +22,7 @@
 
 #include "Error.h"
 #include "ThrowErrorExtension.h"
+#include "Exception.h"
 
 namespace Ishiko
 {
@@ -71,7 +72,19 @@ void Error::fail(int code)
 {
     if (m_extension == &s_throwErrorExtension)
     {
-        throw 0;
+        throw Exception("", __FILE__, __LINE__);
+    }
+    else if (m_code == 0)
+    {
+        m_code = code;
+    }
+}
+
+void Error::fail(int code, const std::string& message, const char* file, int line)
+{
+    if (m_extension == &s_throwErrorExtension)
+    {
+        throw Exception(message, file, line);
     }
     else if (m_code == 0)
     {

@@ -22,6 +22,7 @@
 
 #include "ErrorTests.h"
 #include "Ishiko/Errors/Error.h"
+#include "Ishiko/Errors/Exception.h"
 
 using namespace Ishiko::TestFramework;
 
@@ -37,6 +38,7 @@ void ErrorTests::AddTests(TestHarness& theTestHarness)
     new HeapAllocationErrorsTest("fail test 1", FailTest1, errorTestSequence);
     new HeapAllocationErrorsTest("fail test 2", FailTest2, errorTestSequence);
     new HeapAllocationErrorsTest("fail test 3", FailTest3, errorTestSequence);
+    new HeapAllocationErrorsTest("fail test 4", FailTest4, errorTestSequence);
 
     new HeapAllocationErrorsTest("succeed test 1", SucceedTest1, errorTestSequence);
 }
@@ -130,9 +132,34 @@ TestResult::EOutcome ErrorTests::FailTest3()
     {
         error.fail(-3);
     }
-    catch (...)
+    catch (const Ishiko::Exception& e)
     {
-        result = TestResult::ePassed;
+        if (std::string(e.what()) == "")
+        {
+            result = TestResult::ePassed;
+        }
+    }
+
+    return result;
+}
+
+TestResult::EOutcome ErrorTests::FailTest4()
+{
+    TestResult::EOutcome result = TestResult::eFailed;
+
+    Ishiko::Error error(Ishiko::Error::ThrowException);
+    try
+    {
+        error.fail(-3, "error message", __FILE__, __LINE__);
+    }
+    catch (const Ishiko::Exception& e)
+    {
+        if ((std::string(e.what()) == "error message") &&
+            (e.file().find("errortests.cpp") != std::string::npos) &&
+            (e.line() == (__LINE__ - 6)))
+        {
+            result = TestResult::ePassed;
+        }
     }
 
     return result;

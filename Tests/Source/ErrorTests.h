@@ -38,6 +38,7 @@ private:
     static Ishiko::TestFramework::TestResult::EOutcome FailTest1();
     static Ishiko::TestFramework::TestResult::EOutcome FailTest2();
     static Ishiko::TestFramework::TestResult::EOutcome FailTest3();
+    static Ishiko::TestFramework::TestResult::EOutcome FailTest4();
     static Ishiko::TestFramework::TestResult::EOutcome SucceedTest1();
 };
 
