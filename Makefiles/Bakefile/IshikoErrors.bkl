@@ -22,6 +22,7 @@ library IshikoErrors
         ../../Include/Ishiko/Errors.h
 
         ../../Include/Ishiko/Errors/Error.h
+        ../../Include/Ishiko/Errors/ErrorExtension.h
         ../../Include/Ishiko/Errors/Exception.h
         ../../Include/Ishiko/Errors/linkoptions.h
     }

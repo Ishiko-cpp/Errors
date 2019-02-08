@@ -23,6 +23,9 @@
     <ClInclude Include="..\..\Include\Ishiko\Errors\Error.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\Include\Ishiko\Errors\ErrorExtension.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
     <ClInclude Include="..\..\Include\Ishiko\Errors\Exception.h">
       <Filter>Header Files</Filter>
     </ClInclude>
