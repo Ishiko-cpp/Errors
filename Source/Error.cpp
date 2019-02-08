@@ -35,10 +35,6 @@ Error::Error(int code)
 {
 }
 
-Error::~Error()
-{
-}
-
 Error::operator bool() const
 {
     return (m_code != 0);
@@ -49,10 +45,17 @@ bool Error::operator!() const
     return (m_code == 0);
 }
 
-Error& Error::operator=(int code)
+int Error::code() const
 {
-    m_code = code;
-    return *this;
+    return m_code;
+}
+
+void Error::fail(int code)
+{
+    if (m_code == 0)
+    {
+        m_code = code;
+    }
 }
 
 }

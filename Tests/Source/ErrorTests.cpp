@@ -32,6 +32,9 @@ void ErrorTests::AddTests(TestHarness& theTestHarness)
     new HeapAllocationErrorsTest("Creation test 1", CreationTest1, errorTestSequence);
     new HeapAllocationErrorsTest("Creation test 2", CreationTest2, errorTestSequence);
     new HeapAllocationErrorsTest("Creation test 3", CreationTest3, errorTestSequence);
+
+    new HeapAllocationErrorsTest("fail test 1", FailTest1, errorTestSequence);
+    new HeapAllocationErrorsTest("fail test 2", FailTest2, errorTestSequence);
 }
 
 TestResult::EOutcome ErrorTests::CreationTest1()
@@ -39,7 +42,7 @@ TestResult::EOutcome ErrorTests::CreationTest1()
     TestResult::EOutcome result = TestResult::eFailed;
 
     Ishiko::Error error;
-    if (error)
+    if (error && (error.code() == -1))
     {
         result = TestResult::ePassed;
     }
@@ -52,7 +55,7 @@ TestResult::EOutcome ErrorTests::CreationTest2()
     TestResult::EOutcome result = TestResult::eFailed;
 
     Ishiko::Error error(0);
-    if (!error)
+    if (!error && (error.code() == 0))
     {
         result = TestResult::ePassed;
     }
@@ -65,7 +68,35 @@ TestResult::EOutcome ErrorTests::CreationTest3()
     TestResult::EOutcome result = TestResult::eFailed;
 
     Ishiko::Error error(-2);
-    if (error)
+    if (error && (error.code() == -2))
+    {
+        result = TestResult::ePassed;
+    }
+
+    return result;
+}
+
+TestResult::EOutcome ErrorTests::FailTest1()
+{
+    TestResult::EOutcome result = TestResult::eFailed;
+
+    Ishiko::Error error(0);
+    error.fail(-3);
+    if (error && (error.code() == -3))
+    {
+        result = TestResult::ePassed;
+    }
+
+    return result;
+}
+
+TestResult::EOutcome ErrorTests::FailTest2()
+{
+    TestResult::EOutcome result = TestResult::eFailed;
+
+    Ishiko::Error error(4);
+    error.fail(-3);
+    if (error && (error.code() == 4))
     {
         result = TestResult::ePassed;
     }

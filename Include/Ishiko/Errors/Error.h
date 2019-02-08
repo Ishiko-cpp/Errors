@@ -34,13 +34,16 @@ class Error
 public:
     /// This constructor creates a new error with an error code set to -1.
     Error();
-    /// This constructor creates a new error from the error code specified as argument.
+    /// This constructor creates a new error from the error code passed in as argument.
     Error(int code);
-    ~Error();
 
     explicit operator bool() const;
     bool operator!() const;
-    Error& operator=(int code);
+    int code() const;
+
+    /// If the current error code is 0 then this function will set it to the value passed in as argument. But the error
+    /// code will remain unchanged if it was different from 0.
+    void fail(int code);
 
 private:
     int m_code;
