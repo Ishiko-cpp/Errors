@@ -152,6 +152,7 @@
   <ItemGroup>
     <ClCompile Include="..\..\Source\Error.cpp" />
     <ClCompile Include="..\..\Source\ErrorExtension.cpp" />
+    <ClCompile Include="..\..\Source\ChainErrorExtension.cpp" />
     <ClCompile Include="..\..\Source\Exception.cpp" />
     <ClCompile Include="..\..\Source\ThrowErrorExtension.cpp" />
   </ItemGroup>
@@ -159,6 +160,7 @@
     <ClInclude Include="..\..\Include\Ishiko\Errors.h" />
     <ClInclude Include="..\..\Include\Ishiko\Errors\Error.h" />
     <ClInclude Include="..\..\Include\Ishiko\Errors\ErrorExtension.h" />
+    <ClInclude Include="..\..\Include\Ishiko\Errors\ChainErrorExtension.h" />
     <ClInclude Include="..\..\Include\Ishiko\Errors\Exception.h" />
     <ClInclude Include="..\..\Include\Ishiko\Errors\linkoptions.h" />
     <ClInclude Include="..\..\Source\ThrowErrorExtension.h" />
