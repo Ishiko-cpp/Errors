@@ -35,6 +35,8 @@ public:
     MessageErrorExtension();
     MessageErrorExtension(const std::string& message, const char* file, int line);
 
+    void onFail(int code, const std::string& message, const char* file, int line) override;
+
     const std::string& message() const;
     const std::string& file() const;
     int line() const;
