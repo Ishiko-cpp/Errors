@@ -24,12 +24,22 @@
 #define _ISHIKO_ERRORS_CHAINERROREXTENSION_H_
 
 #include "ErrorExtension.h"
+#include <vector>
 
 namespace Ishiko
 {
 
 class ChainErrorExtension : public ErrorExtension
 {
+public:
+    ~ChainErrorExtension() noexcept override;
+
+    void onFail(int code, const std::string& message, const char* file, int line) override;
+
+    std::ostream& operator<<(std::ostream& os) const override;
+
+private:
+    std::vector<std::pair<int, ErrorExtension*>> m_chain;
 };
 
 }

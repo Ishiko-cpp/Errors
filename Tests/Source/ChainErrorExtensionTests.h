@@ -33,6 +33,8 @@ public:
 
 private:
     static void ConstructionTest1(Ishiko::Tests::Test& test);
+    static void StreamInsertionTest1(Ishiko::Tests::Test& test);
+    static void StreamInsertionTest2(Ishiko::Tests::Test& test);
 };
 
 #endif

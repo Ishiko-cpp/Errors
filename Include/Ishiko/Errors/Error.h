@@ -62,7 +62,7 @@ public:
 
     const ErrorExtension* extension() const;
     ErrorExtension* extension();
-    
+
 private:
     int m_code;
     ErrorExtension* m_extension;
