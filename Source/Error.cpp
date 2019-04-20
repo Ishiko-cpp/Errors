@@ -39,6 +39,11 @@ Error::Error(int code)
 {
 }
 
+Error::Error(int code, ErrorExtension* extension)
+    : m_code(code), m_extension(extension)
+{
+}
+
 Error::Error(Extension e)
     : m_code(0)
 {

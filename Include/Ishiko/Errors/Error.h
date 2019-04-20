@@ -44,6 +44,7 @@ public:
     Error();
     /// This constructor creates a new error from the error code passed in as argument.
     explicit Error(int code);
+    explicit Error(int code, ErrorExtension* extension);
     explicit Error(Extension e);
     ~Error();
 
