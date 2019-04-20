@@ -154,9 +154,13 @@
   <ItemGroup>
     <ClCompile Include="..\..\Source\main.cpp" />
     <ClCompile Include="..\..\Source\ErrorTests.cpp" />
+    <ClCompile Include="..\..\Source\MessageErrorExtensionTests.cpp" />
+    <ClCompile Include="..\..\Source\ChainErrorExtensionTests.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\Source\ErrorTests.h" />
+    <ClInclude Include="..\..\Source\MessageErrorExtensionTests.h" />
+    <ClInclude Include="..\..\Source\ChainErrorExtensionTests.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -16,11 +16,15 @@ program IshikoErrorsTests : IshikoErrors, IshikoTestFrameworkCore
     headers
     {
         ../../Source/ErrorTests.h
+        ../../Source/MessageErrorExtensionTests.h
+        ../../Source/ChainErrorExtensionTests.h
     }
 
     sources
     {
         ../../Source/main.cpp
         ../../Source/ErrorTests.cpp
+        ../../Source/MessageErrorExtensionTests.cpp
+        ../../Source/ChainErrorExtensionTests.cpp
     }
 }
