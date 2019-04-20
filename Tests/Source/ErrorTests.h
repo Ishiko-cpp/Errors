@@ -40,6 +40,7 @@ private:
     static void FailTest3(Ishiko::Tests::Test& test);
     static void FailTest4(Ishiko::Tests::Test& test);
     static void SucceedTest1(Ishiko::Tests::Test& test);
+    static void StreamInsertionTest1(Ishiko::Tests::Test& test);
 };
 
 #endif

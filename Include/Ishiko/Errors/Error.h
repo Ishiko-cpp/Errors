@@ -24,6 +24,7 @@
 #define _ISHIKO_ERRORS_ERROR_H_
 
 #include "ErrorExtension.h"
+#include <ostream>
 #include <string>
 
 namespace Ishiko
@@ -63,6 +64,8 @@ private:
     int m_code;
     ErrorExtension* m_extension;
 };
+
+std::ostream& operator<<(std::ostream& os, const Error& error);
 
 }
 

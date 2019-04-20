@@ -110,4 +110,10 @@ void Error::succeed()
     m_code = 0;
 }
 
+std::ostream& operator<<(std::ostream& os, const Error& error)
+{
+    os << "Error code: "<< error.code();
+    return os;
+}
+
 }

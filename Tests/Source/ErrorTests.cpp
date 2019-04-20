@@ -23,6 +23,7 @@
 #include "ErrorTests.h"
 #include "Ishiko/Errors/Error.h"
 #include "Ishiko/Errors/Exception.h"
+#include <sstream>
 
 using namespace Ishiko::Tests;
 
@@ -38,6 +39,7 @@ ErrorTests::ErrorTests(const TestNumber& number, const TestEnvironment& environm
     append<HeapAllocationErrorsTest>("fail test 3", FailTest3);
     append<HeapAllocationErrorsTest>("fail test 4", FailTest4);
     append<HeapAllocationErrorsTest>("succeed test 1", SucceedTest1);
+    append<HeapAllocationErrorsTest>("operator<< test 1", StreamInsertionTest1);
 }
 
 void ErrorTests::ConstructionTest1(Test& test)
@@ -137,5 +139,16 @@ void ErrorTests::SucceedTest1(Test& test)
 
     ISHTF_FAIL_IF((bool)error);
     ISHTF_FAIL_UNLESS(error.code() == 0);
+    ISHTF_PASS();
+}
+
+void ErrorTests::StreamInsertionTest1(Test& test)
+{
+    Ishiko::Error error;
+    
+    std::stringstream errorMessage;
+    errorMessage << error;
+
+    ISHTF_FAIL_UNLESS(errorMessage.str() == "Error code: -1");
     ISHTF_PASS();
 }
