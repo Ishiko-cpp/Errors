@@ -17,6 +17,7 @@ program IshikoErrorsTests : IshikoErrors, IshikoTestFrameworkCore
     {
         ../../Source/ErrorTests.h
         ../../Source/MessageErrorExtensionTests.h
+        ../../Source/IOErrorExtensionTests.h
         ../../Source/ChainErrorExtensionTests.h
     }
 
@@ -25,6 +26,7 @@ program IshikoErrorsTests : IshikoErrors, IshikoTestFrameworkCore
         ../../Source/main.cpp
         ../../Source/ErrorTests.cpp
         ../../Source/MessageErrorExtensionTests.cpp
+        ../../Source/IOErrorExtensionTests.cpp
         ../../Source/ChainErrorExtensionTests.cpp
     }
 }

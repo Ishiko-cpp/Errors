@@ -20,23 +20,18 @@
     IN THE SOFTWARE.
 */
 
-#include "ErrorTests.h"
-#include "MessageErrorExtensionTests.h"
-#include "IOErrorExtensionTests.h"
-#include "ChainErrorExtensionTests.h"
+#ifndef _ISHIKO_ERRORS_TESTS_IOERROREXTENSIONTESTS_H_
+#define _ISHIKO_ERRORS_TESTS_IOERROREXTENSIONTESTS_H_
+
 #include "Ishiko/TestFramework/TestFrameworkCore.h"
 
-using namespace Ishiko::Tests;
-
-int main(int argc, char* argv[])
+class IOErrorExtensionTests : public Ishiko::Tests::TestSequence
 {
-    TestHarness theTestHarness("IshikoErrors");
+public:
+    IOErrorExtensionTests(const Ishiko::Tests::TestNumber& number, const Ishiko::Tests::TestEnvironment& environment);
 
-    TestSequence& theTests = theTestHarness.tests();
-    theTests.append<ErrorTests>();
-    theTests.append<MessageErrorExtensionTests>();
-    theTests.append<IOErrorExtensionTests>();
-    theTests.append<ChainErrorExtensionTests>();
+private:
+    static void ConstructionTest1(Ishiko::Tests::Test& test);
+};
 
-    return theTestHarness.run();
-}
+#endif
