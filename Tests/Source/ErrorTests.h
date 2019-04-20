@@ -25,21 +25,21 @@
 
 #include "Ishiko/TestFramework/TestFrameworkCore.h"
 
-class ErrorTests
+class ErrorTests : public Ishiko::Tests::TestSequence
 {
 public:
-    static void AddTests(Ishiko::TestFramework::TestHarness& theTestHarness);
+    ErrorTests(const Ishiko::Tests::TestNumber& number, const Ishiko::Tests::TestEnvironment& environment);
 
 private:
-    static Ishiko::TestFramework::TestResult::EOutcome CreationTest1();
-    static Ishiko::TestFramework::TestResult::EOutcome CreationTest2();
-    static Ishiko::TestFramework::TestResult::EOutcome CreationTest3();
-    static Ishiko::TestFramework::TestResult::EOutcome CreationTest4();
-    static Ishiko::TestFramework::TestResult::EOutcome FailTest1();
-    static Ishiko::TestFramework::TestResult::EOutcome FailTest2();
-    static Ishiko::TestFramework::TestResult::EOutcome FailTest3();
-    static Ishiko::TestFramework::TestResult::EOutcome FailTest4();
-    static Ishiko::TestFramework::TestResult::EOutcome SucceedTest1();
+    static void ConstructionTest1(Ishiko::Tests::Test& test);
+    static void ConstructionTest2(Ishiko::Tests::Test& test);
+    static void ConstructionTest3(Ishiko::Tests::Test& test);
+    static void ConstructionTest4(Ishiko::Tests::Test& test);
+    static void FailTest1(Ishiko::Tests::Test& test);
+    static void FailTest2(Ishiko::Tests::Test& test);
+    static void FailTest3(Ishiko::Tests::Test& test);
+    static void FailTest4(Ishiko::Tests::Test& test);
+    static void SucceedTest1(Ishiko::Tests::Test& test);
 };
 
 #endif

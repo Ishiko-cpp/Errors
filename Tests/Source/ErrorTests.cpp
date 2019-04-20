@@ -24,157 +24,118 @@
 #include "Ishiko/Errors/Error.h"
 #include "Ishiko/Errors/Exception.h"
 
-using namespace Ishiko::TestFramework;
+using namespace Ishiko::Tests;
 
-void ErrorTests::AddTests(TestHarness& theTestHarness)
+ErrorTests::ErrorTests(const TestNumber& number, const TestEnvironment& environment)
+    : TestSequence(number, "Error tests", environment)
 {
-    TestSequence& errorTestSequence = theTestHarness.appendTestSequence("Error tests");
-
-    new HeapAllocationErrorsTest("Creation test 1", CreationTest1, errorTestSequence);
-    new HeapAllocationErrorsTest("Creation test 2", CreationTest2, errorTestSequence);
-    new HeapAllocationErrorsTest("Creation test 3", CreationTest3, errorTestSequence);
-    new HeapAllocationErrorsTest("Creation test 4", CreationTest4, errorTestSequence);
-
-    new HeapAllocationErrorsTest("fail test 1", FailTest1, errorTestSequence);
-    new HeapAllocationErrorsTest("fail test 2", FailTest2, errorTestSequence);
-    new HeapAllocationErrorsTest("fail test 3", FailTest3, errorTestSequence);
-    new HeapAllocationErrorsTest("fail test 4", FailTest4, errorTestSequence);
-
-    new HeapAllocationErrorsTest("succeed test 1", SucceedTest1, errorTestSequence);
+    append<HeapAllocationErrorsTest>("Construction test 1", ConstructionTest1);
+    append<HeapAllocationErrorsTest>("Construction test 2", ConstructionTest2);
+    append<HeapAllocationErrorsTest>("Construction test 3", ConstructionTest3);
+    append<HeapAllocationErrorsTest>("Construction test 4", ConstructionTest4);
+    append<HeapAllocationErrorsTest>("fail test 1", FailTest1);
+    append<HeapAllocationErrorsTest>("fail test 2", FailTest2);
+    append<HeapAllocationErrorsTest>("fail test 3", FailTest3);
+    append<HeapAllocationErrorsTest>("fail test 4", FailTest4);
+    append<HeapAllocationErrorsTest>("succeed test 1", SucceedTest1);
 }
 
-TestResult::EOutcome ErrorTests::CreationTest1()
+void ErrorTests::ConstructionTest1(Test& test)
 {
-    TestResult::EOutcome result = TestResult::eFailed;
-
     Ishiko::Error error;
-    if (error && (error.code() == -1))
-    {
-        result = TestResult::ePassed;
-    }
 
-    return result;
+    ISHTF_FAIL_UNLESS((bool)error);
+    ISHTF_FAIL_UNLESS(error.code() == -1);
+    ISHTF_PASS();
 }
 
-TestResult::EOutcome ErrorTests::CreationTest2()
+void ErrorTests::ConstructionTest2(Test& test)
 {
-    TestResult::EOutcome result = TestResult::eFailed;
-
     Ishiko::Error error(0);
-    if (!error && (error.code() == 0))
-    {
-        result = TestResult::ePassed;
-    }
 
-    return result;
+    ISHTF_FAIL_IF((bool)error);
+    ISHTF_FAIL_UNLESS(error.code() == 0);
+    ISHTF_PASS();
 }
 
-TestResult::EOutcome ErrorTests::CreationTest3()
+void ErrorTests::ConstructionTest3(Test& test)
 {
-    TestResult::EOutcome result = TestResult::eFailed;
-
     Ishiko::Error error(-2);
-    if (error && (error.code() == -2))
-    {
-        result = TestResult::ePassed;
-    }
-
-    return result;
+    
+    ISHTF_FAIL_UNLESS((bool)error);
+    ISHTF_FAIL_UNLESS(error.code() == -2);
+    ISHTF_PASS();
 }
 
-TestResult::EOutcome ErrorTests::CreationTest4()
+void ErrorTests::ConstructionTest4(Test& test)
 {
-    TestResult::EOutcome result = TestResult::eFailed;
-
     Ishiko::Error error(Ishiko::Error::ThrowException);
-    if (!error && (error.code() == 0))
-    {
-        result = TestResult::ePassed;
-    }
 
-    return result;
+    ISHTF_FAIL_IF((bool)error);
+    ISHTF_FAIL_UNLESS(error.code() == 0);
+    ISHTF_PASS();
 }
 
-TestResult::EOutcome ErrorTests::FailTest1()
+void ErrorTests::FailTest1(Test& test)
 {
-    TestResult::EOutcome result = TestResult::eFailed;
-
     Ishiko::Error error(0);
     error.fail(-3);
-    if (error && (error.code() == -3))
-    {
-        result = TestResult::ePassed;
-    }
 
-    return result;
+    ISHTF_FAIL_UNLESS((bool)error);
+    ISHTF_FAIL_UNLESS(error.code() == -3);
+    ISHTF_PASS();
 }
 
-TestResult::EOutcome ErrorTests::FailTest2()
+void ErrorTests::FailTest2(Test& test)
 {
-    TestResult::EOutcome result = TestResult::eFailed;
-
     Ishiko::Error error(4);
     error.fail(-3);
-    if (error && (error.code() == 4))
-    {
-        result = TestResult::ePassed;
-    }
 
-    return result;
+    ISHTF_FAIL_UNLESS((bool)error);
+    ISHTF_FAIL_UNLESS(error.code() == 4);
+    ISHTF_PASS();
 }
 
-TestResult::EOutcome ErrorTests::FailTest3()
+void ErrorTests::FailTest3(Test& test)
 {
-    TestResult::EOutcome result = TestResult::eFailed;
-
     Ishiko::Error error(Ishiko::Error::ThrowException);
     try
     {
         error.fail(-3);
+
+        ISHTF_FAIL();
     }
     catch (const Ishiko::Exception& e)
     {
-        if (std::string(e.what()) == "")
-        {
-            result = TestResult::ePassed;
-        }
+        ISHTF_FAIL_UNLESS(std::string(e.what()) == "");
+        ISHTF_PASS();
     }
-
-    return result;
 }
 
-TestResult::EOutcome ErrorTests::FailTest4()
+void ErrorTests::FailTest4(Test& test)
 {
-    TestResult::EOutcome result = TestResult::eFailed;
-
     Ishiko::Error error(Ishiko::Error::ThrowException);
     try
     {
         error.fail(-3, "error message", __FILE__, __LINE__);
+
+        ISHTF_FAIL();
     }
     catch (const Ishiko::Exception& e)
     {
-        if ((std::string(e.what()) == "error message") &&
-            (e.file().find("errortests.cpp") != std::string::npos) &&
-            (e.line() == (__LINE__ - 6)))
-        {
-            result = TestResult::ePassed;
-        }
+        ISHTF_FAIL_UNLESS(std::string(e.what()) == "error message");
+        ISHTF_FAIL_UNLESS(e.file().find("errortests.cpp") != std::string::npos);
+        ISHTF_FAIL_UNLESS(e.line() == (__LINE__ - 8));
+        ISHTF_PASS();
     }
-
-    return result;
 }
 
-TestResult::EOutcome ErrorTests::SucceedTest1()
+void ErrorTests::SucceedTest1(Test& test)
 {
-    TestResult::EOutcome result = TestResult::eFailed;
-
     Ishiko::Error error;
     error.succeed();
-    if (!error && (error.code() == 0))
-    {
-        result = TestResult::ePassed;
-    }
 
-    return result;
+    ISHTF_FAIL_IF((bool)error);
+    ISHTF_FAIL_UNLESS(error.code() == 0);
+    ISHTF_PASS();
 }

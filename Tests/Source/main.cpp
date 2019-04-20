@@ -23,11 +23,14 @@
 #include "ErrorTests.h"
 #include "Ishiko/TestFramework/TestFrameworkCore.h"
 
+using namespace Ishiko::Tests;
+
 int main(int argc, char* argv[])
 {
-    Ishiko::TestFramework::TestHarness theTestHarness("IshikoErrors");
+    TestHarness theTestHarness("IshikoErrors");
 
-    ErrorTests::AddTests(theTestHarness);
+    TestSequence& theTests = theTestHarness.tests();
+    theTests.append<ErrorTests>();
 
     return theTestHarness.run();
 }
