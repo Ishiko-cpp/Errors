@@ -112,6 +112,11 @@ void Error::succeed()
     m_code = 0;
 }
 
+const ErrorExtension* Error::extension() const
+{
+    return m_extension;
+}
+
 ErrorExtension* Error::extension()
 {
     return m_extension;
@@ -119,7 +124,12 @@ ErrorExtension* Error::extension()
 
 std::ostream& operator<<(std::ostream& os, const Error& error)
 {
-    os << "Error code: "<< error.code();
+    os << "Error: "<< error.code();
+    const ErrorExtension* extension = error.extension();
+    if (extension)
+    {
+        extension->operator<<(os);
+    }
     return os;
 }
 

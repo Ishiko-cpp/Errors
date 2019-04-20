@@ -23,6 +23,7 @@
 #ifndef _ISHIKO_ERRORS_ERROREXTENSION_H_
 #define _ISHIKO_ERRORS_ERROREXTENSION_H_
 
+#include <ostream>
 #include <string>
 
 namespace Ishiko
@@ -34,6 +35,8 @@ public:
     virtual void release();
 
     virtual void onFail(int code, const std::string& message, const char* file, int line);
+
+    virtual std::ostream& operator<<(std::ostream& os) const;
 
 protected:
     virtual ~ErrorExtension() noexcept = default;

@@ -149,6 +149,6 @@ void ErrorTests::StreamInsertionTest1(Test& test)
     std::stringstream errorMessage;
     errorMessage << error;
 
-    ISHTF_FAIL_UNLESS(errorMessage.str() == "Error code: -1");
+    ISHTF_FAIL_UNLESS(errorMessage.str() == "Error: -1");
     ISHTF_PASS();
 }

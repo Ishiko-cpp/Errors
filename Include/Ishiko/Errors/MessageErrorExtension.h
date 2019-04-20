@@ -37,6 +37,8 @@ public:
 
     void onFail(int code, const std::string& message, const char* file, int line) override;
 
+    std::ostream& operator<<(std::ostream& os) const override;
+
     const std::string& message() const;
     const std::string& file() const;
     int line() const;

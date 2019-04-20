@@ -42,6 +42,19 @@ void MessageErrorExtension::onFail(int code, const std::string& message, const c
     m_line = line;
 }
 
+std::ostream& MessageErrorExtension::operator<<(std::ostream& os) const
+{
+    if (m_message.size() > 0)
+    {
+        os << ", " << m_message;
+    }
+    if (m_file.size() > 0)
+    {
+        os << " [file: " << m_file << ", line: " << m_line << "]";
+    }
+    return os;
+}
+
 const std::string& MessageErrorExtension::message() const
 {
     return m_message;

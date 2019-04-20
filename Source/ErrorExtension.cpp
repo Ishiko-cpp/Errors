@@ -35,4 +35,10 @@ void ErrorExtension::onFail(int code, const std::string& message, const char* fi
     // Do nothing
 }
 
+std::ostream& ErrorExtension::operator<<(std::ostream& os) const
+{
+    // Do nothing
+    return os;
+}
+
 }

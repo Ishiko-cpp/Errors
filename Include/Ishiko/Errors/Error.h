@@ -60,8 +60,9 @@ public:
     /// Sets the error code to 0 regardless of its current value.
     void succeed();
 
+    const ErrorExtension* extension() const;
     ErrorExtension* extension();
-
+    
 private:
     int m_code;
     ErrorExtension* m_extension;
