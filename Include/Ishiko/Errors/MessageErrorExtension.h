@@ -24,12 +24,25 @@
 #define _ISHIKO_ERRORS_MESSAGEERROREXTENSION_H_
 
 #include "ErrorExtension.h"
+#include <string>
 
 namespace Ishiko
 {
 
 class MessageErrorExtension : public ErrorExtension
 {
+public:
+    MessageErrorExtension();
+    MessageErrorExtension(const std::string& message, const char* file, int line);
+
+    const std::string& message() const;
+    const std::string& file() const;
+    int line() const;
+
+private:
+    std::string m_message;
+    std::string m_file;
+    int m_line;
 };
 
 }

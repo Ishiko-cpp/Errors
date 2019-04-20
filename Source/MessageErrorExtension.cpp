@@ -21,3 +21,33 @@
 */
 
 #include "MessageErrorExtension.h"
+
+namespace Ishiko
+{
+
+MessageErrorExtension::MessageErrorExtension()
+    : m_line(-1)
+{
+}
+
+MessageErrorExtension::MessageErrorExtension(const std::string& message, const char* file, int line)
+    : m_message(message), m_file(file), m_line(line)
+{
+}
+
+const std::string& MessageErrorExtension::message() const
+{
+    return m_message;
+}
+
+const std::string& MessageErrorExtension::file() const
+{
+    return m_file;
+}
+
+int MessageErrorExtension::line() const
+{
+    return m_line;
+}
+
+}

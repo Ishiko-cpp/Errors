@@ -29,11 +29,25 @@ MessageErrorExtensionTests::MessageErrorExtensionTests(const TestNumber& number,
     : TestSequence(number, "MessageErrorExtension tests", environment)
 {
     append<HeapAllocationErrorsTest>("Construction test 1", ConstructionTest1);
+    append<HeapAllocationErrorsTest>("Construction test 2", ConstructionTest2);
 }
 
 void MessageErrorExtensionTests::ConstructionTest1(Test& test)
 {
     Ishiko::MessageErrorExtension messageExtension;
 
+    ISHTF_FAIL_UNLESS(messageExtension.message() == "");
+    ISHTF_FAIL_UNLESS(messageExtension.file() == "");
+    ISHTF_FAIL_UNLESS(messageExtension.line() == -1);
+    ISHTF_PASS();
+}
+
+void MessageErrorExtensionTests::ConstructionTest2(Test& test)
+{
+    Ishiko::MessageErrorExtension messageExtension("unknown", "file1", 3);
+
+    ISHTF_FAIL_UNLESS(messageExtension.message() == "unknown");
+    ISHTF_FAIL_UNLESS(messageExtension.file() == "file1");
+    ISHTF_FAIL_UNLESS(messageExtension.line() == 3);
     ISHTF_PASS();
 }
