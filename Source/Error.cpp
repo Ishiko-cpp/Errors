@@ -42,7 +42,15 @@ Error::Error(int code)
 Error::Error(Extension e)
     : m_code(0)
 {
-    m_extension = &s_throwErrorExtension;
+    switch (e)
+    {
+    case ThrowException:
+        m_extension = &s_throwErrorExtension;
+        break;
+
+    case Chain:
+        break;
+    }
 }
 
 Error::~Error()

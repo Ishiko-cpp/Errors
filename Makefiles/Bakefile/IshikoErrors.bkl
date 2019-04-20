@@ -34,6 +34,7 @@ library IshikoErrors
         ../../Include/Ishiko/Errors/Error.h
         ../../Include/Ishiko/Errors/ErrorExtension.h
         ../../Include/Ishiko/Errors/ChainErrorExtension.h
+        ../../Include/Ishiko/Errors/MessageErrorExtension.h
         ../../Include/Ishiko/Errors/Exception.h
         ../../Include/Ishiko/Errors/linkoptions.h
 
@@ -45,6 +46,7 @@ library IshikoErrors
         ../../Source/Error.cpp
         ../../Source/ErrorExtension.cpp
         ../../Source/ChainErrorExtension.cpp
+        ../../Source/MessageErrorExtension.cpp
         ../../Source/Exception.cpp
 
         ../../Source/ThrowErrorExtension.cpp
