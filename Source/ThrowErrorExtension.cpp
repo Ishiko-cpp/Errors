@@ -21,6 +21,7 @@
 */
 
 #include "ThrowErrorExtension.h"
+#include "Exception.h"
 
 namespace Ishiko
 {
@@ -28,6 +29,11 @@ namespace Ishiko
 void ThrowErrorExtension::release()
 {
     // Do nothing as this class is to be used as a global singleton
+}
+
+void ThrowErrorExtension::onFail(int code, const std::string& message, const char* file, int line)
+{
+    throw Exception(message, file, line);
 }
 
 }

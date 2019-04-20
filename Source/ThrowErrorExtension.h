@@ -32,6 +32,8 @@ class ThrowErrorExtension : public ErrorExtension
 {
 public:
     void release() override;
+
+    void onFail(int code, const std::string& message, const char* file, int line) override;
 };
 
 }
