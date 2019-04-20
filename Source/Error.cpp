@@ -48,7 +48,7 @@ Error::Error(Extension e)
         m_extension = &s_throwErrorExtension;
         break;
 
-    case Chain:
+    default:
         break;
     }
 }

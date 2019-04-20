@@ -37,8 +37,7 @@ class Error
 public:
     enum Extension
     {
-        ThrowException,
-        Chain
+        ThrowException
     };
 
     /// This constructor creates a new error with an error code set to -1.
