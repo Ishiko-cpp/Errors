@@ -30,4 +30,9 @@ void ErrorExtension::release()
     delete this;
 }
 
+void ErrorExtension::onFail(int code, const std::string& message, const char* file, int line)
+{
+    // Do nothing
+}
+
 }

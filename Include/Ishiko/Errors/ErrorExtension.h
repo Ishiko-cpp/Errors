@@ -23,6 +23,8 @@
 #ifndef _ISHIKO_ERRORS_ERROREXTENSION_H_
 #define _ISHIKO_ERRORS_ERROREXTENSION_H_
 
+#include <string>
+
 namespace Ishiko
 {
 
@@ -30,6 +32,12 @@ class ErrorExtension
 {
 public:
     virtual void release();
+
+    virtual void onFail(int code, const std::string& message, const char* file, int line);
+
+protected:
+    virtual ~ErrorExtension() noexcept = default;
+
 };
 
 }

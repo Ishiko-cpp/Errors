@@ -22,7 +22,6 @@
 
 #include "Error.h"
 #include "ThrowErrorExtension.h"
-#include "Exception.h"
 
 namespace Ishiko
 {
@@ -83,9 +82,10 @@ int Error::code() const
 
 void Error::fail(int code)
 {
-    if (m_extension == &s_throwErrorExtension)
+    if (m_extension)
     {
-        throw Exception("", __FILE__, __LINE__);
+        // This will throw an exception if the extension class is ThrowErrorExtension
+        m_extension->onFail(code, "", __FILE__, __LINE__);
     }
     else if (m_code == 0)
     {
@@ -95,11 +95,13 @@ void Error::fail(int code)
 
 void Error::fail(int code, const std::string& message, const char* file, int line)
 {
-    if (m_extension == &s_throwErrorExtension)
+    if (m_extension)
     {
-        throw Exception(message, file, line);
+        // This will throw an exception if the extension class is ThrowErrorExtension
+        m_extension->onFail(code, message, file, line);
     }
-    else if (m_code == 0)
+
+    if (m_code == 0)
     {
         m_code = code;
     }
@@ -108,6 +110,11 @@ void Error::fail(int code, const std::string& message, const char* file, int lin
 void Error::succeed()
 {
     m_code = 0;
+}
+
+ErrorExtension* Error::extension()
+{
+    return m_extension;
 }
 
 std::ostream& operator<<(std::ostream& os, const Error& error)
