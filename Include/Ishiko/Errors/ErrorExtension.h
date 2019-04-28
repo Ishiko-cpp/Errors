@@ -29,9 +29,14 @@
 namespace Ishiko
 {
 
+/// Base class for the error extensions.
 class ErrorExtension
 {
 public:
+    /// Destroys the extension.
+    /**
+        The default implementation calls delete(this).
+    */
     virtual void release();
 
     virtual void onFail(int code, const std::string& message, const char* file, int line);
