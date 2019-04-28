@@ -23,6 +23,7 @@
 #include "IOErrorExtensionTests.h"
 #include "Ishiko/Errors/IOErrorExtension.h"
 #include "Ishiko/Errors/Error.h"
+#include <sstream>
 #include <errno.h>
 
 using namespace Ishiko::Tests;
@@ -33,6 +34,7 @@ IOErrorExtensionTests::IOErrorExtensionTests(const TestNumber& number, const Tes
     append<HeapAllocationErrorsTest>("Construction test 1", ConstructionTest1);
     append<HeapAllocationErrorsTest>("Fail test 1", FailTest1);
     append<HeapAllocationErrorsTest>("Fail test 2", FailTest2);
+    append<HeapAllocationErrorsTest>("operator<< test 1", StreamInsertionTest1);
 }
 
 void IOErrorExtensionTests::ConstructionTest1(Test& test)
@@ -45,7 +47,7 @@ void IOErrorExtensionTests::ConstructionTest1(Test& test)
 void IOErrorExtensionTests::FailTest1(Test& test)
 {
     Ishiko::Error error;
-    Ishiko::IOErrorExtension::Fail(error, Ishiko::IOErrorExtension::eEOF);
+    Ishiko::IOErrorExtension::Fail(error, Ishiko::IOErrorExtension::eEOF, "file1", 3);
 
     ISHTF_FAIL_IF(error.extension());
     ISHTF_PASS();
@@ -54,7 +56,7 @@ void IOErrorExtensionTests::FailTest1(Test& test)
 void IOErrorExtensionTests::FailTest2(Test& test)
 {
     Ishiko::Error error(0, new Ishiko::IOErrorExtension());
-    Ishiko::IOErrorExtension::Fail(error, Ishiko::IOErrorExtension::eEOF);
+    Ishiko::IOErrorExtension::Fail(error, Ishiko::IOErrorExtension::eEOF, "file1", 3);
 
     ISHTF_FAIL_UNLESS(error.code() == EIO);
 
@@ -62,5 +64,17 @@ void IOErrorExtensionTests::FailTest2(Test& test)
 
     ISHTF_ABORT_UNLESS(ext);
     ISHTF_FAIL_UNLESS(ext->code() == Ishiko::IOErrorExtension::eEOF);
+    ISHTF_PASS();
+}
+
+void IOErrorExtensionTests::StreamInsertionTest1(Test& test)
+{
+    Ishiko::Error error(0, new Ishiko::IOErrorExtension());
+    Ishiko::IOErrorExtension::Fail(error, Ishiko::IOErrorExtension::eEOF, "file1", 3);
+
+    std::stringstream errorMessage;
+    errorMessage << error;
+
+    ISHTF_FAIL_UNLESS(errorMessage.str() == "Error: 5, I/O error: end-of-file [file: file1, line: 3]");
     ISHTF_PASS();
 }

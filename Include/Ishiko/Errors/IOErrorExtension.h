@@ -37,12 +37,16 @@ public:
         eEOF
     };
 
-    static void Fail(Error& error, EIOErrorCode code);
+    std::ostream& operator<<(std::ostream& os) const override;
+
+    static void Fail(Error& error, EIOErrorCode code, const char* file, int line);
 
     EIOErrorCode code() const;
-
+    
 private:
     EIOErrorCode m_code;
+    std::string m_file;
+    int m_line;
 };
 
 }
