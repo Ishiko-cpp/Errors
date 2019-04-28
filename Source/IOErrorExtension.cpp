@@ -21,3 +21,24 @@
 */
 
 #include "IOErrorExtension.h"
+#include <errno.h>
+
+namespace Ishiko
+{
+
+void IOErrorExtension::Fail(Error& error, EIOErrorCode code)
+{
+    IOErrorExtension* ext = dynamic_cast<IOErrorExtension*>(error.extension());
+    if (ext)
+    {
+        error.fail(EIO);
+        ext->m_code = code;
+    }
+}
+
+IOErrorExtension::EIOErrorCode IOErrorExtension::code() const
+{
+    return m_code;
+}
+
+}

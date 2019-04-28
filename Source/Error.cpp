@@ -87,7 +87,8 @@ void Error::fail(int code)
         // This will throw an exception if the extension class is ThrowErrorExtension
         m_extension->onFail(code, "", "", -1);
     }
-    else if (m_code == 0)
+    
+    if (m_code == 0)
     {
         m_code = code;
     }

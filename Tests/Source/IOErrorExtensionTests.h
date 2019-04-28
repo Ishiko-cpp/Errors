@@ -32,6 +32,8 @@ public:
 
 private:
     static void ConstructionTest1(Ishiko::Tests::Test& test);
+    static void FailTest1(Ishiko::Tests::Test& test);
+    static void FailTest2(Ishiko::Tests::Test& test);
 };
 
 #endif

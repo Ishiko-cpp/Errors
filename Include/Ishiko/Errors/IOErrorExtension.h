@@ -24,12 +24,25 @@
 #define _ISHIKO_ERRORS_IOERROREXTENSION_H_
 
 #include "ErrorExtension.h"
+#include "Error.h"
 
 namespace Ishiko
 {
 
 class IOErrorExtension : public ErrorExtension
 {
+public:
+    enum EIOErrorCode
+    {
+        eEOF
+    };
+
+    static void Fail(Error& error, EIOErrorCode code);
+
+    EIOErrorCode code() const;
+
+private:
+    EIOErrorCode m_code;
 };
 
 }

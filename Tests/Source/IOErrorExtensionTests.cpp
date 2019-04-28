@@ -22,6 +22,8 @@
 
 #include "IOErrorExtensionTests.h"
 #include "Ishiko/Errors/IOErrorExtension.h"
+#include "Ishiko/Errors/Error.h"
+#include <errno.h>
 
 using namespace Ishiko::Tests;
 
@@ -29,11 +31,36 @@ IOErrorExtensionTests::IOErrorExtensionTests(const TestNumber& number, const Tes
     : TestSequence(number, "IOErrorExtension tests", environment)
 {
     append<HeapAllocationErrorsTest>("Construction test 1", ConstructionTest1);
+    append<HeapAllocationErrorsTest>("Fail test 1", FailTest1);
+    append<HeapAllocationErrorsTest>("Fail test 2", FailTest2);
 }
 
 void IOErrorExtensionTests::ConstructionTest1(Test& test)
 {
     Ishiko::IOErrorExtension ioExtension;
 
+    ISHTF_PASS();
+}
+
+void IOErrorExtensionTests::FailTest1(Test& test)
+{
+    Ishiko::Error error;
+    Ishiko::IOErrorExtension::Fail(error, Ishiko::IOErrorExtension::eEOF);
+
+    ISHTF_FAIL_IF(error.extension());
+    ISHTF_PASS();
+}
+
+void IOErrorExtensionTests::FailTest2(Test& test)
+{
+    Ishiko::Error error(0, new Ishiko::IOErrorExtension());
+    Ishiko::IOErrorExtension::Fail(error, Ishiko::IOErrorExtension::eEOF);
+
+    ISHTF_FAIL_UNLESS(error.code() == EIO);
+
+    Ishiko::IOErrorExtension* ext = dynamic_cast<Ishiko::IOErrorExtension*>(error.extension());
+
+    ISHTF_ABORT_UNLESS(ext);
+    ISHTF_FAIL_UNLESS(ext->code() == Ishiko::IOErrorExtension::eEOF);
     ISHTF_PASS();
 }
