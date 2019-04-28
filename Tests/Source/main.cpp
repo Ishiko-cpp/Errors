@@ -32,6 +32,8 @@ int main(int argc, char* argv[])
 {
     TestHarness theTestHarness("IshikoErrors");
 
+    theTestHarness.environment().setTestDataDirectory("../../TestData");
+
     TestSequence& theTests = theTestHarness.tests();
     theTests.append<ErrorTests>();
     theTests.append<MessageErrorExtensionTests>();

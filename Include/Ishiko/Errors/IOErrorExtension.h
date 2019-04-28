@@ -25,6 +25,7 @@
 
 #include "ErrorExtension.h"
 #include "Error.h"
+#include <ios>
 
 namespace Ishiko
 {
@@ -34,12 +35,14 @@ class IOErrorExtension : public ErrorExtension
 public:
     enum EIOErrorCode
     {
+        eError,
         eEOF
     };
 
     std::ostream& operator<<(std::ostream& os) const override;
 
     static void Fail(Error& error, EIOErrorCode code, const char* file, int line);
+    static void Fail(Error& error, std::ios& status, const char* file, int line);
 
     EIOErrorCode code() const;
     

@@ -28,13 +28,36 @@ namespace Ishiko
 
 void IOErrorExtension::Fail(Error& error, EIOErrorCode code, const char* file, int line)
 {
+    error.fail(EIO, "", file, line);
+
     IOErrorExtension* ext = dynamic_cast<IOErrorExtension*>(error.extension());
     if (ext)
     {
-        error.fail(EIO);
         ext->m_code = code;
         ext->m_file = file;
         ext->m_line = line;
+    }
+}
+
+void IOErrorExtension::Fail(Error& error, std::ios& status, const char* file, int line)
+{
+    if (!status.good())
+    {
+        error.fail(EIO, "", file, line);
+
+        EIOErrorCode code = eError;
+        if (status.eof())
+        {
+            code = eEOF;
+        }
+
+        IOErrorExtension* ext = dynamic_cast<IOErrorExtension*>(error.extension());
+        if (ext)
+        {
+            ext->m_code = code;
+            ext->m_file = file;
+            ext->m_line = line;
+        }
     }
 }
 
