@@ -21,43 +21,26 @@
 */
 
 #include "Error.h"
-#include "ThrowErrorExtension.h"
 
 namespace Ishiko
 {
 
-static ThrowErrorExtension s_throwErrorExtension;
-
-Error::Error()
+Error::Error() noexcept
     : m_code(-1), m_extension(0)
 {
 }
 
-Error::Error(int code)
+Error::Error(int code) noexcept
     : m_code(code), m_extension(0)
 {
 }
 
-Error::Error(int code, ErrorExtension* extension)
+Error::Error(int code, ErrorExtension* extension) noexcept
     : m_code(code), m_extension(extension)
 {
 }
 
-Error::Error(Extension e)
-    : m_code(0)
-{
-    switch (e)
-    {
-    case ThrowException:
-        m_extension = &s_throwErrorExtension;
-        break;
-
-    default:
-        break;
-    }
-}
-
-Error::~Error()
+Error::~Error() noexcept
 {
     if (m_extension)
     {
@@ -65,17 +48,17 @@ Error::~Error()
     }
 }
 
-Error::operator bool() const
+Error::operator bool() const noexcept
 {
     return (m_code != 0);
 }
 
-bool Error::operator!() const
+bool Error::operator!() const noexcept
 {
     return (m_code == 0);
 }
 
-int Error::code() const
+int Error::code() const noexcept
 {
     return m_code;
 }
@@ -84,7 +67,6 @@ void Error::fail(int code)
 {
     if (m_extension)
     {
-        // This will throw an exception if the extension class is ThrowErrorExtension
         m_extension->onFail(code, "", "", -1);
     }
     
@@ -108,17 +90,17 @@ void Error::fail(int code, const std::string& message, const char* file, int lin
     }
 }
 
-void Error::succeed()
+void Error::succeed() noexcept
 {
     m_code = 0;
 }
 
-const ErrorExtension* Error::extension() const
+const ErrorExtension* Error::extension() const noexcept
 {
     return m_extension;
 }
 
-ErrorExtension* Error::extension()
+ErrorExtension* Error::extension() noexcept
 {
     return m_extension;
 }

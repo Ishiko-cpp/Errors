@@ -34,11 +34,8 @@ private:
     static void ConstructionTest1(Ishiko::Tests::Test& test);
     static void ConstructionTest2(Ishiko::Tests::Test& test);
     static void ConstructionTest3(Ishiko::Tests::Test& test);
-    static void ConstructionTest4(Ishiko::Tests::Test& test);
     static void FailTest1(Ishiko::Tests::Test& test);
     static void FailTest2(Ishiko::Tests::Test& test);
-    static void FailTest3(Ishiko::Tests::Test& test);
-    static void FailTest4(Ishiko::Tests::Test& test);
     static void SucceedTest1(Ishiko::Tests::Test& test);
     static void StreamInsertionTest1(Ishiko::Tests::Test& test);
 };

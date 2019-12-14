@@ -36,68 +36,44 @@ namespace Ishiko
 class Error
 {
 public:
-    /// Extension types.
-    /**
-        This enumeration is meant to be used with the Error(Extension e) constructor.
-    */
-    enum Extension
-    {
-        /// Extension type associated with the ThrowErrorExtension extension class.
-        ThrowException
-    };
-
     /// Creates a new error with an error code set to -1.
-    Error();
+    Error() noexcept;
 
     /// Creates a new error from the error code passed in as argument.
-    explicit Error(int code);
+    explicit Error(int code) noexcept;
 
     /// Creates a new error from the error code passed in as argument and sets an extension.
     /**
         @param code The error code.
         @param extension The extension.
     */
-    explicit Error(int code, ErrorExtension* extension);
-
-    /// Creates a new error with the given extension.
-    /**
-        This constructor is used to create an error that throws an exception on failure. It is invoked as follows:
-
-            Error anError(ThrowException); // if fail is called an exception will be thrown
-
-        The exception thrown is of class Exception.
-
-        Behind the scenes this sets the extension to a ThrowErrorExtension singleton.
-        
-        @param e The extension.
-    */
-    explicit Error(Extension e);
+    explicit Error(int code, ErrorExtension* extension) noexcept;
 
     /// Destructor.
     /**
         The destructor will call ErrorExtension::release() on the extension.
     */
-    ~Error();
+    ~Error() noexcept;
 
     /// Converts the error to a boolean value.
     /**
         @retval true The error code is different than 0.
         @retval false The error code is 0.
     */
-    explicit operator bool() const;
+    explicit operator bool() const noexcept;
 
     /// Converts the error to a boolean value.
     /**
         @retval true The error code is 0.
         @retval false The error code is different than 0.
     */
-    bool operator!() const;
+    bool operator!() const noexcept;
 
     /// Gets the error code.
     /**
         @returns The error code.
     */
-    int code() const;
+    int code() const noexcept;
 
     /// Sets the error code if the current code is 0.
     /**
@@ -124,19 +100,19 @@ public:
     void fail(int code, const std::string& message, const char* file, int line);
 
     /// Sets the error code to 0 regardless of its current value.
-    void succeed();
+    void succeed() noexcept;
 
     /// Gets the extension.
     /**
         @returns The extension or 0 if no extension has been set.
     */
-    const ErrorExtension* extension() const;
+    const ErrorExtension* extension() const noexcept;
 
     /// Gets the extension.
     /**
         @returns The extension or 0 if no extension has been set.
     */
-    ErrorExtension* extension();
+    ErrorExtension* extension() noexcept;
 
 private:
     int m_code;

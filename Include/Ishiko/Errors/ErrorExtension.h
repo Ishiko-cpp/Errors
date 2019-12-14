@@ -37,7 +37,7 @@ public:
     /**
         The default implementation calls delete(this).
     */
-    virtual void release();
+    virtual void release() noexcept;
 
     virtual void onFail(int code, const std::string& message, const char* file, int line);
 

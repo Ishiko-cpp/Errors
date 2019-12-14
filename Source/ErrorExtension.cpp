@@ -25,7 +25,7 @@
 namespace Ishiko
 {
 
-void ErrorExtension::release()
+void ErrorExtension::release() noexcept
 {
     delete this;
 }

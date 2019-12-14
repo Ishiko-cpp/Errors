@@ -33,11 +33,8 @@ ErrorTests::ErrorTests(const TestNumber& number, const TestEnvironment& environm
     append<HeapAllocationErrorsTest>("Construction test 1", ConstructionTest1);
     append<HeapAllocationErrorsTest>("Construction test 2", ConstructionTest2);
     append<HeapAllocationErrorsTest>("Construction test 3", ConstructionTest3);
-    append<HeapAllocationErrorsTest>("Construction test 4", ConstructionTest4);
     append<HeapAllocationErrorsTest>("fail test 1", FailTest1);
     append<HeapAllocationErrorsTest>("fail test 2", FailTest2);
-    append<HeapAllocationErrorsTest>("fail test 3", FailTest3);
-    append<HeapAllocationErrorsTest>("fail test 4", FailTest4);
     append<HeapAllocationErrorsTest>("succeed test 1", SucceedTest1);
     append<HeapAllocationErrorsTest>("operator<< test 1", StreamInsertionTest1);
 }
@@ -69,15 +66,6 @@ void ErrorTests::ConstructionTest3(Test& test)
     ISHTF_PASS();
 }
 
-void ErrorTests::ConstructionTest4(Test& test)
-{
-    Ishiko::Error error(Ishiko::Error::ThrowException);
-
-    ISHTF_FAIL_IF((bool)error);
-    ISHTF_FAIL_UNLESS(error.code() == 0);
-    ISHTF_PASS();
-}
-
 void ErrorTests::FailTest1(Test& test)
 {
     Ishiko::Error error(0);
@@ -96,40 +84,6 @@ void ErrorTests::FailTest2(Test& test)
     ISHTF_FAIL_UNLESS((bool)error);
     ISHTF_FAIL_UNLESS(error.code() == 4);
     ISHTF_PASS();
-}
-
-void ErrorTests::FailTest3(Test& test)
-{
-    Ishiko::Error error(Ishiko::Error::ThrowException);
-    try
-    {
-        error.fail(-3);
-
-        ISHTF_FAIL();
-    }
-    catch (const Ishiko::Exception& e)
-    {
-        ISHTF_FAIL_UNLESS(std::string(e.what()) == "");
-        ISHTF_PASS();
-    }
-}
-
-void ErrorTests::FailTest4(Test& test)
-{
-    Ishiko::Error error(Ishiko::Error::ThrowException);
-    try
-    {
-        error.fail(-3, "error message", __FILE__, __LINE__);
-
-        ISHTF_FAIL();
-    }
-    catch (const Ishiko::Exception& e)
-    {
-        ISHTF_FAIL_UNLESS(std::string(e.what()) == "error message");
-        ISHTF_FAIL_UNLESS(e.file().find("errortests.cpp") != std::string::npos);
-        ISHTF_FAIL_UNLESS(e.line() == (__LINE__ - 8));
-        ISHTF_PASS();
-    }
 }
 
 void ErrorTests::SucceedTest1(Test& test)
