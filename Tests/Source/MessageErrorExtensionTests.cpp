@@ -40,9 +40,9 @@ void MessageErrorExtensionTests::ConstructionTest1(Test& test)
 {
     Ishiko::MessageErrorExtension messageExtension;
 
-    ISHTF_FAIL_UNLESS(messageExtension.message() == "");
-    ISHTF_FAIL_UNLESS(messageExtension.file() == "");
-    ISHTF_FAIL_UNLESS(messageExtension.line() == -1);
+    ISHTF_FAIL_IF_NEQ(messageExtension.message(), "");
+    ISHTF_FAIL_IF_NEQ(messageExtension.file(), "");
+    ISHTF_FAIL_IF_NEQ(messageExtension.line(), -1);
     ISHTF_PASS();
 }
 
@@ -50,9 +50,9 @@ void MessageErrorExtensionTests::ConstructionTest2(Test& test)
 {
     Ishiko::MessageErrorExtension messageExtension("unknown", "file1", 3);
 
-    ISHTF_FAIL_UNLESS(messageExtension.message() == "unknown");
-    ISHTF_FAIL_UNLESS(messageExtension.file() == "file1");
-    ISHTF_FAIL_UNLESS(messageExtension.line() == 3);
+    ISHTF_FAIL_IF_NEQ(messageExtension.message(), "unknown");
+    ISHTF_FAIL_IF_NEQ(messageExtension.file(), "file1");
+    ISHTF_FAIL_IF_NEQ(messageExtension.line(), 3);
     ISHTF_PASS();
 }
 
@@ -63,10 +63,10 @@ void MessageErrorExtensionTests::FailTest1(Test& test)
 
     Ishiko::MessageErrorExtension* messageExtension = static_cast<Ishiko::MessageErrorExtension*>(error.extension());
 
-    ISHTF_ABORT_UNLESS(messageExtension);
-    ISHTF_FAIL_UNLESS(messageExtension->message() == "a bad error");
-    ISHTF_FAIL_UNLESS(messageExtension->file() == "file1");
-    ISHTF_FAIL_UNLESS(messageExtension->line() == 3);
+    ISHTF_ABORT_IF_NOT(messageExtension);
+    ISHTF_FAIL_IF_NEQ(messageExtension->message(), "a bad error");
+    ISHTF_FAIL_IF_NEQ(messageExtension->file(), "file1");
+    ISHTF_FAIL_IF_NEQ(messageExtension->line(), 3);
     ISHTF_PASS();
 }
 
@@ -78,6 +78,6 @@ void MessageErrorExtensionTests::StreamInsertionTest1(Test& test)
     std::stringstream errorMessage;
     errorMessage << error;
 
-    ISHTF_FAIL_UNLESS(errorMessage.str() == "Error: -3, a bad error [file: file1, line: 3]");
+    ISHTF_FAIL_IF_NEQ(errorMessage.str(), "Error: -3, a bad error [file: file1, line: 3]");
     ISHTF_PASS();
 }

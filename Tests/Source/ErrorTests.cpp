@@ -43,8 +43,8 @@ void ErrorTests::ConstructionTest1(Test& test)
 {
     Ishiko::Error error;
 
-    ISHTF_FAIL_UNLESS((bool)error);
-    ISHTF_FAIL_UNLESS(error.code() == -1);
+    ISHTF_FAIL_IF_NOT(error);
+    ISHTF_FAIL_IF_NEQ(error.code(), -1);
     ISHTF_PASS();
 }
 
@@ -52,8 +52,8 @@ void ErrorTests::ConstructionTest2(Test& test)
 {
     Ishiko::Error error(0);
 
-    ISHTF_FAIL_IF((bool)error);
-    ISHTF_FAIL_UNLESS(error.code() == 0);
+    ISHTF_FAIL_IF(error);
+    ISHTF_FAIL_IF_NEQ(error.code(), 0);
     ISHTF_PASS();
 }
 
@@ -61,8 +61,8 @@ void ErrorTests::ConstructionTest3(Test& test)
 {
     Ishiko::Error error(-2);
     
-    ISHTF_FAIL_UNLESS((bool)error);
-    ISHTF_FAIL_UNLESS(error.code() == -2);
+    ISHTF_FAIL_IF_NOT(error);
+    ISHTF_FAIL_IF_NEQ(error.code(), -2);
     ISHTF_PASS();
 }
 
@@ -71,8 +71,8 @@ void ErrorTests::FailTest1(Test& test)
     Ishiko::Error error(0);
     error.fail(-3);
 
-    ISHTF_FAIL_UNLESS((bool)error);
-    ISHTF_FAIL_UNLESS(error.code() == -3);
+    ISHTF_FAIL_IF_NOT(error);
+    ISHTF_FAIL_IF_NEQ(error.code(), -3);
     ISHTF_PASS();
 }
 
@@ -81,8 +81,8 @@ void ErrorTests::FailTest2(Test& test)
     Ishiko::Error error(4);
     error.fail(-3);
 
-    ISHTF_FAIL_UNLESS((bool)error);
-    ISHTF_FAIL_UNLESS(error.code() == 4);
+    ISHTF_FAIL_IF_NOT(error);
+    ISHTF_FAIL_IF_NEQ(error.code(), 4);
     ISHTF_PASS();
 }
 
@@ -91,8 +91,8 @@ void ErrorTests::SucceedTest1(Test& test)
     Ishiko::Error error;
     error.succeed();
 
-    ISHTF_FAIL_IF((bool)error);
-    ISHTF_FAIL_UNLESS(error.code() == 0);
+    ISHTF_FAIL_IF(error);
+    ISHTF_FAIL_IF_NEQ(error.code(), 0);
     ISHTF_PASS();
 }
 
@@ -103,6 +103,6 @@ void ErrorTests::StreamInsertionTest1(Test& test)
     std::stringstream errorMessage;
     errorMessage << error;
 
-    ISHTF_FAIL_UNLESS(errorMessage.str() == "Error: -1");
+    ISHTF_FAIL_IF_NEQ(errorMessage.str(), "Error: -1");
     ISHTF_PASS();
 }

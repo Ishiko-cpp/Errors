@@ -54,7 +54,7 @@ void IOErrorExtensionTests::FailTest1(Test& test)
     Ishiko::Error error(0);
     Ishiko::IOErrorExtension::Fail(error, Ishiko::IOErrorExtension::eEOF, "file1", 3);
 
-    ISHTF_FAIL_UNLESS(error.code() == EIO);
+    ISHTF_FAIL_IF_NEQ(error.code(), EIO);
     ISHTF_FAIL_IF(error.extension());
     ISHTF_PASS();
 }
@@ -64,12 +64,12 @@ void IOErrorExtensionTests::FailTest2(Test& test)
     Ishiko::Error error(0, new Ishiko::IOErrorExtension());
     Ishiko::IOErrorExtension::Fail(error, Ishiko::IOErrorExtension::eEOF, "file1", 3);
 
-    ISHTF_FAIL_UNLESS(error.code() == EIO);
+    ISHTF_FAIL_IF_NEQ(error.code(), EIO);
 
     Ishiko::IOErrorExtension* ext = dynamic_cast<Ishiko::IOErrorExtension*>(error.extension());
 
-    ISHTF_ABORT_UNLESS(ext);
-    ISHTF_FAIL_UNLESS(ext->code() == Ishiko::IOErrorExtension::eEOF);
+    ISHTF_ABORT_IF_NOT(ext);
+    ISHTF_FAIL_IF_NEQ(ext->code(), Ishiko::IOErrorExtension::eEOF);
     ISHTF_PASS();
 }
 
@@ -81,7 +81,7 @@ void IOErrorExtensionTests::FailTest3(Test& test)
     Ishiko::Error error(0);
     Ishiko::IOErrorExtension::Fail(error, file, "file1", 3);
 
-    ISHTF_FAIL_UNLESS(error.code() == 0);
+    ISHTF_FAIL_IF_NEQ(error.code(), 0);
     ISHTF_FAIL_IF(error.extension());
     ISHTF_PASS();
 }
@@ -93,7 +93,7 @@ void IOErrorExtensionTests::FailTest4(Test& test)
     Ishiko::Error error(0);
     Ishiko::IOErrorExtension::Fail(error, file, "file1", 3);
 
-    ISHTF_FAIL_UNLESS(error.code() == EIO);
+    ISHTF_FAIL_IF_NEQ(error.code(), EIO);
     ISHTF_FAIL_IF(error.extension());
     ISHTF_PASS();
 }
@@ -105,12 +105,12 @@ void IOErrorExtensionTests::FailTest5(Test& test)
     Ishiko::Error error(0, new Ishiko::IOErrorExtension());
     Ishiko::IOErrorExtension::Fail(error, file, "file1", 3);
 
-    ISHTF_FAIL_UNLESS(error.code() == EIO);
+    ISHTF_FAIL_IF_NEQ(error.code(), EIO);
     
     Ishiko::IOErrorExtension* ext = dynamic_cast<Ishiko::IOErrorExtension*>(error.extension());
 
-    ISHTF_ABORT_UNLESS(ext);
-    ISHTF_FAIL_UNLESS(ext->code() == Ishiko::IOErrorExtension::eError);
+    ISHTF_ABORT_IF_NOT(ext);
+    ISHTF_FAIL_IF_NEQ(ext->code(), Ishiko::IOErrorExtension::eError);
     ISHTF_PASS();
 }
 
@@ -124,12 +124,12 @@ void IOErrorExtensionTests::FailTest6(Test& test)
     Ishiko::Error error(0, new Ishiko::IOErrorExtension());
     Ishiko::IOErrorExtension::Fail(error, file, "file1", 3);
 
-    ISHTF_FAIL_UNLESS(error.code() == EIO);
+    ISHTF_FAIL_IF_NEQ(error.code(), EIO);
 
     Ishiko::IOErrorExtension* ext = dynamic_cast<Ishiko::IOErrorExtension*>(error.extension());
 
-    ISHTF_ABORT_UNLESS(ext);
-    ISHTF_FAIL_UNLESS(ext->code() == Ishiko::IOErrorExtension::eEOF);
+    ISHTF_ABORT_IF_NOT(ext);
+    ISHTF_FAIL_IF_NEQ(ext->code(), Ishiko::IOErrorExtension::eEOF);
     ISHTF_PASS();
 }
 
@@ -141,6 +141,6 @@ void IOErrorExtensionTests::StreamInsertionTest1(Test& test)
     std::stringstream errorMessage;
     errorMessage << error;
 
-    ISHTF_FAIL_UNLESS(errorMessage.str() == "Error: 5, I/O error: end-of-file [file: file1, line: 3]");
+    ISHTF_FAIL_IF_NEQ(errorMessage.str(), "Error: 5, I/O error: end-of-file [file: file1, line: 3]");
     ISHTF_PASS();
 }
