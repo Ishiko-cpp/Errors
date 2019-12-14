@@ -41,9 +41,6 @@
     <ClInclude Include="..\..\Include\Ishiko\Errors\linkoptions.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Source\ThrowErrorExtension.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\Source\Error.cpp">
@@ -62,9 +59,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Source\Exception.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Source\ThrowErrorExtension.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

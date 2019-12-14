@@ -156,7 +156,6 @@
     <ClCompile Include="..\..\Source\MessageErrorExtension.cpp" />
     <ClCompile Include="..\..\Source\IOErrorExtension.cpp" />
     <ClCompile Include="..\..\Source\Exception.cpp" />
-    <ClCompile Include="..\..\Source\ThrowErrorExtension.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\Include\Ishiko\Errors.h" />
@@ -167,7 +166,6 @@
     <ClInclude Include="..\..\Include\Ishiko\Errors\IOErrorExtension.h" />
     <ClInclude Include="..\..\Include\Ishiko\Errors\Exception.h" />
     <ClInclude Include="..\..\Include\Ishiko\Errors\linkoptions.h" />
-    <ClInclude Include="..\..\Source\ThrowErrorExtension.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
