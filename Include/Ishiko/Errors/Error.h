@@ -48,14 +48,17 @@ public:
 
     /// Creates a new error with an error code set to -1.
     Error();
+
     /// Creates a new error from the error code passed in as argument.
     explicit Error(int code);
+
     /// Creates a new error from the error code passed in as argument and sets an extension.
     /**
         @param code The error code.
         @param extension The extension.
     */
     explicit Error(int code, ErrorExtension* extension);
+
     /// Creates a new error with the given extension.
     /**
         This constructor is used to create an error that throws an exception on failure. It is invoked as follows:
@@ -69,6 +72,7 @@ public:
         @param e The extension.
     */
     explicit Error(Extension e);
+
     /// Destructor.
     /**
         The destructor will call ErrorExtension::release() on the extension.
@@ -81,12 +85,14 @@ public:
         @retval false The error code is 0.
     */
     explicit operator bool() const;
+
     /// Converts the error to a boolean value.
     /**
         @retval true The error code is 0.
         @retval false The error code is different than 0.
     */
     bool operator!() const;
+
     /// Gets the error code.
     /**
         @returns The error code.
@@ -101,6 +107,7 @@ public:
         @param code The error code.
     */
     void fail(int code);
+
     /// Sets the error code if the current code is 0.
     /**
         If the current error code is 0 then this function will set it to the value passed in as argument. But the error
@@ -115,6 +122,7 @@ public:
         @param line The line at which the fail() function was called.
     */
     void fail(int code, const std::string& message, const char* file, int line);
+
     /// Sets the error code to 0 regardless of its current value.
     void succeed();
 
@@ -123,6 +131,7 @@ public:
         @returns The extension or 0 if no extension has been set.
     */
     const ErrorExtension* extension() const;
+
     /// Gets the extension.
     /**
         @returns The extension or 0 if no extension has been set.
