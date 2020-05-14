@@ -37,10 +37,10 @@ endif
 # Additionally, this makefile is customizable with the following
 # settings:
 #
-#      ISHIKO_ERRORS_ROOT         Path to the Ishiko Errors installation
-#      BOOST_ROOT                 Path to the Boost installation
-#      ISHIKO_PROCESS_ROOT        Path to the Ishiko Process installation
-#      ISHIKO_TESTFRAMEWORK_ROOT  Path to the Ishiko TestFramework installation
+#      ISHIKO_CPP_ERRORS_ROOT         Path to the Ishiko Errors installation
+#      BOOST_ROOT                     Path to the Boost installation
+#      ISHIKO_CPP_PROCESS_ROOT        Path to the Ishiko Process installation
+#      ISHIKO_CPP_TESTFRAMEWORK_ROOT  Path to the Ishiko TestFramework installation
 
 # Use "make RANLIB=''" for platforms without ranlib.
 RANLIB ?= ranlib
@@ -62,35 +62,35 @@ endif
 # 
 
 # Path to the Ishiko Errors installation
-ISHIKO_ERRORS_ROOT ?= $(ISHIKO)/Errors
+ISHIKO_CPP_ERRORS_ROOT ?= $(ISHIKO_CPP)/Errors
 # Path to the Boost installation
 BOOST_ROOT ?= $(BOOST)
 # Path to the Ishiko Process installation
-ISHIKO_PROCESS_ROOT ?= $(ISHIKO)/Process
+ISHIKO_CPP_PROCESS_ROOT ?= $(ISHIKO_CPP)/Process
 # Path to the Ishiko TestFramework installation
-ISHIKO_TESTFRAMEWORK_ROOT ?= $(ISHIKO)/TestFramework
+ISHIKO_CPP_TESTFRAMEWORK_ROOT ?= $(ISHIKO_CPP)/TestFramework
 
 # ------------
 
 all: $(_builddir)IshikoErrorsTests
 
 $(_builddir)IshikoErrorsTests: $(_builddir)IshikoErrorsTests_main.o $(_builddir)IshikoErrorsTests_ErrorTests.o $(_builddir)IshikoErrorsTests_MessageErrorExtensionTests.o $(_builddir)IshikoErrorsTests_IOErrorExtensionTests.o $(_builddir)IshikoErrorsTests_ChainErrorExtensionTests.o
-	$(CXX) -o $@ $(LDFLAGS) $(_builddir)IshikoErrorsTests_main.o $(_builddir)IshikoErrorsTests_ErrorTests.o $(_builddir)IshikoErrorsTests_MessageErrorExtensionTests.o $(_builddir)IshikoErrorsTests_IOErrorExtensionTests.o $(_builddir)IshikoErrorsTests_ChainErrorExtensionTests.o -L$(ISHIKO_ERRORS_ROOT)/Lib -L$(ISHIKO_PROCESS_ROOT)/Lib -L$(BOOST_ROOT)/lib -L$(ISHIKO_TESTFRAMEWORK_ROOT)/Lib -pthread
+	$(CXX) -o $@ $(LDFLAGS) $(_builddir)IshikoErrorsTests_main.o $(_builddir)IshikoErrorsTests_ErrorTests.o $(_builddir)IshikoErrorsTests_MessageErrorExtensionTests.o $(_builddir)IshikoErrorsTests_IOErrorExtensionTests.o $(_builddir)IshikoErrorsTests_ChainErrorExtensionTests.o -L$(ISHIKO_CPP_ERRORS_ROOT)/Lib -L$(ISHIKO_CPP_PROCESS_ROOT)/Lib -L$(BOOST_ROOT)/lib -L$(ISHIKO_CPP_TESTFRAMEWORK_ROOT)/Lib -pthread
 
 $(_builddir)IshikoErrorsTests_main.o: ../../Source/main.cpp
-	$(CXX) -c -o $@ $(CPPFLAGS) $(CXXFLAGS) -MD -MP -pthread -I$(ISHIKO_ERRORS_ROOT)/Include -I$(ISHIKO_PROCESS_ROOT)/Include -I$(BOOST_ROOT)/include -I$(ISHIKO_TESTFRAMEWORK_ROOT)/Include ../../Source/main.cpp
+	$(CXX) -c -o $@ $(CPPFLAGS) $(CXXFLAGS) -MD -MP -pthread -I$(ISHIKO_CPP_ERRORS_ROOT)/Include -I$(ISHIKO_CPP_PROCESS_ROOT)/Include -I$(BOOST_ROOT)/include -I$(ISHIKO_CPP_TESTFRAMEWORK_ROOT)/Include ../../Source/main.cpp
 
 $(_builddir)IshikoErrorsTests_ErrorTests.o: ../../Source/ErrorTests.cpp
-	$(CXX) -c -o $@ $(CPPFLAGS) $(CXXFLAGS) -MD -MP -pthread -I$(ISHIKO_ERRORS_ROOT)/Include -I$(ISHIKO_PROCESS_ROOT)/Include -I$(BOOST_ROOT)/include -I$(ISHIKO_TESTFRAMEWORK_ROOT)/Include ../../Source/ErrorTests.cpp
+	$(CXX) -c -o $@ $(CPPFLAGS) $(CXXFLAGS) -MD -MP -pthread -I$(ISHIKO_CPP_ERRORS_ROOT)/Include -I$(ISHIKO_CPP_PROCESS_ROOT)/Include -I$(BOOST_ROOT)/include -I$(ISHIKO_CPP_TESTFRAMEWORK_ROOT)/Include ../../Source/ErrorTests.cpp
 
 $(_builddir)IshikoErrorsTests_MessageErrorExtensionTests.o: ../../Source/MessageErrorExtensionTests.cpp
-	$(CXX) -c -o $@ $(CPPFLAGS) $(CXXFLAGS) -MD -MP -pthread -I$(ISHIKO_ERRORS_ROOT)/Include -I$(ISHIKO_PROCESS_ROOT)/Include -I$(BOOST_ROOT)/include -I$(ISHIKO_TESTFRAMEWORK_ROOT)/Include ../../Source/MessageErrorExtensionTests.cpp
+	$(CXX) -c -o $@ $(CPPFLAGS) $(CXXFLAGS) -MD -MP -pthread -I$(ISHIKO_CPP_ERRORS_ROOT)/Include -I$(ISHIKO_CPP_PROCESS_ROOT)/Include -I$(BOOST_ROOT)/include -I$(ISHIKO_CPP_TESTFRAMEWORK_ROOT)/Include ../../Source/MessageErrorExtensionTests.cpp
 
 $(_builddir)IshikoErrorsTests_IOErrorExtensionTests.o: ../../Source/IOErrorExtensionTests.cpp
-	$(CXX) -c -o $@ $(CPPFLAGS) $(CXXFLAGS) -MD -MP -pthread -I$(ISHIKO_ERRORS_ROOT)/Include -I$(ISHIKO_PROCESS_ROOT)/Include -I$(BOOST_ROOT)/include -I$(ISHIKO_TESTFRAMEWORK_ROOT)/Include ../../Source/IOErrorExtensionTests.cpp
+	$(CXX) -c -o $@ $(CPPFLAGS) $(CXXFLAGS) -MD -MP -pthread -I$(ISHIKO_CPP_ERRORS_ROOT)/Include -I$(ISHIKO_CPP_PROCESS_ROOT)/Include -I$(BOOST_ROOT)/include -I$(ISHIKO_CPP_TESTFRAMEWORK_ROOT)/Include ../../Source/IOErrorExtensionTests.cpp
 
 $(_builddir)IshikoErrorsTests_ChainErrorExtensionTests.o: ../../Source/ChainErrorExtensionTests.cpp
-	$(CXX) -c -o $@ $(CPPFLAGS) $(CXXFLAGS) -MD -MP -pthread -I$(ISHIKO_ERRORS_ROOT)/Include -I$(ISHIKO_PROCESS_ROOT)/Include -I$(BOOST_ROOT)/include -I$(ISHIKO_TESTFRAMEWORK_ROOT)/Include ../../Source/ChainErrorExtensionTests.cpp
+	$(CXX) -c -o $@ $(CPPFLAGS) $(CXXFLAGS) -MD -MP -pthread -I$(ISHIKO_CPP_ERRORS_ROOT)/Include -I$(ISHIKO_CPP_PROCESS_ROOT)/Include -I$(BOOST_ROOT)/include -I$(ISHIKO_CPP_TESTFRAMEWORK_ROOT)/Include ../../Source/ChainErrorExtensionTests.cpp
 
 clean:
 	rm -f $(_builddir)*.o
