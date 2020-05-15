@@ -24,3 +24,9 @@ jobs:
       - run:
           name: "Build Ishiko-cpp/TestFramework test dependency"
           command: cd /Ishiko-cpp/TestFramework/Core/Makefiles/GNUmakefile && make
+      - run:
+          name: Test build
+          command: cd /Ishiko-cpp/Errors/Tests/Makefiles/GNUmakefile && make
+      - run:
+          name: Run the tests
+          command: cd /Ishiko-cpp/Errors/Tests/Makefiles/GNUmakefile && ./IshikoErrorsTests
