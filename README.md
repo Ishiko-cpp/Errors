@@ -4,11 +4,11 @@ Basic classes to handle and report errors.
 
 # Contents
 
-- Include - Directory containing the public headers for the project.
-- Lib - Directory where the build process puts the compiled libraries.
-- Makefiles - The makefiles used to build the project
-- Source - The source code for the prokect.
-- Tests - The tests for the project.
+- Include: Directory containing the public headers for the project.
+- Lib: Directory where the build process puts the compiled libraries.
+- Makefiles: The makefiles used to build the project
+- Source: The source code for the prokect.
+- Tests: The tests for the project.
 
 # Project Status
 
@@ -24,7 +24,7 @@ None.
 
 # License
 
-Copyright (c) 2015-2019 Xavier Leclercq
+Copyright (c) 2015-2020 Xavier Leclercq
 
 Permission is hereby granted, free of charge, to any person obtaining a
 copy of this software and associated documentation files (the "Software"),
