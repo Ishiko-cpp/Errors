@@ -12,6 +12,8 @@ Basic classes to handle and report errors.
 
 # Project Status
 
+[![Ishiko-cpp](https://circleci.com/gh/Ishiko-cpp/Errors.svg?style=shield)](https://circleci.com/gh/Ishiko-cpp/Errors)
+
 This project is intended for use by its author only.
 
 # Usage
