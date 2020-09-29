@@ -54,7 +54,7 @@ void IOErrorExtensionTests::FailTest1(Test& test)
     Ishiko::Error error(0);
     Ishiko::IOErrorExtension::Fail(error, Ishiko::IOErrorExtension::eEOF, "file1", 3);
 
-    ISHTF_FAIL_IF_NEQ(error.code(), EIO);
+    ISHTF_FAIL_IF_NEQ(error.condition().value(), EIO);
     ISHTF_FAIL_IF(error.extension());
     ISHTF_PASS();
 }
@@ -64,7 +64,7 @@ void IOErrorExtensionTests::FailTest2(Test& test)
     Ishiko::Error error(0, new Ishiko::IOErrorExtension());
     Ishiko::IOErrorExtension::Fail(error, Ishiko::IOErrorExtension::eEOF, "file1", 3);
 
-    ISHTF_FAIL_IF_NEQ(error.code(), EIO);
+    ISHTF_FAIL_IF_NEQ(error.condition().value(), EIO);
 
     Ishiko::IOErrorExtension* ext = dynamic_cast<Ishiko::IOErrorExtension*>(error.extension());
 
@@ -81,7 +81,7 @@ void IOErrorExtensionTests::FailTest3(Test& test)
     Ishiko::Error error(0);
     Ishiko::IOErrorExtension::Fail(error, file, "file1", 3);
 
-    ISHTF_FAIL_IF_NEQ(error.code(), 0);
+    ISHTF_FAIL_IF_NEQ(error.condition().value(), 0);
     ISHTF_FAIL_IF(error.extension());
     ISHTF_PASS();
 }
@@ -93,7 +93,7 @@ void IOErrorExtensionTests::FailTest4(Test& test)
     Ishiko::Error error(0);
     Ishiko::IOErrorExtension::Fail(error, file, "file1", 3);
 
-    ISHTF_FAIL_IF_NEQ(error.code(), EIO);
+    ISHTF_FAIL_IF_NEQ(error.condition().value(), EIO);
     ISHTF_FAIL_IF(error.extension());
     ISHTF_PASS();
 }
@@ -105,7 +105,7 @@ void IOErrorExtensionTests::FailTest5(Test& test)
     Ishiko::Error error(0, new Ishiko::IOErrorExtension());
     Ishiko::IOErrorExtension::Fail(error, file, "file1", 3);
 
-    ISHTF_FAIL_IF_NEQ(error.code(), EIO);
+    ISHTF_FAIL_IF_NEQ(error.condition().value(), EIO);
     
     Ishiko::IOErrorExtension* ext = dynamic_cast<Ishiko::IOErrorExtension*>(error.extension());
 
@@ -124,7 +124,7 @@ void IOErrorExtensionTests::FailTest6(Test& test)
     Ishiko::Error error(0, new Ishiko::IOErrorExtension());
     Ishiko::IOErrorExtension::Fail(error, file, "file1", 3);
 
-    ISHTF_FAIL_IF_NEQ(error.code(), EIO);
+    ISHTF_FAIL_IF_NEQ(error.condition().value(), EIO);
 
     Ishiko::IOErrorExtension* ext = dynamic_cast<Ishiko::IOErrorExtension*>(error.extension());
 

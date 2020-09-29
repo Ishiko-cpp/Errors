@@ -26,17 +26,17 @@ namespace Ishiko
 {
 
 Error::Error() noexcept
-    : m_code(-1), m_extension(0)
+    : m_condition(-1), m_extension(0)
 {
 }
 
 Error::Error(int code) noexcept
-    : m_code(code), m_extension(0)
+    : m_condition(code), m_extension(0)
 {
 }
 
 Error::Error(int code, ErrorExtension* extension) noexcept
-    : m_code(code), m_extension(extension)
+    : m_condition(code), m_extension(extension)
 {
 }
 
@@ -50,17 +50,17 @@ Error::~Error() noexcept
 
 Error::operator bool() const noexcept
 {
-    return (m_code != 0);
+    return (bool)m_condition;
 }
 
 bool Error::operator!() const noexcept
 {
-    return (m_code == 0);
+    return !m_condition;
 }
 
-int Error::code() const noexcept
+const ErrorCondition& Error::condition() const noexcept
 {
-    return m_code;
+    return m_condition;
 }
 
 void Error::fail(int code)
@@ -70,9 +70,9 @@ void Error::fail(int code)
         m_extension->onFail(code, "", "", -1);
     }
     
-    if (m_code == 0)
+    if (!m_condition)
     {
-        m_code = code;
+        m_condition = ErrorCondition(code);
     }
 }
 
@@ -84,15 +84,15 @@ void Error::fail(int code, const std::string& message, const char* file, int lin
         m_extension->onFail(code, message, file, line);
     }
 
-    if (m_code == 0)
+    if (!m_condition)
     {
-        m_code = code;
+        m_condition = ErrorCondition(code);
     }
 }
 
 void Error::succeed() noexcept
 {
-    m_code = 0;
+    m_condition.succeed();
 }
 
 const ErrorExtension* Error::extension() const noexcept
@@ -107,7 +107,7 @@ ErrorExtension* Error::extension() noexcept
 
 std::ostream& operator<<(std::ostream& os, const Error& error)
 {
-    os << "Error: "<< error.code();
+    os << "Error: "<< error.condition();
     const ErrorExtension* extension = error.extension();
     if (extension)
     {

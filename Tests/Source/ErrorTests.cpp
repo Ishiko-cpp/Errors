@@ -44,7 +44,7 @@ void ErrorTests::ConstructionTest1(Test& test)
     Ishiko::Error error;
 
     ISHTF_FAIL_IF_NOT(error);
-    ISHTF_FAIL_IF_NEQ(error.code(), -1);
+    ISHTF_FAIL_IF_NEQ(error.condition().value(), -1);
     ISHTF_PASS();
 }
 
@@ -53,7 +53,7 @@ void ErrorTests::ConstructionTest2(Test& test)
     Ishiko::Error error(0);
 
     ISHTF_FAIL_IF(error);
-    ISHTF_FAIL_IF_NEQ(error.code(), 0);
+    ISHTF_FAIL_IF_NEQ(error.condition().value(), 0);
     ISHTF_PASS();
 }
 
@@ -62,7 +62,7 @@ void ErrorTests::ConstructionTest3(Test& test)
     Ishiko::Error error(-2);
     
     ISHTF_FAIL_IF_NOT(error);
-    ISHTF_FAIL_IF_NEQ(error.code(), -2);
+    ISHTF_FAIL_IF_NEQ(error.condition().value(), -2);
     ISHTF_PASS();
 }
 
@@ -72,7 +72,7 @@ void ErrorTests::FailTest1(Test& test)
     error.fail(-3);
 
     ISHTF_FAIL_IF_NOT(error);
-    ISHTF_FAIL_IF_NEQ(error.code(), -3);
+    ISHTF_FAIL_IF_NEQ(error.condition().value(), -3);
     ISHTF_PASS();
 }
 
@@ -82,7 +82,7 @@ void ErrorTests::FailTest2(Test& test)
     error.fail(-3);
 
     ISHTF_FAIL_IF_NOT(error);
-    ISHTF_FAIL_IF_NEQ(error.code(), 4);
+    ISHTF_FAIL_IF_NEQ(error.condition().value(), 4);
     ISHTF_PASS();
 }
 
@@ -92,7 +92,7 @@ void ErrorTests::SucceedTest1(Test& test)
     error.succeed();
 
     ISHTF_FAIL_IF(error);
-    ISHTF_FAIL_IF_NEQ(error.code(), 0);
+    ISHTF_FAIL_IF_NEQ(error.condition().value(), 0);
     ISHTF_PASS();
 }
 
