@@ -1,26 +1,11 @@
 /*
-    Copyright (c) 2019 Xavier Leclercq
-
-    Permission is hereby granted, free of charge, to any person obtaining a
-    copy of this software and associated documentation files (the "Software"),
-    to deal in the Software without restriction, including without limitation
-    the rights to use, copy, modify, merge, publish, distribute, sublicense,
-    and/or sell copies of the Software, and to permit persons to whom the
-    Software is furnished to do so, subject to the following conditions:
-
-    The above copyright notice and this permission notice shall be included in
-    all copies or substantial portions of the Software.
-
-    THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-    IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-    FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL
-    THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-    LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
-    FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OROTHER DEALINGS
-    IN THE SOFTWARE.
+    Copyright (c) 2019-2020 Xavier Leclercq
+    Released under the MIT License
+    See https://github.com/Ishiko-cpp/Errors/blob/master/LICENSE.txt
 */
 
 #include "IOErrorExtension.h"
+#include "IOErrorCategory.h"
 #include <errno.h>
 
 namespace Ishiko
@@ -28,7 +13,7 @@ namespace Ishiko
 
 void IOErrorExtension::Fail(Error& error, EIOErrorCode code, const char* file, int line)
 {
-    error.fail(EIO, "", file, line);
+    error.fail(EIO, IOErrorCategory::Get(), "", file, line);
 
     IOErrorExtension* ext = dynamic_cast<IOErrorExtension*>(error.extension());
     if (ext)
@@ -43,7 +28,7 @@ void IOErrorExtension::Fail(Error& error, std::ios& status, const char* file, in
 {
     if (!status.good())
     {
-        error.fail(EIO, "", file, line);
+        error.fail(EIO, IOErrorCategory::Get(), "", file, line);
 
         EIOErrorCode code = eError;
         if (status.eof())

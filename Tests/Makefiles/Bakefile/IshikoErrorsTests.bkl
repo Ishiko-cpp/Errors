@@ -21,18 +21,23 @@ program IshikoErrorsTests : IshikoErrors, IshikoTestFrameworkCore
 
     headers
     {
+        ../../Source/ErrorConditionTests.h
         ../../Source/ErrorTests.h
         ../../Source/MessageErrorExtensionTests.h
         ../../Source/IOErrorExtensionTests.h
         ../../Source/ChainErrorExtensionTests.h
+
+        ../../Source/Helpers/TestErrorCategory1.h
     }
 
     sources
     {
         ../../Source/main.cpp
+        ../../Source/ErrorConditionTests.cpp
         ../../Source/ErrorTests.cpp
         ../../Source/MessageErrorExtensionTests.cpp
         ../../Source/IOErrorExtensionTests.cpp
         ../../Source/ChainErrorExtensionTests.cpp
+        ../../Source/Helpers/TestErrorCategory1.cpp
     }
 }

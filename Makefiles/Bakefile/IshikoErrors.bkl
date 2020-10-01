@@ -32,6 +32,10 @@ library IshikoErrors
         ../../Include/Ishiko/Errors.h
 
         ../../Include/Ishiko/Errors/Error.h
+        ../../Include/Ishiko/Errors/ErrorCondition.h
+        ../../Include/Ishiko/Errors/ErrorCategory.h
+        ../../Include/Ishiko/Errors/SuccessCategory.h
+        ../../Include/Ishiko/Errors/IOErrorCategory.h
         ../../Include/Ishiko/Errors/ErrorExtension.h
         ../../Include/Ishiko/Errors/ChainErrorExtension.h
         ../../Include/Ishiko/Errors/MessageErrorExtension.h
@@ -43,6 +47,9 @@ library IshikoErrors
     sources
     {
         ../../Source/Error.cpp
+        ../../Source/ErrorCondition.cpp
+        ../../Source/SuccessCategory.cpp
+        ../../Source/IOErrorCategory.cpp
         ../../Source/ErrorExtension.cpp
         ../../Source/ChainErrorExtension.cpp
         ../../Source/MessageErrorExtension.cpp
