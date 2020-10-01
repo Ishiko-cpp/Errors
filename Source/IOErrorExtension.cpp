@@ -5,6 +5,7 @@
 */
 
 #include "IOErrorExtension.h"
+#include "IOErrorCategory.h"
 #include <errno.h>
 
 namespace Ishiko
@@ -12,7 +13,7 @@ namespace Ishiko
 
 void IOErrorExtension::Fail(Error& error, EIOErrorCode code, const char* file, int line)
 {
-    error.fail(EIO, "", file, line);
+    error.fail(EIO, IOErrorCategory::Get(), "", file, line);
 
     IOErrorExtension* ext = dynamic_cast<IOErrorExtension*>(error.extension());
     if (ext)
@@ -27,7 +28,7 @@ void IOErrorExtension::Fail(Error& error, std::ios& status, const char* file, in
 {
     if (!status.good())
     {
-        error.fail(EIO, "", file, line);
+        error.fail(EIO, IOErrorCategory::Get(), "", file, line);
 
         EIOErrorCode code = eError;
         if (status.eof())

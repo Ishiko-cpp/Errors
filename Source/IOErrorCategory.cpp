@@ -5,3 +5,18 @@
 */
 
 #include "IOErrorCategory.h"
+
+namespace Ishiko
+{
+
+namespace
+{
+    IOErrorCategory theIOErrorCategory;
+}
+
+const IOErrorCategory& IOErrorCategory::Get() noexcept
+{
+    return theIOErrorCategory;
+}
+
+}

@@ -14,6 +14,8 @@ namespace Ishiko
 
 class IOErrorCategory : public ErrorCategory
 {
+public:
+    static const IOErrorCategory& Get() noexcept;
 };
 
 }
