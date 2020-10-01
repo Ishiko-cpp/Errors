@@ -19,11 +19,14 @@ MessageErrorExtension::MessageErrorExtension(const std::string& message, const c
 {
 }
 
-void MessageErrorExtension::onFail(int code, const std::string& message, const char* file, int line)
+void MessageErrorExtension::onFail(int code, const std::string& message, const char* file, int line) noexcept
 {
-    m_message = message;
-    m_file = file;
-    m_line = line;
+    if (m_message.empty())
+    {
+        m_message = message;
+        m_file = file;
+        m_line = line;
+    }
 }
 
 std::ostream& MessageErrorExtension::operator<<(std::ostream& os) const

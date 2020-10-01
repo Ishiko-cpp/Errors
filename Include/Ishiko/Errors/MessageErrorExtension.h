@@ -19,7 +19,7 @@ public:
     MessageErrorExtension();
     MessageErrorExtension(const std::string& message, const char* file, int line);
 
-    void onFail(int code, const std::string& message, const char* file, int line) override;
+    void onFail(int code, const std::string& message, const char* file, int line) noexcept override;
 
     std::ostream& operator<<(std::ostream& os) const override;
 

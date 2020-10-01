@@ -35,7 +35,6 @@ int ErrorCondition::value() const noexcept
     return m_value;
 }
 
-// TODO: add category
 void ErrorCondition::fail(int value, const ErrorCategory& category) noexcept
 {
     m_value = value;

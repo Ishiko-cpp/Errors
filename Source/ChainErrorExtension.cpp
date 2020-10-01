@@ -18,7 +18,7 @@ ChainErrorExtension::~ChainErrorExtension()
     }
 }
 
-void ChainErrorExtension::onFail(int code, const std::string& message, const char* file, int line)
+void ChainErrorExtension::onFail(int code, const std::string& message, const char* file, int line) noexcept
 {
     m_chain.emplace_back(code, new MessageErrorExtension(message, file, line));
 }

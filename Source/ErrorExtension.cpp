@@ -14,7 +14,7 @@ void ErrorExtension::release() noexcept
     delete this;
 }
 
-void ErrorExtension::onFail(int code, const std::string& message, const char* file, int line)
+void ErrorExtension::onFail(int code, const std::string& message, const char* file, int line) noexcept
 {
     // Do nothing
 }

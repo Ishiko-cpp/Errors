@@ -52,7 +52,7 @@ const ErrorCondition& Error::condition() const noexcept
     return m_condition;
 }
 
-void Error::fail(int code, const ErrorCategory& category)
+void Error::fail(int code, const ErrorCategory& category) noexcept
 {
     if (m_extension)
     {
@@ -61,21 +61,20 @@ void Error::fail(int code, const ErrorCategory& category)
     
     if (!m_condition)
     {
-        m_condition = ErrorCondition(code, category);
+        m_condition.fail(code, category);
     }
 }
 
-void Error::fail(int code, const ErrorCategory& category, const std::string& message, const char* file, int line)
+void Error::fail(int code, const ErrorCategory& category, const std::string& message, const char* file, int line) noexcept
 {
     if (m_extension)
     {
-        // This will throw an exception if the extension class is ThrowErrorExtension
         m_extension->onFail(code, message, file, line);
     }
 
     if (!m_condition)
     {
-        m_condition = ErrorCondition(code, category);
+        m_condition.fail(code, category);
     }
 }
 

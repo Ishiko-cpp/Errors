@@ -69,7 +69,7 @@ public:
 
         @param code The error code.
     */
-    void fail(int code, const ErrorCategory& category);
+    void fail(int code, const ErrorCategory& category) noexcept;
 
     /// Sets the error code if the current code is 0.
     /**
@@ -84,7 +84,7 @@ public:
         @param file The file where the fail() function was called.
         @param line The line at which the fail() function was called.
     */
-    void fail(int code, const ErrorCategory& category, const std::string& message, const char* file, int line);
+    void fail(int code, const ErrorCategory& category, const std::string& message, const char* file, int line) noexcept;
 
     /// Sets the error code to 0 regardless of its current value.
     void succeed() noexcept;

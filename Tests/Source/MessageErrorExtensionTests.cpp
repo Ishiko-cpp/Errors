@@ -15,13 +15,14 @@ using namespace Ishiko::Tests;
 MessageErrorExtensionTests::MessageErrorExtensionTests(const TestNumber& number, const TestEnvironment& environment)
     : TestSequence(number, "MessageErrorExtension tests", environment)
 {
-    append<HeapAllocationErrorsTest>("Construction test 1", ConstructionTest1);
-    append<HeapAllocationErrorsTest>("Construction test 2", ConstructionTest2);
+    append<HeapAllocationErrorsTest>("Constructor test 1", ConstructorTest1);
+    append<HeapAllocationErrorsTest>("Constructor test 2", ConstructorTest2);
     append<HeapAllocationErrorsTest>("fail test 1", FailTest1);
+    append<HeapAllocationErrorsTest>("fail test 2", FailTest2);
     append<HeapAllocationErrorsTest>("operator<< test 1", StreamInsertionTest1);
 }
 
-void MessageErrorExtensionTests::ConstructionTest1(Test& test)
+void MessageErrorExtensionTests::ConstructorTest1(Test& test)
 {
     Ishiko::MessageErrorExtension messageExtension;
 
@@ -31,7 +32,7 @@ void MessageErrorExtensionTests::ConstructionTest1(Test& test)
     ISHTF_PASS();
 }
 
-void MessageErrorExtensionTests::ConstructionTest2(Test& test)
+void MessageErrorExtensionTests::ConstructorTest2(Test& test)
 {
     Ishiko::MessageErrorExtension messageExtension("unknown", "file1", 3);
 
@@ -45,6 +46,21 @@ void MessageErrorExtensionTests::FailTest1(Test& test)
 {
     Ishiko::Error error(new Ishiko::MessageErrorExtension());
     error.fail(-3, TestErrorCategory1::Get(), "a bad error", "file1", 3);
+
+    Ishiko::MessageErrorExtension* messageExtension = static_cast<Ishiko::MessageErrorExtension*>(error.extension());
+
+    ISHTF_ABORT_IF_NOT(messageExtension);
+    ISHTF_FAIL_IF_NEQ(messageExtension->message(), "a bad error");
+    ISHTF_FAIL_IF_NEQ(messageExtension->file(), "file1");
+    ISHTF_FAIL_IF_NEQ(messageExtension->line(), 3);
+    ISHTF_PASS();
+}
+
+void MessageErrorExtensionTests::FailTest2(Test& test)
+{
+    Ishiko::Error error(new Ishiko::MessageErrorExtension());
+    error.fail(-3, TestErrorCategory1::Get(), "a bad error", "file1", 3);
+    error.fail(-4, TestErrorCategory1::Get(), "another bad error", "file2", 6);
 
     Ishiko::MessageErrorExtension* messageExtension = static_cast<Ishiko::MessageErrorExtension*>(error.extension());
 
