@@ -12,6 +12,8 @@ namespace Ishiko
 
 class ErrorCategory
 {
+protected:
+    ErrorCategory() noexcept = default;
 };
 
 }

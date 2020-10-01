@@ -5,6 +5,7 @@
 */
 
 #include "MessageErrorExtensionTests.h"
+#include "Helpers/TestErrorCategory1.h"
 #include "Ishiko/Errors/MessageErrorExtension.h"
 #include "Ishiko/Errors/Error.h"
 #include <sstream>
@@ -42,8 +43,8 @@ void MessageErrorExtensionTests::ConstructionTest2(Test& test)
 
 void MessageErrorExtensionTests::FailTest1(Test& test)
 {
-    Ishiko::Error error(0, new Ishiko::MessageErrorExtension());
-    error.fail(-3, "a bad error", "file1", 3);
+    Ishiko::Error error(new Ishiko::MessageErrorExtension());
+    error.fail(-3, TestErrorCategory1::Get(), "a bad error", "file1", 3);
 
     Ishiko::MessageErrorExtension* messageExtension = static_cast<Ishiko::MessageErrorExtension*>(error.extension());
 
@@ -56,8 +57,8 @@ void MessageErrorExtensionTests::FailTest1(Test& test)
 
 void MessageErrorExtensionTests::StreamInsertionTest1(Test& test)
 {
-    Ishiko::Error error(0, new Ishiko::MessageErrorExtension());
-    error.fail(-3, "a bad error", "file1", 3);
+    Ishiko::Error error(new Ishiko::MessageErrorExtension());
+    error.fail(-3, TestErrorCategory1::Get(), "a bad error", "file1", 3);
 
     std::stringstream errorMessage;
     errorMessage << error;

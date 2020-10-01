@@ -16,6 +16,9 @@ class IOErrorCategory : public ErrorCategory
 {
 public:
     static const IOErrorCategory& Get() noexcept;
+
+private:
+    IOErrorCategory() noexcept = default;
 };
 
 }

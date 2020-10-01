@@ -35,7 +35,7 @@ void IOErrorExtensionTests::ConstructionTest1(Test& test)
 
 void IOErrorExtensionTests::FailTest1(Test& test)
 {
-    Ishiko::Error error(0);
+    Ishiko::Error error;
     Ishiko::IOErrorExtension::Fail(error, Ishiko::IOErrorExtension::eEOF, "file1", 3);
 
     ISHTF_FAIL_IF_NEQ(error.condition().value(), EIO);
@@ -45,7 +45,7 @@ void IOErrorExtensionTests::FailTest1(Test& test)
 
 void IOErrorExtensionTests::FailTest2(Test& test)
 {
-    Ishiko::Error error(0, new Ishiko::IOErrorExtension());
+    Ishiko::Error error(new Ishiko::IOErrorExtension());
     Ishiko::IOErrorExtension::Fail(error, Ishiko::IOErrorExtension::eEOF, "file1", 3);
 
     ISHTF_FAIL_IF_NEQ(error.condition().value(), EIO);
@@ -86,7 +86,7 @@ void IOErrorExtensionTests::FailTest5(Test& test)
 {
     std::fstream file("doesnotexist");
 
-    Ishiko::Error error(0, new Ishiko::IOErrorExtension());
+    Ishiko::Error error(new Ishiko::IOErrorExtension());
     Ishiko::IOErrorExtension::Fail(error, file, "file1", 3);
 
     ISHTF_FAIL_IF_NEQ(error.condition().value(), EIO);
@@ -105,7 +105,7 @@ void IOErrorExtensionTests::FailTest6(Test& test)
     char buffer[20];
     file.read(buffer, 20);
 
-    Ishiko::Error error(0, new Ishiko::IOErrorExtension());
+    Ishiko::Error error(new Ishiko::IOErrorExtension());
     Ishiko::IOErrorExtension::Fail(error, file, "file1", 3);
 
     ISHTF_FAIL_IF_NEQ(error.condition().value(), EIO);
@@ -119,7 +119,7 @@ void IOErrorExtensionTests::FailTest6(Test& test)
 
 void IOErrorExtensionTests::StreamInsertionTest1(Test& test)
 {
-    Ishiko::Error error(0, new Ishiko::IOErrorExtension());
+    Ishiko::Error error(new Ishiko::IOErrorExtension());
     Ishiko::IOErrorExtension::Fail(error, Ishiko::IOErrorExtension::eEOF, "file1", 3);
 
     std::stringstream errorMessage;

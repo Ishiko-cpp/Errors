@@ -9,14 +9,10 @@
 namespace Ishiko
 {
 
-namespace
-{
-    IOErrorCategory theIOErrorCategory;
-}
-
 const IOErrorCategory& IOErrorCategory::Get() noexcept
 {
-    return theIOErrorCategory;
+    static IOErrorCategory theCategory;
+    return theCategory;
 }
 
 }

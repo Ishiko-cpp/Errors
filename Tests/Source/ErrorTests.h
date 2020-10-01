@@ -15,9 +15,8 @@ public:
     ErrorTests(const Ishiko::Tests::TestNumber& number, const Ishiko::Tests::TestEnvironment& environment);
 
 private:
-    static void ConstructionTest1(Ishiko::Tests::Test& test);
-    static void ConstructionTest2(Ishiko::Tests::Test& test);
-    static void ConstructionTest3(Ishiko::Tests::Test& test);
+    static void ConstructorTest1(Ishiko::Tests::Test& test);
+    static void ConstructorTest2(Ishiko::Tests::Test& test);
     static void FailTest1(Ishiko::Tests::Test& test);
     static void FailTest2(Ishiko::Tests::Test& test);
     static void SucceedTest1(Ishiko::Tests::Test& test);

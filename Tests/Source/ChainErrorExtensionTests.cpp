@@ -5,6 +5,7 @@
 */
 
 #include "ChainErrorExtensionTests.h"
+#include "Helpers/TestErrorCategory1.h"
 #include "Ishiko/Errors/ChainErrorExtension.h"
 #include "Ishiko/Errors/Error.h"
 #include <sstream>
@@ -28,8 +29,8 @@ void ChainErrorExtensionTests::ConstructionTest1(Test& test)
 
 void ChainErrorExtensionTests::StreamInsertionTest1(Test& test)
 {
-    Ishiko::Error error(0, new Ishiko::ChainErrorExtension());
-    error.fail(-3, "a bad error", "file1", 3);
+    Ishiko::Error error(new Ishiko::ChainErrorExtension());
+    error.fail(-3, TestErrorCategory1::Get(), "a bad error", "file1", 3);
 
     std::stringstream errorMessage;
     errorMessage << error;
@@ -40,9 +41,9 @@ void ChainErrorExtensionTests::StreamInsertionTest1(Test& test)
 
 void ChainErrorExtensionTests::StreamInsertionTest2(Test& test)
 {
-    Ishiko::Error error(0, new Ishiko::ChainErrorExtension());
-    error.fail(-3, "a bad error", "file1", 3);
-    error.fail(-1);
+    Ishiko::Error error(new Ishiko::ChainErrorExtension());
+    error.fail(-3, TestErrorCategory1::Get(), "a bad error", "file1", 3);
+    error.fail(-1, TestErrorCategory1::Get());
 
     std::stringstream errorMessage;
     errorMessage << error;
