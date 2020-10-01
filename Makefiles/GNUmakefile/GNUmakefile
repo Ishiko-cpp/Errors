@@ -56,12 +56,21 @@ $(if $(_builddir_error),$(error Failed to create build directory: $(_builddir_er
 endif
 all: ../Bakefile/../../Lib/lib$(if $(call _equal,$(config),Debug),IshikoErrors-d,IshikoErrors).a
 
-../Bakefile/../../Lib/lib$(if $(call _equal,$(config),Debug),IshikoErrors-d,IshikoErrors).a: $(_builddir)IshikoErrors_Error.o $(_builddir)IshikoErrors_ErrorExtension.o $(_builddir)IshikoErrors_ChainErrorExtension.o $(_builddir)IshikoErrors_MessageErrorExtension.o $(_builddir)IshikoErrors_IOErrorExtension.o $(_builddir)IshikoErrors_Exception.o
-	$(AR) rc $@ $(_builddir)IshikoErrors_Error.o $(_builddir)IshikoErrors_ErrorExtension.o $(_builddir)IshikoErrors_ChainErrorExtension.o $(_builddir)IshikoErrors_MessageErrorExtension.o $(_builddir)IshikoErrors_IOErrorExtension.o $(_builddir)IshikoErrors_Exception.o
+../Bakefile/../../Lib/lib$(if $(call _equal,$(config),Debug),IshikoErrors-d,IshikoErrors).a: $(_builddir)IshikoErrors_Error.o $(_builddir)IshikoErrors_ErrorCondition.o $(_builddir)IshikoErrors_SuccessCategory.o $(_builddir)IshikoErrors_IOErrorCategory.o $(_builddir)IshikoErrors_ErrorExtension.o $(_builddir)IshikoErrors_ChainErrorExtension.o $(_builddir)IshikoErrors_MessageErrorExtension.o $(_builddir)IshikoErrors_IOErrorExtension.o $(_builddir)IshikoErrors_Exception.o
+	$(AR) rc $@ $(_builddir)IshikoErrors_Error.o $(_builddir)IshikoErrors_ErrorCondition.o $(_builddir)IshikoErrors_SuccessCategory.o $(_builddir)IshikoErrors_IOErrorCategory.o $(_builddir)IshikoErrors_ErrorExtension.o $(_builddir)IshikoErrors_ChainErrorExtension.o $(_builddir)IshikoErrors_MessageErrorExtension.o $(_builddir)IshikoErrors_IOErrorExtension.o $(_builddir)IshikoErrors_Exception.o
 	$(RANLIB) $@
 
 $(_builddir)IshikoErrors_Error.o: ../../Source/Error.cpp
 	$(CXX) -c -o $@ $(CPPFLAGS) $(CXXFLAGS) -MD -MP -fPIC -DPIC -pthread -I../../Include/Ishiko/Errors -std=c++11 ../../Source/Error.cpp
+
+$(_builddir)IshikoErrors_ErrorCondition.o: ../../Source/ErrorCondition.cpp
+	$(CXX) -c -o $@ $(CPPFLAGS) $(CXXFLAGS) -MD -MP -fPIC -DPIC -pthread -I../../Include/Ishiko/Errors -std=c++11 ../../Source/ErrorCondition.cpp
+
+$(_builddir)IshikoErrors_SuccessCategory.o: ../../Source/SuccessCategory.cpp
+	$(CXX) -c -o $@ $(CPPFLAGS) $(CXXFLAGS) -MD -MP -fPIC -DPIC -pthread -I../../Include/Ishiko/Errors -std=c++11 ../../Source/SuccessCategory.cpp
+
+$(_builddir)IshikoErrors_IOErrorCategory.o: ../../Source/IOErrorCategory.cpp
+	$(CXX) -c -o $@ $(CPPFLAGS) $(CXXFLAGS) -MD -MP -fPIC -DPIC -pthread -I../../Include/Ishiko/Errors -std=c++11 ../../Source/IOErrorCategory.cpp
 
 $(_builddir)IshikoErrors_ErrorExtension.o: ../../Source/ErrorExtension.cpp
 	$(CXX) -c -o $@ $(CPPFLAGS) $(CXXFLAGS) -MD -MP -fPIC -DPIC -pthread -I../../Include/Ishiko/Errors -std=c++11 ../../Source/ErrorExtension.cpp

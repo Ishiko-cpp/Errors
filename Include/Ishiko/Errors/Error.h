@@ -1,28 +1,13 @@
 /*
-    Copyright (c) 2017-2019 Xavier Leclercq
-
-    Permission is hereby granted, free of charge, to any person obtaining a
-    copy of this software and associated documentation files (the "Software"),
-    to deal in the Software without restriction, including without limitation
-    the rights to use, copy, modify, merge, publish, distribute, sublicense,
-    and/or sell copies of the Software, and to permit persons to whom the
-    Software is furnished to do so, subject to the following conditions:
-
-    The above copyright notice and this permission notice shall be included in
-    all copies or substantial portions of the Software.
-
-    THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-    IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-    FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL
-    THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-    LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
-    FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OROTHER DEALINGS
-    IN THE SOFTWARE.
+    Copyright (c) 2017-2020 Xavier Leclercq
+    Released under the MIT License
+    See https://github.com/Ishiko-cpp/Errors/blob/master/LICENSE.txt
 */
 
 #ifndef _ISHIKO_ERRORS_ERROR_H_
 #define _ISHIKO_ERRORS_ERROR_H_
 
+#include "ErrorCondition.h"
 #include "ErrorExtension.h"
 #include <ostream>
 #include <string>
@@ -36,18 +21,20 @@ namespace Ishiko
 class Error
 {
 public:
-    /// Creates a new error with an error code set to -1.
+    /// Creates a new error with an error code set to 0.
     Error() noexcept;
 
     /// Creates a new error from the error code passed in as argument.
-    explicit Error(int code) noexcept;
+    Error(int code, const ErrorCategory& category) noexcept;
+
+    explicit Error(ErrorExtension* extension) noexcept;
 
     /// Creates a new error from the error code passed in as argument and sets an extension.
     /**
         @param code The error code.
         @param extension The extension.
     */
-    explicit Error(int code, ErrorExtension* extension) noexcept;
+    Error(int code, const ErrorCategory& category, ErrorExtension* extension) noexcept;
 
     /// Destructor.
     /**
@@ -69,11 +56,11 @@ public:
     */
     bool operator!() const noexcept;
 
-    /// Gets the error code.
+    /// Gets the error condition.
     /**
-        @returns The error code.
+        @returns The error condition.
     */
-    int code() const noexcept;
+    const ErrorCondition& condition() const noexcept;
 
     /// Sets the error code if the current code is 0.
     /**
@@ -82,7 +69,7 @@ public:
 
         @param code The error code.
     */
-    void fail(int code);
+    void fail(int code, const ErrorCategory& category) noexcept;
 
     /// Sets the error code if the current code is 0.
     /**
@@ -97,7 +84,7 @@ public:
         @param file The file where the fail() function was called.
         @param line The line at which the fail() function was called.
     */
-    void fail(int code, const std::string& message, const char* file, int line);
+    void fail(int code, const ErrorCategory& category, const std::string& message, const char* file, int line) noexcept;
 
     /// Sets the error code to 0 regardless of its current value.
     void succeed() noexcept;
@@ -115,7 +102,7 @@ public:
     ErrorExtension* extension() noexcept;
 
 private:
-    int m_code;
+    ErrorCondition m_condition;
     ErrorExtension* m_extension;
 };
 

@@ -1,26 +1,11 @@
 /*
-    Copyright (c) 2019 Xavier Leclercq
-
-    Permission is hereby granted, free of charge, to any person obtaining a
-    copy of this software and associated documentation files (the "Software"),
-    to deal in the Software without restriction, including without limitation
-    the rights to use, copy, modify, merge, publish, distribute, sublicense,
-    and/or sell copies of the Software, and to permit persons to whom the
-    Software is furnished to do so, subject to the following conditions:
-
-    The above copyright notice and this permission notice shall be included in
-    all copies or substantial portions of the Software.
-
-    THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-    IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-    FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL
-    THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-    LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
-    FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
-    IN THE SOFTWARE.
+    Copyright (c) 2019-2020 Xavier Leclercq
+    Released under the MIT License
+    See https://github.com/Ishiko-cpp/Errors/blob/master/LICENSE.txt
 */
 
 #include "ErrorTests.h"
+#include "Helpers/TestErrorCategory1.h"
 #include "Ishiko/Errors/Error.h"
 #include "Ishiko/Errors/Exception.h"
 #include <sstream>
@@ -30,59 +15,49 @@ using namespace Ishiko::Tests;
 ErrorTests::ErrorTests(const TestNumber& number, const TestEnvironment& environment)
     : TestSequence(number, "Error tests", environment)
 {
-    append<HeapAllocationErrorsTest>("Construction test 1", ConstructionTest1);
-    append<HeapAllocationErrorsTest>("Construction test 2", ConstructionTest2);
-    append<HeapAllocationErrorsTest>("Construction test 3", ConstructionTest3);
+    append<HeapAllocationErrorsTest>("Constructor test 1", ConstructorTest1);
+    append<HeapAllocationErrorsTest>("Constructor test 2", ConstructorTest2);
     append<HeapAllocationErrorsTest>("fail test 1", FailTest1);
     append<HeapAllocationErrorsTest>("fail test 2", FailTest2);
     append<HeapAllocationErrorsTest>("succeed test 1", SucceedTest1);
     append<HeapAllocationErrorsTest>("operator<< test 1", StreamInsertionTest1);
 }
 
-void ErrorTests::ConstructionTest1(Test& test)
+void ErrorTests::ConstructorTest1(Test& test)
 {
     Ishiko::Error error;
 
-    ISHTF_FAIL_IF_NOT(error);
-    ISHTF_FAIL_IF_NEQ(error.code(), -1);
-    ISHTF_PASS();
-}
-
-void ErrorTests::ConstructionTest2(Test& test)
-{
-    Ishiko::Error error(0);
-
     ISHTF_FAIL_IF(error);
-    ISHTF_FAIL_IF_NEQ(error.code(), 0);
+    ISHTF_FAIL_IF_NEQ(error.condition().value(), 0);
     ISHTF_PASS();
 }
 
-void ErrorTests::ConstructionTest3(Test& test)
+void ErrorTests::ConstructorTest2(Test& test)
 {
-    Ishiko::Error error(-2);
+    Ishiko::Error error(-2, TestErrorCategory1::Get());
     
     ISHTF_FAIL_IF_NOT(error);
-    ISHTF_FAIL_IF_NEQ(error.code(), -2);
+    ISHTF_FAIL_IF_NEQ(error.condition().value(), -2);
     ISHTF_PASS();
 }
 
 void ErrorTests::FailTest1(Test& test)
 {
-    Ishiko::Error error(0);
-    error.fail(-3);
+    Ishiko::Error error;
+    error.fail(-3, TestErrorCategory1::Get());
 
     ISHTF_FAIL_IF_NOT(error);
-    ISHTF_FAIL_IF_NEQ(error.code(), -3);
+    ISHTF_FAIL_IF_NEQ(error.condition().value(), -3);
     ISHTF_PASS();
 }
 
 void ErrorTests::FailTest2(Test& test)
 {
-    Ishiko::Error error(4);
-    error.fail(-3);
+    Ishiko::Error error(4, TestErrorCategory1::Get());
+    error.fail(-3, TestErrorCategory1::Get());
 
     ISHTF_FAIL_IF_NOT(error);
-    ISHTF_FAIL_IF_NEQ(error.code(), 4);
+    ISHTF_FAIL_IF_NEQ(error.condition().value(), 4);
     ISHTF_PASS();
 }
 
@@ -92,7 +67,7 @@ void ErrorTests::SucceedTest1(Test& test)
     error.succeed();
 
     ISHTF_FAIL_IF(error);
-    ISHTF_FAIL_IF_NEQ(error.code(), 0);
+    ISHTF_FAIL_IF_NEQ(error.condition().value(), 0);
     ISHTF_PASS();
 }
 
@@ -103,6 +78,6 @@ void ErrorTests::StreamInsertionTest1(Test& test)
     std::stringstream errorMessage;
     errorMessage << error;
 
-    ISHTF_FAIL_IF_NEQ(errorMessage.str(), "Error: -1");
+    ISHTF_FAIL_IF_NEQ(errorMessage.str(), "Error: 0");
     ISHTF_PASS();
 }
