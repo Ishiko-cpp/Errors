@@ -5,7 +5,9 @@
 */
 
 #include "ErrorConditionTests.h"
+#include "Helpers/TestErrorCategory1.h"
 #include "Ishiko/Errors/ErrorCondition.h"
+#include "Ishiko/Errors/SuccessCategory.h"
 
 using namespace Ishiko::Tests;
 
@@ -31,7 +33,7 @@ void ErrorConditionTests::ConstructorTest1(Test& test)
 
 void ErrorConditionTests::ConstructorTest2(Test& test)
 {
-    Ishiko::ErrorCondition error(0);
+    Ishiko::ErrorCondition error(0, Ishiko::SuccessCategory::Get());
 
     ISHTF_FAIL_IF(error);
     ISHTF_FAIL_IF_NEQ(error.value(), 0);
@@ -40,7 +42,7 @@ void ErrorConditionTests::ConstructorTest2(Test& test)
 
 void ErrorConditionTests::ConstructorTest3(Test& test)
 {
-    Ishiko::ErrorCondition error(-1);
+    Ishiko::ErrorCondition error(-1, TestErrorCategory1::Get());
 
     ISHTF_FAIL_IF_NOT(error);
     ISHTF_FAIL_IF_NEQ(error.value(), -1);
@@ -50,7 +52,7 @@ void ErrorConditionTests::ConstructorTest3(Test& test)
 void ErrorConditionTests::FailTest1(Test& test)
 {
     Ishiko::ErrorCondition error;
-    error.fail(-3);
+    error.fail(-3, TestErrorCategory1::Get());
 
     ISHTF_FAIL_IF_NOT(error);
     ISHTF_FAIL_IF_NEQ(error.value(), -3);
@@ -59,8 +61,8 @@ void ErrorConditionTests::FailTest1(Test& test)
 
 void ErrorConditionTests::FailTest2(Test& test)
 {
-    Ishiko::ErrorCondition error(4);
-    error.fail(-3);
+    Ishiko::ErrorCondition error(4, TestErrorCategory1::Get());
+    error.fail(-3, TestErrorCategory1::Get());
 
     ISHTF_FAIL_IF_NOT(error);
     ISHTF_FAIL_IF_NEQ(error.value(), -3);
@@ -69,7 +71,7 @@ void ErrorConditionTests::FailTest2(Test& test)
 
 void ErrorConditionTests::SucceedTest1(Test& test)
 {
-    Ishiko::ErrorCondition error(-1);
+    Ishiko::ErrorCondition error(-1, TestErrorCategory1::Get());
     error.succeed();
 
     ISHTF_FAIL_IF(error);

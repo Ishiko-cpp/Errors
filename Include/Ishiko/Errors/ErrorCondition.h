@@ -17,7 +17,6 @@ class ErrorCondition
 {
 public:
     ErrorCondition() noexcept;
-    explicit ErrorCondition(int value) noexcept;
     ErrorCondition(int value, const ErrorCategory& category) noexcept;
 
     explicit operator bool() const noexcept;
@@ -25,7 +24,7 @@ public:
 
     int value() const noexcept;
 
-    void fail(int value);
+    void fail(int value, const ErrorCategory& category) noexcept;
     void succeed() noexcept;
 
 private:

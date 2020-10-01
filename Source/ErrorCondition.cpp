@@ -5,18 +5,13 @@
 */
 
 #include "ErrorCondition.h"
+#include "SuccessCategory.h"
 
 namespace Ishiko
 {
 
 ErrorCondition::ErrorCondition() noexcept
-    : m_value(0), m_category(nullptr)
-{
-}
-
-// TODO : remove this constructor
-ErrorCondition::ErrorCondition(int value) noexcept
-    : m_value(value), m_category(nullptr)
+    : m_value(0), m_category(&SuccessCategory::Get())
 {
 }
 
@@ -41,15 +36,16 @@ int ErrorCondition::value() const noexcept
 }
 
 // TODO: add category
-void ErrorCondition::fail(int value)
+void ErrorCondition::fail(int value, const ErrorCategory& category) noexcept
 {
     m_value = value;
+    m_category = &category;
 }
 
 void ErrorCondition::succeed() noexcept
 {
     m_value = 0;
-    m_category = nullptr;
+    m_category = &SuccessCategory::Get();
 }
 
 std::ostream& operator<<(std::ostream& os, const ErrorCondition& condition)

@@ -152,6 +152,7 @@
   <ItemGroup>
     <ClCompile Include="..\..\Source\Error.cpp" />
     <ClCompile Include="..\..\Source\ErrorCondition.cpp" />
+    <ClCompile Include="..\..\Source\SuccessCategory.cpp" />
     <ClCompile Include="..\..\Source\IOErrorCategory.cpp" />
     <ClCompile Include="..\..\Source\ErrorExtension.cpp" />
     <ClCompile Include="..\..\Source\ChainErrorExtension.cpp" />
@@ -164,6 +165,7 @@
     <ClInclude Include="..\..\Include\Ishiko\Errors\Error.h" />
     <ClInclude Include="..\..\Include\Ishiko\Errors\ErrorCondition.h" />
     <ClInclude Include="..\..\Include\Ishiko\Errors\ErrorCategory.h" />
+    <ClInclude Include="..\..\Include\Ishiko\Errors\SuccessCategory.h" />
     <ClInclude Include="..\..\Include\Ishiko\Errors\IOErrorCategory.h" />
     <ClInclude Include="..\..\Include\Ishiko\Errors\ErrorExtension.h" />
     <ClInclude Include="..\..\Include\Ishiko\Errors\ChainErrorExtension.h" />
