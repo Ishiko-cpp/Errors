@@ -39,6 +39,11 @@ int ErrorCondition::value() const noexcept
     return m_value;
 }
 
+void ErrorCondition::fail(int value)
+{
+    m_value = value;
+}
+
 void ErrorCondition::succeed() noexcept
 {
     m_value = 0;

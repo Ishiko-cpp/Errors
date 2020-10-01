@@ -25,6 +25,7 @@ public:
 
     int value() const noexcept;
 
+    void fail(int value);
     void succeed() noexcept;
 
 private:
