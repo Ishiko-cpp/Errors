@@ -10,17 +10,18 @@ namespace Ishiko
 {
 
 ErrorCondition::ErrorCondition() noexcept
-    : m_value(-1)
+    : m_value(-1), m_category(nullptr)
 {
 }
 
+// TODO : remove this constructor
 ErrorCondition::ErrorCondition(int value) noexcept
-    : m_value(value)
+    : m_value(value), m_category(nullptr)
 {
 }
 
 ErrorCondition::ErrorCondition(int value, const ErrorCategory& category) noexcept
-    : m_value(value)
+    : m_value(value), m_category(&category)
 {
 }
 
@@ -39,6 +40,7 @@ int ErrorCondition::value() const noexcept
     return m_value;
 }
 
+// TODO: add category
 void ErrorCondition::fail(int value)
 {
     m_value = value;
@@ -47,10 +49,12 @@ void ErrorCondition::fail(int value)
 void ErrorCondition::succeed() noexcept
 {
     m_value = 0;
+    m_category = nullptr;
 }
 
 std::ostream& operator<<(std::ostream& os, const ErrorCondition& condition)
 {
+    // TODO: add category
     os << condition.value();
     return os;
 }

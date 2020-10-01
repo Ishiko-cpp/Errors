@@ -30,6 +30,7 @@ public:
 
 private:
     int m_value;
+    const ErrorCategory* m_category;
 };
 
 std::ostream& operator<<(std::ostream& os, const ErrorCondition& condition);
