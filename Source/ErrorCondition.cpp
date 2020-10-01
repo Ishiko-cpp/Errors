@@ -10,7 +10,7 @@ namespace Ishiko
 {
 
 ErrorCondition::ErrorCondition() noexcept
-    : m_value(-1), m_category(nullptr)
+    : m_value(0), m_category(nullptr)
 {
 }
 

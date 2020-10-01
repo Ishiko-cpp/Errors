@@ -21,18 +21,20 @@ namespace Ishiko
 class Error
 {
 public:
-    /// Creates a new error with an error code set to -1.
+    /// Creates a new error with an error code set to 0.
     Error() noexcept;
 
     /// Creates a new error from the error code passed in as argument.
-    explicit Error(int code) noexcept;
+    Error(int code, const ErrorCategory& category) noexcept;
+
+    explicit Error(ErrorExtension* extension) noexcept;
 
     /// Creates a new error from the error code passed in as argument and sets an extension.
     /**
         @param code The error code.
         @param extension The extension.
     */
-    explicit Error(int code, ErrorExtension* extension) noexcept;
+    Error(int code, const ErrorCategory& category, ErrorExtension* extension) noexcept;
 
     /// Destructor.
     /**
@@ -67,7 +69,7 @@ public:
 
         @param code The error code.
     */
-    void fail(int code);
+    void fail(int code, const ErrorCategory& category);
 
     /// Sets the error code if the current code is 0.
     /**
@@ -82,7 +84,7 @@ public:
         @param file The file where the fail() function was called.
         @param line The line at which the fail() function was called.
     */
-    void fail(int code, const std::string& message, const char* file, int line);
+    void fail(int code, const ErrorCategory& category, const std::string& message, const char* file, int line);
 
     /// Sets the error code to 0 regardless of its current value.
     void succeed() noexcept;
