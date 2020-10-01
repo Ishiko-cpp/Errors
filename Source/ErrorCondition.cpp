@@ -19,6 +19,11 @@ ErrorCondition::ErrorCondition(int value) noexcept
 {
 }
 
+ErrorCondition::ErrorCondition(int value, const ErrorCategory& category) noexcept
+    : m_value(value)
+{
+}
+
 ErrorCondition::operator bool() const noexcept
 {
     return (m_value != 0);

@@ -7,6 +7,7 @@
 #ifndef _ISHIKO_ERRORS_ERRORCONDITION_H_
 #define _ISHIKO_ERRORS_ERRORCONDITION_H_
 
+#include "ErrorCategory.h"
 #include <ostream>
 
 namespace Ishiko
@@ -17,6 +18,7 @@ class ErrorCondition
 public:
     ErrorCondition() noexcept;
     explicit ErrorCondition(int value) noexcept;
+    ErrorCondition(int value, const ErrorCategory& category) noexcept;
 
     explicit operator bool() const noexcept;
     bool operator!() const noexcept;
