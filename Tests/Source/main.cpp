@@ -9,6 +9,7 @@
 #include "MessageErrorExtensionTests.h"
 #include "IOErrorExtensionTests.h"
 #include "ChainErrorExtensionTests.h"
+#include "ExceptionTests.h"
 #include "Ishiko/TestFramework/TestFrameworkCore.h"
 
 using namespace Ishiko::Tests;
@@ -25,6 +26,7 @@ int main(int argc, char* argv[])
     theTests.append<MessageErrorExtensionTests>();
     theTests.append<IOErrorExtensionTests>();
     theTests.append<ChainErrorExtensionTests>();
+    theTests.append<ExceptionTests>();
 
     return theTestHarness.run();
 }
