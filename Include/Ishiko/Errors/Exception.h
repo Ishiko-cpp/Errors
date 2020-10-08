@@ -7,6 +7,7 @@
 #ifndef _ISHIKO_ERRORS_EXCEPTION_H_
 #define _ISHIKO_ERRORS_EXCEPTION_H_
 
+#include "ErrorCondition.h"
 #include <stdexcept>
 
 namespace Ishiko
@@ -15,23 +16,18 @@ namespace Ishiko
 class Exception : public std::exception
 {
 public:
-    Exception(const std::string& message, const char* file, int line);
-    virtual ~Exception() throw();
+    Exception(int value, const ErrorCategory& category, const char* file, int line);
+    Exception(int value, const ErrorCategory& category, const std::string& description, const char* file, int line);
+    
+    const char* what() const noexcept override;
 
-#ifndef _WIN32
-    virtual const char* what() const throw();
-#endif
-
+    const ErrorCondition& condition() const noexcept;
     const std::string& file() const;
     int line() const;
 
 private:
-#ifndef _WIN32
-    // The Visual C++ STL has custom support for the what information
-    // so we use it. On other platforms we define our own variable to
-    // store that information.
+    ErrorCondition m_condition;
     std::string m_what;
-#endif
     std::string m_file;
     int m_line;
 };
