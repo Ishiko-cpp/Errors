@@ -9,26 +9,26 @@
 namespace Ishiko
 {
 
-Exception::Exception(const std::string& message, const char* file, int line)
-#ifdef _WIN32
-    : std::exception(message.c_str())
-#else
-    : std::exception(), m_what(message)
-#endif
-    , m_file(file), m_line(line)
+Exception::Exception(int value, const ErrorCategory& category, const char* file, int line)
+    : m_condition(value, category), m_file(file), m_line(line)
 {
 }
 
-Exception::~Exception() throw()
+Exception::Exception(int value, const ErrorCategory& category, const std::string& description, const char* file,
+    int line)
+    : m_condition(value, category), m_what(description), m_file(file), m_line(line)
 {
 }
 
-#ifndef _WIN32
-const char* Exception::what() const throw()
+const char* Exception::what() const noexcept
 {
     return m_what.c_str();
 }
-#endif
+
+const ErrorCondition& Exception::condition() const noexcept
+{
+    return m_condition;
+}
 
 const std::string& Exception::file() const
 {
