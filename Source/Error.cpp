@@ -5,6 +5,7 @@
 */
 
 #include "Error.h"
+#include "Exception.h"
 
 namespace Ishiko
 {
@@ -102,6 +103,15 @@ std::ostream& operator<<(std::ostream& os, const Error& error)
         extension->operator<<(os);
     }
     return os;
+}
+
+void ThrowIf(const Error& error)
+{
+    if (error)
+    {
+        // TODO: try to recover original line and file origin
+        throw Exception(error.condition(), __FILE__, __LINE__);
+    }
 }
 
 }

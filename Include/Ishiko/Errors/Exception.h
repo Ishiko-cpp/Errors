@@ -16,6 +16,7 @@ namespace Ishiko
 class Exception : public std::exception
 {
 public:
+    Exception(const ErrorCondition& condition, const char* file, int line);
     Exception(int value, const ErrorCategory& category, const char* file, int line);
     Exception(int value, const ErrorCategory& category, const std::string& description, const char* file, int line);
     

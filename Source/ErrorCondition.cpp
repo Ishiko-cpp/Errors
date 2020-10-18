@@ -35,6 +35,11 @@ int ErrorCondition::value() const noexcept
     return m_value;
 }
 
+const ErrorCategory& ErrorCondition::category() const noexcept
+{
+    return *m_category;
+}
+
 void ErrorCondition::fail(int value, const ErrorCategory& category) noexcept
 {
     m_value = value;

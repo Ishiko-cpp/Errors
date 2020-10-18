@@ -23,6 +23,7 @@ public:
     bool operator!() const noexcept;
 
     int value() const noexcept;
+    const ErrorCategory& category() const noexcept;
 
     void fail(int value, const ErrorCategory& category) noexcept;
     void succeed() noexcept;
