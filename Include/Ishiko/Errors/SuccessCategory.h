@@ -17,6 +17,8 @@ class SuccessCategory : public ErrorCategory
 public:
     static const SuccessCategory& Get() noexcept;
 
+    const char* name() const noexcept override;
+
 private:
     SuccessCategory() noexcept = default;
 };

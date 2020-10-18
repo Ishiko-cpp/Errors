@@ -17,6 +17,8 @@ class IOErrorCategory : public ErrorCategory
 public:
     static const IOErrorCategory& Get() noexcept;
 
+    const char* name() const noexcept override;
+
 private:
     IOErrorCategory() noexcept = default;
 };
