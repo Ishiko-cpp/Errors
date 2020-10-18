@@ -9,6 +9,11 @@
 namespace Ishiko
 {
 
+Exception::Exception(const ErrorCondition& condition, const char* file, int line)
+    : m_condition(condition), m_file(file), m_line(line)
+{
+}
+
 Exception::Exception(int value, const ErrorCategory& category, const char* file, int line)
     : m_condition(value, category), m_file(file), m_line(line)
 {
