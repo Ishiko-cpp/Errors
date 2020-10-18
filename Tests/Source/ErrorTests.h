@@ -21,6 +21,8 @@ private:
     static void FailTest2(Ishiko::Tests::Test& test);
     static void SucceedTest1(Ishiko::Tests::Test& test);
     static void StreamInsertionTest1(Ishiko::Tests::Test& test);
+    static void ThrowIfTest1(Ishiko::Tests::Test& test);
+    static void ThrowIfTest2(Ishiko::Tests::Test& test);
 };
 
 #endif

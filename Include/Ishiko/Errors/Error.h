@@ -108,6 +108,8 @@ private:
 
 std::ostream& operator<<(std::ostream& os, const Error& error);
 
+void ThrowIf(const Error& error);
+
 }
 
 #include "linkoptions.h"
