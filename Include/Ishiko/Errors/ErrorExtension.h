@@ -23,6 +23,8 @@ public:
     */
     virtual void release() noexcept;
 
+    virtual bool tryGetOrigin(const char*& file, int& line) const noexcept;
+
     virtual void onFail(int code, const std::string& message, const char* file, int line) noexcept;
 
     virtual std::ostream& operator<<(std::ostream& os) const;

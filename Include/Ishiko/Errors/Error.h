@@ -62,6 +62,8 @@ public:
     */
     const ErrorCondition& condition() const noexcept;
 
+    bool tryGetOrigin(const char*& file, int& line) const noexcept;
+
     /// Sets the error code if the current code is 0.
     /**
         If the current error code is 0 then this function will set it to the value passed in as argument. But the error
