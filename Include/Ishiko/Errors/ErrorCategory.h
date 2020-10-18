@@ -12,8 +12,12 @@ namespace Ishiko
 
 class ErrorCategory
 {
+public:
+    virtual const char* name() const noexcept = 0;
+
 protected:
     ErrorCategory() noexcept = default;
+    virtual ~ErrorCategory() = default;
 };
 
 }

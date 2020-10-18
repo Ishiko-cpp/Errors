@@ -11,3 +11,8 @@ const TestErrorCategory1& TestErrorCategory1::Get() noexcept
     static TestErrorCategory1 theTestErrorCategory1;
     return theTestErrorCategory1;
 }
+
+const char* TestErrorCategory1::name() const noexcept
+{
+    return "TestErrorCategory1";
+}
