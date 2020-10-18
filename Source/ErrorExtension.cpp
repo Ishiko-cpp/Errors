@@ -14,6 +14,11 @@ void ErrorExtension::release() noexcept
     delete this;
 }
 
+bool ErrorExtension::tryGetOrigin(const char*& file, int& line) const noexcept
+{
+    return false;
+}
+
 void ErrorExtension::onFail(int code, const std::string& message, const char* file, int line) noexcept
 {
     // Do nothing

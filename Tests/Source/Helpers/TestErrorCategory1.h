@@ -13,6 +13,8 @@ class TestErrorCategory1 : public Ishiko::ErrorCategory
 {
 public:
     static const TestErrorCategory1& Get() noexcept;
+
+    const char* name() const noexcept override;
 };
 
 #endif
