@@ -15,4 +15,9 @@ const IOErrorCategory& IOErrorCategory::Get() noexcept
     return theCategory;
 }
 
+const char* IOErrorCategory::name() const noexcept
+{
+    return "Ishiko::IOErrorCategory";
+}
+
 }

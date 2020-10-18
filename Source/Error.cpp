@@ -53,6 +53,18 @@ const ErrorCondition& Error::condition() const noexcept
     return m_condition;
 }
 
+bool Error::tryGetOrigin(const char*& file, int& line) const noexcept
+{
+    bool result = false;
+
+    if (*this && m_extension)
+    {
+        result = m_extension->tryGetOrigin(file, line);
+    }
+
+    return result;
+}
+
 void Error::fail(int code, const ErrorCategory& category) noexcept
 {
     if (m_extension)
@@ -96,7 +108,7 @@ ErrorExtension* Error::extension() noexcept
 
 std::ostream& operator<<(std::ostream& os, const Error& error)
 {
-    os << "Error: "<< error.condition();
+    os << error.condition();
     const ErrorExtension* extension = error.extension();
     if (extension)
     {
@@ -109,8 +121,17 @@ void ThrowIf(const Error& error)
 {
     if (error)
     {
-        // TODO: try to recover original line and file origin
-        throw Exception(error.condition(), __FILE__, __LINE__);
+        const char* file = nullptr;
+        int line = -1;
+        bool found = error.tryGetOrigin(file, line);
+        if (found)
+        {
+            throw Exception(error.condition(), file, line);
+        }
+        else
+        {
+            throw Exception(error.condition(), __FILE__, __LINE__);
+        }
     }
 }
 
