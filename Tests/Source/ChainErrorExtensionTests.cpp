@@ -35,7 +35,7 @@ void ChainErrorExtensionTests::StreamInsertionTest1(Test& test)
     std::stringstream errorMessage;
     errorMessage << error;
 
-    ISHTF_FAIL_IF_NEQ(errorMessage.str(), "Error: -3, a bad error [file: file1, line: 3]");
+    ISHTF_FAIL_IF_NEQ(errorMessage.str(), "TestErrorCategory1, -3, a bad error [file: file1, line: 3]");
     ISHTF_PASS();
 }
 
@@ -48,6 +48,6 @@ void ChainErrorExtensionTests::StreamInsertionTest2(Test& test)
     std::stringstream errorMessage;
     errorMessage << error;
 
-    ISHTF_FAIL_IF_NEQ(errorMessage.str(), "Error: -3, a bad error [file: file1, line: 3]\n\tError: -1");
+    ISHTF_FAIL_IF_NEQ(errorMessage.str(), "TestErrorCategory1, -3, a bad error [file: file1, line: 3]\n\tError: -1");
     ISHTF_PASS();
 }

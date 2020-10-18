@@ -86,7 +86,7 @@ void ErrorTests::StreamInsertionTest1(Test& test)
     std::stringstream errorMessage;
     errorMessage << error;
 
-    ISHTF_FAIL_IF_NEQ(errorMessage.str(), "Error: 0");
+    ISHTF_FAIL_IF_NEQ(errorMessage.str(), "Ishiko::SuccessCategory, 0");
     ISHTF_PASS();
 }
 

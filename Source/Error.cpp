@@ -96,7 +96,7 @@ ErrorExtension* Error::extension() noexcept
 
 std::ostream& operator<<(std::ostream& os, const Error& error)
 {
-    os << "Error: "<< error.condition();
+    os << error.condition();
     const ErrorExtension* extension = error.extension();
     if (extension)
     {

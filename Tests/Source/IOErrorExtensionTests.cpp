@@ -125,6 +125,6 @@ void IOErrorExtensionTests::StreamInsertionTest1(Test& test)
     std::stringstream errorMessage;
     errorMessage << error;
 
-    ISHTF_FAIL_IF_NEQ(errorMessage.str(), "Error: 5, I/O error: end-of-file [file: file1, line: 3]");
+    ISHTF_FAIL_IF_NEQ(errorMessage.str(), "Ishiko::IOErrorCategory, 5, I/O error: end-of-file [file: file1, line: 3]");
     ISHTF_PASS();
 }

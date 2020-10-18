@@ -29,7 +29,6 @@ public:
 
 protected:
     virtual ~ErrorExtension() noexcept = default;
-
 };
 
 }

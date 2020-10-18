@@ -54,8 +54,7 @@ void ErrorCondition::succeed() noexcept
 
 std::ostream& operator<<(std::ostream& os, const ErrorCondition& condition)
 {
-    // TODO: add category
-    os << condition.value();
+    os << condition.category().name() << ", " << condition.value();
     return os;
 }
 

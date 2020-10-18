@@ -17,7 +17,7 @@ const SuccessCategory& SuccessCategory::Get() noexcept
 
 const char* SuccessCategory::name() const noexcept
 {
-    return "Ishiko.Errors.Success";
+    return "Ishiko::SuccessCategory";
 }
 
 }
