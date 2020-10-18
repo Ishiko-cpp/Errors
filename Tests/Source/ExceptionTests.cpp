@@ -17,11 +17,13 @@ ExceptionTests::ExceptionTests(const TestNumber& number, const TestEnvironment& 
     append<HeapAllocationErrorsTest>("Constructor test 2", ConstructorTest2);
     append<HeapAllocationErrorsTest>("Constructor test 3", ConstructorTest3);
     append<HeapAllocationErrorsTest>("Constructor test 4", ConstructorTest4);
+    append<HeapAllocationErrorsTest>("Constructor test 5", ConstructorTest5);
 }
 
 void ExceptionTests::ConstructorTest1(Test& test)
 {
-    Ishiko::Exception exception(-1, TestErrorCategory1::Get(), "file", 5);
+    Ishiko::ErrorCondition condition(-1, TestErrorCategory1::Get());
+    Ishiko::Exception exception(condition, "file", 5);
 
     ISHTF_FAIL_IF_NEQ(exception.condition().value(), -1);
     ISHTF_FAIL_IF_STR_NEQ(exception.what(), "");
@@ -32,6 +34,17 @@ void ExceptionTests::ConstructorTest1(Test& test)
 
 void ExceptionTests::ConstructorTest2(Test& test)
 {
+    Ishiko::Exception exception(-1, TestErrorCategory1::Get(), "file", 5);
+
+    ISHTF_FAIL_IF_NEQ(exception.condition().value(), -1);
+    ISHTF_FAIL_IF_STR_NEQ(exception.what(), "");
+    ISHTF_FAIL_IF_NEQ(exception.file(), "file");
+    ISHTF_FAIL_IF_NEQ(exception.line(), 5);
+    ISHTF_PASS();
+}
+
+void ExceptionTests::ConstructorTest3(Test& test)
+{
     Ishiko::Exception exception(-1, TestErrorCategory1::Get(), "description", "file", 5);
 
     ISHTF_FAIL_IF_NEQ(exception.condition().value(), -1);
@@ -41,7 +54,7 @@ void ExceptionTests::ConstructorTest2(Test& test)
     ISHTF_PASS();
 }
 
-void ExceptionTests::ConstructorTest3(Test& test)
+void ExceptionTests::ConstructorTest4(Test& test)
 {
     Ishiko::Exception exception1(-1, TestErrorCategory1::Get(), "file", 5);
     Ishiko::Exception exception2(exception1);
@@ -53,7 +66,7 @@ void ExceptionTests::ConstructorTest3(Test& test)
     ISHTF_PASS();
 }
 
-void ExceptionTests::ConstructorTest4(Test& test)
+void ExceptionTests::ConstructorTest5(Test& test)
 {
     Ishiko::Exception exception1(-1, TestErrorCategory1::Get(), "description", "file", 5);
     Ishiko::Exception exception2(exception1);
