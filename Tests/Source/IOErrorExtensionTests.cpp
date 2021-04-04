@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2019-2020 Xavier Leclercq
+    Copyright (c) 2019-2021 Xavier Leclercq
     Released under the MIT License
     See https://github.com/Ishiko-cpp/Errors/blob/master/LICENSE.txt
 */
@@ -62,9 +62,10 @@ void IOErrorExtensionTests::FailTest3(Test& test)
     boost::filesystem::path inputPath(test.environment().getTestDataDirectory() / "file1.txt");
     std::fstream file(inputPath.c_str());
 
-    Ishiko::Error error(0);
+    Ishiko::Error error;
     Ishiko::IOErrorExtension::Fail(error, file, "file1", 3);
 
+    ISHTF_FAIL_IF(error);
     ISHTF_FAIL_IF_NEQ(error.condition().value(), 0);
     ISHTF_FAIL_IF(error.extension());
     ISHTF_PASS();
@@ -74,9 +75,10 @@ void IOErrorExtensionTests::FailTest4(Test& test)
 {
     std::fstream file("doesnotexist");
 
-    Ishiko::Error error(0);
+    Ishiko::Error error;
     Ishiko::IOErrorExtension::Fail(error, file, "file1", 3);
 
+    ISHTF_FAIL_IF_NOT(error);
     ISHTF_FAIL_IF_NEQ(error.condition().value(), EIO);
     ISHTF_FAIL_IF(error.extension());
     ISHTF_PASS();
@@ -93,6 +95,7 @@ void IOErrorExtensionTests::FailTest5(Test& test)
     
     Ishiko::IOErrorExtension* ext = dynamic_cast<Ishiko::IOErrorExtension*>(error.extension());
 
+    ISHTF_FAIL_IF_NOT(error);
     ISHTF_ABORT_IF_NOT(ext);
     ISHTF_FAIL_IF_NEQ(ext->code(), Ishiko::IOErrorExtension::eError);
     ISHTF_PASS();
@@ -112,6 +115,7 @@ void IOErrorExtensionTests::FailTest6(Test& test)
 
     Ishiko::IOErrorExtension* ext = dynamic_cast<Ishiko::IOErrorExtension*>(error.extension());
 
+    ISHTF_FAIL_IF_NOT(error);
     ISHTF_ABORT_IF_NOT(ext);
     ISHTF_FAIL_IF_NEQ(ext->code(), Ishiko::IOErrorExtension::eEOF);
     ISHTF_PASS();
@@ -125,6 +129,7 @@ void IOErrorExtensionTests::StreamInsertionTest1(Test& test)
     std::stringstream errorMessage;
     errorMessage << error;
 
+    ISHTF_FAIL_IF_NOT(error);
     ISHTF_FAIL_IF_NEQ(errorMessage.str(), "Ishiko::IOErrorCategory, 5, I/O error: end-of-file [file: file1, line: 3]");
     ISHTF_PASS();
 }
