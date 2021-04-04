@@ -14,16 +14,16 @@ using namespace Ishiko::Tests;
 StreamUtilitiesTests::StreamUtilitiesTests(const TestNumber& number, const TestEnvironment& environment)
     : TestSequence(number, "StreamUtilities tests", environment)
 {
-    append<HeapAllocationErrorsTest>("FailOnCreationError test 1", FailOnCreationErrorTest1);
-    append<HeapAllocationErrorsTest>("FailOnCreationError test 2", FailOnCreationErrorTest2);
+    append<HeapAllocationErrorsTest>("FailOnFileCreationError test 1", FailOnFileCreationErrorTest1);
+    append<HeapAllocationErrorsTest>("FailOnFileCreationError test 2", FailOnFileCreationErrorTest2);
 }
 
-void StreamUtilitiesTests::FailOnCreationErrorTest1(Test& test)
+void StreamUtilitiesTests::FailOnFileCreationErrorTest1(Test& test)
 {
     Ishiko::Error error;
     std::fstream file("doesnotexist");
 
-    bool failed = FailOnCreationError(error, file);
+    bool failed = FailOnFileCreationError(error, file);
   
     ISHTF_FAIL_IF_NOT(failed);
     ISHTF_FAIL_IF_NOT(error);
@@ -38,14 +38,14 @@ void StreamUtilitiesTests::FailOnCreationErrorTest1(Test& test)
     ISHTF_PASS();
 }
 
-void StreamUtilitiesTests::FailOnCreationErrorTest2(Test& test)
+void StreamUtilitiesTests::FailOnFileCreationErrorTest2(Test& test)
 {
     const char* path = "doesnotexist";
 
     Ishiko::Error error(new Ishiko::MessageErrorExtension());;
     std::fstream file(path);
 
-    bool failed = FailOnCreationError(error, file, path, "file1", 3);
+    bool failed = FailOnFileCreationError(error, file, path, "file1", 3);
 
     ISHTF_FAIL_IF_NOT(failed);
     ISHTF_FAIL_IF_NOT(error);

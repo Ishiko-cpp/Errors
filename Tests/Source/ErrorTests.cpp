@@ -23,6 +23,10 @@ ErrorTests::ErrorTests(const TestNumber& number, const TestEnvironment& environm
     append<HeapAllocationErrorsTest>("fail test 2", FailTest2);
     append<HeapAllocationErrorsTest>("succeed test 1", SucceedTest1);
     append<HeapAllocationErrorsTest>("operator<< test 1", StreamInsertionTest1);
+    append<HeapAllocationErrorsTest>("tryGetMessage test 1", TryGetMessageTest1);
+    append<HeapAllocationErrorsTest>("tryGetMessage test 2", TryGetMessageTest2);
+    append<HeapAllocationErrorsTest>("tryGetMessage test 3", TryGetMessageTest3);
+    append<HeapAllocationErrorsTest>("tryGetMessage test 4", TryGetMessageTest4);
     append<HeapAllocationErrorsTest>("tryGetOrigin test 1", TryGetOriginTest1);
     append<HeapAllocationErrorsTest>("tryGetOrigin test 2", TryGetOriginTest2);
     append<HeapAllocationErrorsTest>("tryGetOrigin test 3", TryGetOriginTest3);
@@ -94,6 +98,53 @@ void ErrorTests::StreamInsertionTest1(Test& test)
     errorMessage << error;
 
     ISHTF_FAIL_IF_NEQ(errorMessage.str(), "Ishiko::SuccessCategory, 0");
+    ISHTF_PASS();
+}
+
+void ErrorTests::TryGetMessageTest1(Test& test)
+{
+    Ishiko::Error error;
+
+    std::string message;
+    bool found = error.tryGetMessage(message);
+
+    ISHTF_FAIL_IF(found);
+    ISHTF_PASS();
+}
+
+void ErrorTests::TryGetMessageTest2(Test& test)
+{
+    Ishiko::Error error(new Ishiko::MessageErrorExtension());
+
+    std::string message;
+    bool found = error.tryGetMessage(message);
+
+    ISHTF_FAIL_IF(found);
+    ISHTF_PASS();
+}
+
+void ErrorTests::TryGetMessageTest3(Test& test)
+{
+    Ishiko::Error error(new Ishiko::MessageErrorExtension());
+    error.fail(-3, TestErrorCategory1::Get());
+
+    std::string message;
+    bool found = error.tryGetMessage(message);
+
+    ISHTF_FAIL_IF(found);
+    ISHTF_PASS();
+}
+
+void ErrorTests::TryGetMessageTest4(Test& test)
+{
+    Ishiko::Error error(new Ishiko::MessageErrorExtension());
+    error.fail(-3, TestErrorCategory1::Get(), "a bad error", "file1", 3);
+
+    std::string message;
+    bool found = error.tryGetMessage(message);
+
+    ISHTF_ABORT_IF_NOT(found);
+    ISHTF_FAIL_IF_NEQ(message, "a bad error");
     ISHTF_PASS();
 }
 

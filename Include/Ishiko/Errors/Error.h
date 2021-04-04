@@ -62,6 +62,8 @@ public:
     */
     const ErrorCondition& condition() const noexcept;
 
+    bool tryGetMessage(std::string& message) const noexcept;
+
     bool tryGetOrigin(const char*& file, int& line) const noexcept;
 
     /// Sets the error code if the current code is 0.

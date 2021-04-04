@@ -13,8 +13,8 @@
 namespace Ishiko
 {
 
-bool FailOnCreationError(Error& error, const std::ios& status) noexcept;
-bool FailOnCreationError(Error& error, const std::ios& status, const std::string& path, const char* file,
+bool FailOnFileCreationError(Error& error, const std::ios& status) noexcept;
+bool FailOnFileCreationError(Error& error, const std::ios& status, const std::string& path, const char* file,
     int line) noexcept;
 
 }

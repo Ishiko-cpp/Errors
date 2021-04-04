@@ -21,6 +21,10 @@ private:
     static void FailTest2(Ishiko::Tests::Test& test);
     static void SucceedTest1(Ishiko::Tests::Test& test);
     static void StreamInsertionTest1(Ishiko::Tests::Test& test);
+    static void TryGetMessageTest1(Ishiko::Tests::Test& test);
+    static void TryGetMessageTest2(Ishiko::Tests::Test& test);
+    static void TryGetMessageTest3(Ishiko::Tests::Test& test);
+    static void TryGetMessageTest4(Ishiko::Tests::Test& test);
     static void TryGetOriginTest1(Ishiko::Tests::Test& test);
     static void TryGetOriginTest2(Ishiko::Tests::Test& test);
     static void TryGetOriginTest3(Ishiko::Tests::Test& test);
