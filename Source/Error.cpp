@@ -53,6 +53,18 @@ const ErrorCondition& Error::condition() const noexcept
     return m_condition;
 }
 
+bool Error::tryGetMessage(std::string& message) const noexcept
+{
+    bool result = false;
+
+    if (*this && m_extension)
+    {
+        result = m_extension->tryGetMessage(message);
+    }
+
+    return result;
+}
+
 bool Error::tryGetOrigin(const char*& file, int& line) const noexcept
 {
     bool result = false;

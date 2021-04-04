@@ -41,6 +41,7 @@ library IshikoErrors
         ../../Include/Ishiko/Errors/MessageErrorExtension.h
         ../../Include/Ishiko/Errors/IOErrorExtension.h
         ../../Include/Ishiko/Errors/Exception.h
+        ../../Include/Ishiko/Errors/StreamUtilities.h
         ../../Include/Ishiko/Errors/linkoptions.h
     }
 
@@ -55,5 +56,6 @@ library IshikoErrors
         ../../Source/MessageErrorExtension.cpp
         ../../Source/IOErrorExtension.cpp
         ../../Source/Exception.cpp
+        ../../Source/StreamUtilities.cpp
     }
 }
