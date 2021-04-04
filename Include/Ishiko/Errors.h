@@ -16,6 +16,7 @@
 #include "Errors/IOErrorCategory.h"
 #include "Errors/IOErrorExtension.h"
 #include "Errors/MessageErrorExtension.h"
+#include "Errors/StreamUtilities.h"
 #include "Errors/SuccessCategory.h"
 
 #include "Errors/linkoptions.h"

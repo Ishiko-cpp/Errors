@@ -20,4 +20,16 @@ const char* IOErrorCategory::name() const noexcept
     return "Ishiko::IOErrorCategory";
 }
 
+void Fail(Error& error, IOErrorCategory::EErrorValues value) noexcept
+{
+    error.fail(value, IOErrorCategory::Get());
+}
+
+void Fail(Error& error, IOErrorCategory::EErrorValues value, const std::string& message, const char* file,
+    int line) noexcept
+{
+    error.fail(value, IOErrorCategory::Get(), message, file, line);
+}
+
+
 }
