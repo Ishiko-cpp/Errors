@@ -13,6 +13,10 @@ class StreamUtilitiesTests : public Ishiko::Tests::TestSequence
 {
 public:
     StreamUtilitiesTests(const Ishiko::Tests::TestNumber& number, const Ishiko::Tests::TestEnvironment& environment);
+
+private:
+    static void FailOnCreationErrorTest1(Ishiko::Tests::Test& test);
+    static void FailOnCreationErrorTest2(Ishiko::Tests::Test& test);
 };
 
 #endif

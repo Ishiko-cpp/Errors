@@ -7,4 +7,16 @@
 #ifndef _ISHIKO_ERRORS_STREAMUTILITIES_H_
 #define _ISHIKO_ERRORS_STREAMUTILITIES_H_
 
+#include "Error.h"
+#include <ios>
+
+namespace Ishiko
+{
+
+bool FailOnCreationError(Error& error, const std::ios& status) noexcept;
+bool FailOnCreationError(Error& error, const std::ios& status, const std::string& path, const char* file,
+    int line) noexcept;
+
+}
+
 #endif

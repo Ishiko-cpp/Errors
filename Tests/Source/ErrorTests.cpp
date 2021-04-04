@@ -36,6 +36,7 @@ void ErrorTests::ConstructorTest1(Test& test)
 {
     Ishiko::Error error;
 
+    ISHTF_FAIL_IF_NEQ(sizeof(error), 24);
     ISHTF_FAIL_IF(error);
     ISHTF_FAIL_IF_NEQ(error.condition().value(), 0);
     ISHTF_FAIL_IF_NEQ(&error.condition().category(), &Ishiko::SuccessCategory::Get());

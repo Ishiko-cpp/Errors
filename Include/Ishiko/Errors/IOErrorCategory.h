@@ -18,7 +18,8 @@ class IOErrorCategory : public ErrorCategory
 public:
     enum EErrorValues
     {
-        eGeneric = -1
+        eGeneric = -1,
+        eCreationError = -2
     };
 
     static const IOErrorCategory& Get() noexcept;
@@ -30,6 +31,8 @@ private:
 };
 
 void Fail(Error& error, IOErrorCategory::EErrorValues value) noexcept;
+void Fail(Error& error, IOErrorCategory::EErrorValues value, const std::string& message, const char* file,
+    int line) noexcept;
 
 }
 

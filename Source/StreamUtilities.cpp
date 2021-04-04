@@ -5,3 +5,28 @@
 */
 
 #include "StreamUtilities.h"
+#include "IOErrorCategory.h"
+
+namespace Ishiko
+{
+
+bool FailOnCreationError(Error& error, const std::ios& status) noexcept
+{
+    return FailOnCreationError(error, status, "", nullptr, -1);
+}
+
+bool FailOnCreationError(Error& error, const std::ios& status, const std::string& path, const char* file,
+    int line) noexcept
+{
+    if (!status.good())
+    {
+        Fail(error, IOErrorCategory::eCreationError, "Failed to create " + path, file, line);
+        return true;
+    }
+    else
+    {
+        return false;
+    }
+}
+
+}
