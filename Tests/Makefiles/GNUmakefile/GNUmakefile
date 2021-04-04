@@ -80,8 +80,8 @@ ISHIKO_CPP_TESTFRAMEWORK_ROOT ?= $(ISHIKO_CPP)/TestFramework
 
 all: $(_builddir)IshikoErrorsTests
 
-$(_builddir)IshikoErrorsTests: $(_builddir)IshikoErrorsTests_main.o $(_builddir)IshikoErrorsTests_ErrorConditionTests.o $(_builddir)IshikoErrorsTests_ErrorTests.o $(_builddir)IshikoErrorsTests_MessageErrorExtensionTests.o $(_builddir)IshikoErrorsTests_IOErrorExtensionTests.o $(_builddir)IshikoErrorsTests_ChainErrorExtensionTests.o $(_builddir)IshikoErrorsTests_ExceptionTests.o $(_builddir)IshikoErrorsTests_TestErrorCategory1.o
-	$(CXX) -o $@ $(LDFLAGS) $(_builddir)IshikoErrorsTests_main.o $(_builddir)IshikoErrorsTests_ErrorConditionTests.o $(_builddir)IshikoErrorsTests_ErrorTests.o $(_builddir)IshikoErrorsTests_MessageErrorExtensionTests.o $(_builddir)IshikoErrorsTests_IOErrorExtensionTests.o $(_builddir)IshikoErrorsTests_ChainErrorExtensionTests.o $(_builddir)IshikoErrorsTests_ExceptionTests.o $(_builddir)IshikoErrorsTests_TestErrorCategory1.o -L$(ISHIKO_CPP_ERRORS_ROOT)/Lib -L$(ISHIKO_CPP_TEXT_ROOT)/Lib -L$(BOOST_ROOT)/lib -L$(ISHIKO_CPP_PROCESS_ROOT)/Lib -L$(ISHIKO_CPP_TESTFRAMEWORK_ROOT)/Lib -lIshikoTestFrameworkCore -lIshikoProcess -lIshikoErrors -lboost_filesystem -lboost_system -pthread
+$(_builddir)IshikoErrorsTests: $(_builddir)IshikoErrorsTests_main.o $(_builddir)IshikoErrorsTests_ErrorConditionTests.o $(_builddir)IshikoErrorsTests_ErrorTests.o $(_builddir)IshikoErrorsTests_MessageErrorExtensionTests.o $(_builddir)IshikoErrorsTests_IOErrorExtensionTests.o $(_builddir)IshikoErrorsTests_ChainErrorExtensionTests.o $(_builddir)IshikoErrorsTests_ExceptionTests.o $(_builddir)IshikoErrorsTests_StreamUtilitiesTests.o $(_builddir)IshikoErrorsTests_TestErrorCategory1.o
+	$(CXX) -o $@ $(LDFLAGS) $(_builddir)IshikoErrorsTests_main.o $(_builddir)IshikoErrorsTests_ErrorConditionTests.o $(_builddir)IshikoErrorsTests_ErrorTests.o $(_builddir)IshikoErrorsTests_MessageErrorExtensionTests.o $(_builddir)IshikoErrorsTests_IOErrorExtensionTests.o $(_builddir)IshikoErrorsTests_ChainErrorExtensionTests.o $(_builddir)IshikoErrorsTests_ExceptionTests.o $(_builddir)IshikoErrorsTests_StreamUtilitiesTests.o $(_builddir)IshikoErrorsTests_TestErrorCategory1.o -L$(ISHIKO_CPP_ERRORS_ROOT)/Lib -L$(ISHIKO_CPP_TEXT_ROOT)/Lib -L$(BOOST_ROOT)/lib -L$(ISHIKO_CPP_PROCESS_ROOT)/Lib -L$(ISHIKO_CPP_TESTFRAMEWORK_ROOT)/Lib -lIshikoTestFrameworkCore -lIshikoProcess -lIshikoErrors -lboost_filesystem -lboost_system -pthread
 
 $(_builddir)IshikoErrorsTests_main.o: ../../Source/main.cpp
 	$(CXX) -c -o $@ $(CPPFLAGS) $(CXXFLAGS) -MD -MP -pthread -I$(ISHIKO_CPP_ERRORS_ROOT)/Include -I$(ISHIKO_CPP_TEXT_ROOT)/Include -I$(ISHIKO_CPP_PLATFORM_ROOT)/Include -I$(BOOST_ROOT)/include -I$(ISHIKO_CPP_PROCESS_ROOT)/Include -I$(ISHIKO_CPP_TESTFRAMEWORK_ROOT)/Include -std=c++11 ../../Source/main.cpp
@@ -103,6 +103,9 @@ $(_builddir)IshikoErrorsTests_ChainErrorExtensionTests.o: ../../Source/ChainErro
 
 $(_builddir)IshikoErrorsTests_ExceptionTests.o: ../../Source/ExceptionTests.cpp
 	$(CXX) -c -o $@ $(CPPFLAGS) $(CXXFLAGS) -MD -MP -pthread -I$(ISHIKO_CPP_ERRORS_ROOT)/Include -I$(ISHIKO_CPP_TEXT_ROOT)/Include -I$(ISHIKO_CPP_PLATFORM_ROOT)/Include -I$(BOOST_ROOT)/include -I$(ISHIKO_CPP_PROCESS_ROOT)/Include -I$(ISHIKO_CPP_TESTFRAMEWORK_ROOT)/Include -std=c++11 ../../Source/ExceptionTests.cpp
+
+$(_builddir)IshikoErrorsTests_StreamUtilitiesTests.o: ../../Source/StreamUtilitiesTests.cpp
+	$(CXX) -c -o $@ $(CPPFLAGS) $(CXXFLAGS) -MD -MP -pthread -I$(ISHIKO_CPP_ERRORS_ROOT)/Include -I$(ISHIKO_CPP_TEXT_ROOT)/Include -I$(ISHIKO_CPP_PLATFORM_ROOT)/Include -I$(BOOST_ROOT)/include -I$(ISHIKO_CPP_PROCESS_ROOT)/Include -I$(ISHIKO_CPP_TESTFRAMEWORK_ROOT)/Include -std=c++11 ../../Source/StreamUtilitiesTests.cpp
 
 $(_builddir)IshikoErrorsTests_TestErrorCategory1.o: ../../Source/Helpers/TestErrorCategory1.cpp
 	$(CXX) -c -o $@ $(CPPFLAGS) $(CXXFLAGS) -MD -MP -pthread -I$(ISHIKO_CPP_ERRORS_ROOT)/Include -I$(ISHIKO_CPP_TEXT_ROOT)/Include -I$(ISHIKO_CPP_PLATFORM_ROOT)/Include -I$(BOOST_ROOT)/include -I$(ISHIKO_CPP_PROCESS_ROOT)/Include -I$(ISHIKO_CPP_TESTFRAMEWORK_ROOT)/Include -std=c++11 ../../Source/Helpers/TestErrorCategory1.cpp

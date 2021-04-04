@@ -56,8 +56,8 @@ $(if $(_builddir_error),$(error Failed to create build directory: $(_builddir_er
 endif
 all: ../Bakefile/../../Lib/lib$(if $(call _equal,$(config),Debug),IshikoErrors-d,IshikoErrors).a
 
-../Bakefile/../../Lib/lib$(if $(call _equal,$(config),Debug),IshikoErrors-d,IshikoErrors).a: $(_builddir)IshikoErrors_Error.o $(_builddir)IshikoErrors_ErrorCondition.o $(_builddir)IshikoErrors_SuccessCategory.o $(_builddir)IshikoErrors_IOErrorCategory.o $(_builddir)IshikoErrors_ErrorExtension.o $(_builddir)IshikoErrors_ChainErrorExtension.o $(_builddir)IshikoErrors_MessageErrorExtension.o $(_builddir)IshikoErrors_IOErrorExtension.o $(_builddir)IshikoErrors_Exception.o
-	$(AR) rc $@ $(_builddir)IshikoErrors_Error.o $(_builddir)IshikoErrors_ErrorCondition.o $(_builddir)IshikoErrors_SuccessCategory.o $(_builddir)IshikoErrors_IOErrorCategory.o $(_builddir)IshikoErrors_ErrorExtension.o $(_builddir)IshikoErrors_ChainErrorExtension.o $(_builddir)IshikoErrors_MessageErrorExtension.o $(_builddir)IshikoErrors_IOErrorExtension.o $(_builddir)IshikoErrors_Exception.o
+../Bakefile/../../Lib/lib$(if $(call _equal,$(config),Debug),IshikoErrors-d,IshikoErrors).a: $(_builddir)IshikoErrors_Error.o $(_builddir)IshikoErrors_ErrorCondition.o $(_builddir)IshikoErrors_SuccessCategory.o $(_builddir)IshikoErrors_IOErrorCategory.o $(_builddir)IshikoErrors_ErrorExtension.o $(_builddir)IshikoErrors_ChainErrorExtension.o $(_builddir)IshikoErrors_MessageErrorExtension.o $(_builddir)IshikoErrors_IOErrorExtension.o $(_builddir)IshikoErrors_Exception.o $(_builddir)IshikoErrors_StreamUtilities.o
+	$(AR) rc $@ $(_builddir)IshikoErrors_Error.o $(_builddir)IshikoErrors_ErrorCondition.o $(_builddir)IshikoErrors_SuccessCategory.o $(_builddir)IshikoErrors_IOErrorCategory.o $(_builddir)IshikoErrors_ErrorExtension.o $(_builddir)IshikoErrors_ChainErrorExtension.o $(_builddir)IshikoErrors_MessageErrorExtension.o $(_builddir)IshikoErrors_IOErrorExtension.o $(_builddir)IshikoErrors_Exception.o $(_builddir)IshikoErrors_StreamUtilities.o
 	$(RANLIB) $@
 
 $(_builddir)IshikoErrors_Error.o: ../../Source/Error.cpp
@@ -86,6 +86,9 @@ $(_builddir)IshikoErrors_IOErrorExtension.o: ../../Source/IOErrorExtension.cpp
 
 $(_builddir)IshikoErrors_Exception.o: ../../Source/Exception.cpp
 	$(CXX) -c -o $@ $(CPPFLAGS) $(CXXFLAGS) -MD -MP -fPIC -DPIC -pthread -I../../Include/Ishiko/Errors -std=c++11 ../../Source/Exception.cpp
+
+$(_builddir)IshikoErrors_StreamUtilities.o: ../../Source/StreamUtilities.cpp
+	$(CXX) -c -o $@ $(CPPFLAGS) $(CXXFLAGS) -MD -MP -fPIC -DPIC -pthread -I../../Include/Ishiko/Errors -std=c++11 ../../Source/StreamUtilities.cpp
 
 clean:
 	rm -f $(_builddir)*.o

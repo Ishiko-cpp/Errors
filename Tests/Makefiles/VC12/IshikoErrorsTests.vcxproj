@@ -159,6 +159,7 @@
     <ClCompile Include="..\..\Source\IOErrorExtensionTests.cpp" />
     <ClCompile Include="..\..\Source\ChainErrorExtensionTests.cpp" />
     <ClCompile Include="..\..\Source\ExceptionTests.cpp" />
+    <ClCompile Include="..\..\Source\StreamUtilitiesTests.cpp" />
     <ClCompile Include="..\..\Source\Helpers\TestErrorCategory1.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -168,6 +169,7 @@
     <ClInclude Include="..\..\Source\IOErrorExtensionTests.h" />
     <ClInclude Include="..\..\Source\ChainErrorExtensionTests.h" />
     <ClInclude Include="..\..\Source\ExceptionTests.h" />
+    <ClInclude Include="..\..\Source\StreamUtilitiesTests.h" />
     <ClInclude Include="..\..\Source\Helpers\TestErrorCategory1.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

@@ -10,7 +10,8 @@
 #include "IOErrorExtensionTests.h"
 #include "ChainErrorExtensionTests.h"
 #include "ExceptionTests.h"
-#include "Ishiko/TestFramework/TestFrameworkCore.h"
+#include "StreamUtilitiesTests.h"
+#include <Ishiko/TestFramework/TestFrameworkCore.h>
 
 using namespace Ishiko::Tests;
 
@@ -27,6 +28,7 @@ int main(int argc, char* argv[])
     theTests.append<IOErrorExtensionTests>();
     theTests.append<ChainErrorExtensionTests>();
     theTests.append<ExceptionTests>();
+    theTests.append<StreamUtilitiesTests>();
 
     return theTestHarness.run();
 }
