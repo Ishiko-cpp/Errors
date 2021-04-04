@@ -19,7 +19,7 @@ public:
     enum EErrorValues
     {
         eGeneric = -1,
-        eCreationError = -2
+        eFileCreationError = -2
     };
 
     static const IOErrorCategory& Get() noexcept;

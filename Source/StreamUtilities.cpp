@@ -20,7 +20,7 @@ bool FailOnFileCreationError(Error& error, const std::ios& status, const std::st
 {
     if (!status.good())
     {
-        Fail(error, IOErrorCategory::eCreationError, "Failed to create " + path, file, line);
+        Fail(error, IOErrorCategory::eFileCreationError, "failed to create file \'" + path + "\'", file, line);
         return true;
     }
     else
