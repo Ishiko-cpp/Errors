@@ -159,6 +159,7 @@
     <ClCompile Include="..\..\Source\MessageErrorExtension.cpp" />
     <ClCompile Include="..\..\Source\IOErrorExtension.cpp" />
     <ClCompile Include="..\..\Source\Exception.cpp" />
+    <ClCompile Include="..\..\Source\StreamUtilities.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\Include\Ishiko\Errors.h" />
@@ -172,6 +173,7 @@
     <ClInclude Include="..\..\Include\Ishiko\Errors\MessageErrorExtension.h" />
     <ClInclude Include="..\..\Include\Ishiko\Errors\IOErrorExtension.h" />
     <ClInclude Include="..\..\Include\Ishiko\Errors\Exception.h" />
+    <ClInclude Include="..\..\Include\Ishiko\Errors\StreamUtilities.h" />
     <ClInclude Include="..\..\Include\Ishiko\Errors\linkoptions.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

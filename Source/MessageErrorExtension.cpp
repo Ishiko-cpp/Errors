@@ -19,6 +19,19 @@ MessageErrorExtension::MessageErrorExtension(const std::string& message, const c
 {
 }
 
+bool MessageErrorExtension::tryGetMessage(std::string& message) const noexcept
+{
+    bool result = false;
+
+    if (!m_message.empty())
+    {
+        message = m_message;
+        result = true;
+    }
+
+    return result;
+}
+
 bool MessageErrorExtension::tryGetOrigin(const char*& file, int& line) const noexcept
 {
     bool result = false;
