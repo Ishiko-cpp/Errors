@@ -29,4 +29,23 @@ bool FailOnFileCreationError(Error& error, const std::ios& status, const std::st
     }
 }
 
+bool FailOnFileOpeningError(Error& error, const std::ios& status) noexcept
+{
+    return FailOnFileOpeningError(error, status, "", nullptr, -1);
+}
+
+bool FailOnFileOpeningError(Error& error, const std::ios& status, const std::string& path, const char* file,
+    int line) noexcept
+{
+    if (!status.good())
+    {
+        Fail(error, IOErrorCategory::eFileOpeningError, "failed to open file \'" + path + "\'", file, line);
+        return true;
+    }
+    else
+    {
+        return false;
+    }
+}
+
 }

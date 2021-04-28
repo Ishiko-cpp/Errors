@@ -17,6 +17,8 @@ public:
 private:
     static void FailOnFileCreationErrorTest1(Ishiko::Tests::Test& test);
     static void FailOnFileCreationErrorTest2(Ishiko::Tests::Test& test);
+    static void FailOnFileOpeningErrorTest1(Ishiko::Tests::Test& test);
+    static void FailOnFileOpeningErrorTest2(Ishiko::Tests::Test& test);
 };
 
 #endif
