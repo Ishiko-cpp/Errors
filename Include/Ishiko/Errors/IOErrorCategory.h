@@ -18,8 +18,9 @@ class IOErrorCategory : public ErrorCategory
 public:
     enum EErrorValues
     {
-        eGeneric = -1,
-        eFileCreationError = -2
+        eGenericError = -1,
+        eCreateFileError = -2,
+        eOpenFileError = -3
     };
 
     static const IOErrorCategory& Get() noexcept;
