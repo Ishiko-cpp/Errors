@@ -10,17 +10,17 @@
 namespace Ishiko
 {
 
-bool FailOnFileCreationError(Error& error, const std::ios& status) noexcept
+bool FailIfCreateFileError(Error& error, const std::ios& status) noexcept
 {
-    return FailOnFileCreationError(error, status, "", nullptr, -1);
+    return FailIfCreateFileError(error, status, "", nullptr, -1);
 }
 
-bool FailOnFileCreationError(Error& error, const std::ios& status, const std::string& path, const char* file,
+bool FailIfCreateFileError(Error& error, const std::ios& status, const std::string& path, const char* file,
     int line) noexcept
 {
     if (!status.good())
     {
-        Fail(error, IOErrorCategory::eFileCreationError, "failed to create file \'" + path + "\'", file, line);
+        Fail(error, IOErrorCategory::eCreateFileError, "failed to create file \'" + path + "\'", file, line);
         return true;
     }
     else
@@ -29,17 +29,17 @@ bool FailOnFileCreationError(Error& error, const std::ios& status, const std::st
     }
 }
 
-bool FailOnFileOpeningError(Error& error, const std::ios& status) noexcept
+bool FailIfOpenFileError(Error& error, const std::ios& status) noexcept
 {
-    return FailOnFileOpeningError(error, status, "", nullptr, -1);
+    return FailIfOpenFileError(error, status, "", nullptr, -1);
 }
 
-bool FailOnFileOpeningError(Error& error, const std::ios& status, const std::string& path, const char* file,
+bool FailIfOpenFileError(Error& error, const std::ios& status, const std::string& path, const char* file,
     int line) noexcept
 {
     if (!status.good())
     {
-        Fail(error, IOErrorCategory::eFileOpeningError, "failed to open file \'" + path + "\'", file, line);
+        Fail(error, IOErrorCategory::eOpenFileError, "failed to open file \'" + path + "\'", file, line);
         return true;
     }
     else

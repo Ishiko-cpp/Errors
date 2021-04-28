@@ -15,10 +15,10 @@ public:
     StreamUtilitiesTests(const Ishiko::Tests::TestNumber& number, const Ishiko::Tests::TestEnvironment& environment);
 
 private:
-    static void FailOnFileCreationErrorTest1(Ishiko::Tests::Test& test);
-    static void FailOnFileCreationErrorTest2(Ishiko::Tests::Test& test);
-    static void FailOnFileOpeningErrorTest1(Ishiko::Tests::Test& test);
-    static void FailOnFileOpeningErrorTest2(Ishiko::Tests::Test& test);
+    static void FailIfCreateFileErrorTest1(Ishiko::Tests::Test& test);
+    static void FailIfCreateFileErrorTest2(Ishiko::Tests::Test& test);
+    static void FailIfOpenFileErrorTest1(Ishiko::Tests::Test& test);
+    static void FailIfOpenFileErrorTest2(Ishiko::Tests::Test& test);
 };
 
 #endif

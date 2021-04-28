@@ -14,20 +14,20 @@ using namespace Ishiko::Tests;
 StreamUtilitiesTests::StreamUtilitiesTests(const TestNumber& number, const TestEnvironment& environment)
     : TestSequence(number, "StreamUtilities tests", environment)
 {
-    append<HeapAllocationErrorsTest>("FailOnFileCreationError test 1", FailOnFileCreationErrorTest1);
-    append<HeapAllocationErrorsTest>("FailOnFileCreationError test 2", FailOnFileCreationErrorTest2);
-    append<HeapAllocationErrorsTest>("FailOnFileOpeningError test 1", FailOnFileOpeningErrorTest1);
-    append<HeapAllocationErrorsTest>("FailOnFileOpeningError test 2", FailOnFileOpeningErrorTest2);
+    append<HeapAllocationErrorsTest>("FailIfCreateFileError test 1", FailIfCreateFileErrorTest1);
+    append<HeapAllocationErrorsTest>("FailIfCreateFileError test 2", FailIfCreateFileErrorTest2);
+    append<HeapAllocationErrorsTest>("FailIfOpenFileError test 1", FailIfOpenFileErrorTest1);
+    append<HeapAllocationErrorsTest>("FailIfOpenFileError test 2", FailIfOpenFileErrorTest2);
 }
 
-void StreamUtilitiesTests::FailOnFileCreationErrorTest1(Test& test)
+void StreamUtilitiesTests::FailIfCreateFileErrorTest1(Test& test)
 {
     // We try to open the file instead of creating it because this is easier to implement and puts the stream in the
     // same state
     Ishiko::Error error;
     std::fstream file("doesnotexist");
 
-    bool failed = FailOnFileCreationError(error, file);
+    bool failed = FailIfCreateFileError(error, file);
   
     ISHTF_FAIL_IF_NOT(failed);
     ISHTF_FAIL_IF_NOT(error);
@@ -47,7 +47,7 @@ void StreamUtilitiesTests::FailOnFileCreationErrorTest1(Test& test)
     ISHTF_PASS();
 }
 
-void StreamUtilitiesTests::FailOnFileCreationErrorTest2(Test& test)
+void StreamUtilitiesTests::FailIfCreateFileErrorTest2(Test& test)
 {
     const char* path = "doesnotexist";
 
@@ -56,7 +56,7 @@ void StreamUtilitiesTests::FailOnFileCreationErrorTest2(Test& test)
     Ishiko::Error error(new Ishiko::MessageErrorExtension());
     std::fstream file(path);
 
-    bool failed = FailOnFileCreationError(error, file, path, "file1", 3);
+    bool failed = FailIfCreateFileError(error, file, path, "file1", 3);
 
     ISHTF_FAIL_IF_NOT(failed);
     ISHTF_FAIL_IF_NOT(error);
@@ -79,12 +79,12 @@ void StreamUtilitiesTests::FailOnFileCreationErrorTest2(Test& test)
     ISHTF_PASS();
 }
 
-void StreamUtilitiesTests::FailOnFileOpeningErrorTest1(Test& test)
+void StreamUtilitiesTests::FailIfOpenFileErrorTest1(Test& test)
 {
     Ishiko::Error error;
     std::fstream file("doesnotexist");
 
-    bool failed = FailOnFileOpeningError(error, file);
+    bool failed = FailIfOpenFileError(error, file);
 
     ISHTF_FAIL_IF_NOT(failed);
     ISHTF_FAIL_IF_NOT(error);
@@ -104,14 +104,14 @@ void StreamUtilitiesTests::FailOnFileOpeningErrorTest1(Test& test)
     ISHTF_PASS();
 }
 
-void StreamUtilitiesTests::FailOnFileOpeningErrorTest2(Test& test)
+void StreamUtilitiesTests::FailIfOpenFileErrorTest2(Test& test)
 {
     const char* path = "doesnotexist";
 
     Ishiko::Error error(new Ishiko::MessageErrorExtension());
     std::fstream file(path);
 
-    bool failed = FailOnFileOpeningError(error, file, path, "file1", 3);
+    bool failed = FailIfOpenFileError(error, file, path, "file1", 3);
 
     ISHTF_FAIL_IF_NOT(failed);
     ISHTF_FAIL_IF_NOT(error);
