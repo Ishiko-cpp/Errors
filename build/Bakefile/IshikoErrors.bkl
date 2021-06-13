@@ -9,7 +9,7 @@ library IshikoErrors
 {
     archs = x86 x86_64;
 
-    includedirs += ../../Include/Ishiko/Errors;
+    includedirs += ../../include/Ishiko/Errors;
 
     if ($(toolset) == gnu)
     {
@@ -29,33 +29,33 @@ library IshikoErrors
 
     headers
     {
-        ../../Include/Ishiko/Errors.h
+        ../../include/Ishiko/Errors.h
 
-        ../../Include/Ishiko/Errors/Error.h
-        ../../Include/Ishiko/Errors/ErrorCondition.h
-        ../../Include/Ishiko/Errors/ErrorCategory.h
-        ../../Include/Ishiko/Errors/SuccessCategory.h
-        ../../Include/Ishiko/Errors/IOErrorCategory.h
-        ../../Include/Ishiko/Errors/ErrorExtension.h
-        ../../Include/Ishiko/Errors/ChainErrorExtension.h
-        ../../Include/Ishiko/Errors/MessageErrorExtension.h
-        ../../Include/Ishiko/Errors/IOErrorExtension.h
-        ../../Include/Ishiko/Errors/Exception.h
-        ../../Include/Ishiko/Errors/StreamUtilities.h
-        ../../Include/Ishiko/Errors/linkoptions.h
+        ../../include/Ishiko/Errors/Error.h
+        ../../include/Ishiko/Errors/ErrorCondition.h
+        ../../include/Ishiko/Errors/ErrorCategory.h
+        ../../include/Ishiko/Errors/SuccessCategory.h
+        ../../include/Ishiko/Errors/IOErrorCategory.h
+        ../../include/Ishiko/Errors/ErrorExtension.h
+        ../../include/Ishiko/Errors/ChainErrorExtension.h
+        ../../include/Ishiko/Errors/MessageErrorExtension.h
+        ../../include/Ishiko/Errors/IOErrorExtension.h
+        ../../include/Ishiko/Errors/Exception.h
+        ../../include/Ishiko/Errors/StreamUtilities.h
+        ../../include/Ishiko/Errors/linkoptions.h
     }
 
     sources
     {
-        ../../Source/Error.cpp
-        ../../Source/ErrorCondition.cpp
-        ../../Source/SuccessCategory.cpp
-        ../../Source/IOErrorCategory.cpp
-        ../../Source/ErrorExtension.cpp
-        ../../Source/ChainErrorExtension.cpp
-        ../../Source/MessageErrorExtension.cpp
-        ../../Source/IOErrorExtension.cpp
-        ../../Source/Exception.cpp
-        ../../Source/StreamUtilities.cpp
+        ../../src/Error.cpp
+        ../../src/ErrorCondition.cpp
+        ../../src/SuccessCategory.cpp
+        ../../src/IOErrorCategory.cpp
+        ../../src/ErrorExtension.cpp
+        ../../src/ChainErrorExtension.cpp
+        ../../src/MessageErrorExtension.cpp
+        ../../src/IOErrorExtension.cpp
+        ../../src/Exception.cpp
+        ../../src/StreamUtilities.cpp
     }
 }
