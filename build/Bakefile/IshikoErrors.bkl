@@ -1,0 +1,61 @@
+toolsets = gnu vs2017 vs2015 vs2013;
+
+gnu.makefile = ../GNUmakefile/GNUmakefile;
+vs2017.solutionfile = ../VC15/IshikoErrors.sln;
+vs2015.solutionfile = ../VC14/IshikoErrors.sln;
+vs2013.solutionfile = ../VC12/IshikoErrors.sln;
+
+library IshikoErrors
+{
+    archs = x86 x86_64;
+
+    includedirs += ../../include/Ishiko/Errors;
+
+    if ($(toolset) == gnu)
+    {
+        cxx-compiler-options = "-std=c++11";
+        outputdir = ../../Lib;
+    }
+
+    if ($(toolset) != gnu)
+    {
+        outputdir = ../../Lib/$(arch);
+    }
+
+    if ($(config) == Debug)
+    {
+        basename = IshikoErrors-d;
+    }
+
+    headers
+    {
+        ../../include/Ishiko/Errors.h
+
+        ../../include/Ishiko/Errors/Error.h
+        ../../include/Ishiko/Errors/ErrorCondition.h
+        ../../include/Ishiko/Errors/ErrorCategory.h
+        ../../include/Ishiko/Errors/SuccessCategory.h
+        ../../include/Ishiko/Errors/IOErrorCategory.h
+        ../../include/Ishiko/Errors/ErrorExtension.h
+        ../../include/Ishiko/Errors/ChainErrorExtension.h
+        ../../include/Ishiko/Errors/MessageErrorExtension.h
+        ../../include/Ishiko/Errors/IOErrorExtension.h
+        ../../include/Ishiko/Errors/Exception.h
+        ../../include/Ishiko/Errors/StreamUtilities.h
+        ../../include/Ishiko/Errors/linkoptions.h
+    }
+
+    sources
+    {
+        ../../src/Error.cpp
+        ../../src/ErrorCondition.cpp
+        ../../src/SuccessCategory.cpp
+        ../../src/IOErrorCategory.cpp
+        ../../src/ErrorExtension.cpp
+        ../../src/ChainErrorExtension.cpp
+        ../../src/MessageErrorExtension.cpp
+        ../../src/IOErrorExtension.cpp
+        ../../src/Exception.cpp
+        ../../src/StreamUtilities.cpp
+    }
+}
