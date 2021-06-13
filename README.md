@@ -1,4 +1,4 @@
-# Ishiko/C++ - Errors
+# Ishiko/C++ Errors
 
 Basic classes to handle and report errors.
 
@@ -12,7 +12,7 @@ Basic classes to handle and report errors.
 
 # Project Status
 
-[![Ishiko-cpp](https://circleci.com/gh/Ishiko-cpp/Errors.svg?style=shield)](https://circleci.com/gh/Ishiko-cpp/Errors)
+[![ishiko-cpp](https://circleci.com/gh/ishiko-cpp/errors.svg?style=shield)](https://circleci.com/gh/ishiko-cpp/errors)
 
 This project is intended for use by its author only.
 
@@ -26,7 +26,7 @@ None.
 
 # License
 
-Copyright (c) 2015-2020 Xavier Leclercq
+Copyright (c) 2015-2021 Xavier Leclercq
 
 Permission is hereby granted, free of charge, to any person obtaining a
 copy of this software and associated documentation files (the "Software"),
