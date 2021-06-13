@@ -5,13 +5,13 @@ jobs:
       - image: ishikocpp/gcc-boost:10.1.0-1.73.0
     steps:
       - run: 
-          name: "Set ISHIKO_CPP environment variable and create directory"
-          command: mkdir /Ishiko-cpp && echo 'export ISHIKO_CPP="/Ishiko-cpp"' >> $BASH_ENV
+          name: "Set ISHIKO_CPP environment variable and create workspace directory"
+          command: mkdir -p /projects/ishiko/cpp && echo 'export ISHIKO_CPP="/projects/ishiko/cpp"' >> $BASH_ENV
       - checkout:
-          path: /Ishiko-cpp/Errors
+          path: /projects/ishiko/cpp/errors
       - run:
           name: Build
-          command: cd /Ishiko-cpp/Errors/Makefiles/GNUmakefile && make
+          command: cd /projects/ishiko/cpp/errors/build/GNUmakefile && make
       - run:
           name: "Checkout Ishiko-cpp/Platform test dependency"
           command: cd /Ishiko-cpp && git clone https://github.com/Ishiko-cpp/Platform.git
