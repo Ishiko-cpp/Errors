@@ -1,12 +1,12 @@
 setting ISHIKO_CPP_ERRORS_ROOT
 {
     help = "Path to the Ishiko Errors installation";
-    default = '$(ISHIKO_CPP)/Errors';
+    default = '$(ISHIKO_CPP)/errors';
 }
 
 template IshikoErrors
 {
-    includedirs += $(ISHIKO_CPP_ERRORS_ROOT)/Include;
+    includedirs += $(ISHIKO_CPP_ERRORS_ROOT)/include;
 
     if ($(toolset) == gnu)
     {
