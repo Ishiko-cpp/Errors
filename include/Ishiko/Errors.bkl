@@ -10,11 +10,11 @@ template IshikoErrors
 
     if ($(toolset) == gnu)
     {
-        libdirs += $(ISHIKO_CPP_ERRORS_ROOT)/Lib;
+        libdirs += $(ISHIKO_CPP_ERRORS_ROOT)/lib;
     }
 
     if ($(toolset) != gnu)
     {
-        libdirs += $(ISHIKO_CPP_ERRORS_ROOT)/Lib/$(arch);
+        libdirs += $(ISHIKO_CPP_ERRORS_ROOT)/lib/$(arch);
     }
 }
