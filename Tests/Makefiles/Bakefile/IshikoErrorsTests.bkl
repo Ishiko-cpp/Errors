@@ -1,6 +1,6 @@
 import ../../../include/Ishiko/Errors.bkl;
 ishikopath = envvar("ISHIKO_CPP");
-import $(ishikopath)/test/include/Ishiko/TestFramework/TestFrameworkCore.bkl;
+import $(ishikopath)/tests/include/Ishiko/Tests/Core.bkl;
 
 toolsets = gnu vs2017 vs2015 vs2013;
 
@@ -9,7 +9,7 @@ vs2017.solutionfile = ../VC15/IshikoErrorsTests.sln;
 vs2015.solutionfile = ../VC14/IshikoErrorsTests.sln;
 vs2013.solutionfile = ../VC12/IshikoErrorsTests.sln;
 
-program IshikoErrorsTests : IshikoErrors, IshikoTestFrameworkCore
+program IshikoErrorsTests : IshikoErrors, IshikoTestsCore
 {
     archs = x86 x86_64;
 
