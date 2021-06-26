@@ -57,7 +57,7 @@ CXX := c++
 builddir = .
 
 ifneq ($(builddir),.)
-_builddir := $(if $(findstring $(abspath $(builddir)),$(builddir)),,../../)$(builddir)/../GNUmakefile/
+_builddir := $(if $(findstring $(abspath $(builddir)),$(builddir)),,../../)$(builddir)/../gnumake/
 _builddir_error := $(shell mkdir -p $(_builddir) 2>&1)
 $(if $(_builddir_error),$(error Failed to create build directory: $(_builddir_error)))
 endif
@@ -90,7 +90,7 @@ ISHIKO_CPP_TESTFRAMEWORK_ROOT ?= $(ISHIKO_CPP)/tests
 all: $(_builddir)IshikoErrorsTests
 
 $(_builddir)IshikoErrorsTests: $(_builddir)IshikoErrorsTests_main.o $(_builddir)IshikoErrorsTests_ErrorConditionTests.o $(_builddir)IshikoErrorsTests_ErrorTests.o $(_builddir)IshikoErrorsTests_MessageErrorExtensionTests.o $(_builddir)IshikoErrorsTests_IOErrorExtensionTests.o $(_builddir)IshikoErrorsTests_ChainErrorExtensionTests.o $(_builddir)IshikoErrorsTests_ExceptionTests.o $(_builddir)IshikoErrorsTests_StreamUtilitiesTests.o $(_builddir)IshikoErrorsTests_TestErrorCategory1.o
-	$(CXX) -o $@ $(LDFLAGS) $(_builddir)IshikoErrorsTests_main.o $(_builddir)IshikoErrorsTests_ErrorConditionTests.o $(_builddir)IshikoErrorsTests_ErrorTests.o $(_builddir)IshikoErrorsTests_MessageErrorExtensionTests.o $(_builddir)IshikoErrorsTests_IOErrorExtensionTests.o $(_builddir)IshikoErrorsTests_ChainErrorExtensionTests.o $(_builddir)IshikoErrorsTests_ExceptionTests.o $(_builddir)IshikoErrorsTests_StreamUtilitiesTests.o $(_builddir)IshikoErrorsTests_TestErrorCategory1.o -L$(ISHIKO_CPP_ERRORS_ROOT)/lib -L$(ISHIKO_CPP_BOOST_ROOT)/lib -L$(ISHIKO_CPP_FILESYSTEM_ROOT)/lib -L$(ISHIKO_CPP_TEXT_ROOT)/Lib -L$(ISHIKO_CPP_TYPES_ROOT)/lib -L$(ISHIKO_CPP_DIFF_ROOT)/lib -L$(ISHIKO_CPP_PROCESS_ROOT)/lib -L$(ISHIKO_CPP_TESTFRAMEWORK_ROOT)/lib -lIshikoTestFrameworkCore -lIshikoProcess -lIshikoErrors -lboost_filesystem -lboost_system -pthread
+	$(CXX) -o $@ $(LDFLAGS) $(_builddir)IshikoErrorsTests_main.o $(_builddir)IshikoErrorsTests_ErrorConditionTests.o $(_builddir)IshikoErrorsTests_ErrorTests.o $(_builddir)IshikoErrorsTests_MessageErrorExtensionTests.o $(_builddir)IshikoErrorsTests_IOErrorExtensionTests.o $(_builddir)IshikoErrorsTests_ChainErrorExtensionTests.o $(_builddir)IshikoErrorsTests_ExceptionTests.o $(_builddir)IshikoErrorsTests_StreamUtilitiesTests.o $(_builddir)IshikoErrorsTests_TestErrorCategory1.o -L$(ISHIKO_CPP_ERRORS_ROOT)/lib -L$(ISHIKO_CPP_BOOST_ROOT)/lib -L$(ISHIKO_CPP_FILESYSTEM_ROOT)/lib -L$(ISHIKO_CPP_TEXT_ROOT)/lib -L$(ISHIKO_CPP_TYPES_ROOT)/lib -L$(ISHIKO_CPP_DIFF_ROOT)/lib -L$(ISHIKO_CPP_PROCESS_ROOT)/lib -L$(ISHIKO_CPP_TESTFRAMEWORK_ROOT)/lib -lIshikoTestsCore -lIshikoProcess -lIshikoErrors -lboost_filesystem -lboost_system -pthread
 
 $(_builddir)IshikoErrorsTests_main.o: ../../Source/main.cpp
 	$(CXX) -c -o $@ $(CPPFLAGS) $(CXXFLAGS) -MD -MP -pthread -I$(ISHIKO_CPP_ERRORS_ROOT)/include -I$(ISHIKO_CPP_PLATFORM_ROOT)/include -I$(ISHIKO_CPP_BOOST_ROOT)/include -I$(ISHIKO_CPP_FILESYSTEM_ROOT)/include -I$(ISHIKO_CPP_TEXT_ROOT)/include -I$(ISHIKO_CPP_TYPES_ROOT)/include -I$(ISHIKO_CPP_DIFF_ROOT)/include -I$(ISHIKO_CPP_PROCESS_ROOT)/include -I$(ISHIKO_CPP_TESTFRAMEWORK_ROOT)/include -std=c++11 ../../Source/main.cpp
