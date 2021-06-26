@@ -1,13 +1,13 @@
 /*
-    Copyright (c) 2020 Xavier Leclercq
+    Copyright (c) 2020-2021 Xavier Leclercq
     Released under the MIT License
-    See https://github.com/Ishiko-cpp/Errors/blob/master/LICENSE.txt
+    See https://github.com/ishiko-cpp/errors/blob/main/LICENSE.txt
 */
 
 #ifndef _ISHIKO_ERRORS_TESTS_ERRORCONDITIONTESTS_H_
 #define _ISHIKO_ERRORS_TESTS_ERRORCONDITIONTESTS_H_
 
-#include "Ishiko/TestFramework/TestFrameworkCore.h"
+#include <Ishiko/Tests/Core.h>
 
 class ErrorConditionTests : public Ishiko::Tests::TestSequence
 {
