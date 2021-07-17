@@ -21,28 +21,28 @@ program IshikoErrorsTests : IshikoErrors, IshikoTestsCore
 
     headers
     {
-        ../../Source/ErrorConditionTests.h
-        ../../Source/ErrorTests.h
-        ../../Source/MessageErrorExtensionTests.h
-        ../../Source/IOErrorExtensionTests.h
-        ../../Source/ChainErrorExtensionTests.h
-        ../../Source/ExceptionTests.h
-        ../../Source/StreamUtilitiesTests.h
+        ../../src/ErrorConditionTests.h
+        ../../src/ErrorTests.h
+        ../../src/MessageErrorExtensionTests.h
+        ../../src/IOErrorExtensionTests.h
+        ../../src/ChainErrorExtensionTests.h
+        ../../src/ExceptionTests.h
+        ../../src/StreamUtilitiesTests.h
 
-        ../../Source/Helpers/TestErrorCategory1.h
+        ../../src/Helpers/TestErrorCategory1.h
     }
 
     sources
     {
-        ../../Source/main.cpp
-        ../../Source/ErrorConditionTests.cpp
-        ../../Source/ErrorTests.cpp
-        ../../Source/MessageErrorExtensionTests.cpp
-        ../../Source/IOErrorExtensionTests.cpp
-        ../../Source/ChainErrorExtensionTests.cpp
-        ../../Source/ExceptionTests.cpp
-        ../../Source/StreamUtilitiesTests.cpp
+        ../../src/main.cpp
+        ../../src/ErrorConditionTests.cpp
+        ../../src/ErrorTests.cpp
+        ../../src/MessageErrorExtensionTests.cpp
+        ../../src/IOErrorExtensionTests.cpp
+        ../../src/ChainErrorExtensionTests.cpp
+        ../../src/ExceptionTests.cpp
+        ../../src/StreamUtilitiesTests.cpp
 
-        ../../Source/Helpers/TestErrorCategory1.cpp
+        ../../src/Helpers/TestErrorCategory1.cpp
     }
 }
