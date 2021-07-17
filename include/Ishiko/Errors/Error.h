@@ -93,6 +93,8 @@ public:
     */
     void fail(int code, const ErrorCategory& category, const std::string& message, const char* file, int line) noexcept;
 
+    void fail(const Error& error) noexcept;
+
     /// Sets the error code to 0 regardless of its current value.
     void succeed() noexcept;
 
