@@ -23,6 +23,7 @@ private:
     static void InequalityOperatorTest2(Ishiko::Tests::Test& test);
     static void FailTest1(Ishiko::Tests::Test& test);
     static void FailTest2(Ishiko::Tests::Test& test);
+    static void FailTest3(Ishiko::Tests::Test& test);
     static void SucceedTest1(Ishiko::Tests::Test& test);
     static void StreamInsertionTest1(Ishiko::Tests::Test& test);
     static void TryGetMessageTest1(Ishiko::Tests::Test& test);

@@ -26,6 +26,7 @@ ErrorTests::ErrorTests(const TestNumber& number, const TestEnvironment& environm
     append<HeapAllocationErrorsTest>("operator!=() test 2", InequalityOperatorTest2);
     append<HeapAllocationErrorsTest>("fail test 1", FailTest1);
     append<HeapAllocationErrorsTest>("fail test 2", FailTest2);
+    append<HeapAllocationErrorsTest>("fail test 3", FailTest3);
     append<HeapAllocationErrorsTest>("succeed test 1", SucceedTest1);
     append<HeapAllocationErrorsTest>("operator<< test 1", StreamInsertionTest1);
     append<HeapAllocationErrorsTest>("tryGetMessage test 1", TryGetMessageTest1);
@@ -129,6 +130,19 @@ void ErrorTests::FailTest2(Test& test)
     ISHTF_FAIL_IF_NOT(error);
     ISHTF_FAIL_IF_NEQ(error.condition().value(), 4);
     ISHTF_FAIL_IF_NEQ(&error.condition().category(), &TestErrorCategory1::Get());
+    ISHTF_PASS();
+}
+
+void ErrorTests::FailTest3(Test& test)
+{
+    Ishiko::Error error1(4, TestErrorCategory1::Get());
+
+    Ishiko::Error error2;
+    error2.fail(error1);
+
+    ISHTF_FAIL_IF_NOT(error2);
+    ISHTF_FAIL_IF_NEQ(error2.condition().value(), 4);
+    ISHTF_FAIL_IF_NEQ(&error2.condition().category(), &TestErrorCategory1::Get());
     ISHTF_PASS();
 }
 

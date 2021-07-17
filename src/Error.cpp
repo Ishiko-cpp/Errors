@@ -113,6 +113,12 @@ void Error::fail(int code, const ErrorCategory& category, const std::string& mes
     }
 }
 
+void Error::fail(const Error& error) noexcept
+{
+    // TODO: can/should this copy more than the condition and category?
+    fail(error.condition().value(), error.condition().category());
+}
+
 void Error::succeed() noexcept
 {
     m_condition.succeed();
