@@ -28,8 +28,8 @@ program IshikoErrorsTests : IshikoErrors, IshikoTestsCore
         ../../src/ChainErrorExtensionTests.h
         ../../src/ExceptionTests.h
         ../../src/StreamUtilitiesTests.h
-
         ../../src/Helpers/TestErrorCategory1.h
+        ../../src/Helpers/TestErrorCategory2.h
     }
 
     sources
@@ -42,7 +42,7 @@ program IshikoErrorsTests : IshikoErrors, IshikoTestsCore
         ../../src/ChainErrorExtensionTests.cpp
         ../../src/ExceptionTests.cpp
         ../../src/StreamUtilitiesTests.cpp
-
         ../../src/Helpers/TestErrorCategory1.cpp
+        ../../src/Helpers/TestErrorCategory2.cpp
     }
 }

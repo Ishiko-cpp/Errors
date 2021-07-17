@@ -161,6 +161,7 @@
     <ClCompile Include="..\..\src\ExceptionTests.cpp" />
     <ClCompile Include="..\..\src\StreamUtilitiesTests.cpp" />
     <ClCompile Include="..\..\src\Helpers\TestErrorCategory1.cpp" />
+    <ClCompile Include="..\..\src\Helpers\TestErrorCategory2.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\src\ErrorConditionTests.h" />
@@ -171,6 +172,7 @@
     <ClInclude Include="..\..\src\ExceptionTests.h" />
     <ClInclude Include="..\..\src\StreamUtilitiesTests.h" />
     <ClInclude Include="..\..\src\Helpers\TestErrorCategory1.h" />
+    <ClInclude Include="..\..\src\Helpers\TestErrorCategory2.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
