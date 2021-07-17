@@ -17,57 +17,63 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\Source\ErrorConditionTests.h">
+    <ClInclude Include="..\..\src\ErrorConditionTests.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Source\ErrorTests.h">
+    <ClInclude Include="..\..\src\ErrorTests.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Source\MessageErrorExtensionTests.h">
+    <ClInclude Include="..\..\src\MessageErrorExtensionTests.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Source\IOErrorExtensionTests.h">
+    <ClInclude Include="..\..\src\IOErrorExtensionTests.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Source\ChainErrorExtensionTests.h">
+    <ClInclude Include="..\..\src\ChainErrorExtensionTests.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Source\ExceptionTests.h">
+    <ClInclude Include="..\..\src\ExceptionTests.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Source\StreamUtilitiesTests.h">
+    <ClInclude Include="..\..\src\StreamUtilitiesTests.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Source\Helpers\TestErrorCategory1.h">
+    <ClInclude Include="..\..\src\Helpers\TestErrorCategory1.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Helpers\TestErrorCategory2.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\Source\main.cpp">
+    <ClCompile Include="..\..\src\main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\Source\ErrorConditionTests.cpp">
+    <ClCompile Include="..\..\src\ErrorConditionTests.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\Source\ErrorTests.cpp">
+    <ClCompile Include="..\..\src\ErrorTests.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\Source\MessageErrorExtensionTests.cpp">
+    <ClCompile Include="..\..\src\MessageErrorExtensionTests.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\Source\IOErrorExtensionTests.cpp">
+    <ClCompile Include="..\..\src\IOErrorExtensionTests.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\Source\ChainErrorExtensionTests.cpp">
+    <ClCompile Include="..\..\src\ChainErrorExtensionTests.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\Source\ExceptionTests.cpp">
+    <ClCompile Include="..\..\src\ExceptionTests.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\Source\StreamUtilitiesTests.cpp">
+    <ClCompile Include="..\..\src\StreamUtilitiesTests.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\Source\Helpers\TestErrorCategory1.cpp">
+    <ClCompile Include="..\..\src\Helpers\TestErrorCategory1.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Helpers\TestErrorCategory2.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

@@ -1,7 +1,7 @@
 /*
-    Copyright (c) 2017-2020 Xavier Leclercq
+    Copyright (c) 2017-2021 Xavier Leclercq
     Released under the MIT License
-    See https://github.com/Ishiko-cpp/Errors/blob/master/LICENSE.txt
+    See https://github.com/ishiko-cpp/errors/blob/main/LICENSE.txt
 */
 
 #include "Error.h"
@@ -46,6 +46,16 @@ Error::operator bool() const noexcept
 bool Error::operator!() const noexcept
 {
     return !m_condition;
+}
+
+bool Error::operator==(const ErrorCondition& other) const noexcept
+{
+    return (m_condition == other);
+}
+
+bool Error::operator!=(const ErrorCondition& other) const noexcept
+{
+    return (m_condition != other);
 }
 
 const ErrorCondition& Error::condition() const noexcept

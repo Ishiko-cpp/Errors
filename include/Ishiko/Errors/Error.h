@@ -1,7 +1,7 @@
 /*
-    Copyright (c) 2017-2020 Xavier Leclercq
+    Copyright (c) 2017-2021 Xavier Leclercq
     Released under the MIT License
-    See https://github.com/Ishiko-cpp/Errors/blob/master/LICENSE.txt
+    See https://github.com/ishiko-cpp/errors/blob/main/LICENSE.txt
 */
 
 #ifndef _ISHIKO_ERRORS_ERROR_H_
@@ -55,6 +55,9 @@ public:
         @retval false The error code is different than 0.
     */
     bool operator!() const noexcept;
+
+    bool operator==(const ErrorCondition& other) const noexcept;
+    bool operator!=(const ErrorCondition& other) const noexcept;
 
     /// Gets the error condition.
     /**

@@ -1,7 +1,7 @@
 /*
     Copyright (c) 2015-2020 Xavier Leclercq
     Released under the MIT License
-    See https://github.com/Ishiko-cpp/Errors/blob/master/LICENSE.txt
+    See https://github.com/ishiko-cpp/errors/blob/main/LICENSE.txt
 */
 
 #include "Exception.h"
