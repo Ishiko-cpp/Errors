@@ -32,10 +32,12 @@ bool ErrorCondition::operator!() const noexcept
 
 bool ErrorCondition::operator==(const ErrorCondition& other) const noexcept
 {
+    return ((m_value == other.m_value) && (m_category == other.m_category));
 }
 
 bool ErrorCondition::operator!=(const ErrorCondition& other) const noexcept
 {
+    return ((m_value != other.m_value) || (m_category != other.m_category));
 }
 
 int ErrorCondition::value() const noexcept
