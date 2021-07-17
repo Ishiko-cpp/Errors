@@ -1,11 +1,12 @@
 /*
-    Copyright (c) 2019-2020 Xavier Leclercq
+    Copyright (c) 2019-2021 Xavier Leclercq
     Released under the MIT License
     See https://github.com/ishiko-cpp/errors/blob/main/LICENSE.txt
 */
 
 #include "ErrorTests.h"
 #include "Helpers/TestErrorCategory1.h"
+#include "Helpers/TestErrorCategory2.h"
 #include "Ishiko/Errors/Error.h"
 #include "Ishiko/Errors/SuccessCategory.h"
 #include "Ishiko/Errors/MessageErrorExtension.h"
@@ -19,6 +20,10 @@ ErrorTests::ErrorTests(const TestNumber& number, const TestEnvironment& environm
 {
     append<HeapAllocationErrorsTest>("Constructor test 1", ConstructorTest1);
     append<HeapAllocationErrorsTest>("Constructor test 2", ConstructorTest2);
+    append<HeapAllocationErrorsTest>("operator==() test 1", EqualityOperatorTest1);
+    append<HeapAllocationErrorsTest>("operator==() test 2", EqualityOperatorTest2);
+    append<HeapAllocationErrorsTest>("operator!=() test 1", InequalityOperatorTest1);
+    append<HeapAllocationErrorsTest>("operator!=() test 2", InequalityOperatorTest2);
     append<HeapAllocationErrorsTest>("fail test 1", FailTest1);
     append<HeapAllocationErrorsTest>("fail test 2", FailTest2);
     append<HeapAllocationErrorsTest>("succeed test 1", SucceedTest1);
@@ -54,6 +59,54 @@ void ErrorTests::ConstructorTest2(Test& test)
     ISHTF_FAIL_IF_NOT(error);
     ISHTF_FAIL_IF_NEQ(error.condition().value(), -2);
     ISHTF_FAIL_IF_NEQ(&error.condition().category(), &TestErrorCategory1::Get());
+    ISHTF_PASS();
+}
+
+void ErrorTests::EqualityOperatorTest1(Test& test)
+{
+    Ishiko::Error error1(-1, TestErrorCategory1::Get());
+    Ishiko::ErrorCondition error2(-1, TestErrorCategory1::Get());
+
+    ISHTF_FAIL_IF_NOT(error1 == error2);
+    ISHTF_PASS();
+}
+
+void ErrorTests::EqualityOperatorTest2(Test& test)
+{
+    Ishiko::Error error1(-1, TestErrorCategory1::Get());
+    Ishiko::ErrorCondition error2(-3, TestErrorCategory1::Get());
+
+    ISHTF_FAIL_IF(error1 == error2);
+
+    Ishiko::Error error3(-1, TestErrorCategory1::Get());
+    Ishiko::ErrorCondition error4(-1, TestErrorCategory2::Get());
+
+    ISHTF_FAIL_IF(error3 == error4);
+
+    ISHTF_PASS();
+}
+
+void ErrorTests::InequalityOperatorTest1(Test& test)
+{
+    Ishiko::Error error1(-1, TestErrorCategory1::Get());
+    Ishiko::ErrorCondition error2(-1, TestErrorCategory1::Get());
+
+    ISHTF_FAIL_IF(error1 != error2);
+    ISHTF_PASS();
+}
+
+void ErrorTests::InequalityOperatorTest2(Test& test)
+{
+    Ishiko::Error error1(-1, TestErrorCategory1::Get());
+    Ishiko::ErrorCondition error2(-3, TestErrorCategory1::Get());
+
+    ISHTF_FAIL_IF_NOT(error1 != error2);
+
+    Ishiko::Error error3(-1, TestErrorCategory1::Get());
+    Ishiko::ErrorCondition error4(-1, TestErrorCategory2::Get());
+
+    ISHTF_FAIL_IF_NOT(error3 != error4);
+
     ISHTF_PASS();
 }
 
