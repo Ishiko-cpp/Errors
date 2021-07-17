@@ -1,7 +1,7 @@
 /*
-    Copyright (c) 2020 Xavier Leclercq
+    Copyright (c) 2020-2021 Xavier Leclercq
     Released under the MIT License
-    See https://github.com/Ishiko-cpp/Errors/blob/master/LICENSE.txt
+    See https://github.com/ishiko-cpp/errors/blob/main/LICENSE.txt
 */
 
 #ifndef _ISHIKO_ERRORS_ERRORCONDITION_H_
@@ -21,6 +21,8 @@ public:
 
     explicit operator bool() const noexcept;
     bool operator!() const noexcept;
+    bool operator==(const ErrorCondition& other) const noexcept;
+    bool operator!=(const ErrorCondition& other) const noexcept;
 
     int value() const noexcept;
     const ErrorCategory& category() const noexcept;

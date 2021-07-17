@@ -18,6 +18,10 @@ private:
     static void ConstructorTest1(Ishiko::Tests::Test& test);
     static void ConstructorTest2(Ishiko::Tests::Test& test);
     static void ConstructorTest3(Ishiko::Tests::Test& test);
+    static void EqualityOperatorTest1(Ishiko::Tests::Test& test);
+    static void EqualityOperatorTest2(Ishiko::Tests::Test& test);
+    static void InequalityOperatorTest1(Ishiko::Tests::Test& test);
+    static void InequalityOperatorTest2(Ishiko::Tests::Test& test);
     static void FailTest1(Ishiko::Tests::Test& test);
     static void FailTest2(Ishiko::Tests::Test& test);
     static void SucceedTest1(Ishiko::Tests::Test& test);
