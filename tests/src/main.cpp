@@ -19,7 +19,7 @@ int main(int argc, char* argv[])
 {
     TestHarness theTestHarness("IshikoErrors");
 
-    theTestHarness.environment().setTestDataDirectory("../../TestData");
+    theTestHarness.environment().setTestDataDirectory("../../data");
 
     TestSequence& theTests = theTestHarness.tests();
     theTests.append<ErrorConditionTests>();
