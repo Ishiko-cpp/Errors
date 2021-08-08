@@ -30,7 +30,7 @@ void IOErrorExtensionTests::ConstructionTest1(Test& test)
 {
     Ishiko::IOErrorExtension ioExtension;
 
-    ISHTF_PASS();
+    ISHIKO_PASS();
 }
 
 void IOErrorExtensionTests::FailTest1(Test& test)
@@ -38,9 +38,9 @@ void IOErrorExtensionTests::FailTest1(Test& test)
     Ishiko::Error error;
     Ishiko::IOErrorExtension::Fail(error, Ishiko::IOErrorExtension::eEOF, "file1", 3);
 
-    ISHTF_FAIL_IF_NEQ(error.condition().value(), EIO);
-    ISHTF_FAIL_IF(error.extension());
-    ISHTF_PASS();
+    ISHIKO_FAIL_IF_NEQ(error.condition().value(), EIO);
+    ISHIKO_FAIL_IF(error.extension());
+    ISHIKO_PASS();
 }
 
 void IOErrorExtensionTests::FailTest2(Test& test)
@@ -48,13 +48,13 @@ void IOErrorExtensionTests::FailTest2(Test& test)
     Ishiko::Error error(new Ishiko::IOErrorExtension());
     Ishiko::IOErrorExtension::Fail(error, Ishiko::IOErrorExtension::eEOF, "file1", 3);
 
-    ISHTF_FAIL_IF_NEQ(error.condition().value(), EIO);
+    ISHIKO_FAIL_IF_NEQ(error.condition().value(), EIO);
 
     Ishiko::IOErrorExtension* ext = dynamic_cast<Ishiko::IOErrorExtension*>(error.extension());
 
-    ISHTF_ABORT_IF_NOT(ext);
-    ISHTF_FAIL_IF_NEQ(ext->code(), Ishiko::IOErrorExtension::eEOF);
-    ISHTF_PASS();
+    ISHIKO_ABORT_IF_NOT(ext);
+    ISHIKO_FAIL_IF_NEQ(ext->code(), Ishiko::IOErrorExtension::eEOF);
+    ISHIKO_PASS();
 }
 
 void IOErrorExtensionTests::FailTest3(Test& test)
@@ -65,10 +65,10 @@ void IOErrorExtensionTests::FailTest3(Test& test)
     Ishiko::Error error;
     Ishiko::IOErrorExtension::Fail(error, file, "file1", 3);
 
-    ISHTF_FAIL_IF(error);
-    ISHTF_FAIL_IF_NEQ(error.condition().value(), 0);
-    ISHTF_FAIL_IF(error.extension());
-    ISHTF_PASS();
+    ISHIKO_FAIL_IF(error);
+    ISHIKO_FAIL_IF_NEQ(error.condition().value(), 0);
+    ISHIKO_FAIL_IF(error.extension());
+    ISHIKO_PASS();
 }
 
 void IOErrorExtensionTests::FailTest4(Test& test)
@@ -78,10 +78,10 @@ void IOErrorExtensionTests::FailTest4(Test& test)
     Ishiko::Error error;
     Ishiko::IOErrorExtension::Fail(error, file, "file1", 3);
 
-    ISHTF_FAIL_IF_NOT(error);
-    ISHTF_FAIL_IF_NEQ(error.condition().value(), EIO);
-    ISHTF_FAIL_IF(error.extension());
-    ISHTF_PASS();
+    ISHIKO_FAIL_IF_NOT(error);
+    ISHIKO_FAIL_IF_NEQ(error.condition().value(), EIO);
+    ISHIKO_FAIL_IF(error.extension());
+    ISHIKO_PASS();
 }
 
 void IOErrorExtensionTests::FailTest5(Test& test)
@@ -91,14 +91,14 @@ void IOErrorExtensionTests::FailTest5(Test& test)
     Ishiko::Error error(new Ishiko::IOErrorExtension());
     Ishiko::IOErrorExtension::Fail(error, file, "file1", 3);
 
-    ISHTF_FAIL_IF_NEQ(error.condition().value(), EIO);
+    ISHIKO_FAIL_IF_NEQ(error.condition().value(), EIO);
     
     Ishiko::IOErrorExtension* ext = dynamic_cast<Ishiko::IOErrorExtension*>(error.extension());
 
-    ISHTF_FAIL_IF_NOT(error);
-    ISHTF_ABORT_IF_NOT(ext);
-    ISHTF_FAIL_IF_NEQ(ext->code(), Ishiko::IOErrorExtension::eError);
-    ISHTF_PASS();
+    ISHIKO_FAIL_IF_NOT(error);
+    ISHIKO_ABORT_IF_NOT(ext);
+    ISHIKO_FAIL_IF_NEQ(ext->code(), Ishiko::IOErrorExtension::eError);
+    ISHIKO_PASS();
 }
 
 void IOErrorExtensionTests::FailTest6(Test& test)
@@ -111,14 +111,14 @@ void IOErrorExtensionTests::FailTest6(Test& test)
     Ishiko::Error error(new Ishiko::IOErrorExtension());
     Ishiko::IOErrorExtension::Fail(error, file, "file1", 3);
 
-    ISHTF_FAIL_IF_NEQ(error.condition().value(), EIO);
+    ISHIKO_FAIL_IF_NEQ(error.condition().value(), EIO);
 
     Ishiko::IOErrorExtension* ext = dynamic_cast<Ishiko::IOErrorExtension*>(error.extension());
 
-    ISHTF_FAIL_IF_NOT(error);
-    ISHTF_ABORT_IF_NOT(ext);
-    ISHTF_FAIL_IF_NEQ(ext->code(), Ishiko::IOErrorExtension::eEOF);
-    ISHTF_PASS();
+    ISHIKO_FAIL_IF_NOT(error);
+    ISHIKO_ABORT_IF_NOT(ext);
+    ISHIKO_FAIL_IF_NEQ(ext->code(), Ishiko::IOErrorExtension::eEOF);
+    ISHIKO_PASS();
 }
 
 void IOErrorExtensionTests::StreamInsertionTest1(Test& test)
@@ -129,7 +129,7 @@ void IOErrorExtensionTests::StreamInsertionTest1(Test& test)
     std::stringstream errorMessage;
     errorMessage << error;
 
-    ISHTF_FAIL_IF_NOT(error);
-    ISHTF_FAIL_IF_NEQ(errorMessage.str(), "Ishiko::IOErrorCategory, 5, I/O error: end-of-file [file: file1, line: 3]");
-    ISHTF_PASS();
+    ISHIKO_FAIL_IF_NOT(error);
+    ISHIKO_FAIL_IF_NEQ(errorMessage.str(), "Ishiko::IOErrorCategory, 5, I/O error: end-of-file [file: file1, line: 3]");
+    ISHIKO_PASS();
 }

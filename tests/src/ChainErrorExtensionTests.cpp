@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2019-2020 Xavier Leclercq
+    Copyright (c) 2019-2021 Xavier Leclercq
     Released under the MIT License
     See https://github.com/ishiko-cpp/errors/blob/main/LICENSE.txt
 */
@@ -24,7 +24,7 @@ void ChainErrorExtensionTests::ConstructionTest1(Test& test)
 {
     Ishiko::ChainErrorExtension chainExtension;
 
-    ISHTF_PASS();
+    ISHIKO_PASS();
 }
 
 void ChainErrorExtensionTests::StreamInsertionTest1(Test& test)
@@ -35,8 +35,8 @@ void ChainErrorExtensionTests::StreamInsertionTest1(Test& test)
     std::stringstream errorMessage;
     errorMessage << error;
 
-    ISHTF_FAIL_IF_NEQ(errorMessage.str(), "TestErrorCategory1, -3, a bad error [file: file1, line: 3]");
-    ISHTF_PASS();
+    ISHIKO_FAIL_IF_NEQ(errorMessage.str(), "TestErrorCategory1, -3, a bad error [file: file1, line: 3]");
+    ISHIKO_PASS();
 }
 
 void ChainErrorExtensionTests::StreamInsertionTest2(Test& test)
@@ -48,6 +48,6 @@ void ChainErrorExtensionTests::StreamInsertionTest2(Test& test)
     std::stringstream errorMessage;
     errorMessage << error;
 
-    ISHTF_FAIL_IF_NEQ(errorMessage.str(), "TestErrorCategory1, -3, a bad error [file: file1, line: 3]\n\tError: -1");
-    ISHTF_PASS();
+    ISHIKO_FAIL_IF_NEQ(errorMessage.str(), "TestErrorCategory1, -3, a bad error [file: file1, line: 3]\n\tError: -1");
+    ISHIKO_PASS();
 }

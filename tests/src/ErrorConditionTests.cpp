@@ -31,27 +31,27 @@ void ErrorConditionTests::ConstructorTest1(Test& test)
 {
     Ishiko::ErrorCondition error;
 
-    ISHTF_FAIL_IF(error);
-    ISHTF_FAIL_IF_NEQ(error.value(), 0);
-    ISHTF_PASS();
+    ISHIKO_FAIL_IF(error);
+    ISHIKO_FAIL_IF_NEQ(error.value(), 0);
+    ISHIKO_PASS();
 }
 
 void ErrorConditionTests::ConstructorTest2(Test& test)
 {
     Ishiko::ErrorCondition error(0, Ishiko::SuccessCategory::Get());
 
-    ISHTF_FAIL_IF(error);
-    ISHTF_FAIL_IF_NEQ(error.value(), 0);
-    ISHTF_PASS();
+    ISHIKO_FAIL_IF(error);
+    ISHIKO_FAIL_IF_NEQ(error.value(), 0);
+    ISHIKO_PASS();
 }
 
 void ErrorConditionTests::ConstructorTest3(Test& test)
 {
     Ishiko::ErrorCondition error(-1, TestErrorCategory1::Get());
 
-    ISHTF_FAIL_IF_NOT(error);
-    ISHTF_FAIL_IF_NEQ(error.value(), -1);
-    ISHTF_PASS();
+    ISHIKO_FAIL_IF_NOT(error);
+    ISHIKO_FAIL_IF_NEQ(error.value(), -1);
+    ISHIKO_PASS();
 }
 
 void ErrorConditionTests::EqualityOperatorTest1(Test& test)
@@ -59,8 +59,8 @@ void ErrorConditionTests::EqualityOperatorTest1(Test& test)
     Ishiko::ErrorCondition error1(-1, TestErrorCategory1::Get());
     Ishiko::ErrorCondition error2(-1, TestErrorCategory1::Get());
 
-    ISHTF_FAIL_IF_NOT(error1 == error2);
-    ISHTF_PASS();
+    ISHIKO_FAIL_IF_NOT(error1 == error2);
+    ISHIKO_PASS();
 }
 
 void ErrorConditionTests::EqualityOperatorTest2(Test& test)
@@ -68,14 +68,14 @@ void ErrorConditionTests::EqualityOperatorTest2(Test& test)
     Ishiko::ErrorCondition error1(-1, TestErrorCategory1::Get());
     Ishiko::ErrorCondition error2(-3, TestErrorCategory1::Get());
 
-    ISHTF_FAIL_IF(error1 == error2);
+    ISHIKO_FAIL_IF(error1 == error2);
     
     Ishiko::ErrorCondition error3(-1, TestErrorCategory1::Get());
     Ishiko::ErrorCondition error4(-1, TestErrorCategory2::Get());
 
-    ISHTF_FAIL_IF(error3 == error4);
+    ISHIKO_FAIL_IF(error3 == error4);
 
-    ISHTF_PASS();
+    ISHIKO_PASS();
 }
 
 void ErrorConditionTests::InequalityOperatorTest1(Test& test)
@@ -83,8 +83,8 @@ void ErrorConditionTests::InequalityOperatorTest1(Test& test)
     Ishiko::ErrorCondition error1(-1, TestErrorCategory1::Get());
     Ishiko::ErrorCondition error2(-1, TestErrorCategory1::Get());
 
-    ISHTF_FAIL_IF(error1 != error2);
-    ISHTF_PASS();
+    ISHIKO_FAIL_IF(error1 != error2);
+    ISHIKO_PASS();
 }
 
 void ErrorConditionTests::InequalityOperatorTest2(Test& test)
@@ -92,14 +92,14 @@ void ErrorConditionTests::InequalityOperatorTest2(Test& test)
     Ishiko::ErrorCondition error1(-1, TestErrorCategory1::Get());
     Ishiko::ErrorCondition error2(-3, TestErrorCategory1::Get());
 
-    ISHTF_FAIL_IF_NOT(error1 != error2);
+    ISHIKO_FAIL_IF_NOT(error1 != error2);
 
     Ishiko::ErrorCondition error3(-1, TestErrorCategory1::Get());
     Ishiko::ErrorCondition error4(-1, TestErrorCategory2::Get());
 
-    ISHTF_FAIL_IF_NOT(error3 != error4);
+    ISHIKO_FAIL_IF_NOT(error3 != error4);
 
-    ISHTF_PASS();
+    ISHIKO_PASS();
 }
 
 void ErrorConditionTests::FailTest1(Test& test)
@@ -107,9 +107,9 @@ void ErrorConditionTests::FailTest1(Test& test)
     Ishiko::ErrorCondition error;
     error.fail(-3, TestErrorCategory1::Get());
 
-    ISHTF_FAIL_IF_NOT(error);
-    ISHTF_FAIL_IF_NEQ(error.value(), -3);
-    ISHTF_PASS();
+    ISHIKO_FAIL_IF_NOT(error);
+    ISHIKO_FAIL_IF_NEQ(error.value(), -3);
+    ISHIKO_PASS();
 }
 
 void ErrorConditionTests::FailTest2(Test& test)
@@ -117,9 +117,9 @@ void ErrorConditionTests::FailTest2(Test& test)
     Ishiko::ErrorCondition error(4, TestErrorCategory1::Get());
     error.fail(-3, TestErrorCategory1::Get());
 
-    ISHTF_FAIL_IF_NOT(error);
-    ISHTF_FAIL_IF_NEQ(error.value(), -3);
-    ISHTF_PASS();
+    ISHIKO_FAIL_IF_NOT(error);
+    ISHIKO_FAIL_IF_NEQ(error.value(), -3);
+    ISHIKO_PASS();
 }
 
 void ErrorConditionTests::SucceedTest1(Test& test)
@@ -127,7 +127,7 @@ void ErrorConditionTests::SucceedTest1(Test& test)
     Ishiko::ErrorCondition error(-1, TestErrorCategory1::Get());
     error.succeed();
 
-    ISHTF_FAIL_IF(error);
-    ISHTF_FAIL_IF_NEQ(error.value(), 0);
-    ISHTF_PASS();
+    ISHIKO_FAIL_IF(error);
+    ISHIKO_FAIL_IF_NEQ(error.value(), 0);
+    ISHIKO_PASS();
 }
