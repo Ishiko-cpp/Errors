@@ -46,21 +46,21 @@ void ErrorTests::ConstructorTest1(Test& test)
 {
     Ishiko::Error error;
 
-    ISHTF_FAIL_IF_NEQ(sizeof(error), 24);
-    ISHTF_FAIL_IF(error);
-    ISHTF_FAIL_IF_NEQ(error.condition().value(), 0);
-    ISHTF_FAIL_IF_NEQ(&error.condition().category(), &Ishiko::SuccessCategory::Get());
-    ISHTF_PASS();
+    ISHIKO_FAIL_IF_NEQ(sizeof(error), 24);
+    ISHIKO_FAIL_IF(error);
+    ISHIKO_FAIL_IF_NEQ(error.condition().value(), 0);
+    ISHIKO_FAIL_IF_NEQ(&error.condition().category(), &Ishiko::SuccessCategory::Get());
+    ISHIKO_PASS();
 }
 
 void ErrorTests::ConstructorTest2(Test& test)
 {
     Ishiko::Error error(-2, TestErrorCategory1::Get());
     
-    ISHTF_FAIL_IF_NOT(error);
-    ISHTF_FAIL_IF_NEQ(error.condition().value(), -2);
-    ISHTF_FAIL_IF_NEQ(&error.condition().category(), &TestErrorCategory1::Get());
-    ISHTF_PASS();
+    ISHIKO_FAIL_IF_NOT(error);
+    ISHIKO_FAIL_IF_NEQ(error.condition().value(), -2);
+    ISHIKO_FAIL_IF_NEQ(&error.condition().category(), &TestErrorCategory1::Get());
+    ISHIKO_PASS();
 }
 
 void ErrorTests::EqualityOperatorTest1(Test& test)
@@ -68,8 +68,8 @@ void ErrorTests::EqualityOperatorTest1(Test& test)
     Ishiko::Error error1(-1, TestErrorCategory1::Get());
     Ishiko::ErrorCondition error2(-1, TestErrorCategory1::Get());
 
-    ISHTF_FAIL_IF_NOT(error1 == error2);
-    ISHTF_PASS();
+    ISHIKO_FAIL_IF_NOT(error1 == error2);
+    ISHIKO_PASS();
 }
 
 void ErrorTests::EqualityOperatorTest2(Test& test)
@@ -77,14 +77,14 @@ void ErrorTests::EqualityOperatorTest2(Test& test)
     Ishiko::Error error1(-1, TestErrorCategory1::Get());
     Ishiko::ErrorCondition error2(-3, TestErrorCategory1::Get());
 
-    ISHTF_FAIL_IF(error1 == error2);
+    ISHIKO_FAIL_IF(error1 == error2);
 
     Ishiko::Error error3(-1, TestErrorCategory1::Get());
     Ishiko::ErrorCondition error4(-1, TestErrorCategory2::Get());
 
-    ISHTF_FAIL_IF(error3 == error4);
+    ISHIKO_FAIL_IF(error3 == error4);
 
-    ISHTF_PASS();
+    ISHIKO_PASS();
 }
 
 void ErrorTests::InequalityOperatorTest1(Test& test)
@@ -92,8 +92,8 @@ void ErrorTests::InequalityOperatorTest1(Test& test)
     Ishiko::Error error1(-1, TestErrorCategory1::Get());
     Ishiko::ErrorCondition error2(-1, TestErrorCategory1::Get());
 
-    ISHTF_FAIL_IF(error1 != error2);
-    ISHTF_PASS();
+    ISHIKO_FAIL_IF(error1 != error2);
+    ISHIKO_PASS();
 }
 
 void ErrorTests::InequalityOperatorTest2(Test& test)
@@ -101,14 +101,14 @@ void ErrorTests::InequalityOperatorTest2(Test& test)
     Ishiko::Error error1(-1, TestErrorCategory1::Get());
     Ishiko::ErrorCondition error2(-3, TestErrorCategory1::Get());
 
-    ISHTF_FAIL_IF_NOT(error1 != error2);
+    ISHIKO_FAIL_IF_NOT(error1 != error2);
 
     Ishiko::Error error3(-1, TestErrorCategory1::Get());
     Ishiko::ErrorCondition error4(-1, TestErrorCategory2::Get());
 
-    ISHTF_FAIL_IF_NOT(error3 != error4);
+    ISHIKO_FAIL_IF_NOT(error3 != error4);
 
-    ISHTF_PASS();
+    ISHIKO_PASS();
 }
 
 void ErrorTests::FailTest1(Test& test)
@@ -116,10 +116,10 @@ void ErrorTests::FailTest1(Test& test)
     Ishiko::Error error;
     error.fail(-3, TestErrorCategory1::Get());
 
-    ISHTF_FAIL_IF_NOT(error);
-    ISHTF_FAIL_IF_NEQ(error.condition().value(), -3);
-    ISHTF_FAIL_IF_NEQ(&error.condition().category(), &TestErrorCategory1::Get());
-    ISHTF_PASS();
+    ISHIKO_FAIL_IF_NOT(error);
+    ISHIKO_FAIL_IF_NEQ(error.condition().value(), -3);
+    ISHIKO_FAIL_IF_NEQ(&error.condition().category(), &TestErrorCategory1::Get());
+    ISHIKO_PASS();
 }
 
 void ErrorTests::FailTest2(Test& test)
@@ -127,10 +127,10 @@ void ErrorTests::FailTest2(Test& test)
     Ishiko::Error error(4, TestErrorCategory1::Get());
     error.fail(-3, TestErrorCategory1::Get());
 
-    ISHTF_FAIL_IF_NOT(error);
-    ISHTF_FAIL_IF_NEQ(error.condition().value(), 4);
-    ISHTF_FAIL_IF_NEQ(&error.condition().category(), &TestErrorCategory1::Get());
-    ISHTF_PASS();
+    ISHIKO_FAIL_IF_NOT(error);
+    ISHIKO_FAIL_IF_NEQ(error.condition().value(), 4);
+    ISHIKO_FAIL_IF_NEQ(&error.condition().category(), &TestErrorCategory1::Get());
+    ISHIKO_PASS();
 }
 
 void ErrorTests::FailTest3(Test& test)
@@ -140,10 +140,10 @@ void ErrorTests::FailTest3(Test& test)
     Ishiko::Error error2;
     error2.fail(error1);
 
-    ISHTF_FAIL_IF_NOT(error2);
-    ISHTF_FAIL_IF_NEQ(error2.condition().value(), 4);
-    ISHTF_FAIL_IF_NEQ(&error2.condition().category(), &TestErrorCategory1::Get());
-    ISHTF_PASS();
+    ISHIKO_FAIL_IF_NOT(error2);
+    ISHIKO_FAIL_IF_NEQ(error2.condition().value(), 4);
+    ISHIKO_FAIL_IF_NEQ(&error2.condition().category(), &TestErrorCategory1::Get());
+    ISHIKO_PASS();
 }
 
 void ErrorTests::SucceedTest1(Test& test)
@@ -151,10 +151,10 @@ void ErrorTests::SucceedTest1(Test& test)
     Ishiko::Error error(-1, TestErrorCategory1::Get());
     error.succeed();
 
-    ISHTF_FAIL_IF(error);
-    ISHTF_FAIL_IF_NEQ(error.condition().value(), 0);
-    ISHTF_FAIL_IF_NEQ(&error.condition().category(), &Ishiko::SuccessCategory::Get());
-    ISHTF_PASS();
+    ISHIKO_FAIL_IF(error);
+    ISHIKO_FAIL_IF_NEQ(error.condition().value(), 0);
+    ISHIKO_FAIL_IF_NEQ(&error.condition().category(), &Ishiko::SuccessCategory::Get());
+    ISHIKO_PASS();
 }
 
 void ErrorTests::StreamInsertionTest1(Test& test)
@@ -164,8 +164,8 @@ void ErrorTests::StreamInsertionTest1(Test& test)
     std::stringstream errorMessage;
     errorMessage << error;
 
-    ISHTF_FAIL_IF_NEQ(errorMessage.str(), "Ishiko::SuccessCategory, 0");
-    ISHTF_PASS();
+    ISHIKO_FAIL_IF_NEQ(errorMessage.str(), "Ishiko::SuccessCategory, 0");
+    ISHIKO_PASS();
 }
 
 void ErrorTests::TryGetMessageTest1(Test& test)
@@ -175,8 +175,8 @@ void ErrorTests::TryGetMessageTest1(Test& test)
     std::string message;
     bool found = error.tryGetMessage(message);
 
-    ISHTF_FAIL_IF(found);
-    ISHTF_PASS();
+    ISHIKO_FAIL_IF(found);
+    ISHIKO_PASS();
 }
 
 void ErrorTests::TryGetMessageTest2(Test& test)
@@ -186,8 +186,8 @@ void ErrorTests::TryGetMessageTest2(Test& test)
     std::string message;
     bool found = error.tryGetMessage(message);
 
-    ISHTF_FAIL_IF(found);
-    ISHTF_PASS();
+    ISHIKO_FAIL_IF(found);
+    ISHIKO_PASS();
 }
 
 void ErrorTests::TryGetMessageTest3(Test& test)
@@ -198,8 +198,8 @@ void ErrorTests::TryGetMessageTest3(Test& test)
     std::string message;
     bool found = error.tryGetMessage(message);
 
-    ISHTF_FAIL_IF(found);
-    ISHTF_PASS();
+    ISHIKO_FAIL_IF(found);
+    ISHIKO_PASS();
 }
 
 void ErrorTests::TryGetMessageTest4(Test& test)
@@ -210,9 +210,9 @@ void ErrorTests::TryGetMessageTest4(Test& test)
     std::string message;
     bool found = error.tryGetMessage(message);
 
-    ISHTF_ABORT_IF_NOT(found);
-    ISHTF_FAIL_IF_NEQ(message, "a bad error");
-    ISHTF_PASS();
+    ISHIKO_ABORT_IF_NOT(found);
+    ISHIKO_FAIL_IF_NEQ(message, "a bad error");
+    ISHIKO_PASS();
 }
 
 void ErrorTests::TryGetOriginTest1(Test& test)
@@ -223,8 +223,8 @@ void ErrorTests::TryGetOriginTest1(Test& test)
     int line = -1;
     bool found = error.tryGetOrigin(file, line);
 
-    ISHTF_FAIL_IF(found);
-    ISHTF_PASS();
+    ISHIKO_FAIL_IF(found);
+    ISHIKO_PASS();
 }
 
 void ErrorTests::TryGetOriginTest2(Test& test)
@@ -235,8 +235,8 @@ void ErrorTests::TryGetOriginTest2(Test& test)
     int line = -1;
     bool found = error.tryGetOrigin(file, line);
 
-    ISHTF_FAIL_IF(found);
-    ISHTF_PASS();
+    ISHIKO_FAIL_IF(found);
+    ISHIKO_PASS();
 }
 
 void ErrorTests::TryGetOriginTest3(Test& test)
@@ -248,8 +248,8 @@ void ErrorTests::TryGetOriginTest3(Test& test)
     int line = -1;
     bool found = error.tryGetOrigin(file, line);
 
-    ISHTF_FAIL_IF(found);
-    ISHTF_PASS();
+    ISHIKO_FAIL_IF(found);
+    ISHIKO_PASS();
 }
 
 void ErrorTests::TryGetOriginTest4(Test& test)
@@ -261,10 +261,10 @@ void ErrorTests::TryGetOriginTest4(Test& test)
     int line = -1;
     bool found = error.tryGetOrigin(file, line);
 
-    ISHTF_ABORT_IF_NOT(found);
-    ISHTF_FAIL_IF_STR_NEQ(file, "file1");
-    ISHTF_FAIL_IF_NEQ(line, 3);
-    ISHTF_PASS();
+    ISHIKO_ABORT_IF_NOT(found);
+    ISHIKO_FAIL_IF_STR_NEQ(file, "file1");
+    ISHIKO_FAIL_IF_NEQ(line, 3);
+    ISHIKO_PASS();
 }
 
 void ErrorTests::ThrowIfTest1(Test& test)
@@ -273,7 +273,7 @@ void ErrorTests::ThrowIfTest1(Test& test)
 
     ThrowIf(error);
 
-    ISHTF_PASS();
+    ISHIKO_PASS();
 }
 
 void ErrorTests::ThrowIfTest2(Test& test)
@@ -284,13 +284,13 @@ void ErrorTests::ThrowIfTest2(Test& test)
     {
         ThrowIf(error);
 
-        ISHTF_FAIL();
+        ISHIKO_FAIL();
     }
     catch (const Ishiko::Exception& e)
     {
-        ISHTF_FAIL_IF_NEQ(e.condition().value(), -1);
-        ISHTF_FAIL_IF_NEQ(&e.condition().category(), &TestErrorCategory1::Get());
-        ISHTF_PASS();
+        ISHIKO_FAIL_IF_NEQ(e.condition().value(), -1);
+        ISHIKO_FAIL_IF_NEQ(&e.condition().category(), &TestErrorCategory1::Get());
+        ISHIKO_PASS();
     }
 }
 
@@ -303,14 +303,14 @@ void ErrorTests::ThrowIfTest3(Test& test)
     {
         ThrowIf(error);
 
-        ISHTF_FAIL();
+        ISHIKO_FAIL();
     }
     catch (const Ishiko::Exception& e)
     {
-        ISHTF_FAIL_IF_NEQ(e.condition().value(), -1);
-        ISHTF_FAIL_IF_NEQ(&e.condition().category(), &TestErrorCategory1::Get());
-        ISHTF_FAIL_IF_NEQ(e.file(), "file1");
-        ISHTF_FAIL_IF_NEQ(e.line(), 3);
-        ISHTF_PASS();
+        ISHIKO_FAIL_IF_NEQ(e.condition().value(), -1);
+        ISHIKO_FAIL_IF_NEQ(&e.condition().category(), &TestErrorCategory1::Get());
+        ISHIKO_FAIL_IF_NEQ(e.file(), "file1");
+        ISHIKO_FAIL_IF_NEQ(e.line(), 3);
+        ISHIKO_PASS();
     }
 }
