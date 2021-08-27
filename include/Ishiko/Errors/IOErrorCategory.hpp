@@ -4,11 +4,11 @@
     See https://github.com/ishiko-cpp/errors/blob/main/LICENSE.txt
 */
 
-#ifndef _ISHIKO_ERRORS_IOERRORCATEGORY_H_
-#define _ISHIKO_ERRORS_IOERRORCATEGORY_H_
+#ifndef _ISHIKO_CPP_ERRORS_IOERRORCATEGORY_HPP_
+#define _ISHIKO_CPP_ERRORS_IOERRORCATEGORY_HPP_
 
-#include "ErrorCategory.h"
-#include "Error.h"
+#include "ErrorCategory.hpp"
+#include "Error.hpp"
 
 namespace Ishiko
 {

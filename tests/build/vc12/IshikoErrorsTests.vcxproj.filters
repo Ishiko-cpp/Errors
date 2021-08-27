@@ -17,31 +17,31 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\src\ErrorConditionTests.h">
+    <ClInclude Include="..\..\src\ErrorConditionTests.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\ErrorTests.h">
+    <ClInclude Include="..\..\src\ErrorTests.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\MessageErrorExtensionTests.h">
+    <ClInclude Include="..\..\src\MessageErrorExtensionTests.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\IOErrorExtensionTests.h">
+    <ClInclude Include="..\..\src\IOErrorExtensionTests.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\ChainErrorExtensionTests.h">
+    <ClInclude Include="..\..\src\ChainErrorExtensionTests.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\ExceptionTests.h">
+    <ClInclude Include="..\..\src\ExceptionTests.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\StreamUtilitiesTests.h">
+    <ClInclude Include="..\..\src\StreamUtilitiesTests.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\Helpers\TestErrorCategory1.h">
+    <ClInclude Include="..\..\src\Helpers\TestErrorCategory1.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\Helpers\TestErrorCategory2.h">
+    <ClInclude Include="..\..\src\Helpers\TestErrorCategory2.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

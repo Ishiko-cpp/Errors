@@ -4,11 +4,11 @@
     See https://github.com/ishiko-cpp/errors/blob/main/LICENSE.txt
 */
 
-#ifndef _ISHIKO_ERRORS_ERROR_H_
-#define _ISHIKO_ERRORS_ERROR_H_
+#ifndef _ISHIKO_CPP_ERRORS_ERROR_HPP_
+#define _ISHIKO_CPP_ERRORS_ERROR_HPP_
 
-#include "ErrorCondition.h"
-#include "ErrorExtension.h"
+#include "ErrorCondition.hpp"
+#include "ErrorExtension.hpp"
 #include <ostream>
 #include <string>
 

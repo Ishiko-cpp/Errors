@@ -1,10 +1,10 @@
 /*
-    Copyright (c) 2015-2020 Xavier Leclercq
+    Copyright (c) 2015-2021 Xavier Leclercq
     Released under the MIT License
     See https://github.com/ishiko-cpp/errors/blob/main/LICENSE.txt
 */
 
-#include "Exception.h"
+#include "Exception.hpp"
 
 namespace Ishiko
 {
