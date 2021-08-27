@@ -5,8 +5,8 @@
 */
 
 #include "IOErrorExtensionTests.h"
-#include "Ishiko/Errors/IOErrorExtension.h"
-#include "Ishiko/Errors/Error.h"
+#include "Ishiko/Errors/IOErrorExtension.hpp"
+#include "Ishiko/Errors/Error.hpp"
 #include <sstream>
 #include <fstream>
 #include <errno.h>

@@ -5,7 +5,7 @@
 */
 
 #include "StreamUtilitiesTests.h"
-#include "Ishiko/Errors/StreamUtilities.h"
+#include "Ishiko/Errors/StreamUtilities.hpp"
 #include <fstream>
 
 using namespace Ishiko;

@@ -1,12 +1,12 @@
 /*
-    Copyright (c) 2020 Xavier Leclercq
+    Copyright (c) 2020-2021 Xavier Leclercq
     Released under the MIT License
     See https://github.com/ishiko-cpp/errors/blob/main/LICENSE.txt
 */
 
 #include "ExceptionTests.h"
-#include "Helpers/TestErrorCategory1.h"
-#include "Ishiko/Errors/Exception.h"
+#include "Helpers/TestErrorCategory1.hpp"
+#include "Ishiko/Errors/Exception.hpp"
 
 using namespace Ishiko::Tests;
 

@@ -5,12 +5,12 @@
 */
 
 #include "ErrorTests.h"
-#include "Helpers/TestErrorCategory1.h"
-#include "Helpers/TestErrorCategory2.h"
-#include "Ishiko/Errors/Error.h"
-#include "Ishiko/Errors/SuccessCategory.h"
-#include "Ishiko/Errors/MessageErrorExtension.h"
-#include "Ishiko/Errors/Exception.h"
+#include "Helpers/TestErrorCategory1.hpp"
+#include "Helpers/TestErrorCategory2.hpp"
+#include "Ishiko/Errors/Error.hpp"
+#include "Ishiko/Errors/SuccessCategory.hpp"
+#include "Ishiko/Errors/MessageErrorExtension.hpp"
+#include "Ishiko/Errors/Exception.hpp"
 #include <sstream>
 
 using namespace Ishiko::Tests;
