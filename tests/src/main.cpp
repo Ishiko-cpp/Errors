@@ -4,13 +4,13 @@
     See https://github.com/ishiko-cpp/errors/blob/main/LICENSE.txt
 */
 
-#include "ErrorConditionTests.h"
-#include "ErrorTests.h"
-#include "MessageErrorExtensionTests.h"
-#include "IOErrorExtensionTests.h"
-#include "ChainErrorExtensionTests.h"
-#include "ExceptionTests.h"
-#include "StreamUtilitiesTests.h"
+#include "ErrorConditionTests.hpp"
+#include "ErrorTests.hpp"
+#include "MessageErrorExtensionTests.hpp"
+#include "IOErrorExtensionTests.hpp"
+#include "ChainErrorExtensionTests.hpp"
+#include "ExceptionTests.hpp"
+#include "StreamUtilitiesTests.hpp"
 #include <Ishiko/Tests/Core.h>
 
 using namespace Ishiko::Tests;

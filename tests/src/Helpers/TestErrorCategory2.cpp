@@ -4,7 +4,7 @@
     See https://github.com/ishiko-cpp/errors/blob/main/LICENSE.txt
 */
 
-#include "TestErrorCategory2.h"
+#include "TestErrorCategory2.hpp"
 
 const TestErrorCategory2& TestErrorCategory2::Get() noexcept
 {
