@@ -164,15 +164,15 @@
     <ClCompile Include="..\..\src\Helpers\TestErrorCategory2.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\src\ErrorConditionTests.h" />
-    <ClInclude Include="..\..\src\ErrorTests.h" />
-    <ClInclude Include="..\..\src\MessageErrorExtensionTests.h" />
-    <ClInclude Include="..\..\src\IOErrorExtensionTests.h" />
-    <ClInclude Include="..\..\src\ChainErrorExtensionTests.h" />
-    <ClInclude Include="..\..\src\ExceptionTests.h" />
-    <ClInclude Include="..\..\src\StreamUtilitiesTests.h" />
-    <ClInclude Include="..\..\src\Helpers\TestErrorCategory1.h" />
-    <ClInclude Include="..\..\src\Helpers\TestErrorCategory2.h" />
+    <ClInclude Include="..\..\src\ErrorConditionTests.hpp" />
+    <ClInclude Include="..\..\src\ErrorTests.hpp" />
+    <ClInclude Include="..\..\src\MessageErrorExtensionTests.hpp" />
+    <ClInclude Include="..\..\src\IOErrorExtensionTests.hpp" />
+    <ClInclude Include="..\..\src\ChainErrorExtensionTests.hpp" />
+    <ClInclude Include="..\..\src\ExceptionTests.hpp" />
+    <ClInclude Include="..\..\src\StreamUtilitiesTests.hpp" />
+    <ClInclude Include="..\..\src\Helpers\TestErrorCategory1.hpp" />
+    <ClInclude Include="..\..\src\Helpers\TestErrorCategory2.hpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
