@@ -4,8 +4,8 @@
     See https://github.com/ishiko-cpp/errors/blob/main/LICENSE.txt
 */
 
-#ifndef _ISHIKO_ERRORS_TESTS_ERRORTESTS_H_
-#define _ISHIKO_ERRORS_TESTS_ERRORTESTS_H_
+#ifndef _ISHIKO_CPP_ERRORS_TESTS_ERRORTESTS_HPP_
+#define _ISHIKO_CPP_ERRORS_TESTS_ERRORTESTS_HPP_
 
 #include <Ishiko/Tests/Core.h>
 

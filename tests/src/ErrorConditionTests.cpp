@@ -4,11 +4,11 @@
     See https://github.com/ishiko-cpp/errors/blob/main/LICENSE.txt
 */
 
-#include "ErrorConditionTests.h"
-#include "Helpers/TestErrorCategory1.h"
-#include "Helpers/TestErrorCategory2.h"
-#include "Ishiko/Errors/ErrorCondition.h"
-#include "Ishiko/Errors/SuccessCategory.h"
+#include "ErrorConditionTests.hpp"
+#include "Helpers/TestErrorCategory1.hpp"
+#include "Helpers/TestErrorCategory2.hpp"
+#include "Ishiko/Errors/ErrorCondition.hpp"
+#include "Ishiko/Errors/SuccessCategory.hpp"
 
 using namespace Ishiko::Tests;
 

@@ -7,7 +7,7 @@
 #ifndef _ISHIKO_CPP_ERRORS_TESTS_HELPERS_TESTERRORCATEGORY2_HPP_
 #define _ISHIKO_CPP_ERRORS_TESTS_HELPERS_TESTERRORCATEGORY2_HPP_
 
-#include "Ishiko/Errors/ErrorCategory.h"
+#include "Ishiko/Errors/ErrorCategory.hpp"
 
 class TestErrorCategory2 : public Ishiko::ErrorCategory
 {
