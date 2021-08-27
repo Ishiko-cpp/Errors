@@ -4,7 +4,7 @@
     See https://github.com/ishiko-cpp/errors/blob/main/LICENSE.txt
 */
 
-#include "StreamUtilitiesTests.h"
+#include "StreamUtilitiesTests.hpp"
 #include "Ishiko/Errors/StreamUtilities.hpp"
 #include <fstream>
 

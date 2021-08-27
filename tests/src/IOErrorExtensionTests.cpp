@@ -4,7 +4,7 @@
     See https://github.com/ishiko-cpp/errors/blob/main/LICENSE.txt
 */
 
-#include "IOErrorExtensionTests.h"
+#include "IOErrorExtensionTests.hpp"
 #include "Ishiko/Errors/IOErrorExtension.hpp"
 #include "Ishiko/Errors/Error.hpp"
 #include <sstream>

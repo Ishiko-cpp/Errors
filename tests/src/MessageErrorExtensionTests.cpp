@@ -4,7 +4,7 @@
     See https://github.com/ishiko-cpp/errors/blob/main/LICENSE.txt
 */
 
-#include "MessageErrorExtensionTests.h"
+#include "MessageErrorExtensionTests.hpp"
 #include "Helpers/TestErrorCategory1.hpp"
 #include "Ishiko/Errors/MessageErrorExtension.hpp"
 #include "Ishiko/Errors/Error.hpp"

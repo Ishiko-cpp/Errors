@@ -4,7 +4,7 @@
     See https://github.com/ishiko-cpp/errors/blob/main/LICENSE.txt
 */
 
-#include "ErrorConditionTests.h"
+#include "ErrorConditionTests.hpp"
 #include "Helpers/TestErrorCategory1.hpp"
 #include "Helpers/TestErrorCategory2.hpp"
 #include "Ishiko/Errors/ErrorCondition.hpp"
