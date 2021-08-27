@@ -1,6 +1,7 @@
-toolsets = gnu vs2017 vs2015 vs2013;
+toolsets = gnu vs2019 vs2017 vs2015 vs2013;
 
 gnu.makefile = ../gnumake/GNUmakefile;
+vs2019.solutionfile = ../vc16/IshikoErrors.sln;
 vs2017.solutionfile = ../vc15/IshikoErrors.sln;
 vs2015.solutionfile = ../vc14/IshikoErrors.sln;
 vs2013.solutionfile = ../vc12/IshikoErrors.sln;
@@ -29,19 +30,19 @@ library IshikoErrors
 
     headers
     {
-        ../../include/Ishiko/Errors.h
+        ../../include/Ishiko/Errors.hpp
 
-        ../../include/Ishiko/Errors/Error.h
-        ../../include/Ishiko/Errors/ErrorCondition.h
-        ../../include/Ishiko/Errors/ErrorCategory.h
-        ../../include/Ishiko/Errors/SuccessCategory.h
-        ../../include/Ishiko/Errors/IOErrorCategory.h
-        ../../include/Ishiko/Errors/ErrorExtension.h
-        ../../include/Ishiko/Errors/ChainErrorExtension.h
-        ../../include/Ishiko/Errors/MessageErrorExtension.h
-        ../../include/Ishiko/Errors/IOErrorExtension.h
-        ../../include/Ishiko/Errors/Exception.h
-        ../../include/Ishiko/Errors/StreamUtilities.h
+        ../../include/Ishiko/Errors/Error.hpp
+        ../../include/Ishiko/Errors/ErrorCondition.hpp
+        ../../include/Ishiko/Errors/ErrorCategory.hpp
+        ../../include/Ishiko/Errors/SuccessCategory.hpp
+        ../../include/Ishiko/Errors/IOErrorCategory.hpp
+        ../../include/Ishiko/Errors/ErrorExtension.hpp
+        ../../include/Ishiko/Errors/ChainErrorExtension.hpp
+        ../../include/Ishiko/Errors/MessageErrorExtension.hpp
+        ../../include/Ishiko/Errors/IOErrorExtension.hpp
+        ../../include/Ishiko/Errors/Exception.hpp
+        ../../include/Ishiko/Errors/StreamUtilities.hpp
         ../../include/Ishiko/Errors/linkoptions.h
     }
 
