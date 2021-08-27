@@ -1,13 +1,13 @@
 /*
-    Copyright (c) 2015-2020 Xavier Leclercq
+    Copyright (c) 2015-2021 Xavier Leclercq
     Released under the MIT License
     See https://github.com/ishiko-cpp/errors/blob/main/LICENSE.txt
 */
 
-#ifndef _ISHIKO_ERRORS_EXCEPTION_H_
-#define _ISHIKO_ERRORS_EXCEPTION_H_
+#ifndef _ISHIKO_CPP_ERRORS_EXCEPTION_HPP_
+#define _ISHIKO_CPP_ERRORS_EXCEPTION_HPP_
 
-#include "ErrorCondition.h"
+#include "ErrorCondition.hpp"
 #include <stdexcept>
 
 namespace Ishiko

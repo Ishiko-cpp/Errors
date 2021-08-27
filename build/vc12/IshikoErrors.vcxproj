@@ -88,7 +88,7 @@
       <PreprocessorDefinitions>WIN32;_DEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <MinimalRebuild>false</MinimalRebuild>
-      <AdditionalIncludeDirectories>..\..\include\Ishiko\Errors</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\..\include\Ishiko\Errors;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
     </ClCompile>
     <Link>
@@ -103,7 +103,7 @@
       <PreprocessorDefinitions>WIN32;_DEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <MinimalRebuild>false</MinimalRebuild>
-      <AdditionalIncludeDirectories>..\..\include\Ishiko\Errors</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\..\include\Ishiko\Errors;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
     </ClCompile>
     <Link>
@@ -120,7 +120,7 @@
       <PreprocessorDefinitions>WIN32;NDEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <MinimalRebuild>false</MinimalRebuild>
-      <AdditionalIncludeDirectories>..\..\include\Ishiko\Errors</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\..\include\Ishiko\Errors;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
     </ClCompile>
     <Link>
@@ -139,7 +139,7 @@
       <PreprocessorDefinitions>WIN32;NDEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <MinimalRebuild>false</MinimalRebuild>
-      <AdditionalIncludeDirectories>..\..\include\Ishiko\Errors</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\..\include\Ishiko\Errors;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
     </ClCompile>
     <Link>
@@ -162,18 +162,18 @@
     <ClCompile Include="..\..\src\StreamUtilities.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\include\Ishiko\Errors.h" />
-    <ClInclude Include="..\..\include\Ishiko\Errors\Error.h" />
-    <ClInclude Include="..\..\include\Ishiko\Errors\ErrorCondition.h" />
-    <ClInclude Include="..\..\include\Ishiko\Errors\ErrorCategory.h" />
-    <ClInclude Include="..\..\include\Ishiko\Errors\SuccessCategory.h" />
-    <ClInclude Include="..\..\include\Ishiko\Errors\IOErrorCategory.h" />
-    <ClInclude Include="..\..\include\Ishiko\Errors\ErrorExtension.h" />
-    <ClInclude Include="..\..\include\Ishiko\Errors\ChainErrorExtension.h" />
-    <ClInclude Include="..\..\include\Ishiko\Errors\MessageErrorExtension.h" />
-    <ClInclude Include="..\..\include\Ishiko\Errors\IOErrorExtension.h" />
-    <ClInclude Include="..\..\include\Ishiko\Errors\Exception.h" />
-    <ClInclude Include="..\..\include\Ishiko\Errors\StreamUtilities.h" />
+    <ClInclude Include="..\..\include\Ishiko\Errors.hpp" />
+    <ClInclude Include="..\..\include\Ishiko\Errors\Error.hpp" />
+    <ClInclude Include="..\..\include\Ishiko\Errors\ErrorCondition.hpp" />
+    <ClInclude Include="..\..\include\Ishiko\Errors\ErrorCategory.hpp" />
+    <ClInclude Include="..\..\include\Ishiko\Errors\SuccessCategory.hpp" />
+    <ClInclude Include="..\..\include\Ishiko\Errors\IOErrorCategory.hpp" />
+    <ClInclude Include="..\..\include\Ishiko\Errors\ErrorExtension.hpp" />
+    <ClInclude Include="..\..\include\Ishiko\Errors\ChainErrorExtension.hpp" />
+    <ClInclude Include="..\..\include\Ishiko\Errors\MessageErrorExtension.hpp" />
+    <ClInclude Include="..\..\include\Ishiko\Errors\IOErrorExtension.hpp" />
+    <ClInclude Include="..\..\include\Ishiko\Errors\Exception.hpp" />
+    <ClInclude Include="..\..\include\Ishiko\Errors\StreamUtilities.hpp" />
     <ClInclude Include="..\..\include\Ishiko\Errors\linkoptions.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

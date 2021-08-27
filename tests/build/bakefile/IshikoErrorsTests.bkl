@@ -22,15 +22,15 @@ program IshikoErrorsTests : IshikoErrors, IshikoTestsCore
 
     headers
     {
-        ../../src/ErrorConditionTests.h
-        ../../src/ErrorTests.h
-        ../../src/MessageErrorExtensionTests.h
-        ../../src/IOErrorExtensionTests.h
-        ../../src/ChainErrorExtensionTests.h
-        ../../src/ExceptionTests.h
-        ../../src/StreamUtilitiesTests.h
-        ../../src/Helpers/TestErrorCategory1.h
-        ../../src/Helpers/TestErrorCategory2.h
+        ../../src/ErrorConditionTests.hpp
+        ../../src/ErrorTests.hpp
+        ../../src/MessageErrorExtensionTests.hpp
+        ../../src/IOErrorExtensionTests.hpp
+        ../../src/ChainErrorExtensionTests.hpp
+        ../../src/ExceptionTests.hpp
+        ../../src/StreamUtilitiesTests.hpp
+        ../../src/Helpers/TestErrorCategory1.hpp
+        ../../src/Helpers/TestErrorCategory2.hpp
     }
 
     sources

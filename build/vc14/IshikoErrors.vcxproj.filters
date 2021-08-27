@@ -17,40 +17,40 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\include\Ishiko\Errors.h">
+    <ClInclude Include="..\..\include\Ishiko\Errors.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\include\Ishiko\Errors\Error.h">
+    <ClInclude Include="..\..\include\Ishiko\Errors\Error.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\include\Ishiko\Errors\ErrorCondition.h">
+    <ClInclude Include="..\..\include\Ishiko\Errors\ErrorCondition.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\include\Ishiko\Errors\ErrorCategory.h">
+    <ClInclude Include="..\..\include\Ishiko\Errors\ErrorCategory.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\include\Ishiko\Errors\SuccessCategory.h">
+    <ClInclude Include="..\..\include\Ishiko\Errors\SuccessCategory.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\include\Ishiko\Errors\IOErrorCategory.h">
+    <ClInclude Include="..\..\include\Ishiko\Errors\IOErrorCategory.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\include\Ishiko\Errors\ErrorExtension.h">
+    <ClInclude Include="..\..\include\Ishiko\Errors\ErrorExtension.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\include\Ishiko\Errors\ChainErrorExtension.h">
+    <ClInclude Include="..\..\include\Ishiko\Errors\ChainErrorExtension.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\include\Ishiko\Errors\MessageErrorExtension.h">
+    <ClInclude Include="..\..\include\Ishiko\Errors\MessageErrorExtension.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\include\Ishiko\Errors\IOErrorExtension.h">
+    <ClInclude Include="..\..\include\Ishiko\Errors\IOErrorExtension.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\include\Ishiko\Errors\Exception.h">
+    <ClInclude Include="..\..\include\Ishiko\Errors\Exception.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\include\Ishiko\Errors\StreamUtilities.h">
+    <ClInclude Include="..\..\include\Ishiko\Errors\StreamUtilities.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\include\Ishiko\Errors\linkoptions.h">

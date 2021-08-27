@@ -4,8 +4,8 @@
     See https://github.com/ishiko-cpp/errors/blob/main/LICENSE.txt
 */
 
-#include "Error.h"
-#include "Exception.h"
+#include "Error.hpp"
+#include "Exception.hpp"
 
 namespace Ishiko
 {
