@@ -4,10 +4,10 @@
     See https://github.com/ishiko-cpp/errors/blob/main/LICENSE.txt
 */
 
-#ifndef _ISHIKO_ERRORS_STREAMUTILITIES_H_
-#define _ISHIKO_ERRORS_STREAMUTILITIES_H_
+#ifndef _ISHIKO_CPP_ERRORS_STREAMUTILITIES_HPP_
+#define _ISHIKO_CPP_ERRORS_STREAMUTILITIES_HPP_
 
-#include "Error.h"
+#include "Error.hpp"
 #include <ios>
 
 namespace Ishiko

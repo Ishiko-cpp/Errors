@@ -4,8 +4,8 @@
     See https://github.com/ishiko-cpp/errors/blob/main/LICENSE.txt
 */
 
-#include "StreamUtilities.h"
-#include "IOErrorCategory.h"
+#include "StreamUtilities.hpp"
+#include "IOErrorCategory.hpp"
 
 namespace Ishiko
 {

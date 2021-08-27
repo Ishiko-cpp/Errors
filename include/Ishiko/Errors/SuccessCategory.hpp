@@ -1,13 +1,13 @@
 /*
-    Copyright (c) 2020 Xavier Leclercq
+    Copyright (c) 2020-2021 Xavier Leclercq
     Released under the MIT License
     See https://github.com/ishiko-cpp/errors/blob/main/LICENSE.txt
 */
 
-#ifndef _ISHIKO_ERRORS_SUCCESSCATEGORY_H_
-#define _ISHIKO_ERRORS_SUCCESSCATEGORY_H_
+#ifndef _ISHIKO_CPP_ERRORS_SUCCESSCATEGORY_HPP_
+#define _ISHIKO_CPP_ERRORS_SUCCESSCATEGORY_HPP_
 
-#include "ErrorCategory.h"
+#include "ErrorCategory.hpp"
 
 namespace Ishiko
 {

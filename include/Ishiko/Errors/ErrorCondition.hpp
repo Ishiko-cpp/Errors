@@ -4,10 +4,10 @@
     See https://github.com/ishiko-cpp/errors/blob/main/LICENSE.txt
 */
 
-#ifndef _ISHIKO_ERRORS_ERRORCONDITION_H_
-#define _ISHIKO_ERRORS_ERRORCONDITION_H_
+#ifndef _ISHIKO_CPP_ERRORS_ERRORCONDITION_HPP_
+#define _ISHIKO_CPP_ERRORS_ERRORCONDITION_HPP_
 
-#include "ErrorCategory.h"
+#include "ErrorCategory.hpp"
 #include <ostream>
 
 namespace Ishiko

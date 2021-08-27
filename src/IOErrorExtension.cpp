@@ -4,8 +4,8 @@
     See https://github.com/ishiko-cpp/errors/blob/main/LICENSE.txt
 */
 
-#include "IOErrorExtension.h"
-#include "IOErrorCategory.h"
+#include "IOErrorExtension.hpp"
+#include "IOErrorCategory.hpp"
 #include <errno.h>
 
 namespace Ishiko
