@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2019-2021 Xavier Leclercq
+    Copyright (c) 2019-2022 Xavier Leclercq
     Released under the MIT License
     See https://github.com/ishiko-cpp/errors/blob/main/LICENSE.txt
 */
@@ -11,7 +11,7 @@
 #include "ChainErrorExtensionTests.hpp"
 #include "ExceptionTests.hpp"
 #include "StreamUtilitiesTests.hpp"
-#include <Ishiko/Tests/Core.h>
+#include <Ishiko/Tests/Core.hpp>
 
 using namespace Ishiko::Tests;
 
