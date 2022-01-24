@@ -12,7 +12,7 @@
 class StreamUtilitiesTests : public Ishiko::Tests::TestSequence
 {
 public:
-    StreamUtilitiesTests(const Ishiko::Tests::TestNumber& number, const Ishiko::Tests::TestEnvironment& environment);
+    StreamUtilitiesTests(const Ishiko::Tests::TestNumber& number, const Ishiko::Tests::TestContext& context);
 
 private:
     static void FailIfCreateFileErrorTest1(Ishiko::Tests::Test& test);
