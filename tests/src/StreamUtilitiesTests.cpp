@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2021 Xavier Leclercq
+    Copyright (c) 2021-2022 Xavier Leclercq
     Released under the MIT License
     See https://github.com/ishiko-cpp/errors/blob/main/LICENSE.txt
 */
@@ -11,8 +11,8 @@
 using namespace Ishiko;
 using namespace Ishiko::Tests;
 
-StreamUtilitiesTests::StreamUtilitiesTests(const TestNumber& number, const TestEnvironment& environment)
-    : TestSequence(number, "StreamUtilities tests", environment)
+StreamUtilitiesTests::StreamUtilitiesTests(const TestNumber& number, const TestContext& context)
+    : TestSequence(number, "StreamUtilities tests", context)
 {
     append<HeapAllocationErrorsTest>("FailIfCreateFileError test 1", FailIfCreateFileErrorTest1);
     append<HeapAllocationErrorsTest>("FailIfCreateFileError test 2", FailIfCreateFileErrorTest2);

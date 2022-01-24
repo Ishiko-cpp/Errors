@@ -12,8 +12,7 @@
 class ChainErrorExtensionTests : public Ishiko::Tests::TestSequence
 {
 public:
-    ChainErrorExtensionTests(const Ishiko::Tests::TestNumber& number,
-        const Ishiko::Tests::TestEnvironment& environment);
+    ChainErrorExtensionTests(const Ishiko::Tests::TestNumber& number, const Ishiko::Tests::TestContext& context);
 
 private:
     static void ConstructionTest1(Ishiko::Tests::Test& test);

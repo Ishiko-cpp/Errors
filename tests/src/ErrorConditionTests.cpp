@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2019-2021 Xavier Leclercq
+    Copyright (c) 2019-2022 Xavier Leclercq
     Released under the MIT License
     See https://github.com/ishiko-cpp/errors/blob/main/LICENSE.txt
 */
@@ -12,8 +12,8 @@
 
 using namespace Ishiko::Tests;
 
-ErrorConditionTests::ErrorConditionTests(const TestNumber& number, const TestEnvironment& environment)
-    : TestSequence(number, "ErrorCondition tests", environment)
+ErrorConditionTests::ErrorConditionTests(const TestNumber& number, const TestContext& context)
+    : TestSequence(number, "ErrorCondition tests", context)
 {
     append<HeapAllocationErrorsTest>("Constructor test 1", ConstructorTest1);
     append<HeapAllocationErrorsTest>("Constructor test 2", ConstructorTest2);

@@ -12,7 +12,7 @@
 class ErrorTests : public Ishiko::Tests::TestSequence
 {
 public:
-    ErrorTests(const Ishiko::Tests::TestNumber& number, const Ishiko::Tests::TestEnvironment& environment);
+    ErrorTests(const Ishiko::Tests::TestNumber& number, const Ishiko::Tests::TestContext& context);
 
 private:
     static void ConstructorTest1(Ishiko::Tests::Test& test);
