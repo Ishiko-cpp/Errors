@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2019-2021 Xavier Leclercq
+    Copyright (c) 2019-2022 Xavier Leclercq
     Released under the MIT License
     See https://github.com/ishiko-cpp/errors/blob/main/LICENSE.txt
 */
@@ -13,8 +13,8 @@
 
 using namespace Ishiko::Tests;
 
-IOErrorExtensionTests::IOErrorExtensionTests(const TestNumber& number, const TestEnvironment& environment)
-    : TestSequence(number, "IOErrorExtension tests", environment)
+IOErrorExtensionTests::IOErrorExtensionTests(const TestNumber& number, const TestContext& context)
+    : TestSequence(number, "IOErrorExtension tests", context)
 {
     append<HeapAllocationErrorsTest>("Construction test 1", ConstructionTest1);
     append<HeapAllocationErrorsTest>("Fail test 1", FailTest1);
@@ -59,7 +59,7 @@ void IOErrorExtensionTests::FailTest2(Test& test)
 
 void IOErrorExtensionTests::FailTest3(Test& test)
 {
-    boost::filesystem::path inputPath(test.environment().getTestDataDirectory() / "file1.txt");
+    boost::filesystem::path inputPath(test.context().getTestDataDirectory() / "file1.txt");
     std::fstream file(inputPath.c_str());
 
     Ishiko::Error error;
@@ -103,7 +103,7 @@ void IOErrorExtensionTests::FailTest5(Test& test)
 
 void IOErrorExtensionTests::FailTest6(Test& test)
 {
-    boost::filesystem::path inputPath(test.environment().getTestDataDirectory() / "file1.txt");
+    boost::filesystem::path inputPath(test.context().getTestDataDirectory() / "file1.txt");
     std::fstream file(inputPath.c_str());
     char buffer[20];
     file.read(buffer, 20);

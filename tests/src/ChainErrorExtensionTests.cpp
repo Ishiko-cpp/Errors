@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2019-2021 Xavier Leclercq
+    Copyright (c) 2019-2022 Xavier Leclercq
     Released under the MIT License
     See https://github.com/ishiko-cpp/errors/blob/main/LICENSE.txt
 */
@@ -12,8 +12,8 @@
 
 using namespace Ishiko::Tests;
 
-ChainErrorExtensionTests::ChainErrorExtensionTests(const TestNumber& number, const TestEnvironment& environment)
-    : TestSequence(number, "ChainErrorExtension tests", environment)
+ChainErrorExtensionTests::ChainErrorExtensionTests(const TestNumber& number, const TestContext& context)
+    : TestSequence(number, "ChainErrorExtension tests", context)
 {
     append<HeapAllocationErrorsTest>("Construction test 1", ConstructionTest1);
     append<HeapAllocationErrorsTest>("operator<< test 1", StreamInsertionTest1);
