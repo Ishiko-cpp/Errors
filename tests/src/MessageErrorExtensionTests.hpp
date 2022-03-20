@@ -9,17 +9,17 @@
 
 #include <Ishiko/Tests/Core.hpp>
 
-class MessageErrorExtensionTests : public Ishiko::Tests::TestSequence
+class MessageErrorExtensionTests : public Ishiko::TestSequence
 {
 public:
-    MessageErrorExtensionTests(const Ishiko::Tests::TestNumber& number, const Ishiko::Tests::TestContext& context);
+    MessageErrorExtensionTests(const Ishiko::TestNumber& number, const Ishiko::TestContext& context);
 
 private:
-    static void ConstructorTest1(Ishiko::Tests::Test& test);
-    static void ConstructorTest2(Ishiko::Tests::Test& test);
-    static void FailTest1(Ishiko::Tests::Test& test);
-    static void FailTest2(Ishiko::Tests::Test& test);
-    static void StreamInsertionTest1(Ishiko::Tests::Test& test);
+    static void ConstructorTest1(Ishiko::Test& test);
+    static void ConstructorTest2(Ishiko::Test& test);
+    static void FailTest1(Ishiko::Test& test);
+    static void FailTest2(Ishiko::Test& test);
+    static void StreamInsertionTest1(Ishiko::Test& test);
 };
 
 #endif

@@ -9,15 +9,15 @@
 
 #include <Ishiko/Tests/Core.hpp>
 
-class ChainErrorExtensionTests : public Ishiko::Tests::TestSequence
+class ChainErrorExtensionTests : public Ishiko::TestSequence
 {
 public:
-    ChainErrorExtensionTests(const Ishiko::Tests::TestNumber& number, const Ishiko::Tests::TestContext& context);
+    ChainErrorExtensionTests(const Ishiko::TestNumber& number, const Ishiko::TestContext& context);
 
 private:
-    static void ConstructionTest1(Ishiko::Tests::Test& test);
-    static void StreamInsertionTest1(Ishiko::Tests::Test& test);
-    static void StreamInsertionTest2(Ishiko::Tests::Test& test);
+    static void ConstructionTest1(Ishiko::Test& test);
+    static void StreamInsertionTest1(Ishiko::Test& test);
+    static void StreamInsertionTest2(Ishiko::Test& test);
 };
 
 #endif

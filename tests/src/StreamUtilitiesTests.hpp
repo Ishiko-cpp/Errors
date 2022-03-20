@@ -9,16 +9,16 @@
 
 #include <Ishiko/Tests/Core.hpp>
 
-class StreamUtilitiesTests : public Ishiko::Tests::TestSequence
+class StreamUtilitiesTests : public Ishiko::TestSequence
 {
 public:
-    StreamUtilitiesTests(const Ishiko::Tests::TestNumber& number, const Ishiko::Tests::TestContext& context);
+    StreamUtilitiesTests(const Ishiko::TestNumber& number, const Ishiko::TestContext& context);
 
 private:
-    static void FailIfCreateFileErrorTest1(Ishiko::Tests::Test& test);
-    static void FailIfCreateFileErrorTest2(Ishiko::Tests::Test& test);
-    static void FailIfOpenFileErrorTest1(Ishiko::Tests::Test& test);
-    static void FailIfOpenFileErrorTest2(Ishiko::Tests::Test& test);
+    static void FailIfCreateFileErrorTest1(Ishiko::Test& test);
+    static void FailIfCreateFileErrorTest2(Ishiko::Test& test);
+    static void FailIfOpenFileErrorTest1(Ishiko::Test& test);
+    static void FailIfOpenFileErrorTest2(Ishiko::Test& test);
 };
 
 #endif

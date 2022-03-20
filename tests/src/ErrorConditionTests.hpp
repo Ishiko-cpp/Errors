@@ -9,22 +9,22 @@
 
 #include <Ishiko/Tests/Core.hpp>
 
-class ErrorConditionTests : public Ishiko::Tests::TestSequence
+class ErrorConditionTests : public Ishiko::TestSequence
 {
 public:
-    ErrorConditionTests(const Ishiko::Tests::TestNumber& number, const Ishiko::Tests::TestContext& context);
+    ErrorConditionTests(const Ishiko::TestNumber& number, const Ishiko::TestContext& context);
 
 private:
-    static void ConstructorTest1(Ishiko::Tests::Test& test);
-    static void ConstructorTest2(Ishiko::Tests::Test& test);
-    static void ConstructorTest3(Ishiko::Tests::Test& test);
-    static void EqualityOperatorTest1(Ishiko::Tests::Test& test);
-    static void EqualityOperatorTest2(Ishiko::Tests::Test& test);
-    static void InequalityOperatorTest1(Ishiko::Tests::Test& test);
-    static void InequalityOperatorTest2(Ishiko::Tests::Test& test);
-    static void FailTest1(Ishiko::Tests::Test& test);
-    static void FailTest2(Ishiko::Tests::Test& test);
-    static void SucceedTest1(Ishiko::Tests::Test& test);
+    static void ConstructorTest1(Ishiko::Test& test);
+    static void ConstructorTest2(Ishiko::Test& test);
+    static void ConstructorTest3(Ishiko::Test& test);
+    static void EqualityOperatorTest1(Ishiko::Test& test);
+    static void EqualityOperatorTest2(Ishiko::Test& test);
+    static void InequalityOperatorTest1(Ishiko::Test& test);
+    static void InequalityOperatorTest2(Ishiko::Test& test);
+    static void FailTest1(Ishiko::Test& test);
+    static void FailTest2(Ishiko::Test& test);
+    static void SucceedTest1(Ishiko::Test& test);
 };
 
 #endif
