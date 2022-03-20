@@ -2,7 +2,7 @@ version: 2
 jobs:
   build:
     docker:
-      - image: ishiko/gcc-ishiko-cpp-build-prerequisites:0.1.0
+      - image: ishiko/gcc-ishiko-cpp-build-prerequisites:0.2.0
     steps:
       - run: 
           name: "Set ISHIKO_CPP environment variable and create workspace directory"
@@ -38,10 +38,10 @@ jobs:
           command: cd /projects/ishiko/cpp && git clone https://github.com/ishiko-cpp/tests.git && cd tests/core/build/gnumake && make
       - run:
           name: Test build
-          command: cd /projects/ishiko/cpp/errors/tests/build/gnumake && make
+          command: cd /projects/ishiko/cpp/errors/test-framework/build/gnumake && make
       - run:
           name: Run the tests
-          command: cd /projects/ishiko/cpp/errors/tests/build/gnumake && ./IshikoErrorsTests
+          command: cd /projects/ishiko/cpp/errors/test-framework/build/gnumake && ./IshikoErrorsTests
 workflows:
   version: 2
   continuous_build:
