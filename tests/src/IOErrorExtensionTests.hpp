@@ -9,20 +9,20 @@
 
 #include <Ishiko/Tests/Core.hpp>
 
-class IOErrorExtensionTests : public Ishiko::Tests::TestSequence
+class IOErrorExtensionTests : public Ishiko::TestSequence
 {
 public:
-    IOErrorExtensionTests(const Ishiko::Tests::TestNumber& number, const Ishiko::Tests::TestContext& context);
+    IOErrorExtensionTests(const Ishiko::TestNumber& number, const Ishiko::TestContext& context);
 
 private:
-    static void ConstructionTest1(Ishiko::Tests::Test& test);
-    static void FailTest1(Ishiko::Tests::Test& test);
-    static void FailTest2(Ishiko::Tests::Test& test);
-    static void FailTest3(Ishiko::Tests::Test& test);
-    static void FailTest4(Ishiko::Tests::Test& test);
-    static void FailTest5(Ishiko::Tests::Test& test);
-    static void FailTest6(Ishiko::Tests::Test& test);
-    static void StreamInsertionTest1(Ishiko::Tests::Test& test);
+    static void ConstructionTest1(Ishiko::Test& test);
+    static void FailTest1(Ishiko::Test& test);
+    static void FailTest2(Ishiko::Test& test);
+    static void FailTest3(Ishiko::Test& test);
+    static void FailTest4(Ishiko::Test& test);
+    static void FailTest5(Ishiko::Test& test);
+    static void FailTest6(Ishiko::Test& test);
+    static void StreamInsertionTest1(Ishiko::Test& test);
 };
 
 #endif

@@ -9,7 +9,6 @@
 #include <fstream>
 
 using namespace Ishiko;
-using namespace Ishiko::Tests;
 
 StreamUtilitiesTests::StreamUtilitiesTests(const TestNumber& number, const TestContext& context)
     : TestSequence(number, "StreamUtilities tests", context)
@@ -29,22 +28,22 @@ void StreamUtilitiesTests::FailIfCreateFileErrorTest1(Test& test)
 
     bool failed = FailIfCreateFileError(error, file);
   
-    ISHIKO_FAIL_IF_NOT(failed);
-    ISHIKO_FAIL_IF_NOT(error);
-    ISHIKO_FAIL_IF_NEQ(error.condition().value(), -2);
-    ISHIKO_FAIL_IF_NEQ(&error.condition().category(), &IOErrorCategory::Get());
+    ISHIKO_TEST_FAIL_IF_NOT(failed);
+    ISHIKO_TEST_FAIL_IF_NOT(error);
+    ISHIKO_TEST_FAIL_IF_NEQ(error.condition().value(), -2);
+    ISHIKO_TEST_FAIL_IF_NEQ(&error.condition().category(), &IOErrorCategory::Get());
 
     std::string message;
     bool messsageFound = error.tryGetMessage(message);
 
-    ISHIKO_FAIL_IF(messsageFound);
+    ISHIKO_TEST_FAIL_IF(messsageFound);
 
     const char* originFile = nullptr;
     int originLine = -1;
     bool originFound = error.tryGetOrigin(originFile, originLine);
 
-    ISHIKO_FAIL_IF(originFound);
-    ISHIKO_PASS();
+    ISHIKO_TEST_FAIL_IF(originFound);
+    ISHIKO_TEST_PASS();
 }
 
 void StreamUtilitiesTests::FailIfCreateFileErrorTest2(Test& test)
@@ -58,25 +57,25 @@ void StreamUtilitiesTests::FailIfCreateFileErrorTest2(Test& test)
 
     bool failed = FailIfCreateFileError(error, file, path, "file1", 3);
 
-    ISHIKO_FAIL_IF_NOT(failed);
-    ISHIKO_FAIL_IF_NOT(error);
-    ISHIKO_FAIL_IF_NEQ(error.condition().value(), -2);
-    ISHIKO_FAIL_IF_NEQ(&error.condition().category(), &IOErrorCategory::Get());
+    ISHIKO_TEST_FAIL_IF_NOT(failed);
+    ISHIKO_TEST_FAIL_IF_NOT(error);
+    ISHIKO_TEST_FAIL_IF_NEQ(error.condition().value(), -2);
+    ISHIKO_TEST_FAIL_IF_NEQ(&error.condition().category(), &IOErrorCategory::Get());
 
     std::string message;
     bool messsageFound = error.tryGetMessage(message);
 
-    ISHIKO_FAIL_IF_NOT(messsageFound);
-    ISHIKO_FAIL_IF_NEQ(message, "failed to create file 'doesnotexist'");
+    ISHIKO_TEST_FAIL_IF_NOT(messsageFound);
+    ISHIKO_TEST_FAIL_IF_NEQ(message, "failed to create file 'doesnotexist'");
 
     const char* originFile = nullptr;
     int originLine = -1;
     bool origin = error.tryGetOrigin(originFile, originLine);
 
-    ISHIKO_FAIL_IF_NOT(origin);
-    ISHIKO_FAIL_IF_STR_NEQ(originFile, "file1");
-    ISHIKO_FAIL_IF_NEQ(originLine, 3);
-    ISHIKO_PASS();
+    ISHIKO_TEST_FAIL_IF_NOT(origin);
+    ISHIKO_TEST_FAIL_IF_STR_NEQ(originFile, "file1");
+    ISHIKO_TEST_FAIL_IF_NEQ(originLine, 3);
+    ISHIKO_TEST_PASS();
 }
 
 void StreamUtilitiesTests::FailIfOpenFileErrorTest1(Test& test)
@@ -86,22 +85,22 @@ void StreamUtilitiesTests::FailIfOpenFileErrorTest1(Test& test)
 
     bool failed = FailIfOpenFileError(error, file);
 
-    ISHIKO_FAIL_IF_NOT(failed);
-    ISHIKO_FAIL_IF_NOT(error);
-    ISHIKO_FAIL_IF_NEQ(error.condition().value(), -3);
-    ISHIKO_FAIL_IF_NEQ(&error.condition().category(), &IOErrorCategory::Get());
+    ISHIKO_TEST_FAIL_IF_NOT(failed);
+    ISHIKO_TEST_FAIL_IF_NOT(error);
+    ISHIKO_TEST_FAIL_IF_NEQ(error.condition().value(), -3);
+    ISHIKO_TEST_FAIL_IF_NEQ(&error.condition().category(), &IOErrorCategory::Get());
 
     std::string message;
     bool messsageFound = error.tryGetMessage(message);
 
-    ISHIKO_FAIL_IF(messsageFound);
+    ISHIKO_TEST_FAIL_IF(messsageFound);
 
     const char* originFile = nullptr;
     int originLine = -1;
     bool originFound = error.tryGetOrigin(originFile, originLine);
 
-    ISHIKO_FAIL_IF(originFound);
-    ISHIKO_PASS();
+    ISHIKO_TEST_FAIL_IF(originFound);
+    ISHIKO_TEST_PASS();
 }
 
 void StreamUtilitiesTests::FailIfOpenFileErrorTest2(Test& test)
@@ -113,23 +112,23 @@ void StreamUtilitiesTests::FailIfOpenFileErrorTest2(Test& test)
 
     bool failed = FailIfOpenFileError(error, file, path, "file1", 3);
 
-    ISHIKO_FAIL_IF_NOT(failed);
-    ISHIKO_FAIL_IF_NOT(error);
-    ISHIKO_FAIL_IF_NEQ(error.condition().value(), -3);
-    ISHIKO_FAIL_IF_NEQ(&error.condition().category(), &IOErrorCategory::Get());
+    ISHIKO_TEST_FAIL_IF_NOT(failed);
+    ISHIKO_TEST_FAIL_IF_NOT(error);
+    ISHIKO_TEST_FAIL_IF_NEQ(error.condition().value(), -3);
+    ISHIKO_TEST_FAIL_IF_NEQ(&error.condition().category(), &IOErrorCategory::Get());
 
     std::string message;
     bool messsageFound = error.tryGetMessage(message);
 
-    ISHIKO_FAIL_IF_NOT(messsageFound);
-    ISHIKO_FAIL_IF_NEQ(message, "failed to open file 'doesnotexist'");
+    ISHIKO_TEST_FAIL_IF_NOT(messsageFound);
+    ISHIKO_TEST_FAIL_IF_NEQ(message, "failed to open file 'doesnotexist'");
 
     const char* originFile = nullptr;
     int originLine = -1;
     bool origin = error.tryGetOrigin(originFile, originLine);
 
-    ISHIKO_FAIL_IF_NOT(origin);
-    ISHIKO_FAIL_IF_STR_NEQ(originFile, "file1");
-    ISHIKO_FAIL_IF_NEQ(originLine, 3);
-    ISHIKO_PASS();
+    ISHIKO_TEST_FAIL_IF_NOT(origin);
+    ISHIKO_TEST_FAIL_IF_STR_NEQ(originFile, "file1");
+    ISHIKO_TEST_FAIL_IF_NEQ(originLine, 3);
+    ISHIKO_TEST_PASS();
 }

@@ -9,17 +9,17 @@
 
 #include <Ishiko/Tests/Core.hpp>
 
-class ExceptionTests : public Ishiko::Tests::TestSequence
+class ExceptionTests : public Ishiko::TestSequence
 {
 public:
-    ExceptionTests(const Ishiko::Tests::TestNumber& number, const Ishiko::Tests::TestContext& context);
+    ExceptionTests(const Ishiko::TestNumber& number, const Ishiko::TestContext& context);
 
 private:
-    static void ConstructorTest1(Ishiko::Tests::Test& test);
-    static void ConstructorTest2(Ishiko::Tests::Test& test);
-    static void ConstructorTest3(Ishiko::Tests::Test& test);
-    static void ConstructorTest4(Ishiko::Tests::Test& test);
-    static void ConstructorTest5(Ishiko::Tests::Test& test);
+    static void ConstructorTest1(Ishiko::Test& test);
+    static void ConstructorTest2(Ishiko::Test& test);
+    static void ConstructorTest3(Ishiko::Test& test);
+    static void ConstructorTest4(Ishiko::Test& test);
+    static void ConstructorTest5(Ishiko::Test& test);
 };
 
 #endif

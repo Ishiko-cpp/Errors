@@ -10,7 +10,7 @@
 #include "Ishiko/Errors/Error.hpp"
 #include <sstream>
 
-using namespace Ishiko::Tests;
+using namespace Ishiko;
 
 MessageErrorExtensionTests::MessageErrorExtensionTests(const TestNumber& number, const TestContext& context)
     : TestSequence(number, "MessageErrorExtension tests", context)
@@ -26,20 +26,20 @@ void MessageErrorExtensionTests::ConstructorTest1(Test& test)
 {
     Ishiko::MessageErrorExtension messageExtension;
 
-    ISHIKO_FAIL_IF_NEQ(messageExtension.message(), "");
-    ISHIKO_FAIL_IF_NEQ(messageExtension.file(), "");
-    ISHIKO_FAIL_IF_NEQ(messageExtension.line(), -1);
-    ISHIKO_PASS();
+    ISHIKO_TEST_FAIL_IF_NEQ(messageExtension.message(), "");
+    ISHIKO_TEST_FAIL_IF_NEQ(messageExtension.file(), "");
+    ISHIKO_TEST_FAIL_IF_NEQ(messageExtension.line(), -1);
+    ISHIKO_TEST_PASS();
 }
 
 void MessageErrorExtensionTests::ConstructorTest2(Test& test)
 {
     Ishiko::MessageErrorExtension messageExtension("unknown", "file1", 3);
 
-    ISHIKO_FAIL_IF_NEQ(messageExtension.message(), "unknown");
-    ISHIKO_FAIL_IF_NEQ(messageExtension.file(), "file1");
-    ISHIKO_FAIL_IF_NEQ(messageExtension.line(), 3);
-    ISHIKO_PASS();
+    ISHIKO_TEST_FAIL_IF_NEQ(messageExtension.message(), "unknown");
+    ISHIKO_TEST_FAIL_IF_NEQ(messageExtension.file(), "file1");
+    ISHIKO_TEST_FAIL_IF_NEQ(messageExtension.line(), 3);
+    ISHIKO_TEST_PASS();
 }
 
 void MessageErrorExtensionTests::FailTest1(Test& test)
@@ -49,11 +49,11 @@ void MessageErrorExtensionTests::FailTest1(Test& test)
 
     Ishiko::MessageErrorExtension* messageExtension = static_cast<Ishiko::MessageErrorExtension*>(error.extension());
 
-    ISHIKO_ABORT_IF_NOT(messageExtension);
-    ISHIKO_FAIL_IF_NEQ(messageExtension->message(), "a bad error");
-    ISHIKO_FAIL_IF_NEQ(messageExtension->file(), "file1");
-    ISHIKO_FAIL_IF_NEQ(messageExtension->line(), 3);
-    ISHIKO_PASS();
+    ISHIKO_TEST_ABORT_IF_NOT(messageExtension);
+    ISHIKO_TEST_FAIL_IF_NEQ(messageExtension->message(), "a bad error");
+    ISHIKO_TEST_FAIL_IF_NEQ(messageExtension->file(), "file1");
+    ISHIKO_TEST_FAIL_IF_NEQ(messageExtension->line(), 3);
+    ISHIKO_TEST_PASS();
 }
 
 void MessageErrorExtensionTests::FailTest2(Test& test)
@@ -64,11 +64,11 @@ void MessageErrorExtensionTests::FailTest2(Test& test)
 
     Ishiko::MessageErrorExtension* messageExtension = static_cast<Ishiko::MessageErrorExtension*>(error.extension());
 
-    ISHIKO_ABORT_IF_NOT(messageExtension);
-    ISHIKO_FAIL_IF_NEQ(messageExtension->message(), "a bad error");
-    ISHIKO_FAIL_IF_NEQ(messageExtension->file(), "file1");
-    ISHIKO_FAIL_IF_NEQ(messageExtension->line(), 3);
-    ISHIKO_PASS();
+    ISHIKO_TEST_ABORT_IF_NOT(messageExtension);
+    ISHIKO_TEST_FAIL_IF_NEQ(messageExtension->message(), "a bad error");
+    ISHIKO_TEST_FAIL_IF_NEQ(messageExtension->file(), "file1");
+    ISHIKO_TEST_FAIL_IF_NEQ(messageExtension->line(), 3);
+    ISHIKO_TEST_PASS();
 }
 
 void MessageErrorExtensionTests::StreamInsertionTest1(Test& test)
@@ -79,6 +79,6 @@ void MessageErrorExtensionTests::StreamInsertionTest1(Test& test)
     std::stringstream errorMessage;
     errorMessage << error;
 
-    ISHIKO_FAIL_IF_NEQ(errorMessage.str(), "TestErrorCategory1, -3, a bad error [file: file1, line: 3]");
-    ISHIKO_PASS();
+    ISHIKO_TEST_FAIL_IF_NEQ(errorMessage.str(), "TestErrorCategory1, -3, a bad error [file: file1, line: 3]");
+    ISHIKO_TEST_PASS();
 }
