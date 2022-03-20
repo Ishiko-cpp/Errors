@@ -10,7 +10,7 @@
 #include "Ishiko/Errors/Error.hpp"
 #include <sstream>
 
-using namespace Ishiko::Tests;
+using namespace Ishiko;
 
 ChainErrorExtensionTests::ChainErrorExtensionTests(const TestNumber& number, const TestContext& context)
     : TestSequence(number, "ChainErrorExtension tests", context)
@@ -24,7 +24,7 @@ void ChainErrorExtensionTests::ConstructionTest1(Test& test)
 {
     Ishiko::ChainErrorExtension chainExtension;
 
-    ISHIKO_PASS();
+    ISHIKO_TEST_PASS();
 }
 
 void ChainErrorExtensionTests::StreamInsertionTest1(Test& test)
@@ -35,8 +35,8 @@ void ChainErrorExtensionTests::StreamInsertionTest1(Test& test)
     std::stringstream errorMessage;
     errorMessage << error;
 
-    ISHIKO_FAIL_IF_NEQ(errorMessage.str(), "TestErrorCategory1, -3, a bad error [file: file1, line: 3]");
-    ISHIKO_PASS();
+    ISHIKO_TEST_FAIL_IF_NEQ(errorMessage.str(), "TestErrorCategory1, -3, a bad error [file: file1, line: 3]");
+    ISHIKO_TEST_PASS();
 }
 
 void ChainErrorExtensionTests::StreamInsertionTest2(Test& test)
@@ -48,6 +48,6 @@ void ChainErrorExtensionTests::StreamInsertionTest2(Test& test)
     std::stringstream errorMessage;
     errorMessage << error;
 
-    ISHIKO_FAIL_IF_NEQ(errorMessage.str(), "TestErrorCategory1, -3, a bad error [file: file1, line: 3]\n\tError: -1");
-    ISHIKO_PASS();
+    ISHIKO_TEST_FAIL_IF_NEQ(errorMessage.str(), "TestErrorCategory1, -3, a bad error [file: file1, line: 3]\n\tError: -1");
+    ISHIKO_TEST_PASS();
 }

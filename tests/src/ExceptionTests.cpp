@@ -8,7 +8,7 @@
 #include "Helpers/TestErrorCategory1.hpp"
 #include "Ishiko/Errors/Exception.hpp"
 
-using namespace Ishiko::Tests;
+using namespace Ishiko;
 
 ExceptionTests::ExceptionTests(const TestNumber& number, const TestContext& context)
     : TestSequence(number, "Exception tests", context)
@@ -25,33 +25,33 @@ void ExceptionTests::ConstructorTest1(Test& test)
     Ishiko::ErrorCondition condition(-1, TestErrorCategory1::Get());
     Ishiko::Exception exception(condition, "file", 5);
 
-    ISHIKO_FAIL_IF_NEQ(exception.condition().value(), -1);
-    ISHIKO_FAIL_IF_STR_NEQ(exception.what(), "");
-    ISHIKO_FAIL_IF_NEQ(exception.file(), "file");
-    ISHIKO_FAIL_IF_NEQ(exception.line(), 5);
-    ISHIKO_PASS();
+    ISHIKO_TEST_FAIL_IF_NEQ(exception.condition().value(), -1);
+    ISHIKO_TEST_FAIL_IF_STR_NEQ(exception.what(), "");
+    ISHIKO_TEST_FAIL_IF_NEQ(exception.file(), "file");
+    ISHIKO_TEST_FAIL_IF_NEQ(exception.line(), 5);
+    ISHIKO_TEST_PASS();
 }
 
 void ExceptionTests::ConstructorTest2(Test& test)
 {
     Ishiko::Exception exception(-1, TestErrorCategory1::Get(), "file", 5);
 
-    ISHIKO_FAIL_IF_NEQ(exception.condition().value(), -1);
-    ISHIKO_FAIL_IF_STR_NEQ(exception.what(), "");
-    ISHIKO_FAIL_IF_NEQ(exception.file(), "file");
-    ISHIKO_FAIL_IF_NEQ(exception.line(), 5);
-    ISHIKO_PASS();
+    ISHIKO_TEST_FAIL_IF_NEQ(exception.condition().value(), -1);
+    ISHIKO_TEST_FAIL_IF_STR_NEQ(exception.what(), "");
+    ISHIKO_TEST_FAIL_IF_NEQ(exception.file(), "file");
+    ISHIKO_TEST_FAIL_IF_NEQ(exception.line(), 5);
+    ISHIKO_TEST_PASS();
 }
 
 void ExceptionTests::ConstructorTest3(Test& test)
 {
     Ishiko::Exception exception(-1, TestErrorCategory1::Get(), "description", "file", 5);
 
-    ISHIKO_FAIL_IF_NEQ(exception.condition().value(), -1);
-    ISHIKO_FAIL_IF_STR_NEQ(exception.what(), "description");
-    ISHIKO_FAIL_IF_NEQ(exception.file(), "file");
-    ISHIKO_FAIL_IF_NEQ(exception.line(), 5);
-    ISHIKO_PASS();
+    ISHIKO_TEST_FAIL_IF_NEQ(exception.condition().value(), -1);
+    ISHIKO_TEST_FAIL_IF_STR_NEQ(exception.what(), "description");
+    ISHIKO_TEST_FAIL_IF_NEQ(exception.file(), "file");
+    ISHIKO_TEST_FAIL_IF_NEQ(exception.line(), 5);
+    ISHIKO_TEST_PASS();
 }
 
 void ExceptionTests::ConstructorTest4(Test& test)
@@ -59,11 +59,11 @@ void ExceptionTests::ConstructorTest4(Test& test)
     Ishiko::Exception exception1(-1, TestErrorCategory1::Get(), "file", 5);
     Ishiko::Exception exception2(exception1);
 
-    ISHIKO_FAIL_IF_NEQ(exception2.condition().value(), -1);
-    ISHIKO_FAIL_IF_STR_NEQ(exception2.what(), "");
-    ISHIKO_FAIL_IF_NEQ(exception2.file(), "file");
-    ISHIKO_FAIL_IF_NEQ(exception2.line(), 5);
-    ISHIKO_PASS();
+    ISHIKO_TEST_FAIL_IF_NEQ(exception2.condition().value(), -1);
+    ISHIKO_TEST_FAIL_IF_STR_NEQ(exception2.what(), "");
+    ISHIKO_TEST_FAIL_IF_NEQ(exception2.file(), "file");
+    ISHIKO_TEST_FAIL_IF_NEQ(exception2.line(), 5);
+    ISHIKO_TEST_PASS();
 }
 
 void ExceptionTests::ConstructorTest5(Test& test)
@@ -71,9 +71,9 @@ void ExceptionTests::ConstructorTest5(Test& test)
     Ishiko::Exception exception1(-1, TestErrorCategory1::Get(), "description", "file", 5);
     Ishiko::Exception exception2(exception1);
 
-    ISHIKO_FAIL_IF_NEQ(exception2.condition().value(), -1);
-    ISHIKO_FAIL_IF_STR_NEQ(exception2.what(), "description");
-    ISHIKO_FAIL_IF_NEQ(exception2.file(), "file");
-    ISHIKO_FAIL_IF_NEQ(exception2.line(), 5);
-    ISHIKO_PASS();
+    ISHIKO_TEST_FAIL_IF_NEQ(exception2.condition().value(), -1);
+    ISHIKO_TEST_FAIL_IF_STR_NEQ(exception2.what(), "description");
+    ISHIKO_TEST_FAIL_IF_NEQ(exception2.file(), "file");
+    ISHIKO_TEST_FAIL_IF_NEQ(exception2.line(), 5);
+    ISHIKO_TEST_PASS();
 }
