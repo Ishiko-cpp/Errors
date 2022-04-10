@@ -7,7 +7,7 @@
 #ifndef _ISHIKO_CPP_ERRORS_TESTS_MESSAGEERROREXTENSIONTESTS_HPP_
 #define _ISHIKO_CPP_ERRORS_TESTS_MESSAGEERROREXTENSIONTESTS_HPP_
 
-#include <Ishiko/Tests/Core.hpp>
+#include <Ishiko/TestFramework/Core.hpp>
 
 class MessageErrorExtensionTests : public Ishiko::TestSequence
 {
