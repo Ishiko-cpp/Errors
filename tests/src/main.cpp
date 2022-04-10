@@ -11,7 +11,7 @@
 #include "ChainErrorExtensionTests.hpp"
 #include "ExceptionTests.hpp"
 #include "StreamUtilitiesTests.hpp"
-#include <Ishiko/Tests/Core.hpp>
+#include <Ishiko/TestFramework/Core.hpp>
 
 using namespace Ishiko;
 
