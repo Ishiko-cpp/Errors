@@ -2,7 +2,8 @@
 
 Basic classes to handle and report errors.
 
-# Contents
+
+## Contents
 
 - Include: Directory containing the public headers for the project.
 - Lib: Directory where the build process puts the compiled libraries.
@@ -10,21 +11,25 @@ Basic classes to handle and report errors.
 - Source: The source code for the project.
 - Tests: The tests for the project.
 
-# Project Status
+
+## Project Status
 
 [![ishiko-cpp](https://circleci.com/gh/ishiko-cpp/errors.svg?style=shield)](https://circleci.com/gh/ishiko-cpp/errors)
 
-This project is intended for use by its author only.
+This project is in early development and not ready for public use yet. 
 
-# Usage
+
+## Usage
 
 No documentation available as of yet.
 
-# Support
+
+## Support
 
 None.
 
-# License
+
+## License
 
 Copyright (c) 2015-2022 Xavier Leclercq\
 Released under the MIT License\
