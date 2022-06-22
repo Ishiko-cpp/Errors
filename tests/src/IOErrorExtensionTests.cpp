@@ -59,7 +59,7 @@ void IOErrorExtensionTests::FailTest2(Test& test)
 
 void IOErrorExtensionTests::FailTest3(Test& test)
 {
-    boost::filesystem::path inputPath(test.context().getTestDataDirectory() / "file1.txt");
+    boost::filesystem::path inputPath = test.context().getDataPath("file1.txt");
     std::fstream file(inputPath.c_str());
 
     Ishiko::Error error;
@@ -103,7 +103,7 @@ void IOErrorExtensionTests::FailTest5(Test& test)
 
 void IOErrorExtensionTests::FailTest6(Test& test)
 {
-    boost::filesystem::path inputPath(test.context().getTestDataDirectory() / "file1.txt");
+    boost::filesystem::path inputPath = test.context().getDataPath("file1.txt");
     std::fstream file(inputPath.c_str());
     char buffer[20];
     file.read(buffer, 20);
