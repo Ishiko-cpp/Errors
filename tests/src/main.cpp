@@ -12,23 +12,41 @@
 #include "ExceptionTests.hpp"
 #include "StreamUtilitiesTests.hpp"
 #include <Ishiko/TestFramework/Core.hpp>
+#include <exception>
 
 using namespace Ishiko;
 
 int main(int argc, char* argv[])
 {
-    TestHarness theTestHarness("IshikoErrors");
+    try
+    {
+        TestHarness::CommandLineSpecification commandLineSpec;
+        commandLineSpec.setDefaultValue("context.data", "../../data");
+        commandLineSpec.setDefaultValue("context.output", "../../output");
+        commandLineSpec.setDefaultValue("context.reference", "../../reference");
 
-    theTestHarness.context().setDataDirectory("../../data");
+        Configuration configuration = commandLineSpec.createDefaultConfiguration();
+        CommandLineParser::parse(commandLineSpec, argc, argv, configuration);
 
-    TestSequence& theTests = theTestHarness.tests();
-    theTests.append<ErrorConditionTests>();
-    theTests.append<ErrorTests>();
-    theTests.append<MessageErrorExtensionTests>();
-    theTests.append<IOErrorExtensionTests>();
-    theTests.append<ChainErrorExtensionTests>();
-    theTests.append<ExceptionTests>();
-    theTests.append<StreamUtilitiesTests>();
+        TestHarness theTestHarness("Ishiko/C++ Errors Library Tests", configuration);
 
-    return theTestHarness.run();
+        TestSequence& theTests = theTestHarness.tests();
+        theTests.append<ErrorConditionTests>();
+        theTests.append<ErrorTests>();
+        theTests.append<MessageErrorExtensionTests>();
+        theTests.append<IOErrorExtensionTests>();
+        theTests.append<ChainErrorExtensionTests>();
+        theTests.append<ExceptionTests>();
+        theTests.append<StreamUtilitiesTests>();
+
+        return theTestHarness.run();
+    }
+    catch (const std::exception& e)
+    {
+        return TestApplicationReturnCode::exception;
+    }
+    catch (...)
+    {
+        return TestApplicationReturnCode::exception;
+    }
 }
