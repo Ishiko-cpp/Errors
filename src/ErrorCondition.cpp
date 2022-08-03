@@ -1,24 +1,12 @@
 /*
-    Copyright (c) 2020-2021 Xavier Leclercq
+    Copyright (c) 2020-2022 Xavier Leclercq
     Released under the MIT License
     See https://github.com/ishiko-cpp/errors/blob/main/LICENSE.txt
 */
 
 #include "ErrorCondition.hpp"
-#include "SuccessCategory.hpp"
 
-namespace Ishiko
-{
-
-ErrorCondition::ErrorCondition() noexcept
-    : m_value(0), m_category(&SuccessCategory::Get())
-{
-}
-
-ErrorCondition::ErrorCondition(int value, const ErrorCategory& category) noexcept
-    : m_value(value), m_category(&category)
-{
-}
+using namespace Ishiko;
 
 ErrorCondition::operator bool() const noexcept
 {
@@ -66,6 +54,4 @@ std::ostream& operator<<(std::ostream& os, const ErrorCondition& condition)
 {
     os << condition.category().name() << ", " << condition.value();
     return os;
-}
-
 }

@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2017-2021 Xavier Leclercq
+    Copyright (c) 2017-2022 Xavier Leclercq
     Released under the MIT License
     See https://github.com/ishiko-cpp/errors/blob/main/LICENSE.txt
 */
@@ -7,13 +7,7 @@
 #include "Error.hpp"
 #include "Exception.hpp"
 
-namespace Ishiko
-{
-
-Error::Error() noexcept
-    : m_extension(0)
-{
-}
+using namespace Ishiko;
 
 Error::Error(int code, const ErrorCategory& category) noexcept
     : m_condition(code, category), m_extension(0)
@@ -161,6 +155,4 @@ void ThrowIf(const Error& error)
             throw Exception(error.condition(), __FILE__, __LINE__);
         }
     }
-}
-
 }
