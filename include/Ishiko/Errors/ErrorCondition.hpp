@@ -1,13 +1,14 @@
 /*
-    Copyright (c) 2020-2021 Xavier Leclercq
+    Copyright (c) 2020-2022 Xavier Leclercq
     Released under the MIT License
     See https://github.com/ishiko-cpp/errors/blob/main/LICENSE.txt
 */
 
-#ifndef _ISHIKO_CPP_ERRORS_ERRORCONDITION_HPP_
-#define _ISHIKO_CPP_ERRORS_ERRORCONDITION_HPP_
+#ifndef GUARD_ISHIKO_CPP_ERRORS_ERRORCONDITION_HPP
+#define GUARD_ISHIKO_CPP_ERRORS_ERRORCONDITION_HPP
 
 #include "ErrorCategory.hpp"
+#include "SuccessCategory.hpp"
 #include <ostream>
 
 namespace Ishiko
@@ -16,8 +17,8 @@ namespace Ishiko
 class ErrorCondition
 {
 public:
-    ErrorCondition() noexcept;
-    ErrorCondition(int value, const ErrorCategory& category) noexcept;
+    ErrorCondition() noexcept = default;
+    inline ErrorCondition(int value, const ErrorCategory& category) noexcept;
 
     explicit operator bool() const noexcept;
     bool operator!() const noexcept;
@@ -31,12 +32,17 @@ public:
     void succeed() noexcept;
 
 private:
-    int m_value;
-    const ErrorCategory* m_category;
+    int m_value{0};
+    const ErrorCategory* m_category{&SuccessCategory::Get()};
 };
 
 std::ostream& operator<<(std::ostream& os, const ErrorCondition& condition);
 
+}
+
+Ishiko::ErrorCondition::ErrorCondition(int value, const ErrorCategory& category) noexcept
+    : m_value(value), m_category(&category)
+{
 }
 
 #endif

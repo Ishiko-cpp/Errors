@@ -1,11 +1,11 @@
 /*
-    Copyright (c) 2017-2021 Xavier Leclercq
+    Copyright (c) 2017-2022 Xavier Leclercq
     Released under the MIT License
     See https://github.com/ishiko-cpp/errors/blob/main/LICENSE.txt
 */
 
-#ifndef _ISHIKO_CPP_ERRORS_ERROR_HPP_
-#define _ISHIKO_CPP_ERRORS_ERROR_HPP_
+#ifndef GUARD_ISHIKO_CPP_ERRORS_ERROR_HPP
+#define GUARD_ISHIKO_CPP_ERRORS_ERROR_HPP
 
 #include "ErrorCondition.hpp"
 #include "ErrorExtension.hpp"
@@ -22,7 +22,7 @@ class Error
 {
 public:
     /// Creates a new error with an error code set to 0.
-    Error() noexcept;
+    Error() noexcept = default;
 
     /// Creates a new error from the error code passed in as argument.
     Error(int code, const ErrorCategory& category) noexcept;
@@ -36,11 +36,17 @@ public:
     */
     Error(int code, const ErrorCategory& category, ErrorExtension* extension) noexcept;
 
+    Error(const Error& other) = delete;
+    Error(Error&& other) = delete;
+
     /// Destructor.
     /**
         The destructor will call ErrorExtension::release() on the extension.
     */
     ~Error() noexcept;
+
+    Error& operator=(const Error& other) = delete;
+    Error& operator=(Error&& other) = delete;
 
     /// Converts the error to a boolean value.
     /**
@@ -63,7 +69,7 @@ public:
     /**
         @returns The error condition.
     */
-    const ErrorCondition& condition() const noexcept;
+    inline ErrorCondition condition() const noexcept;
 
     bool tryGetMessage(std::string& message) const noexcept;
 
@@ -112,7 +118,7 @@ public:
 
 private:
     ErrorCondition m_condition;
-    ErrorExtension* m_extension;
+    ErrorExtension* m_extension{nullptr};
 };
 
 std::ostream& operator<<(std::ostream& os, const Error& error);
@@ -121,6 +127,9 @@ void ThrowIf(const Error& error);
 
 }
 
-#include "linkoptions.h"
+Ishiko::ErrorCondition Ishiko::Error::condition() const noexcept
+{
+    return m_condition;
+}
 
 #endif
