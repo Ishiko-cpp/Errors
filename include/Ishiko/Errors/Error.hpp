@@ -45,6 +45,9 @@ public:
     */
     ~Error() noexcept;
 
+    Error& operator=(const Error& other) = delete;
+    Error& operator=(Error&& other) = delete;
+
     /// Converts the error to a boolean value.
     /**
         @retval true The error code is different than 0.
@@ -66,7 +69,7 @@ public:
     /**
         @returns The error condition.
     */
-    const ErrorCondition& condition() const noexcept;
+    inline const ErrorCondition& condition() const noexcept;
 
     bool tryGetMessage(std::string& message) const noexcept;
 
@@ -122,6 +125,11 @@ std::ostream& operator<<(std::ostream& os, const Error& error);
 
 void ThrowIf(const Error& error);
 
+}
+
+const Ishiko::ErrorCondition& Ishiko::Error::condition() const noexcept
+{
+    return m_condition;
 }
 
 #endif

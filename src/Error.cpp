@@ -52,11 +52,6 @@ bool Error::operator!=(const ErrorCondition& other) const noexcept
     return (m_condition != other);
 }
 
-const ErrorCondition& Error::condition() const noexcept
-{
-    return m_condition;
-}
-
 bool Error::tryGetMessage(std::string& message) const noexcept
 {
     bool result = false;
@@ -128,7 +123,7 @@ ErrorExtension* Error::extension() noexcept
     return m_extension;
 }
 
-std::ostream& operator<<(std::ostream& os, const Error& error)
+std::ostream& Ishiko::operator<<(std::ostream& os, const Error& error)
 {
     os << error.condition();
     const ErrorExtension* extension = error.extension();
@@ -139,7 +134,7 @@ std::ostream& operator<<(std::ostream& os, const Error& error)
     return os;
 }
 
-void ThrowIf(const Error& error)
+void Ishiko::ThrowIf(const Error& error)
 {
     if (error)
     {

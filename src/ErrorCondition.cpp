@@ -50,7 +50,7 @@ void ErrorCondition::succeed() noexcept
     m_category = &SuccessCategory::Get();
 }
 
-std::ostream& operator<<(std::ostream& os, const ErrorCondition& condition)
+std::ostream& Ishiko::operator<<(std::ostream& os, const ErrorCondition& condition)
 {
     os << condition.category().name() << ", " << condition.value();
     return os;
