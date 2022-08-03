@@ -69,7 +69,7 @@ public:
     /**
         @returns The error condition.
     */
-    inline const ErrorCondition& condition() const noexcept;
+    inline ErrorCondition condition() const noexcept;
 
     bool tryGetMessage(std::string& message) const noexcept;
 
@@ -127,7 +127,7 @@ void ThrowIf(const Error& error);
 
 }
 
-const Ishiko::ErrorCondition& Ishiko::Error::condition() const noexcept
+Ishiko::ErrorCondition Ishiko::Error::condition() const noexcept
 {
     return m_condition;
 }

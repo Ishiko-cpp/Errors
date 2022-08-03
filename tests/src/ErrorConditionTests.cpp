@@ -29,8 +29,9 @@ ErrorConditionTests::ErrorConditionTests(const TestNumber& number, const TestCon
 
 void ErrorConditionTests::ConstructorTest1(Test& test)
 {
-    Ishiko::ErrorCondition error;
+    Ishiko::ErrorCondition error{};
 
+    ISHIKO_TEST_FAIL_IF_NEQ(sizeof(error), 2*sizeof(void*));
     ISHIKO_TEST_FAIL_IF(error);
     ISHIKO_TEST_FAIL_IF_NEQ(error.value(), 0);
     ISHIKO_TEST_PASS();
@@ -38,7 +39,7 @@ void ErrorConditionTests::ConstructorTest1(Test& test)
 
 void ErrorConditionTests::ConstructorTest2(Test& test)
 {
-    Ishiko::ErrorCondition error(0, Ishiko::SuccessCategory::Get());
+    Ishiko::ErrorCondition error{0, Ishiko::SuccessCategory::Get()};
 
     ISHIKO_TEST_FAIL_IF(error);
     ISHIKO_TEST_FAIL_IF_NEQ(error.value(), 0);
@@ -47,7 +48,7 @@ void ErrorConditionTests::ConstructorTest2(Test& test)
 
 void ErrorConditionTests::ConstructorTest3(Test& test)
 {
-    Ishiko::ErrorCondition error(-1, TestErrorCategory1::Get());
+    Ishiko::ErrorCondition error{-1, TestErrorCategory1::Get()};
 
     ISHIKO_TEST_FAIL_IF_NOT(error);
     ISHIKO_TEST_FAIL_IF_NEQ(error.value(), -1);
