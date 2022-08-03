@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2017-2021 Xavier Leclercq
+    Copyright (c) 2017-2022 Xavier Leclercq
     Released under the MIT License
     See https://github.com/ishiko-cpp/errors/blob/main/LICENSE.txt
 */
@@ -7,13 +7,7 @@
 #include "Error.hpp"
 #include "Exception.hpp"
 
-namespace Ishiko
-{
-
-Error::Error() noexcept
-    : m_extension(0)
-{
-}
+using namespace Ishiko;
 
 Error::Error(int code, const ErrorCategory& category) noexcept
     : m_condition(code, category), m_extension(0)
@@ -56,11 +50,6 @@ bool Error::operator==(const ErrorCondition& other) const noexcept
 bool Error::operator!=(const ErrorCondition& other) const noexcept
 {
     return (m_condition != other);
-}
-
-const ErrorCondition& Error::condition() const noexcept
-{
-    return m_condition;
 }
 
 bool Error::tryGetMessage(std::string& message) const noexcept
@@ -134,7 +123,7 @@ ErrorExtension* Error::extension() noexcept
     return m_extension;
 }
 
-std::ostream& operator<<(std::ostream& os, const Error& error)
+std::ostream& Ishiko::operator<<(std::ostream& os, const Error& error)
 {
     os << error.condition();
     const ErrorExtension* extension = error.extension();
@@ -145,7 +134,7 @@ std::ostream& operator<<(std::ostream& os, const Error& error)
     return os;
 }
 
-void ThrowIf(const Error& error)
+void Ishiko::ThrowIf(const Error& error)
 {
     if (error)
     {
@@ -161,6 +150,4 @@ void ThrowIf(const Error& error)
             throw Exception(error.condition(), __FILE__, __LINE__);
         }
     }
-}
-
 }
