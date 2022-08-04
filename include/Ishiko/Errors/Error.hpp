@@ -25,12 +25,18 @@ public:
     {
     public:
         inline ~Extensions();
-        
+
         template<typename Extension> bool install() noexcept;
         
         template<typename Extension> bool tryGet(const Extension*& extension) const noexcept;
         template<typename Extension> bool tryGet(Extension*& extension) noexcept;
 
+        // TODO: make this noexcept
+        bool tryGetMessage(std::string& message) const noexcept;
+        // TODO: make this noexcept
+        bool tryGetOrigin(const char*& file, int& line) const noexcept;
+
+    private:
         ErrorExtension* m_extension{nullptr};
     };
 

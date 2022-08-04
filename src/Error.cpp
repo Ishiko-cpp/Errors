@@ -9,6 +9,30 @@
 
 using namespace Ishiko;
 
+bool Ishiko::Error::Extensions::tryGetMessage(std::string& message) const noexcept
+{
+    bool result = false;
+
+    if (m_extension)
+    {
+        result = m_extension->tryGetMessage(message);
+    }
+
+    return result;
+}
+
+bool Ishiko::Error::Extensions::tryGetOrigin(const char*& file, int& line) const noexcept
+{
+    bool result = false;
+
+    if (m_extension)
+    {
+        result = m_extension->tryGetOrigin(file, line);
+    }
+
+    return result;
+}
+
 Error::Error(int code, const ErrorCategory& category) noexcept
     : m_condition{code, category}
 {
@@ -38,9 +62,9 @@ bool Error::tryGetMessage(std::string& message) const noexcept
 {
     bool result = false;
 
-    if (*this && m_extensions.m_extension)
+    if (*this)
     {
-        result = m_extensions.m_extension->tryGetMessage(message);
+        result = m_extensions.tryGetMessage(message);
     }
 
     return result;
@@ -50,9 +74,9 @@ bool Error::tryGetOrigin(const char*& file, int& line) const noexcept
 {
     bool result = false;
 
-    if (*this && m_extensions.m_extension)
+    if (*this)
     {
-        result = m_extensions.m_extension->tryGetOrigin(file, line);
+        result = m_extensions.tryGetOrigin(file, line);
     }
 
     return result;
@@ -60,9 +84,10 @@ bool Error::tryGetOrigin(const char*& file, int& line) const noexcept
 
 void Error::fail(int code, const ErrorCategory& category) noexcept
 {
-    if (m_extensions.m_extension)
+    ErrorExtension* extension;
+    if (extensions().tryGet(extension))
     {
-        m_extensions.m_extension->onFail(code, "", "", -1);
+        extension->onFail(code, "", "", -1);
     }
     
     if (!m_condition)
@@ -73,9 +98,10 @@ void Error::fail(int code, const ErrorCategory& category) noexcept
 
 void Error::fail(int code, const ErrorCategory& category, const std::string& message, const char* file, int line) noexcept
 {
-    if (m_extensions.m_extension)
+    ErrorExtension* extension;
+    if (extensions().tryGet(extension))
     {
-        m_extensions.m_extension->onFail(code, message, file, line);
+        extension->onFail(code, message, file, line);
     }
 
     if (!m_condition)
