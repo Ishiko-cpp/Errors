@@ -50,7 +50,7 @@ void IOErrorExtensionTests::FailTest1(Test& test)
 void IOErrorExtensionTests::FailTest2(Test& test)
 {
     Error error;
-    error.install<IOErrorExtension>();
+    error.extensions().install<IOErrorExtension>();
     IOErrorExtension::Fail(error, IOErrorExtension::eEOF, "file1", 3);
 
     ISHIKO_TEST_FAIL_IF_NEQ(error.condition().value(), EIO);
@@ -103,7 +103,7 @@ void IOErrorExtensionTests::FailTest5(Test& test)
     std::fstream file("doesnotexist");
 
     Error error;
-    error.install<IOErrorExtension>();
+    error.extensions().install<IOErrorExtension>();
     IOErrorExtension::Fail(error, file, "file1", 3);
 
     ISHIKO_TEST_FAIL_IF_NOT(error);
@@ -125,7 +125,7 @@ void IOErrorExtensionTests::FailTest6(Test& test)
     file.read(buffer, 20);
 
     Error error;
-    error.install<IOErrorExtension>();
+    error.extensions().install<IOErrorExtension>();
     IOErrorExtension::Fail(error, file, "file1", 3);
 
     ISHIKO_TEST_FAIL_IF_NOT(error);
@@ -142,7 +142,7 @@ void IOErrorExtensionTests::FailTest6(Test& test)
 void IOErrorExtensionTests::StreamInsertionTest1(Test& test)
 {
     Error error;
-    error.install<IOErrorExtension>();
+    error.extensions().install<IOErrorExtension>();
     IOErrorExtension::Fail(error, IOErrorExtension::eEOF, "file1", 3);
 
     std::stringstream errorMessage;

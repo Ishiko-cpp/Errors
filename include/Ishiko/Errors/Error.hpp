@@ -26,6 +26,8 @@ public:
     public:
         inline ~Extensions();
 
+        template<typename Extension> bool install() noexcept;
+
         ErrorExtension* m_extension{nullptr};
     };
 
@@ -38,8 +40,8 @@ public:
     Error(const Error& other) = delete;
     Error(Error&& other) = delete;
 
-    template<typename Extension>
-    bool install() noexcept;
+    inline const Extensions& extensions() const noexcept;
+    inline Extensions& extensions() noexcept;
 
     template<typename Extension>
     bool tryGetExtension(const Extension*& extension) const noexcept;
@@ -118,14 +120,24 @@ void ThrowIf(const Error& error);
 }
 
 template<typename Extension>
-bool Ishiko::Error::install() noexcept
+bool Ishiko::Error::Extensions::install() noexcept
 {
-    if (m_extensions.m_extension)
+    if (m_extension)
     {
-        m_extensions.m_extension->release();
+        m_extension->release();
     }
-    m_extensions.m_extension = new(std::nothrow) Extension();
-    return m_extensions.m_extension;
+    m_extension = new(std::nothrow) Extension();
+    return m_extension;
+}
+
+const Ishiko::Error::Extensions& Ishiko::Error::extensions() const noexcept
+{
+    return m_extensions;
+}
+
+Ishiko::Error::Extensions& Ishiko::Error::extensions() noexcept
+{
+    return m_extensions;
 }
 
 template<typename Extension>

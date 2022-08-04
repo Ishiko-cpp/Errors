@@ -45,7 +45,7 @@ void MessageErrorExtensionTests::ConstructorTest2(Test& test)
 void MessageErrorExtensionTests::FailTest1(Test& test)
 {
     Error error;
-    error.install<MessageErrorExtension>();
+    error.extensions().install<MessageErrorExtension>();
     error.fail(-3, TestErrorCategory1::Get(), "a bad error", "file1", 3);
 
     const MessageErrorExtension* messageExtension;
@@ -61,7 +61,7 @@ void MessageErrorExtensionTests::FailTest1(Test& test)
 void MessageErrorExtensionTests::FailTest2(Test& test)
 {
     Error error;
-    error.install<MessageErrorExtension>();
+    error.extensions().install<MessageErrorExtension>();
     error.fail(-3, TestErrorCategory1::Get(), "a bad error", "file1", 3);
     error.fail(-4, TestErrorCategory1::Get(), "another bad error", "file2", 6);
 
@@ -78,7 +78,7 @@ void MessageErrorExtensionTests::FailTest2(Test& test)
 void MessageErrorExtensionTests::StreamInsertionTest1(Test& test)
 {
     Error error;
-    error.install<MessageErrorExtension>();
+    error.extensions().install<MessageErrorExtension>();
     error.fail(-3, TestErrorCategory1::Get(), "a bad error", "file1", 3);
 
     std::stringstream errorMessage;

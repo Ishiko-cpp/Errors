@@ -53,7 +53,7 @@ void StreamUtilitiesTests::FailIfCreateFileErrorTest2(Test& test)
     // We try to open the file instead of creating it because this is easier to implement and puts the stream in the
     // same state
     Error error;
-    error.install<MessageErrorExtension>();
+    error.extensions().install<MessageErrorExtension>();
     std::fstream file(path);
 
     bool failed = FailIfCreateFileError(error, file, path, "file1", 3);
@@ -109,7 +109,7 @@ void StreamUtilitiesTests::FailIfOpenFileErrorTest2(Test& test)
     const char* path = "doesnotexist";
 
     Error error;
-    error.install<MessageErrorExtension>();
+    error.extensions().install<MessageErrorExtension>();
     std::fstream file(path);
 
     bool failed = FailIfOpenFileError(error, file, path, "file1", 3);

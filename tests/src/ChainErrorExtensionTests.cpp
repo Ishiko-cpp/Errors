@@ -30,7 +30,7 @@ void ChainErrorExtensionTests::ConstructionTest1(Test& test)
 void ChainErrorExtensionTests::StreamInsertionTest1(Test& test)
 {
     Error error;
-    error.install<ChainErrorExtension>();
+    error.extensions().install<ChainErrorExtension>();
     error.fail(-3, TestErrorCategory1::Get(), "a bad error", "file1", 3);
 
     std::stringstream errorMessage;
@@ -43,7 +43,7 @@ void ChainErrorExtensionTests::StreamInsertionTest1(Test& test)
 void ChainErrorExtensionTests::StreamInsertionTest2(Test& test)
 {
     Error error;
-    error.install<ChainErrorExtension>();
+    error.extensions().install<ChainErrorExtension>();
     error.fail(-3, TestErrorCategory1::Get(), "a bad error", "file1", 3);
     error.fail(-1, TestErrorCategory1::Get());
 
