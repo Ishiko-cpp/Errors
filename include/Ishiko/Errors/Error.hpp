@@ -45,6 +45,9 @@ public:
     */
     ~Error() noexcept;
 
+    template<typename Extension>
+    void install();
+
     Error& operator=(const Error& other) = delete;
     Error& operator=(Error&& other) = delete;
 
@@ -125,6 +128,16 @@ std::ostream& operator<<(std::ostream& os, const Error& error);
 
 void ThrowIf(const Error& error);
 
+}
+
+template<typename Extension>
+void Ishiko::Error::install()
+{
+    if (m_extension)
+    {
+        m_extension->release();
+    }
+    m_extension = new Extension();
 }
 
 Ishiko::ErrorCondition Ishiko::Error::condition() const noexcept
