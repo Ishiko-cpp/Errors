@@ -45,7 +45,8 @@ void IOErrorExtensionTests::FailTest1(Test& test)
 
 void IOErrorExtensionTests::FailTest2(Test& test)
 {
-    Error error(new IOErrorExtension());
+    Error error;
+    error.install<IOErrorExtension>();
     IOErrorExtension::Fail(error, IOErrorExtension::eEOF, "file1", 3);
 
     ISHIKO_TEST_FAIL_IF_NEQ(error.condition().value(), EIO);
@@ -88,7 +89,8 @@ void IOErrorExtensionTests::FailTest5(Test& test)
 {
     std::fstream file("doesnotexist");
 
-    Error error(new IOErrorExtension());
+    Error error;
+    error.install<IOErrorExtension>();
     IOErrorExtension::Fail(error, file, "file1", 3);
 
     ISHIKO_TEST_FAIL_IF_NEQ(error.condition().value(), EIO);
@@ -108,7 +110,8 @@ void IOErrorExtensionTests::FailTest6(Test& test)
     char buffer[20];
     file.read(buffer, 20);
 
-    Error error(new IOErrorExtension());
+    Error error;
+    error.install<IOErrorExtension>();
     IOErrorExtension::Fail(error, file, "file1", 3);
 
     ISHIKO_TEST_FAIL_IF_NEQ(error.condition().value(), EIO);
@@ -123,7 +126,8 @@ void IOErrorExtensionTests::FailTest6(Test& test)
 
 void IOErrorExtensionTests::StreamInsertionTest1(Test& test)
 {
-    Error error(new IOErrorExtension());
+    Error error;
+    error.install<IOErrorExtension>();
     IOErrorExtension::Fail(error, IOErrorExtension::eEOF, "file1", 3);
 
     std::stringstream errorMessage;

@@ -14,11 +14,6 @@ Error::Error(int code, const ErrorCategory& category) noexcept
 {
 }
 
-Error::Error(ErrorExtension* extension) noexcept
-    : m_extension(extension)
-{
-}
-
 Error::Error(int code, const ErrorCategory& category, ErrorExtension* extension) noexcept
     : m_condition(code, category), m_extension(extension)
 {

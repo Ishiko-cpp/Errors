@@ -27,8 +27,6 @@ public:
     /// Creates a new error from the error code passed in as argument.
     Error(int code, const ErrorCategory& category) noexcept;
 
-    explicit Error(ErrorExtension* extension) noexcept;
-
     /// Creates a new error from the error code passed in as argument and sets an extension.
     /**
         @param code The error code.
