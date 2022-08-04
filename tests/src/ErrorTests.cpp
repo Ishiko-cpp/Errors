@@ -89,8 +89,8 @@ void ErrorTests::EqualityOperatorTest2(Test& test)
 
 void ErrorTests::InequalityOperatorTest1(Test& test)
 {
-    Ishiko::Error error1(-1, TestErrorCategory1::Get());
-    Ishiko::ErrorCondition error2(-1, TestErrorCategory1::Get());
+    Error error1(-1, TestErrorCategory1::Get());
+    ErrorCondition error2(-1, TestErrorCategory1::Get());
 
     ISHIKO_TEST_FAIL_IF(error1 != error2);
     ISHIKO_TEST_PASS();
@@ -98,8 +98,8 @@ void ErrorTests::InequalityOperatorTest1(Test& test)
 
 void ErrorTests::InequalityOperatorTest2(Test& test)
 {
-    Ishiko::Error error1(-1, TestErrorCategory1::Get());
-    Ishiko::ErrorCondition error2(-3, TestErrorCategory1::Get());
+    Error error1(-1, TestErrorCategory1::Get());
+    ErrorCondition error2(-3, TestErrorCategory1::Get());
 
     ISHIKO_TEST_FAIL_IF_NOT(error1 != error2);
 
@@ -124,7 +124,7 @@ void ErrorTests::FailTest1(Test& test)
 
 void ErrorTests::FailTest2(Test& test)
 {
-    Ishiko::Error error(4, TestErrorCategory1::Get());
+    Error error(4, TestErrorCategory1::Get());
     error.fail(-3, TestErrorCategory1::Get());
 
     ISHIKO_TEST_FAIL_IF_NOT(error);
@@ -135,9 +135,9 @@ void ErrorTests::FailTest2(Test& test)
 
 void ErrorTests::FailTest3(Test& test)
 {
-    Ishiko::Error error1(4, TestErrorCategory1::Get());
+    Error error1(4, TestErrorCategory1::Get());
 
-    Ishiko::Error error2;
+    Error error2;
     error2.fail(error1);
 
     ISHIKO_TEST_FAIL_IF_NOT(error2);
@@ -148,7 +148,7 @@ void ErrorTests::FailTest3(Test& test)
 
 void ErrorTests::SucceedTest1(Test& test)
 {
-    Ishiko::Error error(-1, TestErrorCategory1::Get());
+    Error error(-1, TestErrorCategory1::Get());
     error.succeed();
 
     ISHIKO_TEST_FAIL_IF(error);
@@ -159,7 +159,7 @@ void ErrorTests::SucceedTest1(Test& test)
 
 void ErrorTests::StreamInsertionTest1(Test& test)
 {
-    Ishiko::Error error;
+    Error error;
     
     std::stringstream errorMessage;
     errorMessage << error;
@@ -170,7 +170,7 @@ void ErrorTests::StreamInsertionTest1(Test& test)
 
 void ErrorTests::TryGetMessageTest1(Test& test)
 {
-    Ishiko::Error error;
+    Error error;
 
     std::string message;
     bool found = error.tryGetMessage(message);
@@ -181,7 +181,8 @@ void ErrorTests::TryGetMessageTest1(Test& test)
 
 void ErrorTests::TryGetMessageTest2(Test& test)
 {
-    Ishiko::Error error(new Ishiko::MessageErrorExtension());
+    Error error;
+    error.install<MessageErrorExtension>();
 
     std::string message;
     bool found = error.tryGetMessage(message);
@@ -192,7 +193,8 @@ void ErrorTests::TryGetMessageTest2(Test& test)
 
 void ErrorTests::TryGetMessageTest3(Test& test)
 {
-    Ishiko::Error error(new Ishiko::MessageErrorExtension());
+    Error error;
+    error.install<MessageErrorExtension>();
     error.fail(-3, TestErrorCategory1::Get());
 
     std::string message;
@@ -204,7 +206,8 @@ void ErrorTests::TryGetMessageTest3(Test& test)
 
 void ErrorTests::TryGetMessageTest4(Test& test)
 {
-    Ishiko::Error error(new Ishiko::MessageErrorExtension());
+    Error error;
+    error.install<MessageErrorExtension>();
     error.fail(-3, TestErrorCategory1::Get(), "a bad error", "file1", 3);
 
     std::string message;
@@ -217,7 +220,7 @@ void ErrorTests::TryGetMessageTest4(Test& test)
 
 void ErrorTests::TryGetOriginTest1(Test& test)
 {
-    Ishiko::Error error;
+    Error error;
 
     const char* file = nullptr;
     int line = -1;
@@ -229,7 +232,8 @@ void ErrorTests::TryGetOriginTest1(Test& test)
 
 void ErrorTests::TryGetOriginTest2(Test& test)
 {
-    Ishiko::Error error(new Ishiko::MessageErrorExtension());
+    Error error;
+    error.install<MessageErrorExtension>();
 
     const char* file = nullptr;
     int line = -1;
@@ -241,7 +245,8 @@ void ErrorTests::TryGetOriginTest2(Test& test)
 
 void ErrorTests::TryGetOriginTest3(Test& test)
 {
-    Ishiko::Error error(new Ishiko::MessageErrorExtension());
+    Error error;
+    error.install<MessageErrorExtension>();
     error.fail(-3, TestErrorCategory1::Get());
 
     const char* file = nullptr;
@@ -254,7 +259,8 @@ void ErrorTests::TryGetOriginTest3(Test& test)
 
 void ErrorTests::TryGetOriginTest4(Test& test)
 {
-    Ishiko::Error error(new Ishiko::MessageErrorExtension());
+    Error error;
+    error.install<MessageErrorExtension>();
     error.fail(-3, TestErrorCategory1::Get(), "a bad error", "file1", 3);
 
     const char* file = nullptr;
@@ -269,7 +275,7 @@ void ErrorTests::TryGetOriginTest4(Test& test)
 
 void ErrorTests::ThrowIfTest1(Test& test)
 {
-    Ishiko::Error error;
+    Error error;
 
     ThrowIf(error);
 
@@ -278,7 +284,7 @@ void ErrorTests::ThrowIfTest1(Test& test)
 
 void ErrorTests::ThrowIfTest2(Test& test)
 {
-    Ishiko::Error error(-1, TestErrorCategory1::Get());
+    Error error(-1, TestErrorCategory1::Get());
 
     try
     {
@@ -286,7 +292,7 @@ void ErrorTests::ThrowIfTest2(Test& test)
 
         ISHIKO_TEST_FAIL();
     }
-    catch (const Ishiko::Exception& e)
+    catch (const Exception& e)
     {
         ISHIKO_TEST_FAIL_IF_NEQ(e.condition().value(), -1);
         ISHIKO_TEST_FAIL_IF_NEQ(&e.condition().category(), &TestErrorCategory1::Get());
@@ -296,7 +302,8 @@ void ErrorTests::ThrowIfTest2(Test& test)
 
 void ErrorTests::ThrowIfTest3(Test& test)
 {
-    Ishiko::Error error(new Ishiko::MessageErrorExtension());
+    Error error;
+    error.install<MessageErrorExtension>();
     error.fail(-1, TestErrorCategory1::Get(), "a bad error", "file1", 3);
 
     try

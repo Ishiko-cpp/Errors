@@ -28,15 +28,15 @@ IOErrorExtensionTests::IOErrorExtensionTests(const TestNumber& number, const Tes
 
 void IOErrorExtensionTests::ConstructionTest1(Test& test)
 {
-    Ishiko::IOErrorExtension ioExtension;
+    IOErrorExtension ioExtension;
 
     ISHIKO_TEST_PASS();
 }
 
 void IOErrorExtensionTests::FailTest1(Test& test)
 {
-    Ishiko::Error error;
-    Ishiko::IOErrorExtension::Fail(error, Ishiko::IOErrorExtension::eEOF, "file1", 3);
+    Error error;
+    IOErrorExtension::Fail(error, IOErrorExtension::eEOF, "file1", 3);
 
     ISHIKO_TEST_FAIL_IF_NEQ(error.condition().value(), EIO);
     ISHIKO_TEST_FAIL_IF(error.extension());
@@ -45,15 +45,16 @@ void IOErrorExtensionTests::FailTest1(Test& test)
 
 void IOErrorExtensionTests::FailTest2(Test& test)
 {
-    Ishiko::Error error(new Ishiko::IOErrorExtension());
-    Ishiko::IOErrorExtension::Fail(error, Ishiko::IOErrorExtension::eEOF, "file1", 3);
+    Error error;
+    error.install<IOErrorExtension>();
+    IOErrorExtension::Fail(error, IOErrorExtension::eEOF, "file1", 3);
 
     ISHIKO_TEST_FAIL_IF_NEQ(error.condition().value(), EIO);
 
-    Ishiko::IOErrorExtension* ext = dynamic_cast<Ishiko::IOErrorExtension*>(error.extension());
+    IOErrorExtension* ext = dynamic_cast<IOErrorExtension*>(error.extension());
 
     ISHIKO_TEST_ABORT_IF_NOT(ext);
-    ISHIKO_TEST_FAIL_IF_NEQ(ext->code(), Ishiko::IOErrorExtension::eEOF);
+    ISHIKO_TEST_FAIL_IF_NEQ(ext->code(), IOErrorExtension::eEOF);
     ISHIKO_TEST_PASS();
 }
 
@@ -62,8 +63,8 @@ void IOErrorExtensionTests::FailTest3(Test& test)
     boost::filesystem::path inputPath = test.context().getDataPath("file1.txt");
     std::fstream file(inputPath.c_str());
 
-    Ishiko::Error error;
-    Ishiko::IOErrorExtension::Fail(error, file, "file1", 3);
+    Error error;
+    IOErrorExtension::Fail(error, file, "file1", 3);
 
     ISHIKO_TEST_FAIL_IF(error);
     ISHIKO_TEST_FAIL_IF_NEQ(error.condition().value(), 0);
@@ -75,8 +76,8 @@ void IOErrorExtensionTests::FailTest4(Test& test)
 {
     std::fstream file("doesnotexist");
 
-    Ishiko::Error error;
-    Ishiko::IOErrorExtension::Fail(error, file, "file1", 3);
+    Error error;
+    IOErrorExtension::Fail(error, file, "file1", 3);
 
     ISHIKO_TEST_FAIL_IF_NOT(error);
     ISHIKO_TEST_FAIL_IF_NEQ(error.condition().value(), EIO);
@@ -88,16 +89,17 @@ void IOErrorExtensionTests::FailTest5(Test& test)
 {
     std::fstream file("doesnotexist");
 
-    Ishiko::Error error(new Ishiko::IOErrorExtension());
-    Ishiko::IOErrorExtension::Fail(error, file, "file1", 3);
+    Error error;
+    error.install<IOErrorExtension>();
+    IOErrorExtension::Fail(error, file, "file1", 3);
 
     ISHIKO_TEST_FAIL_IF_NEQ(error.condition().value(), EIO);
     
-    Ishiko::IOErrorExtension* ext = dynamic_cast<Ishiko::IOErrorExtension*>(error.extension());
+    IOErrorExtension* ext = dynamic_cast<IOErrorExtension*>(error.extension());
 
     ISHIKO_TEST_FAIL_IF_NOT(error);
     ISHIKO_TEST_ABORT_IF_NOT(ext);
-    ISHIKO_TEST_FAIL_IF_NEQ(ext->code(), Ishiko::IOErrorExtension::eError);
+    ISHIKO_TEST_FAIL_IF_NEQ(ext->code(), IOErrorExtension::eError);
     ISHIKO_TEST_PASS();
 }
 
@@ -108,23 +110,25 @@ void IOErrorExtensionTests::FailTest6(Test& test)
     char buffer[20];
     file.read(buffer, 20);
 
-    Ishiko::Error error(new Ishiko::IOErrorExtension());
-    Ishiko::IOErrorExtension::Fail(error, file, "file1", 3);
+    Error error;
+    error.install<IOErrorExtension>();
+    IOErrorExtension::Fail(error, file, "file1", 3);
 
     ISHIKO_TEST_FAIL_IF_NEQ(error.condition().value(), EIO);
 
-    Ishiko::IOErrorExtension* ext = dynamic_cast<Ishiko::IOErrorExtension*>(error.extension());
+    IOErrorExtension* ext = dynamic_cast<IOErrorExtension*>(error.extension());
 
     ISHIKO_TEST_FAIL_IF_NOT(error);
     ISHIKO_TEST_ABORT_IF_NOT(ext);
-    ISHIKO_TEST_FAIL_IF_NEQ(ext->code(), Ishiko::IOErrorExtension::eEOF);
+    ISHIKO_TEST_FAIL_IF_NEQ(ext->code(), IOErrorExtension::eEOF);
     ISHIKO_TEST_PASS();
 }
 
 void IOErrorExtensionTests::StreamInsertionTest1(Test& test)
 {
-    Error error(new Ishiko::IOErrorExtension());
-    IOErrorExtension::Fail(error, Ishiko::IOErrorExtension::eEOF, "file1", 3);
+    Error error;
+    error.install<IOErrorExtension>();
+    IOErrorExtension::Fail(error, IOErrorExtension::eEOF, "file1", 3);
 
     std::stringstream errorMessage;
     errorMessage << error;

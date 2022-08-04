@@ -9,6 +9,7 @@
 #include "Helpers/TestErrorCategory2.hpp"
 #include "Ishiko/Errors/ErrorCondition.hpp"
 #include "Ishiko/Errors/SuccessCategory.hpp"
+#include <system_error>
 
 using namespace Ishiko;
 
@@ -31,7 +32,7 @@ void ErrorConditionTests::ConstructorTest1(Test& test)
 {
     Ishiko::ErrorCondition error{};
 
-    ISHIKO_TEST_FAIL_IF_NEQ(sizeof(error), 2*sizeof(void*));
+    ISHIKO_TEST_FAIL_IF_NEQ(sizeof(error), sizeof(std::error_condition));
     ISHIKO_TEST_FAIL_IF(error);
     ISHIKO_TEST_FAIL_IF_NEQ(error.value(), 0);
     ISHIKO_TEST_PASS();

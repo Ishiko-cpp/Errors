@@ -27,8 +27,6 @@ public:
     /// Creates a new error from the error code passed in as argument.
     Error(int code, const ErrorCategory& category) noexcept;
 
-    explicit Error(ErrorExtension* extension) noexcept;
-
     /// Creates a new error from the error code passed in as argument and sets an extension.
     /**
         @param code The error code.
@@ -44,6 +42,9 @@ public:
         The destructor will call ErrorExtension::release() on the extension.
     */
     ~Error() noexcept;
+
+    template<typename Extension>
+    void install();
 
     Error& operator=(const Error& other) = delete;
     Error& operator=(Error&& other) = delete;
@@ -125,6 +126,16 @@ std::ostream& operator<<(std::ostream& os, const Error& error);
 
 void ThrowIf(const Error& error);
 
+}
+
+template<typename Extension>
+void Ishiko::Error::install()
+{
+    if (m_extension)
+    {
+        m_extension->release();
+    }
+    m_extension = new Extension();
 }
 
 Ishiko::ErrorCondition Ishiko::Error::condition() const noexcept
