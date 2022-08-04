@@ -159,10 +159,9 @@
     <ClCompile Include="..\..\src\main.cpp" />
     <ClCompile Include="..\..\src\ErrorConditionTests.cpp" />
     <ClCompile Include="..\..\src\ErrorTests.cpp" />
-    <ClCompile Include="..\..\src\MessageErrorExtensionTests.cpp" />
-    <ClCompile Include="..\..\src\IOErrorExtensionTests.cpp" />
-    <ClCompile Include="..\..\src\ChainErrorExtensionTests.cpp" />
     <ClCompile Include="..\..\src\ExceptionTests.cpp" />
+    <ClCompile Include="..\..\src\IOErrorExtensionTests.cpp" />
+    <ClCompile Include="..\..\src\MessageErrorExtensionTests.cpp" />
     <ClCompile Include="..\..\src\StreamUtilitiesTests.cpp" />
     <ClCompile Include="..\..\src\Helpers\TestErrorCategory1.cpp" />
     <ClCompile Include="..\..\src\Helpers\TestErrorCategory2.cpp" />
@@ -170,10 +169,9 @@
   <ItemGroup>
     <ClInclude Include="..\..\src\ErrorConditionTests.hpp" />
     <ClInclude Include="..\..\src\ErrorTests.hpp" />
-    <ClInclude Include="..\..\src\MessageErrorExtensionTests.hpp" />
-    <ClInclude Include="..\..\src\IOErrorExtensionTests.hpp" />
-    <ClInclude Include="..\..\src\ChainErrorExtensionTests.hpp" />
     <ClInclude Include="..\..\src\ExceptionTests.hpp" />
+    <ClInclude Include="..\..\src\IOErrorExtensionTests.hpp" />
+    <ClInclude Include="..\..\src\MessageErrorExtensionTests.hpp" />
     <ClInclude Include="..\..\src\StreamUtilitiesTests.hpp" />
     <ClInclude Include="..\..\src\Helpers\TestErrorCategory1.hpp" />
     <ClInclude Include="..\..\src\Helpers\TestErrorCategory2.hpp" />

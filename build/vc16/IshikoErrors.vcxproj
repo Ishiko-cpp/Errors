@@ -152,29 +152,27 @@
   <ItemGroup>
     <ClCompile Include="..\..\src\Error.cpp" />
     <ClCompile Include="..\..\src\ErrorCondition.cpp" />
-    <ClCompile Include="..\..\src\SuccessCategory.cpp" />
-    <ClCompile Include="..\..\src\IOErrorCategory.cpp" />
     <ClCompile Include="..\..\src\ErrorExtension.cpp" />
-    <ClCompile Include="..\..\src\ChainErrorExtension.cpp" />
-    <ClCompile Include="..\..\src\MessageErrorExtension.cpp" />
-    <ClCompile Include="..\..\src\IOErrorExtension.cpp" />
     <ClCompile Include="..\..\src\Exception.cpp" />
+    <ClCompile Include="..\..\src\IOErrorCategory.cpp" />
+    <ClCompile Include="..\..\src\IOErrorExtension.cpp" />
+    <ClCompile Include="..\..\src\MessageErrorExtension.cpp" />
     <ClCompile Include="..\..\src\StreamUtilities.cpp" />
+    <ClCompile Include="..\..\src\SuccessCategory.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\include\Ishiko\Errors.hpp" />
     <ClInclude Include="..\..\include\Ishiko\Errors\Error.hpp" />
     <ClInclude Include="..\..\include\Ishiko\Errors\ErrorCondition.hpp" />
     <ClInclude Include="..\..\include\Ishiko\Errors\ErrorCategory.hpp" />
-    <ClInclude Include="..\..\include\Ishiko\Errors\SuccessCategory.hpp" />
-    <ClInclude Include="..\..\include\Ishiko\Errors\IOErrorCategory.hpp" />
     <ClInclude Include="..\..\include\Ishiko\Errors\ErrorExtension.hpp" />
-    <ClInclude Include="..\..\include\Ishiko\Errors\ChainErrorExtension.hpp" />
-    <ClInclude Include="..\..\include\Ishiko\Errors\MessageErrorExtension.hpp" />
-    <ClInclude Include="..\..\include\Ishiko\Errors\IOErrorExtension.hpp" />
     <ClInclude Include="..\..\include\Ishiko\Errors\Exception.hpp" />
+    <ClInclude Include="..\..\include\Ishiko\Errors\IOErrorCategory.hpp" />
+    <ClInclude Include="..\..\include\Ishiko\Errors\IOErrorExtension.hpp" />
+    <ClInclude Include="..\..\include\Ishiko\Errors\linkoptions.hpp" />
+    <ClInclude Include="..\..\include\Ishiko\Errors\MessageErrorExtension.hpp" />
     <ClInclude Include="..\..\include\Ishiko\Errors\StreamUtilities.hpp" />
-    <ClInclude Include="..\..\include\Ishiko\Errors\linkoptions.h" />
+    <ClInclude Include="..\..\include\Ishiko\Errors\SuccessCategory.hpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
