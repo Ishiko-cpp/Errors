@@ -23,8 +23,6 @@ public:
     */
     virtual void release() noexcept;
 
-    virtual void onFail(int code, const std::string& message, const char* file, int line) noexcept;
-
     virtual std::ostream& operator<<(std::ostream& os) const;
 
 protected:

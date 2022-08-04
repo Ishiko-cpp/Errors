@@ -87,12 +87,6 @@ bool Error::tryGetOrigin(const char*& file, int& line) const noexcept
 
 void Error::fail(int code, const ErrorCategory& category) noexcept
 {
-    ErrorExtension* extension;
-    if (extensions().tryGet(extension))
-    {
-        extension->onFail(code, "", "", -1);
-    }
-    
     if (!m_condition)
     {
         m_condition.fail(code, category);
@@ -101,14 +95,9 @@ void Error::fail(int code, const ErrorCategory& category) noexcept
 
 void Error::fail(int code, const ErrorCategory& category, const std::string& message, const char* file, int line) noexcept
 {
-    ErrorExtension* extension;
-    if (extensions().tryGet(extension))
-    {
-        extension->onFail(code, message, file, line);
-    }
-
     if (!m_condition)
     {
+        MessageErrorExtension::Set(*this, message, file, line);
         m_condition.fail(code, category);
     }
 }

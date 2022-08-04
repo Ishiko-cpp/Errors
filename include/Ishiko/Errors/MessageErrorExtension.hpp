@@ -7,6 +7,7 @@
 #ifndef GUARD_ISHIKO_CPP_ERRORS_MESSAGEERROREXTENSION_HPP
 #define GUARD_ISHIKO_CPP_ERRORS_MESSAGEERROREXTENSION_HPP
 
+#include "Error.hpp"
 #include "ErrorExtension.hpp"
 #include <string>
 
@@ -19,10 +20,12 @@ public:
     MessageErrorExtension();
     MessageErrorExtension(const std::string& message, const char* file, int line);
 
+    static void Set(Error& error, const std::string& message, const char* file, int line);
+
     bool tryGetMessage(std::string& message) const noexcept;
     bool tryGetOrigin(const char*& file, int& line) const noexcept;
 
-    void onFail(int code, const std::string& message, const char* file, int line) noexcept override;
+    void onFail(const std::string& message, const char* file, int line) noexcept;
 
     std::ostream& operator<<(std::ostream& os) const override;
 
