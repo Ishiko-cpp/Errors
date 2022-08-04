@@ -10,15 +10,15 @@
 using namespace Ishiko;
 
 Error::Error(int code, const ErrorCategory& category) noexcept
-    : m_condition(code, category), m_extension(0)
+    : m_condition{code, category}
 {
 }
 
 Error::~Error() noexcept
 {
-    if (m_extension)
+    if (m_extensions.m_extension)
     {
-        m_extension->release();
+        m_extensions.m_extension->release();
     }
 }
 
@@ -46,9 +46,9 @@ bool Error::tryGetMessage(std::string& message) const noexcept
 {
     bool result = false;
 
-    if (*this && m_extension)
+    if (*this && m_extensions.m_extension)
     {
-        result = m_extension->tryGetMessage(message);
+        result = m_extensions.m_extension->tryGetMessage(message);
     }
 
     return result;
@@ -58,9 +58,9 @@ bool Error::tryGetOrigin(const char*& file, int& line) const noexcept
 {
     bool result = false;
 
-    if (*this && m_extension)
+    if (*this && m_extensions.m_extension)
     {
-        result = m_extension->tryGetOrigin(file, line);
+        result = m_extensions.m_extension->tryGetOrigin(file, line);
     }
 
     return result;
@@ -68,9 +68,9 @@ bool Error::tryGetOrigin(const char*& file, int& line) const noexcept
 
 void Error::fail(int code, const ErrorCategory& category) noexcept
 {
-    if (m_extension)
+    if (m_extensions.m_extension)
     {
-        m_extension->onFail(code, "", "", -1);
+        m_extensions.m_extension->onFail(code, "", "", -1);
     }
     
     if (!m_condition)
@@ -81,9 +81,9 @@ void Error::fail(int code, const ErrorCategory& category) noexcept
 
 void Error::fail(int code, const ErrorCategory& category, const std::string& message, const char* file, int line) noexcept
 {
-    if (m_extension)
+    if (m_extensions.m_extension)
     {
-        m_extension->onFail(code, message, file, line);
+        m_extensions.m_extension->onFail(code, message, file, line);
     }
 
     if (!m_condition)

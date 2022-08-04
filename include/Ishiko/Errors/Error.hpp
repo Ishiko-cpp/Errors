@@ -21,6 +21,12 @@ namespace Ishiko
 class Error
 {
 public:
+    class Extensions
+    {
+    public:
+        ErrorExtension* m_extension{nullptr};
+    };
+
     /// Creates a new error with an error code set to 0.
     Error() noexcept = default;
 
@@ -106,7 +112,7 @@ public:
 
 private:
     ErrorCondition m_condition;
-    ErrorExtension* m_extension{nullptr};
+    Extensions m_extensions;
 };
 
 std::ostream& operator<<(std::ostream& os, const Error& error);
@@ -118,18 +124,18 @@ void ThrowIf(const Error& error);
 template<typename Extension>
 bool Ishiko::Error::install() noexcept
 {
-    if (m_extension)
+    if (m_extensions.m_extension)
     {
-        m_extension->release();
+        m_extensions.m_extension->release();
     }
-    m_extension = new(std::nothrow) Extension();
-    return m_extension;
+    m_extensions.m_extension = new(std::nothrow) Extension();
+    return m_extensions.m_extension;
 }
 
 template<typename Extension>
 bool Ishiko::Error::tryGetExtension(const Extension*& extension) const noexcept
 {
-    const Extension* result = dynamic_cast<const Extension*>(m_extension);
+    const Extension* result = dynamic_cast<const Extension*>(m_extensions.m_extension);
     if (result)
     {
         extension = result;
@@ -144,7 +150,7 @@ bool Ishiko::Error::tryGetExtension(const Extension*& extension) const noexcept
 template<typename Extension>
 bool Ishiko::Error::tryGetExtension(Extension*& extension) noexcept
 {
-    Extension* result = dynamic_cast<Extension*>(m_extension);
+    Extension* result = dynamic_cast<Extension*>(m_extensions.m_extension);
     if (result)
     {
         extension = result;
