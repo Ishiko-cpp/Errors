@@ -1,11 +1,11 @@
 /*
-    Copyright (c) 2019-2021 Xavier Leclercq
+    Copyright (c) 2019-2022 Xavier Leclercq
     Released under the MIT License
     See https://github.com/ishiko-cpp/errors/blob/main/LICENSE.txt
 */
 
-#ifndef _ISHIKO_CPP_ERRORS_ERROREXTENSION_HPP_
-#define _ISHIKO_CPP_ERRORS_ERROREXTENSION_HPP_
+#ifndef GUARD_ISHIKO_CPP_ERRORS_ERROREXTENSION_HPP
+#define GUARD_ISHIKO_CPP_ERRORS_ERROREXTENSION_HPP
 
 #include <ostream>
 #include <string>
@@ -22,10 +22,6 @@ public:
         The default implementation calls delete(this).
     */
     virtual void release() noexcept;
-
-    virtual bool tryGetMessage(std::string& message) const noexcept;
-
-    virtual bool tryGetOrigin(const char*& file, int& line) const noexcept;
 
     virtual void onFail(int code, const std::string& message, const char* file, int line) noexcept;
 
