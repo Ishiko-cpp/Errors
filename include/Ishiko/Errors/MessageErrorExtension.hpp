@@ -19,8 +19,8 @@ public:
     MessageErrorExtension();
     MessageErrorExtension(const std::string& message, const char* file, int line);
 
-    bool tryGetMessage(std::string& message) const noexcept override;
-    bool tryGetOrigin(const char*& file, int& line) const noexcept override;
+    bool tryGetMessage(std::string& message) const noexcept;
+    bool tryGetOrigin(const char*& file, int& line) const noexcept;
 
     void onFail(int code, const std::string& message, const char* file, int line) noexcept override;
 

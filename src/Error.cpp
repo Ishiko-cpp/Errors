@@ -5,6 +5,7 @@
 */
 
 #include "Error.hpp"
+#include "MessageErrorExtension.hpp"
 #include "Exception.hpp"
 
 using namespace Ishiko;
@@ -13,9 +14,10 @@ bool Ishiko::Error::Extensions::tryGetMessage(std::string& message) const noexce
 {
     bool result = false;
 
-    if (m_extension)
+    const MessageErrorExtension* extension;
+    if (tryGet(extension))
     {
-        result = m_extension->tryGetMessage(message);
+        result = extension->tryGetMessage(message);
     }
 
     return result;
@@ -25,9 +27,10 @@ bool Ishiko::Error::Extensions::tryGetOrigin(const char*& file, int& line) const
 {
     bool result = false;
 
-    if (m_extension)
+    const MessageErrorExtension* extension;
+    if (tryGet(extension))
     {
-        result = m_extension->tryGetOrigin(file, line);
+        result = extension->tryGetOrigin(file, line);
     }
 
     return result;
