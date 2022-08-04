@@ -31,32 +31,31 @@ library IshikoErrors
     headers
     {
         ../../include/Ishiko/Errors.hpp
-
+        ../../include/Ishiko/Errors/ChainErrorExtension.hpp
         ../../include/Ishiko/Errors/Error.hpp
         ../../include/Ishiko/Errors/ErrorCondition.hpp
         ../../include/Ishiko/Errors/ErrorCategory.hpp
-        ../../include/Ishiko/Errors/SuccessCategory.hpp
-        ../../include/Ishiko/Errors/IOErrorCategory.hpp
         ../../include/Ishiko/Errors/ErrorExtension.hpp
-        ../../include/Ishiko/Errors/ChainErrorExtension.hpp
-        ../../include/Ishiko/Errors/MessageErrorExtension.hpp
-        ../../include/Ishiko/Errors/IOErrorExtension.hpp
         ../../include/Ishiko/Errors/Exception.hpp
+        ../../include/Ishiko/Errors/IOErrorCategory.hpp
+        ../../include/Ishiko/Errors/IOErrorExtension.hpp
+        ../../include/Ishiko/Errors/linkoptions.hpp
+        ../../include/Ishiko/Errors/MessageErrorExtension.hpp
         ../../include/Ishiko/Errors/StreamUtilities.hpp
-        ../../include/Ishiko/Errors/linkoptions.h
+        ../../include/Ishiko/Errors/SuccessCategory.hpp
     }
 
     sources
     {
+        ../../src/ChainErrorExtension.cpp
         ../../src/Error.cpp
         ../../src/ErrorCondition.cpp
-        ../../src/SuccessCategory.cpp
-        ../../src/IOErrorCategory.cpp
         ../../src/ErrorExtension.cpp
-        ../../src/ChainErrorExtension.cpp
-        ../../src/MessageErrorExtension.cpp
-        ../../src/IOErrorExtension.cpp
         ../../src/Exception.cpp
+        ../../src/IOErrorCategory.cpp
+        ../../src/IOErrorExtension.cpp
+        ../../src/MessageErrorExtension.cpp
         ../../src/StreamUtilities.cpp
+        ../../src/SuccessCategory.cpp
     }
 }
