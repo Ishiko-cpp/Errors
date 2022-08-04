@@ -14,14 +14,6 @@ Error::Error(int code, const ErrorCategory& category) noexcept
 {
 }
 
-Error::~Error() noexcept
-{
-    if (m_extensions.m_extension)
-    {
-        m_extensions.m_extension->release();
-    }
-}
-
 Error::operator bool() const noexcept
 {
     return (bool)m_condition;

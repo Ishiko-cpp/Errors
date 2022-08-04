@@ -24,6 +24,8 @@ public:
     class Extensions
     {
     public:
+        inline ~Extensions();
+
         ErrorExtension* m_extension{nullptr};
     };
 
@@ -35,12 +37,6 @@ public:
 
     Error(const Error& other) = delete;
     Error(Error&& other) = delete;
-
-    /// Destructor.
-    /**
-        The destructor will call ErrorExtension::release() on the extension.
-    */
-    ~Error() noexcept;
 
     template<typename Extension>
     bool install() noexcept;
@@ -165,6 +161,14 @@ bool Ishiko::Error::tryGetExtension(Extension*& extension) noexcept
 Ishiko::ErrorCondition Ishiko::Error::condition() const noexcept
 {
     return m_condition;
+}
+
+Ishiko::Error::Extensions::~Extensions()
+{
+    if (m_extension)
+    {
+        m_extension->release();
+    }
 }
 
 #endif
