@@ -27,13 +27,6 @@ public:
     /// Creates a new error from the error code passed in as argument.
     Error(int code, const ErrorCategory& category) noexcept;
 
-    /// Creates a new error from the error code passed in as argument and sets an extension.
-    /**
-        @param code The error code.
-        @param extension The extension.
-    */
-    Error(int code, const ErrorCategory& category, ErrorExtension* extension) noexcept;
-
     Error(const Error& other) = delete;
     Error(Error&& other) = delete;
 
@@ -44,7 +37,7 @@ public:
     ~Error() noexcept;
 
     template<typename Extension>
-    void install();
+    bool install() noexcept;
 
     Error& operator=(const Error& other) = delete;
     Error& operator=(Error&& other) = delete;
@@ -129,13 +122,14 @@ void ThrowIf(const Error& error);
 }
 
 template<typename Extension>
-void Ishiko::Error::install()
+bool Ishiko::Error::install() noexcept
 {
     if (m_extension)
     {
         m_extension->release();
     }
-    m_extension = new Extension();
+    m_extension = new(std::nothrow) Extension();
+    return m_extension;
 }
 
 Ishiko::ErrorCondition Ishiko::Error::condition() const noexcept
