@@ -41,7 +41,7 @@ void IOErrorExtensionTests::FailTest1(Test& test)
     ISHIKO_TEST_FAIL_IF_NEQ(error.condition().value(), EIO);
 
     const IOErrorExtension* extension;
-    bool found = error.tryGetExtension(extension);
+    bool found = error.extensions().tryGet(extension);
 
     ISHIKO_TEST_FAIL_IF(found);
     ISHIKO_TEST_PASS();
@@ -56,7 +56,7 @@ void IOErrorExtensionTests::FailTest2(Test& test)
     ISHIKO_TEST_FAIL_IF_NEQ(error.condition().value(), EIO);
 
     const IOErrorExtension* extension;
-    bool found = error.tryGetExtension(extension);
+    bool found = error.extensions().tryGet(extension);
 
     ISHIKO_TEST_ABORT_IF_NOT(found);
     ISHIKO_TEST_FAIL_IF_NEQ(extension->code(), IOErrorExtension::eEOF);
@@ -75,7 +75,7 @@ void IOErrorExtensionTests::FailTest3(Test& test)
     ISHIKO_TEST_FAIL_IF_NEQ(error.condition().value(), 0);
 
     const IOErrorExtension* extension;
-    bool found = error.tryGetExtension(extension);
+    bool found = error.extensions().tryGet(extension);
 
     ISHIKO_TEST_FAIL_IF(found);
     ISHIKO_TEST_PASS();
@@ -92,7 +92,7 @@ void IOErrorExtensionTests::FailTest4(Test& test)
     ISHIKO_TEST_FAIL_IF_NEQ(error.condition().value(), EIO);
 
     const IOErrorExtension* extension;
-    bool found = error.tryGetExtension(extension);
+    bool found = error.extensions().tryGet(extension);
 
     ISHIKO_TEST_FAIL_IF(found);
     ISHIKO_TEST_PASS();
@@ -110,7 +110,7 @@ void IOErrorExtensionTests::FailTest5(Test& test)
     ISHIKO_TEST_FAIL_IF_NEQ(error.condition().value(), EIO);
     
     const IOErrorExtension* extension;
-    bool found = error.tryGetExtension(extension);
+    bool found = error.extensions().tryGet(extension);
 
     ISHIKO_TEST_ABORT_IF_NOT(found);
     ISHIKO_TEST_FAIL_IF_NEQ(extension->code(), IOErrorExtension::eError);
@@ -132,7 +132,7 @@ void IOErrorExtensionTests::FailTest6(Test& test)
     ISHIKO_TEST_FAIL_IF_NEQ(error.condition().value(), EIO);
 
     const IOErrorExtension* extension;
-    bool found = error.tryGetExtension(extension);
+    bool found = error.extensions().tryGet(extension);
 
     ISHIKO_TEST_ABORT_IF_NOT(found);
     ISHIKO_TEST_FAIL_IF_NEQ(extension->code(), IOErrorExtension::eEOF);

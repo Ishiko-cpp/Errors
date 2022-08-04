@@ -100,7 +100,7 @@ std::ostream& Ishiko::operator<<(std::ostream& os, const Error& error)
     os << error.condition();
     
     const ErrorExtension* extension;
-    if (error.tryGetExtension(extension))
+    if (error.extensions().tryGet(extension))
     {
         extension->operator<<(os);
     }

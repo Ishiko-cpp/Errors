@@ -25,8 +25,11 @@ public:
     {
     public:
         inline ~Extensions();
-
+        
         template<typename Extension> bool install() noexcept;
+        
+        template<typename Extension> bool tryGet(const Extension*& extension) const noexcept;
+        template<typename Extension> bool tryGet(Extension*& extension) noexcept;
 
         ErrorExtension* m_extension{nullptr};
     };
@@ -42,12 +45,6 @@ public:
 
     inline const Extensions& extensions() const noexcept;
     inline Extensions& extensions() noexcept;
-
-    template<typename Extension>
-    bool tryGetExtension(const Extension*& extension) const noexcept;
-
-    template<typename Extension>
-    bool tryGetExtension(Extension*& extension) noexcept;
 
     Error& operator=(const Error& other) = delete;
     Error& operator=(Error&& other) = delete;
@@ -130,6 +127,36 @@ bool Ishiko::Error::Extensions::install() noexcept
     return m_extension;
 }
 
+template<typename Extension>
+bool Ishiko::Error::Extensions::tryGet(const Extension*& extension) const noexcept
+{
+    const Extension* result = dynamic_cast<const Extension*>(m_extension);
+    if (result)
+    {
+        extension = result;
+        return true;
+    }
+    else
+    {
+        return false;
+    }
+}
+
+template<typename Extension>
+bool Ishiko::Error::Extensions::tryGet(Extension*& extension) noexcept
+{
+    Extension* result = dynamic_cast<Extension*>(m_extension);
+    if (result)
+    {
+        extension = result;
+        return true;
+    }
+    else
+    {
+        return false;
+    }
+}
+
 const Ishiko::Error::Extensions& Ishiko::Error::extensions() const noexcept
 {
     return m_extensions;
@@ -138,36 +165,6 @@ const Ishiko::Error::Extensions& Ishiko::Error::extensions() const noexcept
 Ishiko::Error::Extensions& Ishiko::Error::extensions() noexcept
 {
     return m_extensions;
-}
-
-template<typename Extension>
-bool Ishiko::Error::tryGetExtension(const Extension*& extension) const noexcept
-{
-    const Extension* result = dynamic_cast<const Extension*>(m_extensions.m_extension);
-    if (result)
-    {
-        extension = result;
-        return true;
-    }
-    else
-    {
-        return false;
-    }
-}
-
-template<typename Extension>
-bool Ishiko::Error::tryGetExtension(Extension*& extension) noexcept
-{
-    Extension* result = dynamic_cast<Extension*>(m_extensions.m_extension);
-    if (result)
-    {
-        extension = result;
-        return true;
-    }
-    else
-    {
-        return false;
-    }
 }
 
 Ishiko::ErrorCondition Ishiko::Error::condition() const noexcept

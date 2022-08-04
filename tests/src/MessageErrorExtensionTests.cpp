@@ -49,7 +49,7 @@ void MessageErrorExtensionTests::FailTest1(Test& test)
     error.fail(-3, TestErrorCategory1::Get(), "a bad error", "file1", 3);
 
     const MessageErrorExtension* messageExtension;
-    bool found = error.tryGetExtension(messageExtension);
+    bool found = error.extensions().tryGet(messageExtension);
 
     ISHIKO_TEST_ABORT_IF_NOT(found);
     ISHIKO_TEST_FAIL_IF_NEQ(messageExtension->message(), "a bad error");
@@ -66,7 +66,7 @@ void MessageErrorExtensionTests::FailTest2(Test& test)
     error.fail(-4, TestErrorCategory1::Get(), "another bad error", "file2", 6);
 
     const MessageErrorExtension* messageExtension;
-    bool found = error.tryGetExtension(messageExtension);
+    bool found = error.extensions().tryGet(messageExtension);
 
     ISHIKO_TEST_ABORT_IF_NOT(found);
     ISHIKO_TEST_FAIL_IF_NEQ(messageExtension->message(), "a bad error");
