@@ -4,8 +4,8 @@
     See https://github.com/ishiko-cpp/errors/blob/main/LICENSE.txt
 */
 
-#ifndef _ISHIKO_CPP_ERRORS_ERROREXTENSION_HPP_
-#define _ISHIKO_CPP_ERRORS_ERROREXTENSION_HPP_
+#ifndef GUARD_ISHIKO_CPP_ERRORS_ERROREXTENSION_HPP
+#define GUARD_ISHIKO_CPP_ERRORS_ERROREXTENSION_HPP
 
 #include <ostream>
 #include <string>
