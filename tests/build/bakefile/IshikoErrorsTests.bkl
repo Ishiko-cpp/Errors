@@ -25,10 +25,9 @@ program IshikoErrorsTests : IshikoErrors, IshikoTestFrameworkCore
     {
         ../../src/ErrorConditionTests.hpp
         ../../src/ErrorTests.hpp
-        ../../src/MessageErrorExtensionTests.hpp
-        ../../src/IOErrorExtensionTests.hpp
-        ../../src/ChainErrorExtensionTests.hpp
         ../../src/ExceptionTests.hpp
+        ../../src/IOErrorExtensionTests.hpp
+        ../../src/MessageErrorExtensionTests.hpp
         ../../src/StreamUtilitiesTests.hpp
         ../../src/Helpers/TestErrorCategory1.hpp
         ../../src/Helpers/TestErrorCategory2.hpp
@@ -39,10 +38,9 @@ program IshikoErrorsTests : IshikoErrors, IshikoTestFrameworkCore
         ../../src/main.cpp
         ../../src/ErrorConditionTests.cpp
         ../../src/ErrorTests.cpp
-        ../../src/MessageErrorExtensionTests.cpp
-        ../../src/IOErrorExtensionTests.cpp
-        ../../src/ChainErrorExtensionTests.cpp
         ../../src/ExceptionTests.cpp
+        ../../src/IOErrorExtensionTests.cpp
+        ../../src/MessageErrorExtensionTests.cpp
         ../../src/StreamUtilitiesTests.cpp
         ../../src/Helpers/TestErrorCategory1.cpp
         ../../src/Helpers/TestErrorCategory2.cpp

@@ -23,16 +23,13 @@
     <ClInclude Include="..\..\src\ErrorTests.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\MessageErrorExtensionTests.hpp">
+    <ClInclude Include="..\..\src\ExceptionTests.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\src\IOErrorExtensionTests.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\ChainErrorExtensionTests.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\ExceptionTests.hpp">
+    <ClInclude Include="..\..\src\MessageErrorExtensionTests.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\src\StreamUtilitiesTests.hpp">
@@ -55,16 +52,13 @@
     <ClCompile Include="..\..\src\ErrorTests.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\MessageErrorExtensionTests.cpp">
+    <ClCompile Include="..\..\src\ExceptionTests.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\IOErrorExtensionTests.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\ChainErrorExtensionTests.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\ExceptionTests.cpp">
+    <ClCompile Include="..\..\src\MessageErrorExtensionTests.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\StreamUtilitiesTests.cpp">

@@ -19,6 +19,15 @@ MessageErrorExtension::MessageErrorExtension(const std::string& message, const c
 {
 }
 
+void MessageErrorExtension::Set(Error& error, const std::string& message, const char* file, int line)
+{
+    MessageErrorExtension* extension;
+    if (error.extensions().tryGet(extension))
+    {
+        extension->onFail(message, file, line);
+    }
+}
+
 bool MessageErrorExtension::tryGetMessage(std::string& message) const noexcept
 {
     bool result = false;
@@ -46,7 +55,7 @@ bool MessageErrorExtension::tryGetOrigin(const char*& file, int& line) const noe
     return result;
 }
 
-void MessageErrorExtension::onFail(int code, const std::string& message, const char* file, int line) noexcept
+void MessageErrorExtension::onFail(const std::string& message, const char* file, int line) noexcept
 {
     if (m_message.empty())
     {

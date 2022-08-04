@@ -122,6 +122,14 @@ void ThrowIf(const Error& error);
 
 }
 
+Ishiko::Error::Extensions::~Extensions()
+{
+    if (m_extension)
+    {
+        m_extension->release();
+    }
+}
+
 template<typename Extension>
 bool Ishiko::Error::Extensions::install() noexcept
 {
@@ -176,14 +184,6 @@ Ishiko::Error::Extensions& Ishiko::Error::extensions() noexcept
 Ishiko::ErrorCondition Ishiko::Error::condition() const noexcept
 {
     return m_condition;
-}
-
-Ishiko::Error::Extensions::~Extensions()
-{
-    if (m_extension)
-    {
-        m_extension->release();
-    }
 }
 
 #endif
