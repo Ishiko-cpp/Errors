@@ -150,7 +150,6 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\src\ChainErrorExtension.cpp" />
     <ClCompile Include="..\..\src\Error.cpp" />
     <ClCompile Include="..\..\src\ErrorCondition.cpp" />
     <ClCompile Include="..\..\src\ErrorExtension.cpp" />
@@ -163,7 +162,6 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\include\Ishiko\Errors.hpp" />
-    <ClInclude Include="..\..\include\Ishiko\Errors\ChainErrorExtension.hpp" />
     <ClInclude Include="..\..\include\Ishiko\Errors\Error.hpp" />
     <ClInclude Include="..\..\include\Ishiko\Errors\ErrorCondition.hpp" />
     <ClInclude Include="..\..\include\Ishiko\Errors\ErrorCategory.hpp" />

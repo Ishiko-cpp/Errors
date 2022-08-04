@@ -31,7 +31,6 @@ library IshikoErrors
     headers
     {
         ../../include/Ishiko/Errors.hpp
-        ../../include/Ishiko/Errors/ChainErrorExtension.hpp
         ../../include/Ishiko/Errors/Error.hpp
         ../../include/Ishiko/Errors/ErrorCondition.hpp
         ../../include/Ishiko/Errors/ErrorCategory.hpp
@@ -47,7 +46,6 @@ library IshikoErrors
 
     sources
     {
-        ../../src/ChainErrorExtension.cpp
         ../../src/Error.cpp
         ../../src/ErrorCondition.cpp
         ../../src/ErrorExtension.cpp

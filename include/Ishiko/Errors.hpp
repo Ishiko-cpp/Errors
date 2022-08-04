@@ -7,7 +7,6 @@
 #ifndef GUARD_ISHIKO_CPP_ERRORS_HPP
 #define GUARD_ISHIKO_CPP_ERRORS_HPP
 
-#include "Errors/ChainErrorExtension.hpp"
 #include "Errors/Error.hpp"
 #include "Errors/ErrorCategory.hpp"
 #include "Errors/ErrorCondition.hpp"
