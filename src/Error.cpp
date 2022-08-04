@@ -5,26 +5,40 @@
 */
 
 #include "Error.hpp"
+#include "MessageErrorExtension.hpp"
 #include "Exception.hpp"
 
 using namespace Ishiko;
 
-Error::Error(int code, const ErrorCategory& category) noexcept
-    : m_condition(code, category), m_extension(0)
+bool Ishiko::Error::Extensions::tryGetMessage(std::string& message) const noexcept
 {
-}
+    bool result = false;
 
-Error::Error(int code, const ErrorCategory& category, ErrorExtension* extension) noexcept
-    : m_condition(code, category), m_extension(extension)
-{
-}
-
-Error::~Error() noexcept
-{
-    if (m_extension)
+    const MessageErrorExtension* extension;
+    if (tryGet(extension))
     {
-        m_extension->release();
+        result = extension->tryGetMessage(message);
     }
+
+    return result;
+}
+
+bool Ishiko::Error::Extensions::tryGetOrigin(const char*& file, int& line) const noexcept
+{
+    bool result = false;
+
+    const MessageErrorExtension* extension;
+    if (tryGet(extension))
+    {
+        result = extension->tryGetOrigin(file, line);
+    }
+
+    return result;
+}
+
+Error::Error(int code, const ErrorCategory& category) noexcept
+    : m_condition{code, category}
+{
 }
 
 Error::operator bool() const noexcept
@@ -51,9 +65,9 @@ bool Error::tryGetMessage(std::string& message) const noexcept
 {
     bool result = false;
 
-    if (*this && m_extension)
+    if (*this)
     {
-        result = m_extension->tryGetMessage(message);
+        result = m_extensions.tryGetMessage(message);
     }
 
     return result;
@@ -63,9 +77,9 @@ bool Error::tryGetOrigin(const char*& file, int& line) const noexcept
 {
     bool result = false;
 
-    if (*this && m_extension)
+    if (*this)
     {
-        result = m_extension->tryGetOrigin(file, line);
+        result = m_extensions.tryGetOrigin(file, line);
     }
 
     return result;
@@ -73,9 +87,10 @@ bool Error::tryGetOrigin(const char*& file, int& line) const noexcept
 
 void Error::fail(int code, const ErrorCategory& category) noexcept
 {
-    if (m_extension)
+    ErrorExtension* extension;
+    if (extensions().tryGet(extension))
     {
-        m_extension->onFail(code, "", "", -1);
+        extension->onFail(code, "", "", -1);
     }
     
     if (!m_condition)
@@ -86,9 +101,10 @@ void Error::fail(int code, const ErrorCategory& category) noexcept
 
 void Error::fail(int code, const ErrorCategory& category, const std::string& message, const char* file, int line) noexcept
 {
-    if (m_extension)
+    ErrorExtension* extension;
+    if (extensions().tryGet(extension))
     {
-        m_extension->onFail(code, message, file, line);
+        extension->onFail(code, message, file, line);
     }
 
     if (!m_condition)
@@ -108,21 +124,12 @@ void Error::succeed() noexcept
     m_condition.succeed();
 }
 
-const ErrorExtension* Error::extension() const noexcept
-{
-    return m_extension;
-}
-
-ErrorExtension* Error::extension() noexcept
-{
-    return m_extension;
-}
-
 std::ostream& Ishiko::operator<<(std::ostream& os, const Error& error)
 {
     os << error.condition();
-    const ErrorExtension* extension = error.extension();
-    if (extension)
+    
+    const ErrorExtension* extension;
+    if (error.extensions().tryGet(extension))
     {
         extension->operator<<(os);
     }

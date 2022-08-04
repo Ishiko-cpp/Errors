@@ -45,12 +45,13 @@ void MessageErrorExtensionTests::ConstructorTest2(Test& test)
 void MessageErrorExtensionTests::FailTest1(Test& test)
 {
     Error error;
-    error.install<MessageErrorExtension>();
+    error.extensions().install<MessageErrorExtension>();
     error.fail(-3, TestErrorCategory1::Get(), "a bad error", "file1", 3);
 
-    MessageErrorExtension* messageExtension = static_cast<Ishiko::MessageErrorExtension*>(error.extension());
+    const MessageErrorExtension* messageExtension;
+    bool found = error.extensions().tryGet(messageExtension);
 
-    ISHIKO_TEST_ABORT_IF_NOT(messageExtension);
+    ISHIKO_TEST_ABORT_IF_NOT(found);
     ISHIKO_TEST_FAIL_IF_NEQ(messageExtension->message(), "a bad error");
     ISHIKO_TEST_FAIL_IF_NEQ(messageExtension->file(), "file1");
     ISHIKO_TEST_FAIL_IF_NEQ(messageExtension->line(), 3);
@@ -60,13 +61,14 @@ void MessageErrorExtensionTests::FailTest1(Test& test)
 void MessageErrorExtensionTests::FailTest2(Test& test)
 {
     Error error;
-    error.install<MessageErrorExtension>();
+    error.extensions().install<MessageErrorExtension>();
     error.fail(-3, TestErrorCategory1::Get(), "a bad error", "file1", 3);
     error.fail(-4, TestErrorCategory1::Get(), "another bad error", "file2", 6);
 
-    MessageErrorExtension* messageExtension = static_cast<MessageErrorExtension*>(error.extension());
+    const MessageErrorExtension* messageExtension;
+    bool found = error.extensions().tryGet(messageExtension);
 
-    ISHIKO_TEST_ABORT_IF_NOT(messageExtension);
+    ISHIKO_TEST_ABORT_IF_NOT(found);
     ISHIKO_TEST_FAIL_IF_NEQ(messageExtension->message(), "a bad error");
     ISHIKO_TEST_FAIL_IF_NEQ(messageExtension->file(), "file1");
     ISHIKO_TEST_FAIL_IF_NEQ(messageExtension->line(), 3);
@@ -76,7 +78,7 @@ void MessageErrorExtensionTests::FailTest2(Test& test)
 void MessageErrorExtensionTests::StreamInsertionTest1(Test& test)
 {
     Error error;
-    error.install<MessageErrorExtension>();
+    error.extensions().install<MessageErrorExtension>();
     error.fail(-3, TestErrorCategory1::Get(), "a bad error", "file1", 3);
 
     std::stringstream errorMessage;

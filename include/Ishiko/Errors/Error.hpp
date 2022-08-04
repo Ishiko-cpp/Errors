@@ -21,30 +21,36 @@ namespace Ishiko
 class Error
 {
 public:
+    class Extensions
+    {
+    public:
+        inline ~Extensions();
+
+        template<typename Extension> bool install() noexcept;
+        
+        template<typename Extension> bool tryGet(const Extension*& extension) const noexcept;
+        template<typename Extension> bool tryGet(Extension*& extension) noexcept;
+
+        // TODO: make this noexcept
+        bool tryGetMessage(std::string& message) const noexcept;
+        // TODO: make this noexcept
+        bool tryGetOrigin(const char*& file, int& line) const noexcept;
+
+    private:
+        ErrorExtension* m_extension{nullptr};
+    };
+
     /// Creates a new error with an error code set to 0.
     Error() noexcept = default;
 
     /// Creates a new error from the error code passed in as argument.
     Error(int code, const ErrorCategory& category) noexcept;
 
-    /// Creates a new error from the error code passed in as argument and sets an extension.
-    /**
-        @param code The error code.
-        @param extension The extension.
-    */
-    Error(int code, const ErrorCategory& category, ErrorExtension* extension) noexcept;
-
     Error(const Error& other) = delete;
     Error(Error&& other) = delete;
 
-    /// Destructor.
-    /**
-        The destructor will call ErrorExtension::release() on the extension.
-    */
-    ~Error() noexcept;
-
-    template<typename Extension>
-    void install();
+    inline const Extensions& extensions() const noexcept;
+    inline Extensions& extensions() noexcept;
 
     Error& operator=(const Error& other) = delete;
     Error& operator=(Error&& other) = delete;
@@ -105,21 +111,9 @@ public:
     /// Sets the error code to 0 regardless of its current value.
     void succeed() noexcept;
 
-    /// Gets the extension.
-    /**
-        @returns The extension or 0 if no extension has been set.
-    */
-    const ErrorExtension* extension() const noexcept;
-
-    /// Gets the extension.
-    /**
-        @returns The extension or 0 if no extension has been set.
-    */
-    ErrorExtension* extension() noexcept;
-
 private:
     ErrorCondition m_condition;
-    ErrorExtension* m_extension{nullptr};
+    Extensions m_extensions;
 };
 
 std::ostream& operator<<(std::ostream& os, const Error& error);
@@ -129,18 +123,67 @@ void ThrowIf(const Error& error);
 }
 
 template<typename Extension>
-void Ishiko::Error::install()
+bool Ishiko::Error::Extensions::install() noexcept
 {
     if (m_extension)
     {
         m_extension->release();
     }
-    m_extension = new Extension();
+    m_extension = new(std::nothrow) Extension();
+    return m_extension;
+}
+
+template<typename Extension>
+bool Ishiko::Error::Extensions::tryGet(const Extension*& extension) const noexcept
+{
+    const Extension* result = dynamic_cast<const Extension*>(m_extension);
+    if (result)
+    {
+        extension = result;
+        return true;
+    }
+    else
+    {
+        return false;
+    }
+}
+
+template<typename Extension>
+bool Ishiko::Error::Extensions::tryGet(Extension*& extension) noexcept
+{
+    Extension* result = dynamic_cast<Extension*>(m_extension);
+    if (result)
+    {
+        extension = result;
+        return true;
+    }
+    else
+    {
+        return false;
+    }
+}
+
+const Ishiko::Error::Extensions& Ishiko::Error::extensions() const noexcept
+{
+    return m_extensions;
+}
+
+Ishiko::Error::Extensions& Ishiko::Error::extensions() noexcept
+{
+    return m_extensions;
 }
 
 Ishiko::ErrorCondition Ishiko::Error::condition() const noexcept
 {
     return m_condition;
+}
+
+Ishiko::Error::Extensions::~Extensions()
+{
+    if (m_extension)
+    {
+        m_extension->release();
+    }
 }
 
 #endif

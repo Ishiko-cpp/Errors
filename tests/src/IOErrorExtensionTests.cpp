@@ -39,22 +39,27 @@ void IOErrorExtensionTests::FailTest1(Test& test)
     IOErrorExtension::Fail(error, IOErrorExtension::eEOF, "file1", 3);
 
     ISHIKO_TEST_FAIL_IF_NEQ(error.condition().value(), EIO);
-    ISHIKO_TEST_FAIL_IF(error.extension());
+
+    const IOErrorExtension* extension;
+    bool found = error.extensions().tryGet(extension);
+
+    ISHIKO_TEST_FAIL_IF(found);
     ISHIKO_TEST_PASS();
 }
 
 void IOErrorExtensionTests::FailTest2(Test& test)
 {
     Error error;
-    error.install<IOErrorExtension>();
+    error.extensions().install<IOErrorExtension>();
     IOErrorExtension::Fail(error, IOErrorExtension::eEOF, "file1", 3);
 
     ISHIKO_TEST_FAIL_IF_NEQ(error.condition().value(), EIO);
 
-    IOErrorExtension* ext = dynamic_cast<IOErrorExtension*>(error.extension());
+    const IOErrorExtension* extension;
+    bool found = error.extensions().tryGet(extension);
 
-    ISHIKO_TEST_ABORT_IF_NOT(ext);
-    ISHIKO_TEST_FAIL_IF_NEQ(ext->code(), IOErrorExtension::eEOF);
+    ISHIKO_TEST_ABORT_IF_NOT(found);
+    ISHIKO_TEST_FAIL_IF_NEQ(extension->code(), IOErrorExtension::eEOF);
     ISHIKO_TEST_PASS();
 }
 
@@ -68,7 +73,11 @@ void IOErrorExtensionTests::FailTest3(Test& test)
 
     ISHIKO_TEST_FAIL_IF(error);
     ISHIKO_TEST_FAIL_IF_NEQ(error.condition().value(), 0);
-    ISHIKO_TEST_FAIL_IF(error.extension());
+
+    const IOErrorExtension* extension;
+    bool found = error.extensions().tryGet(extension);
+
+    ISHIKO_TEST_FAIL_IF(found);
     ISHIKO_TEST_PASS();
 }
 
@@ -81,7 +90,11 @@ void IOErrorExtensionTests::FailTest4(Test& test)
 
     ISHIKO_TEST_FAIL_IF_NOT(error);
     ISHIKO_TEST_FAIL_IF_NEQ(error.condition().value(), EIO);
-    ISHIKO_TEST_FAIL_IF(error.extension());
+
+    const IOErrorExtension* extension;
+    bool found = error.extensions().tryGet(extension);
+
+    ISHIKO_TEST_FAIL_IF(found);
     ISHIKO_TEST_PASS();
 }
 
@@ -90,16 +103,17 @@ void IOErrorExtensionTests::FailTest5(Test& test)
     std::fstream file("doesnotexist");
 
     Error error;
-    error.install<IOErrorExtension>();
+    error.extensions().install<IOErrorExtension>();
     IOErrorExtension::Fail(error, file, "file1", 3);
 
+    ISHIKO_TEST_FAIL_IF_NOT(error);
     ISHIKO_TEST_FAIL_IF_NEQ(error.condition().value(), EIO);
     
-    IOErrorExtension* ext = dynamic_cast<IOErrorExtension*>(error.extension());
+    const IOErrorExtension* extension;
+    bool found = error.extensions().tryGet(extension);
 
-    ISHIKO_TEST_FAIL_IF_NOT(error);
-    ISHIKO_TEST_ABORT_IF_NOT(ext);
-    ISHIKO_TEST_FAIL_IF_NEQ(ext->code(), IOErrorExtension::eError);
+    ISHIKO_TEST_ABORT_IF_NOT(found);
+    ISHIKO_TEST_FAIL_IF_NEQ(extension->code(), IOErrorExtension::eError);
     ISHIKO_TEST_PASS();
 }
 
@@ -111,23 +125,24 @@ void IOErrorExtensionTests::FailTest6(Test& test)
     file.read(buffer, 20);
 
     Error error;
-    error.install<IOErrorExtension>();
+    error.extensions().install<IOErrorExtension>();
     IOErrorExtension::Fail(error, file, "file1", 3);
 
+    ISHIKO_TEST_FAIL_IF_NOT(error);
     ISHIKO_TEST_FAIL_IF_NEQ(error.condition().value(), EIO);
 
-    IOErrorExtension* ext = dynamic_cast<IOErrorExtension*>(error.extension());
+    const IOErrorExtension* extension;
+    bool found = error.extensions().tryGet(extension);
 
-    ISHIKO_TEST_FAIL_IF_NOT(error);
-    ISHIKO_TEST_ABORT_IF_NOT(ext);
-    ISHIKO_TEST_FAIL_IF_NEQ(ext->code(), IOErrorExtension::eEOF);
+    ISHIKO_TEST_ABORT_IF_NOT(found);
+    ISHIKO_TEST_FAIL_IF_NEQ(extension->code(), IOErrorExtension::eEOF);
     ISHIKO_TEST_PASS();
 }
 
 void IOErrorExtensionTests::StreamInsertionTest1(Test& test)
 {
     Error error;
-    error.install<IOErrorExtension>();
+    error.extensions().install<IOErrorExtension>();
     IOErrorExtension::Fail(error, IOErrorExtension::eEOF, "file1", 3);
 
     std::stringstream errorMessage;

@@ -1,11 +1,11 @@
 /*
-    Copyright (c) 2019-2021 Xavier Leclercq
+    Copyright (c) 2019-2022 Xavier Leclercq
     Released under the MIT License
     See https://github.com/ishiko-cpp/errors/blob/main/LICENSE.txt
 */
 
-#ifndef _ISHIKO_CPP_ERRORS_MESSAGEERROREXTENSION_HPP_
-#define _ISHIKO_CPP_ERRORS_MESSAGEERROREXTENSION_HPP_
+#ifndef GUARD_ISHIKO_CPP_ERRORS_MESSAGEERROREXTENSION_HPP
+#define GUARD_ISHIKO_CPP_ERRORS_MESSAGEERROREXTENSION_HPP
 
 #include "ErrorExtension.hpp"
 #include <string>
@@ -19,8 +19,8 @@ public:
     MessageErrorExtension();
     MessageErrorExtension(const std::string& message, const char* file, int line);
 
-    bool tryGetMessage(std::string& message) const noexcept override;
-    bool tryGetOrigin(const char*& file, int& line) const noexcept override;
+    bool tryGetMessage(std::string& message) const noexcept;
+    bool tryGetOrigin(const char*& file, int& line) const noexcept;
 
     void onFail(int code, const std::string& message, const char* file, int line) noexcept override;
 
