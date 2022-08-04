@@ -1,11 +1,11 @@
 /*
-    Copyright (c) 2016-2021 Xavier Leclercq
+    Copyright (c) 2016-2022 Xavier Leclercq
     Released under the MIT License
     See https://github.com/ishiko-cpp/errors/blob/main/LICENSE.txt
 */
 
-#ifndef _ISHIKO_CPP_ERRORS_HPP_
-#define _ISHIKO_CPP_ERRORS_HPP_
+#ifndef GUARD_ISHIKO_CPP_ERRORS_HPP
+#define GUARD_ISHIKO_CPP_ERRORS_HPP
 
 #include "Errors/ChainErrorExtension.hpp"
 #include "Errors/Error.hpp"
@@ -15,10 +15,9 @@
 #include "Errors/Exception.hpp"
 #include "Errors/IOErrorCategory.hpp"
 #include "Errors/IOErrorExtension.hpp"
+#include "Errors/linkoptions.hpp"
 #include "Errors/MessageErrorExtension.hpp"
 #include "Errors/StreamUtilities.hpp"
 #include "Errors/SuccessCategory.hpp"
-
-#include "Errors/linkoptions.h"
 
 #endif
