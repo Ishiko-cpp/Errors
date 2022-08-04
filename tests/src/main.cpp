@@ -8,7 +8,6 @@
 #include "ErrorTests.hpp"
 #include "MessageErrorExtensionTests.hpp"
 #include "IOErrorExtensionTests.hpp"
-#include "ChainErrorExtensionTests.hpp"
 #include "ExceptionTests.hpp"
 #include "StreamUtilitiesTests.hpp"
 #include <Ishiko/TestFramework/Core.hpp>
@@ -35,7 +34,6 @@ int main(int argc, char* argv[])
         theTests.append<ErrorTests>();
         theTests.append<MessageErrorExtensionTests>();
         theTests.append<IOErrorExtensionTests>();
-        theTests.append<ChainErrorExtensionTests>();
         theTests.append<ExceptionTests>();
         theTests.append<StreamUtilitiesTests>();
 
