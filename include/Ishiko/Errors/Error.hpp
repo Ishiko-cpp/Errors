@@ -39,6 +39,12 @@ public:
     template<typename Extension>
     bool install() noexcept;
 
+    template<typename Extension>
+    bool tryGetExtension(const Extension*& extension) const noexcept;
+
+    template<typename Extension>
+    bool tryGetExtension(Extension*& extension) noexcept;
+
     Error& operator=(const Error& other) = delete;
     Error& operator=(Error&& other) = delete;
 
@@ -98,18 +104,6 @@ public:
     /// Sets the error code to 0 regardless of its current value.
     void succeed() noexcept;
 
-    /// Gets the extension.
-    /**
-        @returns The extension or 0 if no extension has been set.
-    */
-    const ErrorExtension* extension() const noexcept;
-
-    /// Gets the extension.
-    /**
-        @returns The extension or 0 if no extension has been set.
-    */
-    ErrorExtension* extension() noexcept;
-
 private:
     ErrorCondition m_condition;
     ErrorExtension* m_extension{nullptr};
@@ -130,6 +124,36 @@ bool Ishiko::Error::install() noexcept
     }
     m_extension = new(std::nothrow) Extension();
     return m_extension;
+}
+
+template<typename Extension>
+bool Ishiko::Error::tryGetExtension(const Extension*& extension) const noexcept
+{
+    const Extension* result = dynamic_cast<const Extension*>(m_extension);
+    if (result)
+    {
+        extension = result;
+        return true;
+    }
+    else
+    {
+        return false;
+    }
+}
+
+template<typename Extension>
+bool Ishiko::Error::tryGetExtension(Extension*& extension) noexcept
+{
+    Extension* result = dynamic_cast<Extension*>(m_extension);
+    if (result)
+    {
+        extension = result;
+        return true;
+    }
+    else
+    {
+        return false;
+    }
 }
 
 Ishiko::ErrorCondition Ishiko::Error::condition() const noexcept

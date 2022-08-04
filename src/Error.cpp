@@ -103,21 +103,12 @@ void Error::succeed() noexcept
     m_condition.succeed();
 }
 
-const ErrorExtension* Error::extension() const noexcept
-{
-    return m_extension;
-}
-
-ErrorExtension* Error::extension() noexcept
-{
-    return m_extension;
-}
-
 std::ostream& Ishiko::operator<<(std::ostream& os, const Error& error)
 {
     os << error.condition();
-    const ErrorExtension* extension = error.extension();
-    if (extension)
+    
+    const ErrorExtension* extension;
+    if (error.tryGetExtension(extension))
     {
         extension->operator<<(os);
     }

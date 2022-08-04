@@ -15,8 +15,8 @@ void IOErrorExtension::Fail(Error& error, EIOErrorCode code, const char* file, i
 {
     error.fail(EIO, IOErrorCategory::Get(), "", file, line);
 
-    IOErrorExtension* ext = dynamic_cast<IOErrorExtension*>(error.extension());
-    if (ext)
+    IOErrorExtension* ext;
+    if (error.tryGetExtension(ext))
     {
         ext->m_code = code;
         ext->m_file = file;
@@ -36,8 +36,8 @@ void IOErrorExtension::Fail(Error& error, const std::ios& status, const char* fi
             code = eEOF;
         }
 
-        IOErrorExtension* ext = dynamic_cast<IOErrorExtension*>(error.extension());
-        if (ext)
+        IOErrorExtension* ext;
+        if (error.tryGetExtension(ext))
         {
             ext->m_code = code;
             ext->m_file = file;
