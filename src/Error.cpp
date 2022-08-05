@@ -10,20 +10,30 @@
 
 using namespace Ishiko;
 
-bool Ishiko::Error::Extensions::tryGetMessage(std::string& message) const noexcept
+std::ostream& Error::Extension::operator<<(std::ostream& os) const
+{
+    // Do nothing
+    return os;
+}
+
+bool Error::Extensions::tryGetMessage(std::string& message) const noexcept
 {
     bool result = false;
 
     const MessageErrorExtension* extension;
     if (tryGet(extension))
     {
-        result = extension->tryGetMessage(message);
+        if (!extension->message().empty())
+        {
+            message = extension->message().toString();
+            result = true;
+        }
     }
 
     return result;
 }
 
-bool Ishiko::Error::Extensions::tryGetOrigin(const char*& file, int& line) const noexcept
+bool Error::Extensions::tryGetOrigin(const char*& file, int& line) const noexcept
 {
     bool result = false;
 
@@ -117,7 +127,7 @@ std::ostream& Ishiko::operator<<(std::ostream& os, const Error& error)
 {
     os << error.condition();
     
-    const ErrorExtension* extension;
+    const Error::Extension* extension;
     if (error.extensions().tryGet(extension))
     {
         extension->operator<<(os);
