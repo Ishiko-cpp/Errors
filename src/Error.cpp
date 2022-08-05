@@ -23,7 +23,11 @@ bool Error::Extensions::tryGetMessage(std::string& message) const noexcept
     const MessageErrorExtension* extension;
     if (tryGet(extension))
     {
-        result = extension->tryGetMessage(message);
+        if (!extension->message().empty())
+        {
+            message = extension->message().toString();
+            result = true;
+        }
     }
 
     return result;
