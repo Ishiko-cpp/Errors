@@ -8,13 +8,12 @@
 #define GUARD_ISHIKO_CPP_ERRORS_MESSAGEERROREXTENSION_HPP
 
 #include "Error.hpp"
-#include "ErrorExtension.hpp"
 #include <string>
 
 namespace Ishiko
 {
 
-class MessageErrorExtension : public ErrorExtension
+class MessageErrorExtension : public Error::Extension
 {
 public:
     MessageErrorExtension();

@@ -8,7 +8,7 @@
 #define GUARD_ISHIKO_CPP_ERRORS_ERROR_HPP
 
 #include "ErrorCondition.hpp"
-#include "ErrorExtension.hpp"
+#include <memory>
 #include <ostream>
 #include <string>
 
@@ -21,15 +21,22 @@ namespace Ishiko
 class Error
 {
 public:
+    /// Base class for the error extensions.
+    class Extension
+    {
+    public:
+        virtual ~Extension() = default;
+
+        virtual std::ostream& operator<<(std::ostream& os) const;
+    };
+
     class Extensions
     {
     public:
-        inline ~Extensions();
-
-        template<typename Extension> bool install() noexcept;
+        template<typename E> bool install() noexcept;
         
-        template<typename Extension> bool tryGet(const Extension*& extension) const noexcept;
-        template<typename Extension> bool tryGet(Extension*& extension) noexcept;
+        template<typename E> bool tryGet(const E*& extension) const noexcept;
+        template<typename E> bool tryGet(E*& extension) noexcept;
 
         // TODO: make this noexcept
         bool tryGetMessage(std::string& message) const noexcept;
@@ -37,7 +44,7 @@ public:
         bool tryGetOrigin(const char*& file, int& line) const noexcept;
 
     private:
-        ErrorExtension* m_extension{nullptr};
+        std::unique_ptr<Extension> m_extension;
     };
 
     /// Creates a new error with an error code set to 0.
@@ -122,29 +129,17 @@ void ThrowIf(const Error& error);
 
 }
 
-Ishiko::Error::Extensions::~Extensions()
-{
-    if (m_extension)
-    {
-        m_extension->release();
-    }
-}
-
 template<typename Extension>
 bool Ishiko::Error::Extensions::install() noexcept
 {
-    if (m_extension)
-    {
-        m_extension->release();
-    }
-    m_extension = new(std::nothrow) Extension();
-    return m_extension;
+    m_extension.reset(new(std::nothrow) Extension());
+    return (bool)m_extension;
 }
 
-template<typename Extension>
-bool Ishiko::Error::Extensions::tryGet(const Extension*& extension) const noexcept
+template<typename E>
+bool Ishiko::Error::Extensions::tryGet(const E*& extension) const noexcept
 {
-    const Extension* result = dynamic_cast<const Extension*>(m_extension);
+    const E* result = dynamic_cast<const E*>(m_extension.get());
     if (result)
     {
         extension = result;
@@ -156,10 +151,10 @@ bool Ishiko::Error::Extensions::tryGet(const Extension*& extension) const noexce
     }
 }
 
-template<typename Extension>
-bool Ishiko::Error::Extensions::tryGet(Extension*& extension) noexcept
+template<typename E>
+bool Ishiko::Error::Extensions::tryGet(E*& extension) noexcept
 {
-    Extension* result = dynamic_cast<Extension*>(m_extension);
+    E* result = dynamic_cast<E*>(m_extension.get());
     if (result)
     {
         extension = result;
