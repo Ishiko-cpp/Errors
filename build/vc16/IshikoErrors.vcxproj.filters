@@ -41,9 +41,6 @@
     <ClInclude Include="..\..\include\Ishiko\Errors\MessageErrorExtension.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\include\Ishiko\Errors\StreamUtilities.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\include\Ishiko\Errors\SuccessCategory.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -62,9 +59,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\MessageErrorExtension.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\StreamUtilities.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\SuccessCategory.cpp">

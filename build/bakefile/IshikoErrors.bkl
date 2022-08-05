@@ -38,7 +38,6 @@ library IshikoErrors
         ../../include/Ishiko/Errors/Exception.hpp
         ../../include/Ishiko/Errors/linkoptions.hpp
         ../../include/Ishiko/Errors/MessageErrorExtension.hpp
-        ../../include/Ishiko/Errors/StreamUtilities.hpp
         ../../include/Ishiko/Errors/SuccessCategory.hpp
     }
 
@@ -49,7 +48,6 @@ library IshikoErrors
         ../../src/ErrorMessage.cpp
         ../../src/Exception.cpp
         ../../src/MessageErrorExtension.cpp
-        ../../src/StreamUtilities.cpp
         ../../src/SuccessCategory.cpp
     }
 }

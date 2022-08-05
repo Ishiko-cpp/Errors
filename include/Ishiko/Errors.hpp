@@ -14,7 +14,6 @@
 #include "Errors/Exception.hpp"
 #include "Errors/linkoptions.hpp"
 #include "Errors/MessageErrorExtension.hpp"
-#include "Errors/StreamUtilities.hpp"
 #include "Errors/SuccessCategory.hpp"
 
 #endif
