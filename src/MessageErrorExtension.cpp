@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2019-2021 Xavier Leclercq
+    Copyright (c) 2019-2022 Xavier Leclercq
     Released under the MIT License
     See https://github.com/ishiko-cpp/errors/blob/main/LICENSE.txt
 */
@@ -15,30 +15,20 @@ MessageErrorExtension::MessageErrorExtension()
 }
 
 MessageErrorExtension::MessageErrorExtension(const std::string& message, const char* file, int line)
-    : m_message(message), m_file(file), m_line(line)
+    : m_file(file), m_line(line)
 {
+    m_message.assign(message);
 }
 
-void MessageErrorExtension::Set(Error& error, const std::string& message, const char* file, int line)
+void MessageErrorExtension::Set(Error& error, const std::string& message, const char* file, int line) noexcept
 {
     MessageErrorExtension* extension;
     if (error.extensions().tryGet(extension))
     {
-        extension->onFail(message, file, line);
+        extension->m_message.assign(message);
+        extension->m_file = file;
+        extension->m_line = line;
     }
-}
-
-bool MessageErrorExtension::tryGetMessage(std::string& message) const noexcept
-{
-    bool result = false;
-
-    if (!m_message.empty())
-    {
-        message = m_message;
-        result = true;
-    }
-
-    return result;
 }
 
 bool MessageErrorExtension::tryGetOrigin(const char*& file, int& line) const noexcept
@@ -55,16 +45,6 @@ bool MessageErrorExtension::tryGetOrigin(const char*& file, int& line) const noe
     return result;
 }
 
-void MessageErrorExtension::onFail(const std::string& message, const char* file, int line) noexcept
-{
-    if (m_message.empty())
-    {
-        m_message = message;
-        m_file = file;
-        m_line = line;
-    }
-}
-
 std::ostream& MessageErrorExtension::operator<<(std::ostream& os) const
 {
     if (m_message.size() > 0)
@@ -78,7 +58,7 @@ std::ostream& MessageErrorExtension::operator<<(std::ostream& os) const
     return os;
 }
 
-const std::string& MessageErrorExtension::message() const
+const ErrorMessage& MessageErrorExtension::message() const noexcept
 {
     return m_message;
 }
