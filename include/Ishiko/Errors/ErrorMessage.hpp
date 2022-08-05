@@ -13,6 +13,9 @@
 namespace Ishiko
 {
 
+// TODO: a string class that doesn't throw exceptions, fails silently. This is because we are creating an error message
+// and if that fails we don't want to report that as an error instead of the original error. The case where we'd
+// actually run out of memory should be very rare anyway.
 class ErrorMessage
 {
 public:

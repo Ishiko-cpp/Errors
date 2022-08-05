@@ -154,10 +154,7 @@
     <ClCompile Include="..\..\src\ErrorCondition.cpp" />
     <ClCompile Include="..\..\src\ErrorMessage.cpp" />
     <ClCompile Include="..\..\src\Exception.cpp" />
-    <ClCompile Include="..\..\src\IOErrorCategory.cpp" />
-    <ClCompile Include="..\..\src\IOErrorExtension.cpp" />
     <ClCompile Include="..\..\src\MessageErrorExtension.cpp" />
-    <ClCompile Include="..\..\src\StreamUtilities.cpp" />
     <ClCompile Include="..\..\src\SuccessCategory.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -167,11 +164,8 @@
     <ClInclude Include="..\..\include\Ishiko\Errors\ErrorCategory.hpp" />
     <ClInclude Include="..\..\include\Ishiko\Errors\ErrorMessage.hpp" />
     <ClInclude Include="..\..\include\Ishiko\Errors\Exception.hpp" />
-    <ClInclude Include="..\..\include\Ishiko\Errors\IOErrorCategory.hpp" />
-    <ClInclude Include="..\..\include\Ishiko\Errors\IOErrorExtension.hpp" />
     <ClInclude Include="..\..\include\Ishiko\Errors\linkoptions.hpp" />
     <ClInclude Include="..\..\include\Ishiko\Errors\MessageErrorExtension.hpp" />
-    <ClInclude Include="..\..\include\Ishiko\Errors\StreamUtilities.hpp" />
     <ClInclude Include="..\..\include\Ishiko\Errors\SuccessCategory.hpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
