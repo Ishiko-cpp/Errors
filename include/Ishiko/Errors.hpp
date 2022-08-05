@@ -12,8 +12,6 @@
 #include "Errors/ErrorCondition.hpp"
 #include "Errors/ErrorMessage.hpp"
 #include "Errors/Exception.hpp"
-#include "Errors/IOErrorCategory.hpp"
-#include "Errors/IOErrorExtension.hpp"
 #include "Errors/linkoptions.hpp"
 #include "Errors/MessageErrorExtension.hpp"
 #include "Errors/StreamUtilities.hpp"
