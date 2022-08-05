@@ -10,6 +10,7 @@
 #include "Errors/Error.hpp"
 #include "Errors/ErrorCategory.hpp"
 #include "Errors/ErrorCondition.hpp"
+#include "Errors/ErrorMessage.hpp"
 #include "Errors/Exception.hpp"
 #include "Errors/IOErrorCategory.hpp"
 #include "Errors/IOErrorExtension.hpp"

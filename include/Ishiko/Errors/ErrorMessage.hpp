@@ -7,4 +7,13 @@
 #ifndef GUARD_ISHIKO_CPP_ERRORS_ERRORMESSAGE_HPP
 #define GUARD_ISHIKO_CPP_ERRORS_ERRORMESSAGE_HPP
 
+namespace Ishiko
+{
+
+class ErrorMessage
+{
+};
+
+}
+
 #endif
