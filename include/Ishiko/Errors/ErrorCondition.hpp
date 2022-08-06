@@ -18,7 +18,7 @@ class ErrorCondition
 {
 public:
     ErrorCondition() noexcept = default;
-    inline ErrorCondition(int value, const ErrorCategory& category) noexcept;
+    inline ErrorCondition(const ErrorCategory& category, int value) noexcept;
 
     explicit operator bool() const noexcept;
     bool operator!() const noexcept;
@@ -40,7 +40,7 @@ std::ostream& operator<<(std::ostream& os, const ErrorCondition& condition);
 
 }
 
-Ishiko::ErrorCondition::ErrorCondition(int value, const ErrorCategory& category) noexcept
+Ishiko::ErrorCondition::ErrorCondition(const ErrorCategory& category, int value) noexcept
     : m_category(&category), m_value(value)
 {
 }

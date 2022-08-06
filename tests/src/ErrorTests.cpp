@@ -66,7 +66,7 @@ void ErrorTests::ConstructorTest2(Test& test)
 void ErrorTests::EqualityOperatorTest1(Test& test)
 {
     Error error1(-1, TestErrorCategory1::Get());
-    ErrorCondition error2(-1, TestErrorCategory1::Get());
+    ErrorCondition error2{TestErrorCategory1::Get(), -1};
 
     ISHIKO_TEST_FAIL_IF_NOT(error1 == error2);
     ISHIKO_TEST_PASS();
@@ -75,12 +75,12 @@ void ErrorTests::EqualityOperatorTest1(Test& test)
 void ErrorTests::EqualityOperatorTest2(Test& test)
 {
     Error error1(-1, TestErrorCategory1::Get());
-    ErrorCondition error2(-3, TestErrorCategory1::Get());
+    ErrorCondition error2{TestErrorCategory1::Get(), -3};
 
     ISHIKO_TEST_FAIL_IF(error1 == error2);
 
     Error error3(-1, TestErrorCategory1::Get());
-    ErrorCondition error4(-1, TestErrorCategory2::Get());
+    ErrorCondition error4{TestErrorCategory2::Get(), -1};
 
     ISHIKO_TEST_FAIL_IF(error3 == error4);
 
@@ -90,7 +90,7 @@ void ErrorTests::EqualityOperatorTest2(Test& test)
 void ErrorTests::InequalityOperatorTest1(Test& test)
 {
     Error error1(-1, TestErrorCategory1::Get());
-    ErrorCondition error2(-1, TestErrorCategory1::Get());
+    ErrorCondition error2{TestErrorCategory1::Get(), -1};
 
     ISHIKO_TEST_FAIL_IF(error1 != error2);
     ISHIKO_TEST_PASS();
@@ -99,12 +99,12 @@ void ErrorTests::InequalityOperatorTest1(Test& test)
 void ErrorTests::InequalityOperatorTest2(Test& test)
 {
     Error error1(-1, TestErrorCategory1::Get());
-    ErrorCondition error2(-3, TestErrorCategory1::Get());
+    ErrorCondition error2{TestErrorCategory1::Get(), -3};
 
     ISHIKO_TEST_FAIL_IF_NOT(error1 != error2);
 
-    Ishiko::Error error3(-1, TestErrorCategory1::Get());
-    Ishiko::ErrorCondition error4(-1, TestErrorCategory2::Get());
+    Error error3(-1, TestErrorCategory1::Get());
+    ErrorCondition error4{TestErrorCategory2::Get(), -1};
 
     ISHIKO_TEST_FAIL_IF_NOT(error3 != error4);
 
@@ -113,7 +113,7 @@ void ErrorTests::InequalityOperatorTest2(Test& test)
 
 void ErrorTests::FailTest1(Test& test)
 {
-    Ishiko::Error error;
+    Error error;
     error.fail(-3, TestErrorCategory1::Get());
 
     ISHIKO_TEST_FAIL_IF_NOT(error);
