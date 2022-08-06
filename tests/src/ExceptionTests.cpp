@@ -22,8 +22,8 @@ ExceptionTests::ExceptionTests(const TestNumber& number, const TestContext& cont
 
 void ExceptionTests::ConstructorTest1(Test& test)
 {
-    Ishiko::ErrorCondition condition(-1, TestErrorCategory1::Get());
-    Ishiko::Exception exception(condition, "file", 5);
+    ErrorCondition condition{TestErrorCategory1::Get(), -1};
+    Exception exception(condition, "file", 5);
 
     ISHIKO_TEST_FAIL_IF_NEQ(exception.condition().value(), -1);
     ISHIKO_TEST_FAIL_IF_STR_NEQ(exception.what(), "");
@@ -34,7 +34,7 @@ void ExceptionTests::ConstructorTest1(Test& test)
 
 void ExceptionTests::ConstructorTest2(Test& test)
 {
-    Ishiko::Exception exception(-1, TestErrorCategory1::Get(), "file", 5);
+    Exception exception(-1, TestErrorCategory1::Get(), "file", 5);
 
     ISHIKO_TEST_FAIL_IF_NEQ(exception.condition().value(), -1);
     ISHIKO_TEST_FAIL_IF_STR_NEQ(exception.what(), "");
@@ -45,7 +45,7 @@ void ExceptionTests::ConstructorTest2(Test& test)
 
 void ExceptionTests::ConstructorTest3(Test& test)
 {
-    Ishiko::Exception exception(-1, TestErrorCategory1::Get(), "description", "file", 5);
+    Exception exception(-1, TestErrorCategory1::Get(), "description", "file", 5);
 
     ISHIKO_TEST_FAIL_IF_NEQ(exception.condition().value(), -1);
     ISHIKO_TEST_FAIL_IF_STR_NEQ(exception.what(), "description");
@@ -56,8 +56,8 @@ void ExceptionTests::ConstructorTest3(Test& test)
 
 void ExceptionTests::ConstructorTest4(Test& test)
 {
-    Ishiko::Exception exception1(-1, TestErrorCategory1::Get(), "file", 5);
-    Ishiko::Exception exception2(exception1);
+    Exception exception1(-1, TestErrorCategory1::Get(), "file", 5);
+    Exception exception2(exception1);
 
     ISHIKO_TEST_FAIL_IF_NEQ(exception2.condition().value(), -1);
     ISHIKO_TEST_FAIL_IF_STR_NEQ(exception2.what(), "");
@@ -68,8 +68,8 @@ void ExceptionTests::ConstructorTest4(Test& test)
 
 void ExceptionTests::ConstructorTest5(Test& test)
 {
-    Ishiko::Exception exception1(-1, TestErrorCategory1::Get(), "description", "file", 5);
-    Ishiko::Exception exception2(exception1);
+    Exception exception1(-1, TestErrorCategory1::Get(), "description", "file", 5);
+    Exception exception2(exception1);
 
     ISHIKO_TEST_FAIL_IF_NEQ(exception2.condition().value(), -1);
     ISHIKO_TEST_FAIL_IF_STR_NEQ(exception2.what(), "description");

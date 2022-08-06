@@ -27,7 +27,7 @@ ErrorTests::ErrorTests(const TestNumber& number, const TestContext& context)
     append<HeapAllocationErrorsTest>("fail test 1", FailTest1);
     append<HeapAllocationErrorsTest>("fail test 2", FailTest2);
     append<HeapAllocationErrorsTest>("fail test 3", FailTest3);
-    append<HeapAllocationErrorsTest>("succeed test 1", SucceedTest1);
+    append<HeapAllocationErrorsTest>("clear test 1", ClearTest1);
     append<HeapAllocationErrorsTest>("operator<< test 1", StreamInsertionTest1);
     append<HeapAllocationErrorsTest>("tryGetMessage test 1", TryGetMessageTest1);
     append<HeapAllocationErrorsTest>("tryGetMessage test 2", TryGetMessageTest2);
@@ -55,7 +55,7 @@ void ErrorTests::ConstructorTest1(Test& test)
 
 void ErrorTests::ConstructorTest2(Test& test)
 {
-    Error error(-2, TestErrorCategory1::Get());
+    Error error{TestErrorCategory1::Get(), -2};
     
     ISHIKO_TEST_FAIL_IF_NOT(error);
     ISHIKO_TEST_FAIL_IF_NEQ(error.condition().value(), -2);
@@ -65,8 +65,8 @@ void ErrorTests::ConstructorTest2(Test& test)
 
 void ErrorTests::EqualityOperatorTest1(Test& test)
 {
-    Error error1(-1, TestErrorCategory1::Get());
-    ErrorCondition error2(-1, TestErrorCategory1::Get());
+    Error error1{TestErrorCategory1::Get(), -1};
+    ErrorCondition error2{TestErrorCategory1::Get(), -1};
 
     ISHIKO_TEST_FAIL_IF_NOT(error1 == error2);
     ISHIKO_TEST_PASS();
@@ -74,13 +74,13 @@ void ErrorTests::EqualityOperatorTest1(Test& test)
 
 void ErrorTests::EqualityOperatorTest2(Test& test)
 {
-    Error error1(-1, TestErrorCategory1::Get());
-    ErrorCondition error2(-3, TestErrorCategory1::Get());
+    Error error1{TestErrorCategory1::Get(), -1};
+    ErrorCondition error2{TestErrorCategory1::Get(), -3};
 
     ISHIKO_TEST_FAIL_IF(error1 == error2);
 
-    Error error3(-1, TestErrorCategory1::Get());
-    ErrorCondition error4(-1, TestErrorCategory2::Get());
+    Error error3{TestErrorCategory1::Get(), -1};
+    ErrorCondition error4{TestErrorCategory2::Get(), -1};
 
     ISHIKO_TEST_FAIL_IF(error3 == error4);
 
@@ -89,8 +89,8 @@ void ErrorTests::EqualityOperatorTest2(Test& test)
 
 void ErrorTests::InequalityOperatorTest1(Test& test)
 {
-    Error error1(-1, TestErrorCategory1::Get());
-    ErrorCondition error2(-1, TestErrorCategory1::Get());
+    Error error1{TestErrorCategory1::Get(), -1};
+    ErrorCondition error2{TestErrorCategory1::Get(), -1};
 
     ISHIKO_TEST_FAIL_IF(error1 != error2);
     ISHIKO_TEST_PASS();
@@ -98,13 +98,13 @@ void ErrorTests::InequalityOperatorTest1(Test& test)
 
 void ErrorTests::InequalityOperatorTest2(Test& test)
 {
-    Error error1(-1, TestErrorCategory1::Get());
-    ErrorCondition error2(-3, TestErrorCategory1::Get());
+    Error error1{TestErrorCategory1::Get(), -1};
+    ErrorCondition error2{TestErrorCategory1::Get(), -3};
 
     ISHIKO_TEST_FAIL_IF_NOT(error1 != error2);
 
-    Ishiko::Error error3(-1, TestErrorCategory1::Get());
-    Ishiko::ErrorCondition error4(-1, TestErrorCategory2::Get());
+    Error error3{TestErrorCategory1::Get(), -1};
+    ErrorCondition error4{TestErrorCategory2::Get(), -1};
 
     ISHIKO_TEST_FAIL_IF_NOT(error3 != error4);
 
@@ -113,7 +113,7 @@ void ErrorTests::InequalityOperatorTest2(Test& test)
 
 void ErrorTests::FailTest1(Test& test)
 {
-    Ishiko::Error error;
+    Error error;
     error.fail(-3, TestErrorCategory1::Get());
 
     ISHIKO_TEST_FAIL_IF_NOT(error);
@@ -124,7 +124,7 @@ void ErrorTests::FailTest1(Test& test)
 
 void ErrorTests::FailTest2(Test& test)
 {
-    Error error(4, TestErrorCategory1::Get());
+    Error error{TestErrorCategory1::Get(), 4};
     error.fail(-3, TestErrorCategory1::Get());
 
     ISHIKO_TEST_FAIL_IF_NOT(error);
@@ -135,7 +135,7 @@ void ErrorTests::FailTest2(Test& test)
 
 void ErrorTests::FailTest3(Test& test)
 {
-    Error error1(4, TestErrorCategory1::Get());
+    Error error1{TestErrorCategory1::Get(), 4};
 
     Error error2;
     error2.fail(error1);
@@ -146,14 +146,14 @@ void ErrorTests::FailTest3(Test& test)
     ISHIKO_TEST_PASS();
 }
 
-void ErrorTests::SucceedTest1(Test& test)
+void ErrorTests::ClearTest1(Test& test)
 {
-    Error error(-1, TestErrorCategory1::Get());
-    error.succeed();
+    Error error{TestErrorCategory1::Get(), -1};
+    error.clear();
 
     ISHIKO_TEST_FAIL_IF(error);
     ISHIKO_TEST_FAIL_IF_NEQ(error.condition().value(), 0);
-    ISHIKO_TEST_FAIL_IF_NEQ(&error.condition().category(), &Ishiko::SuccessCategory::Get());
+    ISHIKO_TEST_FAIL_IF_NEQ(&error.condition().category(), &SuccessCategory::Get());
     ISHIKO_TEST_PASS();
 }
 
@@ -284,7 +284,7 @@ void ErrorTests::ThrowIfTest1(Test& test)
 
 void ErrorTests::ThrowIfTest2(Test& test)
 {
-    Error error(-1, TestErrorCategory1::Get());
+    Error error{TestErrorCategory1::Get(), -1};
 
     try
     {

@@ -44,12 +44,6 @@ void ErrorCondition::fail(int value, const ErrorCategory& category) noexcept
     m_category = &category;
 }
 
-void ErrorCondition::succeed() noexcept
-{
-    m_value = 0;
-    m_category = &SuccessCategory::Get();
-}
-
 std::ostream& Ishiko::operator<<(std::ostream& os, const ErrorCondition& condition)
 {
     os << condition.category().name() << ", " << condition.value();

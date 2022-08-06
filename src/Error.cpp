@@ -46,11 +46,6 @@ bool Error::Extensions::tryGetOrigin(const char*& file, int& line) const noexcep
     return result;
 }
 
-Error::Error(int code, const ErrorCategory& category) noexcept
-    : m_condition{code, category}
-{
-}
-
 Error::operator bool() const noexcept
 {
     return (bool)m_condition;
@@ -116,11 +111,6 @@ void Error::fail(const Error& error) noexcept
 {
     // TODO: can/should this copy more than the condition and category?
     fail(error.condition().value(), error.condition().category());
-}
-
-void Error::succeed() noexcept
-{
-    m_condition.succeed();
 }
 
 std::ostream& Ishiko::operator<<(std::ostream& os, const Error& error)
