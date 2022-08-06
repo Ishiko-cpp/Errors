@@ -27,7 +27,7 @@ ErrorTests::ErrorTests(const TestNumber& number, const TestContext& context)
     append<HeapAllocationErrorsTest>("fail test 1", FailTest1);
     append<HeapAllocationErrorsTest>("fail test 2", FailTest2);
     append<HeapAllocationErrorsTest>("fail test 3", FailTest3);
-    append<HeapAllocationErrorsTest>("succeed test 1", SucceedTest1);
+    append<HeapAllocationErrorsTest>("clear test 1", ClearTest1);
     append<HeapAllocationErrorsTest>("operator<< test 1", StreamInsertionTest1);
     append<HeapAllocationErrorsTest>("tryGetMessage test 1", TryGetMessageTest1);
     append<HeapAllocationErrorsTest>("tryGetMessage test 2", TryGetMessageTest2);
@@ -146,10 +146,10 @@ void ErrorTests::FailTest3(Test& test)
     ISHIKO_TEST_PASS();
 }
 
-void ErrorTests::SucceedTest1(Test& test)
+void ErrorTests::ClearTest1(Test& test)
 {
     Error error{TestErrorCategory1::Get(), -1};
-    error.succeed();
+    error.clear();
 
     ISHIKO_TEST_FAIL_IF(error);
     ISHIKO_TEST_FAIL_IF_NEQ(error.condition().value(), 0);

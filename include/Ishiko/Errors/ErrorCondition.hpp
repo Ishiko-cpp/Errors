@@ -29,7 +29,7 @@ public:
     const ErrorCategory& category() const noexcept;
 
     void fail(int value, const ErrorCategory& category) noexcept;
-    void succeed() noexcept;
+    inline void clear() noexcept;
 
 private:
     const ErrorCategory* m_category{&SuccessCategory::Get()};
@@ -43,6 +43,12 @@ std::ostream& operator<<(std::ostream& os, const ErrorCondition& condition);
 Ishiko::ErrorCondition::ErrorCondition(const ErrorCategory& category, int value) noexcept
     : m_category(&category), m_value(value)
 {
+}
+
+void Ishiko::ErrorCondition::clear() noexcept
+{
+    m_value = 0;
+    m_category = &SuccessCategory::Get();
 }
 
 #endif

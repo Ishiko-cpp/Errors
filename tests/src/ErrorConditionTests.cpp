@@ -25,7 +25,7 @@ ErrorConditionTests::ErrorConditionTests(const TestNumber& number, const TestCon
     append<HeapAllocationErrorsTest>("operator!=() test 2", InequalityOperatorTest2);
     append<HeapAllocationErrorsTest>("fail test 1", FailTest1);
     append<HeapAllocationErrorsTest>("fail test 2", FailTest2);
-    append<HeapAllocationErrorsTest>("succeed test 1", SucceedTest1);
+    append<HeapAllocationErrorsTest>("clear test 1", ClearTest1);
 }
 
 void ErrorConditionTests::ConstructorTest1(Test& test)
@@ -124,10 +124,10 @@ void ErrorConditionTests::FailTest2(Test& test)
     ISHIKO_TEST_PASS();
 }
 
-void ErrorConditionTests::SucceedTest1(Test& test)
+void ErrorConditionTests::ClearTest1(Test& test)
 {
     ErrorCondition error{TestErrorCategory1::Get(), -1};
-    error.succeed();
+    error.clear();
 
     ISHIKO_TEST_FAIL_IF(error);
     ISHIKO_TEST_FAIL_IF_NEQ(error.value(), 0);

@@ -113,11 +113,6 @@ void Error::fail(const Error& error) noexcept
     fail(error.condition().value(), error.condition().category());
 }
 
-void Error::succeed() noexcept
-{
-    m_condition.succeed();
-}
-
 std::ostream& Ishiko::operator<<(std::ostream& os, const Error& error)
 {
     os << error.condition();

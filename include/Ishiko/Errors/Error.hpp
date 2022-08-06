@@ -116,7 +116,7 @@ public:
     void fail(const Error& error) noexcept;
 
     /// Sets the error code to 0 regardless of its current value.
-    void succeed() noexcept;
+    inline void clear() noexcept;
 
 private:
     ErrorCondition m_condition;
@@ -184,6 +184,11 @@ Ishiko::Error::Error(const ErrorCategory& category, int value) noexcept
 Ishiko::ErrorCondition Ishiko::Error::condition() const noexcept
 {
     return m_condition;
+}
+
+void Ishiko::Error::clear() noexcept
+{
+    m_condition.clear();
 }
 
 #endif
