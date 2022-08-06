@@ -51,7 +51,7 @@ public:
     Error() noexcept = default;
 
     /// Creates a new error from the error code passed in as argument.
-    Error(int code, const ErrorCategory& category) noexcept;
+    inline Error(const ErrorCategory& category, int value) noexcept;
 
     Error(const Error& other) = delete;
     Error(Error&& other) = delete;
@@ -116,7 +116,7 @@ public:
     void fail(const Error& error) noexcept;
 
     /// Sets the error code to 0 regardless of its current value.
-    void succeed() noexcept;
+    inline void clear() noexcept;
 
 private:
     ErrorCondition m_condition;
@@ -176,9 +176,19 @@ Ishiko::Error::Extensions& Ishiko::Error::extensions() noexcept
     return m_extensions;
 }
 
+Ishiko::Error::Error(const ErrorCategory& category, int value) noexcept
+    : m_condition{category, value}
+{
+}
+
 Ishiko::ErrorCondition Ishiko::Error::condition() const noexcept
 {
     return m_condition;
+}
+
+void Ishiko::Error::clear() noexcept
+{
+    m_condition.clear();
 }
 
 #endif

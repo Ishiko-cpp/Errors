@@ -4,8 +4,8 @@
     See https://github.com/ishiko-cpp/errors/blob/main/LICENSE.txt
 */
 
-#ifndef _ISHIKO_CPP_ERRORS_TESTS_ERRORTESTS_HPP_
-#define _ISHIKO_CPP_ERRORS_TESTS_ERRORTESTS_HPP_
+#ifndef GUARD_ISHIKO_CPP_ERRORS_TESTS_ERRORTESTS_HPP
+#define GUARD_ISHIKO_CPP_ERRORS_TESTS_ERRORTESTS_HPP
 
 #include <Ishiko/TestFramework/Core.hpp>
 
@@ -24,7 +24,7 @@ private:
     static void FailTest1(Ishiko::Test& test);
     static void FailTest2(Ishiko::Test& test);
     static void FailTest3(Ishiko::Test& test);
-    static void SucceedTest1(Ishiko::Test& test);
+    static void ClearTest1(Ishiko::Test& test);
     static void StreamInsertionTest1(Ishiko::Test& test);
     static void TryGetMessageTest1(Ishiko::Test& test);
     static void TryGetMessageTest2(Ishiko::Test& test);
