@@ -10,7 +10,7 @@
 
 using namespace Ishiko;
 
-std::ostream& Error::Extension::operator<<(std::ostream& os) const
+std::ostream& Error::Extension::streamOut(std::ostream& os) const
 {
     // Do nothing
     return os;
@@ -120,7 +120,7 @@ std::ostream& Ishiko::operator<<(std::ostream& os, const Error& error)
     const Error::Extension* extension;
     if (error.extensions().tryGet(extension))
     {
-        extension->operator<<(os);
+        extension->streamOut(os);
     }
     return os;
 }

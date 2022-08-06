@@ -27,7 +27,7 @@ public:
     public:
         virtual ~Extension() = default;
 
-        virtual std::ostream& operator<<(std::ostream& os) const;
+        virtual std::ostream& streamOut(std::ostream& os) const;
     };
 
     class Extensions
