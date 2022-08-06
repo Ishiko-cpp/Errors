@@ -46,11 +46,6 @@ bool Error::Extensions::tryGetOrigin(const char*& file, int& line) const noexcep
     return result;
 }
 
-Error::Error(int code, const ErrorCategory& category) noexcept
-    : m_condition{category, code}
-{
-}
-
 Error::operator bool() const noexcept
 {
     return (bool)m_condition;
