@@ -32,10 +32,10 @@
     <ClInclude Include="..\..\src\MessageErrorExtensionTests.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\Helpers\TestErrorCategory1.hpp">
+    <ClInclude Include="..\..\src\helpers\TestErrorCategory1.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\Helpers\TestErrorCategory2.hpp">
+    <ClInclude Include="..\..\src\helpers\TestErrorCategory2.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -58,10 +58,10 @@
     <ClCompile Include="..\..\src\MessageErrorExtensionTests.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\Helpers\TestErrorCategory1.cpp">
+    <ClCompile Include="..\..\src\helpers\TestErrorCategory1.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\Helpers\TestErrorCategory2.cpp">
+    <ClCompile Include="..\..\src\helpers\TestErrorCategory2.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

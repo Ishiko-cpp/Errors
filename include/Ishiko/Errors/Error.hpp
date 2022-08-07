@@ -27,14 +27,14 @@ public:
     public:
         virtual ~Extension() = default;
 
-        virtual std::ostream& operator<<(std::ostream& os) const;
+        virtual std::ostream& streamOut(std::ostream& os) const;
     };
 
     class Extensions
     {
     public:
         template<typename E> bool install() noexcept;
-        
+
         template<typename E> bool tryGet(const E*& extension) const noexcept;
         template<typename E> bool tryGet(E*& extension) noexcept;
 

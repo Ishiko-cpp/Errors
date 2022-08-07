@@ -45,7 +45,7 @@ bool MessageErrorExtension::tryGetOrigin(const char*& file, int& line) const noe
     return result;
 }
 
-std::ostream& MessageErrorExtension::operator<<(std::ostream& os) const
+std::ostream& MessageErrorExtension::streamOut(std::ostream& os) const
 {
     if (m_message.size() > 0)
     {
