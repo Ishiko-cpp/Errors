@@ -29,7 +29,7 @@
     <ClInclude Include="..\..\src\ExceptionTests.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\MessageErrorExtensionTests.hpp">
+    <ClInclude Include="..\..\src\InfoErrorExtensionTests.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\src\helpers\TestErrorCategory1.hpp">
@@ -58,7 +58,7 @@
     <ClCompile Include="..\..\src\ExceptionTests.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\MessageErrorExtensionTests.cpp">
+    <ClCompile Include="..\..\src\InfoErrorExtensionTests.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\helpers\TestErrorCategory1.cpp">

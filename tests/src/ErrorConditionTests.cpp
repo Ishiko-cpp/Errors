@@ -107,7 +107,7 @@ void ErrorConditionTests::InequalityOperatorTest2(Test& test)
 void ErrorConditionTests::FailTest1(Test& test)
 {
     ErrorCondition error;
-    error.fail(-3, TestErrorCategory1::Get());
+    error.fail(TestErrorCategory1::Get(), -3);
 
     ISHIKO_TEST_FAIL_IF_NOT(error);
     ISHIKO_TEST_FAIL_IF_NEQ(error.value(), -3);
@@ -117,7 +117,7 @@ void ErrorConditionTests::FailTest1(Test& test)
 void ErrorConditionTests::FailTest2(Test& test)
 {
     ErrorCondition error{TestErrorCategory1::Get(), 4};
-    error.fail(-3, TestErrorCategory1::Get());
+    error.fail(TestErrorCategory1::Get(), -3);
 
     ISHIKO_TEST_FAIL_IF_NOT(error);
     ISHIKO_TEST_FAIL_IF_NEQ(error.value(), -3);

@@ -35,10 +35,10 @@
     <ClInclude Include="..\..\include\Ishiko\Errors\Exception.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\include\Ishiko\Errors\linkoptions.hpp">
+    <ClInclude Include="..\..\include\Ishiko\Errors\InfoErrorExtension.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\include\Ishiko\Errors\MessageErrorExtension.hpp">
+    <ClInclude Include="..\..\include\Ishiko\Errors\linkoptions.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\include\Ishiko\Errors\SuccessCategory.hpp">
@@ -58,7 +58,7 @@
     <ClCompile Include="..\..\src\Exception.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\MessageErrorExtension.cpp">
+    <ClCompile Include="..\..\src\InfoErrorExtension.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\SuccessCategory.cpp">

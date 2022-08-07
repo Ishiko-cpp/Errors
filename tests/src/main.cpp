@@ -7,7 +7,7 @@
 #include "ErrorConditionTests.hpp"
 #include "ErrorMessageTests.hpp"
 #include "ErrorTests.hpp"
-#include "MessageErrorExtensionTests.hpp"
+#include "InfoErrorExtensionTests.hpp"
 #include "ExceptionTests.hpp"
 #include <Ishiko/TestFramework/Core.hpp>
 #include <exception>
@@ -28,7 +28,7 @@ int main(int argc, char* argv[])
         theTests.append<ErrorConditionTests>();
         theTests.append<ErrorMessageTests>();
         theTests.append<ErrorTests>();
-        theTests.append<MessageErrorExtensionTests>();
+        theTests.append<InfoErrorExtensionTests>();
         theTests.append<ExceptionTests>();
 
         return theTestHarness.run();

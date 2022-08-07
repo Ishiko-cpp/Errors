@@ -161,7 +161,7 @@
     <ClCompile Include="..\..\src\ErrorMessageTests.cpp" />
     <ClCompile Include="..\..\src\ErrorTests.cpp" />
     <ClCompile Include="..\..\src\ExceptionTests.cpp" />
-    <ClCompile Include="..\..\src\MessageErrorExtensionTests.cpp" />
+    <ClCompile Include="..\..\src\InfoErrorExtensionTests.cpp" />
     <ClCompile Include="..\..\src\helpers\TestErrorCategory1.cpp" />
     <ClCompile Include="..\..\src\helpers\TestErrorCategory2.cpp" />
     <ClCompile Include="..\..\src\helpers\TestErrorExtension.cpp" />
@@ -171,7 +171,7 @@
     <ClInclude Include="..\..\src\ErrorMessageTests.hpp" />
     <ClInclude Include="..\..\src\ErrorTests.hpp" />
     <ClInclude Include="..\..\src\ExceptionTests.hpp" />
-    <ClInclude Include="..\..\src\MessageErrorExtensionTests.hpp" />
+    <ClInclude Include="..\..\src\InfoErrorExtensionTests.hpp" />
     <ClInclude Include="..\..\src\helpers\TestErrorCategory1.hpp" />
     <ClInclude Include="..\..\src\helpers\TestErrorCategory2.hpp" />
     <ClInclude Include="..\..\src\helpers\TestErrorExtension.hpp" />
