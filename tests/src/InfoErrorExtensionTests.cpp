@@ -4,7 +4,7 @@
     See https://github.com/ishiko-cpp/errors/blob/main/LICENSE.txt
 */
 
-#include "MessageErrorExtensionTests.hpp"
+#include "InfoErrorExtensionTests.hpp"
 #include "helpers/TestErrorCategory1.hpp"
 #include "Ishiko/Errors/Error.hpp"
 #include "Ishiko/Errors/InfoErrorExtension.hpp"
@@ -12,8 +12,8 @@
 
 using namespace Ishiko;
 
-MessageErrorExtensionTests::MessageErrorExtensionTests(const TestNumber& number, const TestContext& context)
-    : TestSequence(number, "MessageErrorExtension tests", context)
+InfoErrorExtensionTests::InfoErrorExtensionTests(const TestNumber& number, const TestContext& context)
+    : TestSequence(number, "InfoErrorExtension tests", context)
 {
     append<HeapAllocationErrorsTest>("Constructor test 1", ConstructorTest1);
     append<HeapAllocationErrorsTest>("Constructor test 2", ConstructorTest2);
@@ -22,7 +22,7 @@ MessageErrorExtensionTests::MessageErrorExtensionTests(const TestNumber& number,
     append<HeapAllocationErrorsTest>("operator<< test 1", StreamInsertionTest1);
 }
 
-void MessageErrorExtensionTests::ConstructorTest1(Test& test)
+void InfoErrorExtensionTests::ConstructorTest1(Test& test)
 {
     InfoErrorExtension infoExtension;
 
@@ -32,7 +32,7 @@ void MessageErrorExtensionTests::ConstructorTest1(Test& test)
     ISHIKO_TEST_PASS();
 }
 
-void MessageErrorExtensionTests::ConstructorTest2(Test& test)
+void InfoErrorExtensionTests::ConstructorTest2(Test& test)
 {
     InfoErrorExtension infoExtension("unknown", "file1", 3);
 
@@ -42,7 +42,7 @@ void MessageErrorExtensionTests::ConstructorTest2(Test& test)
     ISHIKO_TEST_PASS();
 }
 
-void MessageErrorExtensionTests::FailTest1(Test& test)
+void InfoErrorExtensionTests::FailTest1(Test& test)
 {
     Error error;
     error.extensions().install<InfoErrorExtension>();
@@ -58,7 +58,7 @@ void MessageErrorExtensionTests::FailTest1(Test& test)
     ISHIKO_TEST_PASS();
 }
 
-void MessageErrorExtensionTests::FailTest2(Test& test)
+void InfoErrorExtensionTests::FailTest2(Test& test)
 {
     Error error;
     error.extensions().install<InfoErrorExtension>();
@@ -75,7 +75,7 @@ void MessageErrorExtensionTests::FailTest2(Test& test)
     ISHIKO_TEST_PASS();
 }
 
-void MessageErrorExtensionTests::StreamInsertionTest1(Test& test)
+void InfoErrorExtensionTests::StreamInsertionTest1(Test& test)
 {
     Error error;
     error.extensions().install<InfoErrorExtension>();

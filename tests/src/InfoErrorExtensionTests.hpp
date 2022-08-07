@@ -4,15 +4,15 @@
     See https://github.com/ishiko-cpp/errors/blob/main/LICENSE.txt
 */
 
-#ifndef _ISHIKO_CPP_ERRORS_TESTS_MESSAGEERROREXTENSIONTESTS_HPP_
-#define _ISHIKO_CPP_ERRORS_TESTS_MESSAGEERROREXTENSIONTESTS_HPP_
+#ifndef GUARD_ISHIKO_CPP_ERRORS_TESTS_INFOERROREXTENSIONTESTS_HPP
+#define GUARD_ISHIKO_CPP_ERRORS_TESTS_INFOERROREXTENSIONTESTS_HPP
 
 #include <Ishiko/TestFramework/Core.hpp>
 
-class MessageErrorExtensionTests : public Ishiko::TestSequence
+class InfoErrorExtensionTests : public Ishiko::TestSequence
 {
 public:
-    MessageErrorExtensionTests(const Ishiko::TestNumber& number, const Ishiko::TestContext& context);
+    InfoErrorExtensionTests(const Ishiko::TestNumber& number, const Ishiko::TestContext& context);
 
 private:
     static void ConstructorTest1(Ishiko::Test& test);
