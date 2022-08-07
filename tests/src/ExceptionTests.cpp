@@ -5,7 +5,7 @@
 */
 
 #include "ExceptionTests.hpp"
-#include "Helpers/TestErrorCategory1.hpp"
+#include "helpers/TestErrorCategory1.hpp"
 #include "Ishiko/Errors/Exception.hpp"
 
 using namespace Ishiko;
