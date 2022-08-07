@@ -44,7 +44,13 @@ public:
         bool tryGetOrigin(const char*& file, int& line) const noexcept;
 
     private:
-        std::unique_ptr<Extension> m_extension;
+        class Impl
+        {
+        public:
+            std::unique_ptr<Extension> m_extension;
+        };
+
+        std::unique_ptr<Impl> m_impl;
     };
 
     /// Creates a new error with an error code set to 0.
@@ -132,38 +138,46 @@ void ThrowIf(const Error& error);
 template<typename Extension>
 bool Ishiko::Error::Extensions::install() noexcept
 {
-    m_extension.reset(new(std::nothrow) Extension());
-    return (bool)m_extension;
+    if (!m_impl)
+    {
+        m_impl.reset(new(std::nothrow) Impl);
+        if (!m_impl)
+        {
+            return false;
+        }
+    }
+    m_impl->m_extension.reset(new(std::nothrow) Extension());
+    return (bool)m_impl->m_extension;
 }
 
 template<typename E>
 bool Ishiko::Error::Extensions::tryGet(const E*& extension) const noexcept
 {
-    const E* result = dynamic_cast<const E*>(m_extension.get());
-    if (result)
+    if (m_impl)
     {
-        extension = result;
-        return true;
+        const E* result = dynamic_cast<const E*>(m_impl->m_extension.get());
+        if (result)
+        {
+            extension = result;
+            return true;
+        }
     }
-    else
-    {
-        return false;
-    }
+    return false;
 }
 
 template<typename E>
 bool Ishiko::Error::Extensions::tryGet(E*& extension) noexcept
 {
-    E* result = dynamic_cast<E*>(m_extension.get());
-    if (result)
+    if (m_impl)
     {
-        extension = result;
-        return true;
+        E* result = dynamic_cast<E*>(m_impl->m_extension.get());
+        if (result)
+        {
+            extension = result;
+            return true;
+        }
     }
-    else
-    {
-        return false;
-    }
+    return false;
 }
 
 const Ishiko::Error::Extensions& Ishiko::Error::extensions() const noexcept
