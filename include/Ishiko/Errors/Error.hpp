@@ -34,7 +34,7 @@ public:
     {
     public:
         template<typename E> bool install() noexcept;
-        
+
         template<typename E> bool tryGet(const E*& extension) const noexcept;
         template<typename E> bool tryGet(E*& extension) noexcept;
 
