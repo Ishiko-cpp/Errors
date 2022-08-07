@@ -24,7 +24,7 @@ public:
 
     bool tryGetOrigin(const char*& file, int& line) const noexcept;
 
-    std::ostream& streamOut(std::ostream& os) const override;
+    std::ostream& streamOut(std::ostream& os) const;
 
     const ErrorMessage& message() const noexcept;
     const std::string& file() const;

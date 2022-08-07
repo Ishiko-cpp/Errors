@@ -10,11 +10,13 @@
 
 using namespace Ishiko;
 
+/*
 std::ostream& Error::Extension::streamOut(std::ostream& os) const
 {
     // Do nothing
     return os;
 }
+*/
 
 bool Error::Extensions::tryGetMessage(std::string& message) const noexcept
 {
@@ -117,7 +119,7 @@ std::ostream& Ishiko::operator<<(std::ostream& os, const Error& error)
 {
     os << error.condition();
     
-    const Error::Extension* extension;
+    const MessageErrorExtension* extension;
     if (error.extensions().tryGet(extension))
     {
         extension->streamOut(os);
