@@ -8,9 +8,11 @@
 #define GUARD_ISHIKO_CPP_ERRORS_ERROR_HPP
 
 #include "ErrorCondition.hpp"
+#include <map>
 #include <memory>
 #include <ostream>
 #include <string>
+#include <typeindex>
 
 namespace Ishiko
 {
@@ -27,7 +29,7 @@ public:
     public:
         virtual ~Extension() = default;
 
-        virtual std::ostream& streamOut(std::ostream& os) const;
+        //virtual std::ostream& streamOut(std::ostream& os) const;
     };
 
     class Extensions
@@ -47,7 +49,8 @@ public:
         class Impl
         {
         public:
-            std::unique_ptr<Extension> m_extension;
+            // TODO: need to make this fail silently
+            std::map<std::type_index, std::unique_ptr<Extension>> m_extensions;
         };
 
         std::unique_ptr<Impl> m_impl;
@@ -135,7 +138,7 @@ void ThrowIf(const Error& error);
 
 }
 
-template<typename Extension>
+template<typename E>
 bool Ishiko::Error::Extensions::install() noexcept
 {
     if (!m_impl)
@@ -146,8 +149,8 @@ bool Ishiko::Error::Extensions::install() noexcept
             return false;
         }
     }
-    m_impl->m_extension.reset(new(std::nothrow) Extension());
-    return (bool)m_impl->m_extension;
+    m_impl->m_extensions[typeid(E)].reset(new(std::nothrow) E());
+    return (bool)m_impl->m_extensions[typeid(E)];
 }
 
 template<typename E>
@@ -155,7 +158,7 @@ bool Ishiko::Error::Extensions::tryGet(const E*& extension) const noexcept
 {
     if (m_impl)
     {
-        const E* result = dynamic_cast<const E*>(m_impl->m_extension.get());
+        const E* result = dynamic_cast<const E*>(m_impl->m_extensions[typeid(E)].get());
         if (result)
         {
             extension = result;
@@ -170,7 +173,7 @@ bool Ishiko::Error::Extensions::tryGet(E*& extension) noexcept
 {
     if (m_impl)
     {
-        E* result = dynamic_cast<E*>(m_impl->m_extension.get());
+        E* result = dynamic_cast<E*>(m_impl->m_extensions[typeid(E)].get());
         if (result)
         {
             extension = result;
