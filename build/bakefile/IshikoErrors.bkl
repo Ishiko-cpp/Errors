@@ -36,8 +36,8 @@ library IshikoErrors
         ../../include/Ishiko/Errors/ErrorCategory.hpp
         ../../include/Ishiko/Errors/ErrorMessage.hpp
         ../../include/Ishiko/Errors/Exception.hpp
+        ../../include/Ishiko/Errors/InfoErrorExtension.hpp
         ../../include/Ishiko/Errors/linkoptions.hpp
-        ../../include/Ishiko/Errors/MessageErrorExtension.hpp
         ../../include/Ishiko/Errors/SuccessCategory.hpp
     }
 
@@ -47,7 +47,7 @@ library IshikoErrors
         ../../src/ErrorCondition.cpp
         ../../src/ErrorMessage.cpp
         ../../src/Exception.cpp
-        ../../src/MessageErrorExtension.cpp
+        ../../src/InfoErrorExtension.cpp
         ../../src/SuccessCategory.cpp
     }
 }
