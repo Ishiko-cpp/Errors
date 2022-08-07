@@ -28,8 +28,6 @@ public:
     {
     public:
         virtual ~Extension() = default;
-
-        //virtual std::ostream& streamOut(std::ostream& os) const;
     };
 
     class Extensions
@@ -105,7 +103,7 @@ public:
 
         @param code The error code.
     */
-    void fail(int code, const ErrorCategory& category) noexcept;
+    void fail(const ErrorCategory& category, int value) noexcept;
 
     /// Sets the error code if the current code is 0.
     /**
@@ -115,12 +113,12 @@ public:
         This function also provides extra information about the error. That extra information can be used by the
         extension.
 
-        @param code The error code.
+        @param value The error code.
         @param message A description of the error.
         @param file The file where the fail() function was called.
         @param line The line at which the fail() function was called.
     */
-    void fail(int code, const ErrorCategory& category, const std::string& message, const char* file, int line) noexcept;
+    void fail(const ErrorCategory& category, int value, const std::string& message, const char* file, int line) noexcept;
 
     void fail(const Error& error) noexcept;
 

@@ -129,7 +129,7 @@ void ErrorTests::InequalityOperatorTest2(Test& test)
 void ErrorTests::FailTest1(Test& test)
 {
     Error error;
-    error.fail(-3, TestErrorCategory1::Get());
+    error.fail(TestErrorCategory1::Get(), -3);
 
     ISHIKO_TEST_FAIL_IF_NOT(error);
     ISHIKO_TEST_FAIL_IF_NEQ(error.condition().value(), -3);
@@ -140,7 +140,7 @@ void ErrorTests::FailTest1(Test& test)
 void ErrorTests::FailTest2(Test& test)
 {
     Error error{TestErrorCategory1::Get(), 4};
-    error.fail(-3, TestErrorCategory1::Get());
+    error.fail(TestErrorCategory1::Get(), -3);
 
     ISHIKO_TEST_FAIL_IF_NOT(error);
     ISHIKO_TEST_FAIL_IF_NEQ(error.condition().value(), 4);
@@ -210,7 +210,7 @@ void ErrorTests::TryGetMessageTest3(Test& test)
 {
     Error error;
     error.extensions().install<InfoErrorExtension>();
-    error.fail(-3, TestErrorCategory1::Get());
+    error.fail(TestErrorCategory1::Get(), -3);
 
     std::string message;
     bool found = error.tryGetMessage(message);
@@ -223,7 +223,7 @@ void ErrorTests::TryGetMessageTest4(Test& test)
 {
     Error error;
     error.extensions().install<InfoErrorExtension>();
-    error.fail(-3, TestErrorCategory1::Get(), "a bad error", "file1", 3);
+    error.fail(TestErrorCategory1::Get(), -3, "a bad error", "file1", 3);
 
     std::string message;
     bool found = error.tryGetMessage(message);
@@ -262,7 +262,7 @@ void ErrorTests::TryGetOriginTest3(Test& test)
 {
     Error error;
     error.extensions().install<InfoErrorExtension>();
-    error.fail(-3, TestErrorCategory1::Get());
+    error.fail(TestErrorCategory1::Get(), -3);
 
     const char* file = nullptr;
     int line = -1;
@@ -276,7 +276,7 @@ void ErrorTests::TryGetOriginTest4(Test& test)
 {
     Error error;
     error.extensions().install<InfoErrorExtension>();
-    error.fail(-3, TestErrorCategory1::Get(), "a bad error", "file1", 3);
+    error.fail(TestErrorCategory1::Get(), -3, "a bad error", "file1", 3);
 
     const char* file = nullptr;
     int line = -1;
@@ -319,7 +319,7 @@ void ErrorTests::ThrowIfTest3(Test& test)
 {
     Error error;
     error.extensions().install<InfoErrorExtension>();
-    error.fail(-1, TestErrorCategory1::Get(), "a bad error", "file1", 3);
+    error.fail(TestErrorCategory1::Get(), -1, "a bad error", "file1", 3);
 
     try
     {

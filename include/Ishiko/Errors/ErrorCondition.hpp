@@ -29,7 +29,7 @@ public:
     int value() const noexcept;
     const ErrorCategory& category() const noexcept;
 
-    void fail(int value, const ErrorCategory& category) noexcept;
+    void fail(const ErrorCategory& category, int value) noexcept;
     inline void clear() noexcept;
 
 private:

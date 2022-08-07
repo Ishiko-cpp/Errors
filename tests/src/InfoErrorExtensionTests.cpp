@@ -46,7 +46,7 @@ void InfoErrorExtensionTests::FailTest1(Test& test)
 {
     Error error;
     error.extensions().install<InfoErrorExtension>();
-    error.fail(-3, TestErrorCategory1::Get(), "a bad error", "file1", 3);
+    error.fail(TestErrorCategory1::Get(), -3, "a bad error", "file1", 3);
 
     const InfoErrorExtension* infoExtension;
     bool found = error.extensions().tryGet(infoExtension);
@@ -62,8 +62,8 @@ void InfoErrorExtensionTests::FailTest2(Test& test)
 {
     Error error;
     error.extensions().install<InfoErrorExtension>();
-    error.fail(-3, TestErrorCategory1::Get(), "a bad error", "file1", 3);
-    error.fail(-4, TestErrorCategory1::Get(), "another bad error", "file2", 6);
+    error.fail(TestErrorCategory1::Get(), -3, "a bad error", "file1", 3);
+    error.fail(TestErrorCategory1::Get(), -4, "another bad error", "file2", 6);
 
     const InfoErrorExtension* infoExtension;
     bool found = error.extensions().tryGet(infoExtension);
@@ -79,7 +79,7 @@ void InfoErrorExtensionTests::StreamInsertionTest1(Test& test)
 {
     Error error;
     error.extensions().install<InfoErrorExtension>();
-    error.fail(-3, TestErrorCategory1::Get(), "a bad error", "file1", 3);
+    error.fail(TestErrorCategory1::Get(), -3, "a bad error", "file1", 3);
 
     std::stringstream errorMessage;
     errorMessage << error;
