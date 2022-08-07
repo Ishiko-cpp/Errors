@@ -38,6 +38,9 @@
     <ClInclude Include="..\..\src\helpers\TestErrorCategory2.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\src\helpers\TestErrorExtension.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\src\main.cpp">
@@ -62,6 +65,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\helpers\TestErrorCategory2.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\helpers\TestErrorExtension.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
