@@ -162,8 +162,8 @@
     <ClCompile Include="..\..\src\ErrorTests.cpp" />
     <ClCompile Include="..\..\src\ExceptionTests.cpp" />
     <ClCompile Include="..\..\src\MessageErrorExtensionTests.cpp" />
-    <ClCompile Include="..\..\src\Helpers\TestErrorCategory1.cpp" />
-    <ClCompile Include="..\..\src\Helpers\TestErrorCategory2.cpp" />
+    <ClCompile Include="..\..\src\helpers\TestErrorCategory1.cpp" />
+    <ClCompile Include="..\..\src\helpers\TestErrorCategory2.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\src\ErrorConditionTests.hpp" />
@@ -171,8 +171,8 @@
     <ClInclude Include="..\..\src\ErrorTests.hpp" />
     <ClInclude Include="..\..\src\ExceptionTests.hpp" />
     <ClInclude Include="..\..\src\MessageErrorExtensionTests.hpp" />
-    <ClInclude Include="..\..\src\Helpers\TestErrorCategory1.hpp" />
-    <ClInclude Include="..\..\src\Helpers\TestErrorCategory2.hpp" />
+    <ClInclude Include="..\..\src\helpers\TestErrorCategory1.hpp" />
+    <ClInclude Include="..\..\src\helpers\TestErrorCategory2.hpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
