@@ -4,8 +4,8 @@
     See https://github.com/ishiko-cpp/errors/blob/main/LICENSE.txt
 */
 
-#ifndef GUARD_ISHIKO_CPP_ERRORS_MESSAGEERROREXTENSION_HPP
-#define GUARD_ISHIKO_CPP_ERRORS_MESSAGEERROREXTENSION_HPP
+#ifndef GUARD_ISHIKO_CPP_ERRORS_INFOERROREXTENSION_HPP
+#define GUARD_ISHIKO_CPP_ERRORS_INFOERROREXTENSION_HPP
 
 #include "Error.hpp"
 #include "ErrorMessage.hpp"
@@ -14,11 +14,11 @@
 namespace Ishiko
 {
 
-class MessageErrorExtension : public Error::Extension
+class InfoErrorExtension : public Error::Extension
 {
 public:
-    MessageErrorExtension();
-    MessageErrorExtension(const std::string& message, const char* file, int line);
+    InfoErrorExtension();
+    InfoErrorExtension(const std::string& message, const char* file, int line);
 
     static void Set(Error& error, const std::string& message, const char* file, int line) noexcept;
 

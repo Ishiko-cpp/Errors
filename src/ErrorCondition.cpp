@@ -18,10 +18,10 @@ const ErrorCategory& ErrorCondition::category() const noexcept
     return *m_category;
 }
 
-void ErrorCondition::fail(int value, const ErrorCategory& category) noexcept
+void ErrorCondition::fail(const ErrorCategory& category, int value) noexcept
 {
-    m_value = value;
     m_category = &category;
+    m_value = value;
 }
 
 std::ostream& Ishiko::operator<<(std::ostream& os, const ErrorCondition& condition)

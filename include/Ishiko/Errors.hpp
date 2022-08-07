@@ -12,8 +12,8 @@
 #include "Errors/ErrorCondition.hpp"
 #include "Errors/ErrorMessage.hpp"
 #include "Errors/Exception.hpp"
+#include "Errors/InfoErrorExtension.hpp"
 #include "Errors/linkoptions.hpp"
-#include "Errors/MessageErrorExtension.hpp"
 #include "Errors/SuccessCategory.hpp"
 
 #endif

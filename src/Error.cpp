@@ -5,24 +5,16 @@
 */
 
 #include "Error.hpp"
-#include "MessageErrorExtension.hpp"
+#include "InfoErrorExtension.hpp"
 #include "Exception.hpp"
 
 using namespace Ishiko;
-
-/*
-std::ostream& Error::Extension::streamOut(std::ostream& os) const
-{
-    // Do nothing
-    return os;
-}
-*/
 
 bool Error::Extensions::tryGetMessage(std::string& message) const noexcept
 {
     bool result = false;
 
-    const MessageErrorExtension* extension;
+    const InfoErrorExtension* extension;
     if (tryGet(extension))
     {
         if (!extension->message().empty())
@@ -39,7 +31,7 @@ bool Error::Extensions::tryGetOrigin(const char*& file, int& line) const noexcep
 {
     bool result = false;
 
-    const MessageErrorExtension* extension;
+    const InfoErrorExtension* extension;
     if (tryGet(extension))
     {
         result = extension->tryGetOrigin(file, line);
@@ -92,34 +84,35 @@ bool Error::tryGetOrigin(const char*& file, int& line) const noexcept
     return result;
 }
 
-void Error::fail(int code, const ErrorCategory& category) noexcept
+void Error::fail(const ErrorCategory& category, int value) noexcept
 {
     if (!m_condition)
     {
-        m_condition.fail(code, category);
+        m_condition.fail(category, value);
     }
 }
 
-void Error::fail(int code, const ErrorCategory& category, const std::string& message, const char* file, int line) noexcept
+void Error::fail(const ErrorCategory& category, int value, const std::string& message, const char* file,
+    int line) noexcept
 {
     if (!m_condition)
     {
-        MessageErrorExtension::Set(*this, message, file, line);
-        m_condition.fail(code, category);
+        InfoErrorExtension::Set(*this, message, file, line);
+        m_condition.fail(category, value);
     }
 }
 
 void Error::fail(const Error& error) noexcept
 {
     // TODO: can/should this copy more than the condition and category?
-    fail(error.condition().value(), error.condition().category());
+    fail(error.condition().category(), error.condition().value());
 }
 
 std::ostream& Ishiko::operator<<(std::ostream& os, const Error& error)
 {
     os << error.condition();
     
-    const MessageErrorExtension* extension;
+    const InfoErrorExtension* extension;
     if (error.extensions().tryGet(extension))
     {
         extension->streamOut(os);
