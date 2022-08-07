@@ -5,8 +5,8 @@
 */
 
 #include "ErrorTests.hpp"
-#include "Helpers/TestErrorCategory1.hpp"
-#include "Helpers/TestErrorCategory2.hpp"
+#include "helpers/TestErrorCategory1.hpp"
+#include "helpers/TestErrorCategory2.hpp"
 #include "Ishiko/Errors/Error.hpp"
 #include "Ishiko/Errors/SuccessCategory.hpp"
 #include "Ishiko/Errors/MessageErrorExtension.hpp"
