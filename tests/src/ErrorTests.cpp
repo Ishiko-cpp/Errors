@@ -9,9 +9,9 @@
 #include "helpers/TestErrorCategory2.hpp"
 #include "helpers/TestErrorExtension.hpp"
 #include "Ishiko/Errors/Error.hpp"
-#include "Ishiko/Errors/SuccessCategory.hpp"
-#include "Ishiko/Errors/MessageErrorExtension.hpp"
 #include "Ishiko/Errors/Exception.hpp"
+#include "Ishiko/Errors/InfoErrorExtension.hpp"
+#include "Ishiko/Errors/SuccessCategory.hpp"
 #include <sstream>
 
 using namespace Ishiko;
@@ -197,7 +197,7 @@ void ErrorTests::TryGetMessageTest1(Test& test)
 void ErrorTests::TryGetMessageTest2(Test& test)
 {
     Error error;
-    error.extensions().install<MessageErrorExtension>();
+    error.extensions().install<InfoErrorExtension>();
 
     std::string message;
     bool found = error.tryGetMessage(message);
@@ -209,7 +209,7 @@ void ErrorTests::TryGetMessageTest2(Test& test)
 void ErrorTests::TryGetMessageTest3(Test& test)
 {
     Error error;
-    error.extensions().install<MessageErrorExtension>();
+    error.extensions().install<InfoErrorExtension>();
     error.fail(-3, TestErrorCategory1::Get());
 
     std::string message;
@@ -222,7 +222,7 @@ void ErrorTests::TryGetMessageTest3(Test& test)
 void ErrorTests::TryGetMessageTest4(Test& test)
 {
     Error error;
-    error.extensions().install<MessageErrorExtension>();
+    error.extensions().install<InfoErrorExtension>();
     error.fail(-3, TestErrorCategory1::Get(), "a bad error", "file1", 3);
 
     std::string message;
@@ -248,7 +248,7 @@ void ErrorTests::TryGetOriginTest1(Test& test)
 void ErrorTests::TryGetOriginTest2(Test& test)
 {
     Error error;
-    error.extensions().install<MessageErrorExtension>();
+    error.extensions().install<InfoErrorExtension>();
 
     const char* file = nullptr;
     int line = -1;
@@ -261,7 +261,7 @@ void ErrorTests::TryGetOriginTest2(Test& test)
 void ErrorTests::TryGetOriginTest3(Test& test)
 {
     Error error;
-    error.extensions().install<MessageErrorExtension>();
+    error.extensions().install<InfoErrorExtension>();
     error.fail(-3, TestErrorCategory1::Get());
 
     const char* file = nullptr;
@@ -275,7 +275,7 @@ void ErrorTests::TryGetOriginTest3(Test& test)
 void ErrorTests::TryGetOriginTest4(Test& test)
 {
     Error error;
-    error.extensions().install<MessageErrorExtension>();
+    error.extensions().install<InfoErrorExtension>();
     error.fail(-3, TestErrorCategory1::Get(), "a bad error", "file1", 3);
 
     const char* file = nullptr;
@@ -318,7 +318,7 @@ void ErrorTests::ThrowIfTest2(Test& test)
 void ErrorTests::ThrowIfTest3(Test& test)
 {
     Error error;
-    error.extensions().install<MessageErrorExtension>();
+    error.extensions().install<InfoErrorExtension>();
     error.fail(-1, TestErrorCategory1::Get(), "a bad error", "file1", 3);
 
     try
@@ -327,7 +327,7 @@ void ErrorTests::ThrowIfTest3(Test& test)
 
         ISHIKO_TEST_FAIL();
     }
-    catch (const Ishiko::Exception& e)
+    catch (const Exception& e)
     {
         ISHIKO_TEST_FAIL_IF_NEQ(e.condition().value(), -1);
         ISHIKO_TEST_FAIL_IF_NEQ(&e.condition().category(), &TestErrorCategory1::Get());

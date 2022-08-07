@@ -5,7 +5,7 @@
 */
 
 #include "Error.hpp"
-#include "MessageErrorExtension.hpp"
+#include "InfoErrorExtension.hpp"
 #include "Exception.hpp"
 
 using namespace Ishiko;
@@ -22,7 +22,7 @@ bool Error::Extensions::tryGetMessage(std::string& message) const noexcept
 {
     bool result = false;
 
-    const MessageErrorExtension* extension;
+    const InfoErrorExtension* extension;
     if (tryGet(extension))
     {
         if (!extension->message().empty())
@@ -39,7 +39,7 @@ bool Error::Extensions::tryGetOrigin(const char*& file, int& line) const noexcep
 {
     bool result = false;
 
-    const MessageErrorExtension* extension;
+    const InfoErrorExtension* extension;
     if (tryGet(extension))
     {
         result = extension->tryGetOrigin(file, line);
@@ -104,7 +104,7 @@ void Error::fail(int code, const ErrorCategory& category, const std::string& mes
 {
     if (!m_condition)
     {
-        MessageErrorExtension::Set(*this, message, file, line);
+        InfoErrorExtension::Set(*this, message, file, line);
         m_condition.fail(code, category);
     }
 }
@@ -119,7 +119,7 @@ std::ostream& Ishiko::operator<<(std::ostream& os, const Error& error)
 {
     os << error.condition();
     
-    const MessageErrorExtension* extension;
+    const InfoErrorExtension* extension;
     if (error.extensions().tryGet(extension))
     {
         extension->streamOut(os);

@@ -4,25 +4,24 @@
     See https://github.com/ishiko-cpp/errors/blob/main/LICENSE.txt
 */
 
-#include "MessageErrorExtension.hpp"
+#include "InfoErrorExtension.hpp"
 
-namespace Ishiko
-{
+using namespace Ishiko;
 
-MessageErrorExtension::MessageErrorExtension()
+InfoErrorExtension::InfoErrorExtension()
     : m_line(-1)
 {
 }
 
-MessageErrorExtension::MessageErrorExtension(const std::string& message, const char* file, int line)
+InfoErrorExtension::InfoErrorExtension(const std::string& message, const char* file, int line)
     : m_file(file), m_line(line)
 {
     m_message.assign(message);
 }
 
-void MessageErrorExtension::Set(Error& error, const std::string& message, const char* file, int line) noexcept
+void InfoErrorExtension::Set(Error& error, const std::string& message, const char* file, int line) noexcept
 {
-    MessageErrorExtension* extension;
+    InfoErrorExtension* extension;
     if (error.extensions().tryGet(extension))
     {
         extension->m_message.assign(message);
@@ -31,7 +30,7 @@ void MessageErrorExtension::Set(Error& error, const std::string& message, const 
     }
 }
 
-bool MessageErrorExtension::tryGetOrigin(const char*& file, int& line) const noexcept
+bool InfoErrorExtension::tryGetOrigin(const char*& file, int& line) const noexcept
 {
     bool result = false;
 
@@ -45,7 +44,7 @@ bool MessageErrorExtension::tryGetOrigin(const char*& file, int& line) const noe
     return result;
 }
 
-std::ostream& MessageErrorExtension::streamOut(std::ostream& os) const
+std::ostream& InfoErrorExtension::streamOut(std::ostream& os) const
 {
     if (m_message.size() > 0)
     {
@@ -58,19 +57,17 @@ std::ostream& MessageErrorExtension::streamOut(std::ostream& os) const
     return os;
 }
 
-const ErrorMessage& MessageErrorExtension::message() const noexcept
+const ErrorMessage& InfoErrorExtension::message() const noexcept
 {
     return m_message;
 }
 
-const std::string& MessageErrorExtension::file() const
+const std::string& InfoErrorExtension::file() const
 {
     return m_file;
 }
 
-int MessageErrorExtension::line() const
+int InfoErrorExtension::line() const
 {
     return m_line;
-}
-
 }
