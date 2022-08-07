@@ -5,7 +5,7 @@
 */
 
 #include "MessageErrorExtensionTests.hpp"
-#include "Helpers/TestErrorCategory1.hpp"
+#include "helpers/TestErrorCategory1.hpp"
 #include "Ishiko/Errors/MessageErrorExtension.hpp"
 #include "Ishiko/Errors/Error.hpp"
 #include <sstream>

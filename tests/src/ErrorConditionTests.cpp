@@ -5,8 +5,8 @@
 */
 
 #include "ErrorConditionTests.hpp"
-#include "Helpers/TestErrorCategory1.hpp"
-#include "Helpers/TestErrorCategory2.hpp"
+#include "helpers/TestErrorCategory1.hpp"
+#include "helpers/TestErrorCategory2.hpp"
 #include "Ishiko/Errors/ErrorCondition.hpp"
 #include "Ishiko/Errors/SuccessCategory.hpp"
 #include <system_error>

@@ -15,6 +15,7 @@ public:
     ErrorTests(const Ishiko::TestNumber& number, const Ishiko::TestContext& context);
 
 private:
+    static void ExtensionsInstallTest1(Ishiko::Test& test);
     static void ConstructorTest1(Ishiko::Test& test);
     static void ConstructorTest2(Ishiko::Test& test);
     static void EqualityOperatorTest1(Ishiko::Test& test);

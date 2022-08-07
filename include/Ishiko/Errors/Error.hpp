@@ -8,9 +8,11 @@
 #define GUARD_ISHIKO_CPP_ERRORS_ERROR_HPP
 
 #include "ErrorCondition.hpp"
+#include <map>
 #include <memory>
 #include <ostream>
 #include <string>
+#include <typeindex>
 
 namespace Ishiko
 {
@@ -27,7 +29,7 @@ public:
     public:
         virtual ~Extension() = default;
 
-        virtual std::ostream& streamOut(std::ostream& os) const;
+        //virtual std::ostream& streamOut(std::ostream& os) const;
     };
 
     class Extensions
@@ -44,7 +46,14 @@ public:
         bool tryGetOrigin(const char*& file, int& line) const noexcept;
 
     private:
-        std::unique_ptr<Extension> m_extension;
+        class Impl
+        {
+        public:
+            // TODO: need to make this fail silently
+            std::map<std::type_index, std::unique_ptr<Extension>> m_extensions;
+        };
+
+        std::unique_ptr<Impl> m_impl;
     };
 
     /// Creates a new error with an error code set to 0.
@@ -129,41 +138,49 @@ void ThrowIf(const Error& error);
 
 }
 
-template<typename Extension>
+template<typename E>
 bool Ishiko::Error::Extensions::install() noexcept
 {
-    m_extension.reset(new(std::nothrow) Extension());
-    return (bool)m_extension;
+    if (!m_impl)
+    {
+        m_impl.reset(new(std::nothrow) Impl);
+        if (!m_impl)
+        {
+            return false;
+        }
+    }
+    m_impl->m_extensions[typeid(E)].reset(new(std::nothrow) E());
+    return (bool)m_impl->m_extensions[typeid(E)];
 }
 
 template<typename E>
 bool Ishiko::Error::Extensions::tryGet(const E*& extension) const noexcept
 {
-    const E* result = dynamic_cast<const E*>(m_extension.get());
-    if (result)
+    if (m_impl)
     {
-        extension = result;
-        return true;
+        const E* result = dynamic_cast<const E*>(m_impl->m_extensions[typeid(E)].get());
+        if (result)
+        {
+            extension = result;
+            return true;
+        }
     }
-    else
-    {
-        return false;
-    }
+    return false;
 }
 
 template<typename E>
 bool Ishiko::Error::Extensions::tryGet(E*& extension) noexcept
 {
-    E* result = dynamic_cast<E*>(m_extension.get());
-    if (result)
+    if (m_impl)
     {
-        extension = result;
-        return true;
+        E* result = dynamic_cast<E*>(m_impl->m_extensions[typeid(E)].get());
+        if (result)
+        {
+            extension = result;
+            return true;
+        }
     }
-    else
-    {
-        return false;
-    }
+    return false;
 }
 
 const Ishiko::Error::Extensions& Ishiko::Error::extensions() const noexcept
