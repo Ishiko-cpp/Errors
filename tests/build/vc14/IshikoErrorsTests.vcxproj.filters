@@ -20,7 +20,7 @@
     <ClInclude Include="..\..\src\ErrorConditionTests.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\ErrorMessageTests.hpp">
+    <ClInclude Include="..\..\src\ErrorStringTests.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\src\ErrorTests.hpp">
@@ -49,7 +49,7 @@
     <ClCompile Include="..\..\src\ErrorConditionTests.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\ErrorMessageTests.cpp">
+    <ClCompile Include="..\..\src\ErrorStringTests.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\ErrorTests.cpp">
