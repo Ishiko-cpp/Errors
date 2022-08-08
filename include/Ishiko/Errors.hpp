@@ -10,7 +10,7 @@
 #include "Errors/Error.hpp"
 #include "Errors/ErrorCategory.hpp"
 #include "Errors/ErrorCondition.hpp"
-#include "Errors/ErrorMessage.hpp"
+#include "Errors/ErrorString.hpp"
 #include "Errors/Exception.hpp"
 #include "Errors/InfoErrorExtension.hpp"
 #include "Errors/linkoptions.hpp"
