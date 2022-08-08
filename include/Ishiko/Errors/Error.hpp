@@ -8,6 +8,7 @@
 #define GUARD_ISHIKO_CPP_ERRORS_ERROR_HPP
 
 #include "ErrorCondition.hpp"
+#include "ErrorString.hpp"
 #include <map>
 #include <memory>
 #include <ostream>
@@ -41,7 +42,7 @@ public:
         // TODO: make this noexcept
         bool tryGetMessage(std::string& message) const noexcept;
         // TODO: make this noexcept
-        bool tryGetOrigin(const char*& file, int& line) const noexcept;
+        bool tryGetOrigin(ErrorString& file, int& line) const noexcept;
 
     private:
         class Impl
@@ -94,7 +95,7 @@ public:
 
     bool tryGetMessage(std::string& message) const noexcept;
 
-    bool tryGetOrigin(const char*& file, int& line) const noexcept;
+    bool tryGetOrigin(ErrorString& file, int& line) const noexcept;
 
     /// Sets the error code if the current code is 0.
     /**
