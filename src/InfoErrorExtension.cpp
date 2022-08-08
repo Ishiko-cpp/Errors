@@ -57,7 +57,7 @@ std::ostream& InfoErrorExtension::streamOut(std::ostream& os) const
     return os;
 }
 
-const ErrorMessage& InfoErrorExtension::message() const noexcept
+const ErrorString& InfoErrorExtension::message() const noexcept
 {
     return m_message;
 }

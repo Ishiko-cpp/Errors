@@ -8,7 +8,7 @@
 #define GUARD_ISHIKO_CPP_ERRORS_INFOERROREXTENSION_HPP
 
 #include "Error.hpp"
-#include "ErrorMessage.hpp"
+#include "ErrorString.hpp"
 #include <string>
 
 namespace Ishiko
@@ -26,12 +26,12 @@ public:
 
     std::ostream& streamOut(std::ostream& os) const;
 
-    const ErrorMessage& message() const noexcept;
+    const ErrorString& message() const noexcept;
     const std::string& file() const;
     int line() const;
 
 private:
-    ErrorMessage m_message;
+    ErrorString m_message;
     std::string m_file;
     int m_line;
 };
