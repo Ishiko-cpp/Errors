@@ -56,8 +56,8 @@ $(if $(_builddir_error),$(error Failed to create build directory: $(_builddir_er
 endif
 all: ../bakefile/../../lib/lib$(if $(call _equal,$(config),Debug),IshikoErrors-d,IshikoErrors).a
 
-../bakefile/../../lib/lib$(if $(call _equal,$(config),Debug),IshikoErrors-d,IshikoErrors).a: $(_builddir)IshikoErrors_Error.o $(_builddir)IshikoErrors_ErrorCondition.o $(_builddir)IshikoErrors_ErrorMessage.o $(_builddir)IshikoErrors_Exception.o $(_builddir)IshikoErrors_InfoErrorExtension.o $(_builddir)IshikoErrors_SuccessCategory.o
-	$(AR) rc $@ $(_builddir)IshikoErrors_Error.o $(_builddir)IshikoErrors_ErrorCondition.o $(_builddir)IshikoErrors_ErrorMessage.o $(_builddir)IshikoErrors_Exception.o $(_builddir)IshikoErrors_InfoErrorExtension.o $(_builddir)IshikoErrors_SuccessCategory.o
+../bakefile/../../lib/lib$(if $(call _equal,$(config),Debug),IshikoErrors-d,IshikoErrors).a: $(_builddir)IshikoErrors_Error.o $(_builddir)IshikoErrors_ErrorCondition.o $(_builddir)IshikoErrors_ErrorString.o $(_builddir)IshikoErrors_Exception.o $(_builddir)IshikoErrors_InfoErrorExtension.o $(_builddir)IshikoErrors_SuccessCategory.o
+	$(AR) rc $@ $(_builddir)IshikoErrors_Error.o $(_builddir)IshikoErrors_ErrorCondition.o $(_builddir)IshikoErrors_ErrorString.o $(_builddir)IshikoErrors_Exception.o $(_builddir)IshikoErrors_InfoErrorExtension.o $(_builddir)IshikoErrors_SuccessCategory.o
 	$(RANLIB) $@
 
 $(_builddir)IshikoErrors_Error.o: ../../src/Error.cpp
@@ -66,8 +66,8 @@ $(_builddir)IshikoErrors_Error.o: ../../src/Error.cpp
 $(_builddir)IshikoErrors_ErrorCondition.o: ../../src/ErrorCondition.cpp
 	$(CXX) -c -o $@ $(CPPFLAGS) $(CXXFLAGS) -MD -MP -fPIC -DPIC -pthread -I../../include/Ishiko/Errors -std=c++11 ../../src/ErrorCondition.cpp
 
-$(_builddir)IshikoErrors_ErrorMessage.o: ../../src/ErrorMessage.cpp
-	$(CXX) -c -o $@ $(CPPFLAGS) $(CXXFLAGS) -MD -MP -fPIC -DPIC -pthread -I../../include/Ishiko/Errors -std=c++11 ../../src/ErrorMessage.cpp
+$(_builddir)IshikoErrors_ErrorString.o: ../../src/ErrorString.cpp
+	$(CXX) -c -o $@ $(CPPFLAGS) $(CXXFLAGS) -MD -MP -fPIC -DPIC -pthread -I../../include/Ishiko/Errors -std=c++11 ../../src/ErrorString.cpp
 
 $(_builddir)IshikoErrors_Exception.o: ../../src/Exception.cpp
 	$(CXX) -c -o $@ $(CPPFLAGS) $(CXXFLAGS) -MD -MP -fPIC -DPIC -pthread -I../../include/Ishiko/Errors -std=c++11 ../../src/Exception.cpp
