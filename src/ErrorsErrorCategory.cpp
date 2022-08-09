@@ -18,3 +18,18 @@ const char* ErrorsErrorCategory::name() const noexcept
 {
     return "Ishiko::ErrorsErrorCategory";
 }
+
+std::ostream& ErrorsErrorCategory::streamOut(int value, std::ostream& os) const
+{
+    switch (value)
+    {
+    case Value::generic:
+        os << "generic error";
+        break;
+
+    case Value::memory_allocation_failure:
+        os << "memory allocation failure";
+        break;
+    }
+    return os;
+}

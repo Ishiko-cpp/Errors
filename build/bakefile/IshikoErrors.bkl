@@ -48,6 +48,7 @@ library IshikoErrors : IshikoBasePlatform
     sources
     {
         ../../src/Error.cpp
+        ../../src/ErrorCategory.cpp
         ../../src/ErrorCondition.cpp
         ../../src/ErrorsErrorCategory.cpp
         ../../src/ErrorString.cpp

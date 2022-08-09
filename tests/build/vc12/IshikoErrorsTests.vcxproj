@@ -158,6 +158,7 @@
   <ItemGroup>
     <ClCompile Include="..\..\src\main.cpp" />
     <ClCompile Include="..\..\src\ErrorConditionTests.cpp" />
+    <ClCompile Include="..\..\src\ErrorExtensionsTests.cpp" />
     <ClCompile Include="..\..\src\ErrorStringTests.cpp" />
     <ClCompile Include="..\..\src\ErrorTests.cpp" />
     <ClCompile Include="..\..\src\ExceptionTests.cpp" />
@@ -168,6 +169,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\src\ErrorConditionTests.hpp" />
+    <ClInclude Include="..\..\src\ErrorExtensionsTests.hpp" />
     <ClInclude Include="..\..\src\ErrorStringTests.hpp" />
     <ClInclude Include="..\..\src\ErrorTests.hpp" />
     <ClInclude Include="..\..\src\ExceptionTests.hpp" />
