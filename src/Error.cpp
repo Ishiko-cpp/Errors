@@ -5,8 +5,8 @@
 */
 
 #include "Error.hpp"
-#include "InfoErrorExtension.hpp"
 #include "Exception.hpp"
+#include "InfoErrorExtension.hpp"
 
 using namespace Ishiko;
 
@@ -40,6 +40,20 @@ bool Error::Extensions::tryGetOrigin(ErrorString& file, int& line) const noexcep
     {
         return false;
     }
+}
+
+ErrorCondition Error::Extensions::setDynamic(bool dynamic) noexcept
+{
+    if (!m_impl)
+    {
+        m_impl.reset(new(std::nothrow) Impl);
+        if (!m_impl)
+        {
+            return ErrorCondition{ErrorsErrorCategory::Get(), ErrorsErrorCategory::Value::memory_allocation_failure};
+        }
+    }
+    m_impl->m_dynamic = dynamic;
+    return ErrorCondition{};
 }
 
 Error::operator bool() const noexcept

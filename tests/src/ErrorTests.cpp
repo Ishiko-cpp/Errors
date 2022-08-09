@@ -48,12 +48,14 @@ void ErrorTests::ExtensionsInstallTest1(Test& test)
 {
     Error::Extensions extensions;
 
-    extensions.install<TestErrorExtension>();
+    ErrorCondition err = extensions.install<TestErrorExtension>();
+
+    ISHIKO_TEST_FAIL_IF(err);
 
     const TestErrorExtension* extension;
     bool found = extensions.tryGet(extension);
 
-    ISHIKO_TEST_ABORT_IF_NOT(extension);
+    ISHIKO_TEST_FAIL_IF_NOT(extension);
     ISHIKO_TEST_PASS();
 }
 

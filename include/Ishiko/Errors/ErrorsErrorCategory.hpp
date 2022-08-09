@@ -7,4 +7,31 @@
 #ifndef GUARD_ISHIKO_CPP_ERRORS_ERRORSERRORCATEGORY_HPP
 #define GUARD_ISHIKO_CPP_ERRORS_ERRORSERRORCATEGORY_HPP
 
+#include "ErrorCategory.hpp"
+
+namespace Ishiko
+{
+
+class ErrorsErrorCategory : public ErrorCategory
+{
+public:
+    struct Value
+    {
+        enum
+        {
+            generic = -1,
+            memory_allocation_failure = -2
+        };
+    };
+
+    static const ErrorsErrorCategory& Get() noexcept;
+
+    const char* name() const noexcept override;
+
+private:
+    ErrorsErrorCategory() noexcept = default;
+};
+
+}
+
 #endif
