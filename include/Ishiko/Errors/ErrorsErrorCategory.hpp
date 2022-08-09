@@ -8,6 +8,7 @@
 #define GUARD_ISHIKO_CPP_ERRORS_ERRORSERRORCATEGORY_HPP
 
 #include "ErrorCategory.hpp"
+#include <ostream>
 
 namespace Ishiko
 {
@@ -27,6 +28,7 @@ public:
     static const ErrorsErrorCategory& Get() noexcept;
 
     const char* name() const noexcept override;
+    std::ostream& streamOut(int value, std::ostream& os) const override;
 
 private:
     ErrorsErrorCategory() noexcept = default;

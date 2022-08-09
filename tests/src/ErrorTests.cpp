@@ -164,7 +164,7 @@ void ErrorTests::StreamInsertionTest1(Test& test)
     std::stringstream errorMessage;
     errorMessage << error;
 
-    ISHIKO_TEST_FAIL_IF_NEQ(errorMessage.str(), "Ishiko::SuccessCategory, 0");
+    ISHIKO_TEST_FAIL_IF_NEQ(errorMessage.str(), "Ishiko::SuccessCategory 0 (success)");
     ISHIKO_TEST_PASS();
 }
 

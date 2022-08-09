@@ -15,6 +15,7 @@ public:
     static const TestErrorCategory2& Get() noexcept;
 
     const char* name() const noexcept override;
+    std::ostream& streamOut(int value, std::ostream& os) const override;
 };
 
 #endif

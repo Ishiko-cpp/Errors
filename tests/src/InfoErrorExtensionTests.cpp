@@ -84,6 +84,7 @@ void InfoErrorExtensionTests::StreamInsertionTest1(Test& test)
     std::stringstream errorMessage;
     errorMessage << error;
 
-    ISHIKO_TEST_FAIL_IF_NEQ(errorMessage.str(), "TestErrorCategory1, -3, a bad error [file: file1, line: 3]");
+    ISHIKO_TEST_FAIL_IF_NEQ(errorMessage.str(),
+        "TestErrorCategory1 -3 (generic error), a bad error [file: file1, line: 3]");
     ISHIKO_TEST_PASS();
 }
