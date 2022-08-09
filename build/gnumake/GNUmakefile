@@ -33,6 +33,11 @@ override CXXFLAGS += -O2
 else ifneq (,$(config))
 $(warning Unknown configuration "$(config)")
 endif
+#
+# Additionally, this makefile is customizable with the following
+# settings:
+#
+#      ISHIKO_CPP_BASEPLATFORM_ROOT  Path to the Ishiko BasePlatform installation
 
 # Use "make RANLIB=''" for platforms without ranlib.
 RANLIB ?= ranlib
@@ -54,6 +59,16 @@ _builddir := $(if $(findstring $(abspath $(builddir)),$(builddir)),,../../)$(bui
 _builddir_error := $(shell mkdir -p $(_builddir) 2>&1)
 $(if $(_builddir_error),$(error Failed to create build directory: $(_builddir_error)))
 endif
+
+# ------------
+# Configurable settings:
+# 
+
+# Path to the Ishiko BasePlatform installation
+ISHIKO_CPP_BASEPLATFORM_ROOT ?= $(ISHIKO_CPP)/base-platform
+
+# ------------
+
 all: ../bakefile/../../lib/lib$(if $(call _equal,$(config),Debug),IshikoErrors-d,IshikoErrors).a
 
 ../bakefile/../../lib/lib$(if $(call _equal,$(config),Debug),IshikoErrors-d,IshikoErrors).a: $(_builddir)IshikoErrors_Error.o $(_builddir)IshikoErrors_ErrorCondition.o $(_builddir)IshikoErrors_ErrorsErrorCategory.o $(_builddir)IshikoErrors_ErrorString.o $(_builddir)IshikoErrors_Exception.o $(_builddir)IshikoErrors_InfoErrorExtension.o $(_builddir)IshikoErrors_SuccessCategory.o
@@ -61,25 +76,25 @@ all: ../bakefile/../../lib/lib$(if $(call _equal,$(config),Debug),IshikoErrors-d
 	$(RANLIB) $@
 
 $(_builddir)IshikoErrors_Error.o: ../../src/Error.cpp
-	$(CXX) -c -o $@ $(CPPFLAGS) $(CXXFLAGS) -MD -MP -fPIC -DPIC -pthread -I../../include/Ishiko/Errors -std=c++11 ../../src/Error.cpp
+	$(CXX) -c -o $@ $(CPPFLAGS) $(CXXFLAGS) -MD -MP -fPIC -DPIC -pthread -I$(ISHIKO_CPP_BASEPLATFORM_ROOT)/include -I../../include/Ishiko/Errors -std=c++11 ../../src/Error.cpp
 
 $(_builddir)IshikoErrors_ErrorCondition.o: ../../src/ErrorCondition.cpp
-	$(CXX) -c -o $@ $(CPPFLAGS) $(CXXFLAGS) -MD -MP -fPIC -DPIC -pthread -I../../include/Ishiko/Errors -std=c++11 ../../src/ErrorCondition.cpp
+	$(CXX) -c -o $@ $(CPPFLAGS) $(CXXFLAGS) -MD -MP -fPIC -DPIC -pthread -I$(ISHIKO_CPP_BASEPLATFORM_ROOT)/include -I../../include/Ishiko/Errors -std=c++11 ../../src/ErrorCondition.cpp
 
 $(_builddir)IshikoErrors_ErrorsErrorCategory.o: ../../src/ErrorsErrorCategory.cpp
-	$(CXX) -c -o $@ $(CPPFLAGS) $(CXXFLAGS) -MD -MP -fPIC -DPIC -pthread -I../../include/Ishiko/Errors -std=c++11 ../../src/ErrorsErrorCategory.cpp
+	$(CXX) -c -o $@ $(CPPFLAGS) $(CXXFLAGS) -MD -MP -fPIC -DPIC -pthread -I$(ISHIKO_CPP_BASEPLATFORM_ROOT)/include -I../../include/Ishiko/Errors -std=c++11 ../../src/ErrorsErrorCategory.cpp
 
 $(_builddir)IshikoErrors_ErrorString.o: ../../src/ErrorString.cpp
-	$(CXX) -c -o $@ $(CPPFLAGS) $(CXXFLAGS) -MD -MP -fPIC -DPIC -pthread -I../../include/Ishiko/Errors -std=c++11 ../../src/ErrorString.cpp
+	$(CXX) -c -o $@ $(CPPFLAGS) $(CXXFLAGS) -MD -MP -fPIC -DPIC -pthread -I$(ISHIKO_CPP_BASEPLATFORM_ROOT)/include -I../../include/Ishiko/Errors -std=c++11 ../../src/ErrorString.cpp
 
 $(_builddir)IshikoErrors_Exception.o: ../../src/Exception.cpp
-	$(CXX) -c -o $@ $(CPPFLAGS) $(CXXFLAGS) -MD -MP -fPIC -DPIC -pthread -I../../include/Ishiko/Errors -std=c++11 ../../src/Exception.cpp
+	$(CXX) -c -o $@ $(CPPFLAGS) $(CXXFLAGS) -MD -MP -fPIC -DPIC -pthread -I$(ISHIKO_CPP_BASEPLATFORM_ROOT)/include -I../../include/Ishiko/Errors -std=c++11 ../../src/Exception.cpp
 
 $(_builddir)IshikoErrors_InfoErrorExtension.o: ../../src/InfoErrorExtension.cpp
-	$(CXX) -c -o $@ $(CPPFLAGS) $(CXXFLAGS) -MD -MP -fPIC -DPIC -pthread -I../../include/Ishiko/Errors -std=c++11 ../../src/InfoErrorExtension.cpp
+	$(CXX) -c -o $@ $(CPPFLAGS) $(CXXFLAGS) -MD -MP -fPIC -DPIC -pthread -I$(ISHIKO_CPP_BASEPLATFORM_ROOT)/include -I../../include/Ishiko/Errors -std=c++11 ../../src/InfoErrorExtension.cpp
 
 $(_builddir)IshikoErrors_SuccessCategory.o: ../../src/SuccessCategory.cpp
-	$(CXX) -c -o $@ $(CPPFLAGS) $(CXXFLAGS) -MD -MP -fPIC -DPIC -pthread -I../../include/Ishiko/Errors -std=c++11 ../../src/SuccessCategory.cpp
+	$(CXX) -c -o $@ $(CPPFLAGS) $(CXXFLAGS) -MD -MP -fPIC -DPIC -pthread -I$(ISHIKO_CPP_BASEPLATFORM_ROOT)/include -I../../include/Ishiko/Errors -std=c++11 ../../src/SuccessCategory.cpp
 
 clean:
 	rm -f $(_builddir)*.o

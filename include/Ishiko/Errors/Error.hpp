@@ -10,6 +10,7 @@
 #include "ErrorCondition.hpp"
 #include "ErrorsErrorCategory.hpp"
 #include "ErrorString.hpp"
+#include <Ishiko/BasePlatform.h>
 #include <map>
 #include <memory>
 #include <ostream>
@@ -35,6 +36,8 @@ public:
     class Extensions
     {
     public:
+        inline Extensions() noexcept;
+
         template<typename E> ErrorCondition install() noexcept;
 
         template<typename E> bool tryGet(const E*& extension) const noexcept;
@@ -140,6 +143,13 @@ std::ostream& operator<<(std::ostream& os, const Error& error);
 
 void ThrowIf(const Error& error);
 
+}
+
+Ishiko::Error::Extensions::Extensions() noexcept
+{
+#ifdef ISHIKO_DEBUG
+    setDynamic(true);
+#endif
 }
 
 template<typename E>
