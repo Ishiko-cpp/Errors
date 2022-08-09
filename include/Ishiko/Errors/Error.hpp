@@ -197,10 +197,9 @@ bool Ishiko::Error::Extensions::tryGet(E*& extension) noexcept
     return false;
 }
 
-
 bool Ishiko::Error::Extensions::dynamic() const noexcept
 {
-    return false;
+    return (m_impl ? m_impl->m_dynamic : false);
 }
 
 Ishiko::Error::Error(const ErrorCategory& category, int value) noexcept

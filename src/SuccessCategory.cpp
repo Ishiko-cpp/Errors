@@ -18,3 +18,9 @@ const char* SuccessCategory::name() const noexcept
 {
     return "Ishiko::SuccessCategory";
 }
+
+std::ostream& SuccessCategory::streamOut(int value, std::ostream& os) const
+{
+    os << "success";
+    return os;
+}

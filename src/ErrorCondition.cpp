@@ -26,6 +26,8 @@ void ErrorCondition::fail(const ErrorCategory& category, int value) noexcept
 
 std::ostream& Ishiko::operator<<(std::ostream& os, const ErrorCondition& condition)
 {
-    os << condition.category().name() << ", " << condition.value();
+    os << condition.category().name() << " " << condition.value() << " (";
+    condition.category().streamOut(condition.value(), os);
+    os << ")";
     return os;
 }

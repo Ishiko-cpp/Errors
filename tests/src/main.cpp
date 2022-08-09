@@ -5,6 +5,7 @@
 */
 
 #include "ErrorConditionTests.hpp"
+#include "ErrorExtensionsTests.hpp"
 #include "ErrorStringTests.hpp"
 #include "ErrorTests.hpp"
 #include "InfoErrorExtensionTests.hpp"
@@ -27,6 +28,7 @@ int main(int argc, char* argv[])
         TestSequence& theTests = theTestHarness.tests();
         theTests.append<ErrorConditionTests>();
         theTests.append<ErrorStringTests>();
+        theTests.append<ErrorExtensionsTests>();
         theTests.append<ErrorTests>();
         theTests.append<InfoErrorExtensionTests>();
         theTests.append<ExceptionTests>();
