@@ -8,7 +8,7 @@
 #define GUARD_ISHIKO_CPP_ERRORS_INFOERROREXTENSION_HPP
 
 #include "Error.hpp"
-#include "ErrorMessage.hpp"
+#include "ErrorString.hpp"
 #include <string>
 
 namespace Ishiko
@@ -22,17 +22,15 @@ public:
 
     static void Set(Error& error, const std::string& message, const char* file, int line) noexcept;
 
-    bool tryGetOrigin(const char*& file, int& line) const noexcept;
-
     std::ostream& streamOut(std::ostream& os) const;
 
-    const ErrorMessage& message() const noexcept;
-    const std::string& file() const;
+    const ErrorString& message() const noexcept;
+    const ErrorString& file() const;
     int line() const;
 
 private:
-    ErrorMessage m_message;
-    std::string m_file;
+    ErrorString m_message;
+    ErrorString m_file;
     int m_line;
 };
 

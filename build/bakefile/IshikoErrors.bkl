@@ -1,3 +1,6 @@
+ishikopath = envvar("ISHIKO_CPP");
+import $(ishikopath)/base-platform/include/Ishiko/BasePlatform.bkl;
+
 toolsets = gnu vs2019 vs2017 vs2015 vs2013;
 
 gnu.makefile = ../gnumake/GNUmakefile;
@@ -6,7 +9,7 @@ vs2017.solutionfile = ../vc15/IshikoErrors.sln;
 vs2015.solutionfile = ../vc14/IshikoErrors.sln;
 vs2013.solutionfile = ../vc12/IshikoErrors.sln;
 
-library IshikoErrors
+library IshikoErrors : IshikoBasePlatform
 {
     archs = x86 x86_64;
 
@@ -34,7 +37,8 @@ library IshikoErrors
         ../../include/Ishiko/Errors/Error.hpp
         ../../include/Ishiko/Errors/ErrorCondition.hpp
         ../../include/Ishiko/Errors/ErrorCategory.hpp
-        ../../include/Ishiko/Errors/ErrorMessage.hpp
+        ../../include/Ishiko/Errors/ErrorsErrorCategory.hpp
+        ../../include/Ishiko/Errors/ErrorString.hpp
         ../../include/Ishiko/Errors/Exception.hpp
         ../../include/Ishiko/Errors/InfoErrorExtension.hpp
         ../../include/Ishiko/Errors/linkoptions.hpp
@@ -45,7 +49,8 @@ library IshikoErrors
     {
         ../../src/Error.cpp
         ../../src/ErrorCondition.cpp
-        ../../src/ErrorMessage.cpp
+        ../../src/ErrorsErrorCategory.cpp
+        ../../src/ErrorString.cpp
         ../../src/Exception.cpp
         ../../src/InfoErrorExtension.cpp
         ../../src/SuccessCategory.cpp

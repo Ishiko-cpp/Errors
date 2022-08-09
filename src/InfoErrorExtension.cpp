@@ -14,9 +14,10 @@ InfoErrorExtension::InfoErrorExtension()
 }
 
 InfoErrorExtension::InfoErrorExtension(const std::string& message, const char* file, int line)
-    : m_file(file), m_line(line)
+    : m_line(line)
 {
     m_message.assign(message);
+    m_file.assign(file);
 }
 
 void InfoErrorExtension::Set(Error& error, const std::string& message, const char* file, int line) noexcept
@@ -25,23 +26,9 @@ void InfoErrorExtension::Set(Error& error, const std::string& message, const cha
     if (error.extensions().tryGet(extension))
     {
         extension->m_message.assign(message);
-        extension->m_file = file;
+        extension->m_file.assign(file);
         extension->m_line = line;
     }
-}
-
-bool InfoErrorExtension::tryGetOrigin(const char*& file, int& line) const noexcept
-{
-    bool result = false;
-
-    if ((!m_file.empty()) && (m_line != -1))
-    {
-        file = m_file.c_str();
-        line = m_line;
-        result = true;
-    }
-
-    return result;
 }
 
 std::ostream& InfoErrorExtension::streamOut(std::ostream& os) const
@@ -57,12 +44,12 @@ std::ostream& InfoErrorExtension::streamOut(std::ostream& os) const
     return os;
 }
 
-const ErrorMessage& InfoErrorExtension::message() const noexcept
+const ErrorString& InfoErrorExtension::message() const noexcept
 {
     return m_message;
 }
 
-const std::string& InfoErrorExtension::file() const
+const ErrorString& InfoErrorExtension::file() const
 {
     return m_file;
 }

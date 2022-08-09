@@ -1,10 +1,13 @@
+ishikopath = envvar("ISHIKO_CPP");
+import $(ishikopath)/base-platform/include/Ishiko/BasePlatform.bkl;
+
 setting ISHIKO_CPP_ERRORS_ROOT
 {
     help = "Path to the Ishiko Errors installation";
     default = '$(ISHIKO_CPP)/errors';
 }
 
-template IshikoErrors
+template IshikoErrors : IshikoBasePlatform
 {
     includedirs += $(ISHIKO_CPP_ERRORS_ROOT)/include;
 
