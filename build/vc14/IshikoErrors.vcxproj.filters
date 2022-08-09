@@ -29,6 +29,9 @@
     <ClInclude Include="..\..\include\Ishiko\Errors\ErrorCategory.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\include\Ishiko\Errors\ErrorsErrorCategory.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
     <ClInclude Include="..\..\include\Ishiko\Errors\ErrorString.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -50,6 +53,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\ErrorCondition.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\ErrorsErrorCategory.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\ErrorString.cpp">
