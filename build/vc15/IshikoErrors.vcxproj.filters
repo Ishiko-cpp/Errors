@@ -52,6 +52,9 @@
     <ClCompile Include="..\..\src\Error.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\src\ErrorCategory.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
     <ClCompile Include="..\..\src\ErrorCondition.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>

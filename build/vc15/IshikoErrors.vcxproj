@@ -151,6 +151,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="..\..\src\Error.cpp" />
+    <ClCompile Include="..\..\src\ErrorCategory.cpp" />
     <ClCompile Include="..\..\src\ErrorCondition.cpp" />
     <ClCompile Include="..\..\src\ErrorsErrorCategory.cpp" />
     <ClCompile Include="..\..\src\ErrorString.cpp" />

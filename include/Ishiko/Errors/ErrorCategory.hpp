@@ -12,12 +12,15 @@
 namespace Ishiko
 {
 
+class Error;
+
 class ErrorCategory
 {
 public:
     virtual const char* name() const noexcept = 0;
 
     virtual std::ostream& streamOut(int value, std::ostream& os) const = 0;
+    virtual std::ostream& streamOut(const Error& error, std::ostream& os) const;
 
 protected:
     ErrorCategory() noexcept = default;
