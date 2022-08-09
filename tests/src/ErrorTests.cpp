@@ -48,12 +48,14 @@ void ErrorTests::ExtensionsInstallTest1(Test& test)
 {
     Error::Extensions extensions;
 
-    extensions.install<TestErrorExtension>();
+    ErrorCondition err = extensions.install<TestErrorExtension>();
+
+    ISHIKO_TEST_FAIL_IF(err);
 
     const TestErrorExtension* extension;
     bool found = extensions.tryGet(extension);
 
-    ISHIKO_TEST_ABORT_IF_NOT(extension);
+    ISHIKO_TEST_FAIL_IF_NOT(extension);
     ISHIKO_TEST_PASS();
 }
 
@@ -237,7 +239,7 @@ void ErrorTests::TryGetOriginTest1(Test& test)
 {
     Error error;
 
-    const char* file = nullptr;
+    ErrorString file;
     int line = -1;
     bool found = error.tryGetOrigin(file, line);
 
@@ -250,7 +252,7 @@ void ErrorTests::TryGetOriginTest2(Test& test)
     Error error;
     error.extensions().install<InfoErrorExtension>();
 
-    const char* file = nullptr;
+    ErrorString file;
     int line = -1;
     bool found = error.tryGetOrigin(file, line);
 
@@ -264,11 +266,13 @@ void ErrorTests::TryGetOriginTest3(Test& test)
     error.extensions().install<InfoErrorExtension>();
     error.fail(TestErrorCategory1::Get(), -3);
 
-    const char* file = nullptr;
+    ErrorString file;
     int line = -1;
     bool found = error.tryGetOrigin(file, line);
 
-    ISHIKO_TEST_FAIL_IF(found);
+    ISHIKO_TEST_ABORT_IF_NOT(found);
+    ISHIKO_TEST_FAIL_IF_NEQ(file, "");
+    ISHIKO_TEST_FAIL_IF_NEQ(line, -1);
     ISHIKO_TEST_PASS();
 }
 
@@ -278,12 +282,12 @@ void ErrorTests::TryGetOriginTest4(Test& test)
     error.extensions().install<InfoErrorExtension>();
     error.fail(TestErrorCategory1::Get(), -3, "a bad error", "file1", 3);
 
-    const char* file = nullptr;
+    ErrorString file;
     int line = -1;
     bool found = error.tryGetOrigin(file, line);
 
     ISHIKO_TEST_ABORT_IF_NOT(found);
-    ISHIKO_TEST_FAIL_IF_STR_NEQ(file, "file1");
+    ISHIKO_TEST_FAIL_IF_NEQ(file, "file1");
     ISHIKO_TEST_FAIL_IF_NEQ(line, 3);
     ISHIKO_TEST_PASS();
 }

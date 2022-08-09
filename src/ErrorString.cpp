@@ -4,11 +4,11 @@
     See https://github.com/ishiko-cpp/errors/blob/main/LICENSE.txt
 */
 
-#include "ErrorMessage.hpp"
+#include "ErrorString.hpp"
 
 using namespace Ishiko;
 
-ErrorMessage& ErrorMessage::assign(const std::string& str) noexcept
+ErrorString& ErrorString::assign(const std::string& str) noexcept
 {
     try
     {
@@ -20,12 +20,12 @@ ErrorMessage& ErrorMessage::assign(const std::string& str) noexcept
     return *this;
 }
 
-std::string ErrorMessage::toString() const
+std::string ErrorString::toString() const
 {
     return m_data;
 }
 
-std::ostream& Ishiko::operator<<(std::ostream& os, const ErrorMessage& error)
+std::ostream& Ishiko::operator<<(std::ostream& os, const ErrorString& error)
 {
     return (os << error.m_data);
 }

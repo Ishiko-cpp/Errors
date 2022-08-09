@@ -8,6 +8,9 @@
 #define GUARD_ISHIKO_CPP_ERRORS_ERROR_HPP
 
 #include "ErrorCondition.hpp"
+#include "ErrorsErrorCategory.hpp"
+#include "ErrorString.hpp"
+#include <Ishiko/BasePlatform.h>
 #include <map>
 #include <memory>
 #include <ostream>
@@ -33,7 +36,9 @@ public:
     class Extensions
     {
     public:
-        template<typename E> bool install() noexcept;
+        inline Extensions() noexcept;
+
+        template<typename E> ErrorCondition install() noexcept;
 
         template<typename E> bool tryGet(const E*& extension) const noexcept;
         template<typename E> bool tryGet(E*& extension) noexcept;
@@ -41,12 +46,16 @@ public:
         // TODO: make this noexcept
         bool tryGetMessage(std::string& message) const noexcept;
         // TODO: make this noexcept
-        bool tryGetOrigin(const char*& file, int& line) const noexcept;
+        bool tryGetOrigin(ErrorString& file, int& line) const noexcept;
+
+        inline bool dynamic() const noexcept;
+        ErrorCondition setDynamic(bool dynamic) noexcept;
 
     private:
         class Impl
         {
         public:
+            bool m_dynamic{false};
             // TODO: need to make this fail silently
             std::map<std::type_index, std::unique_ptr<Extension>> m_extensions;
         };
@@ -94,7 +103,7 @@ public:
 
     bool tryGetMessage(std::string& message) const noexcept;
 
-    bool tryGetOrigin(const char*& file, int& line) const noexcept;
+    bool tryGetOrigin(ErrorString& file, int& line) const noexcept;
 
     /// Sets the error code if the current code is 0.
     /**
@@ -136,19 +145,26 @@ void ThrowIf(const Error& error);
 
 }
 
+Ishiko::Error::Extensions::Extensions() noexcept
+{
+#ifdef ISHIKO_DEBUG
+    setDynamic(true);
+#endif
+}
+
 template<typename E>
-bool Ishiko::Error::Extensions::install() noexcept
+Ishiko::ErrorCondition Ishiko::Error::Extensions::install() noexcept
 {
     if (!m_impl)
     {
         m_impl.reset(new(std::nothrow) Impl);
         if (!m_impl)
         {
-            return false;
+            return ErrorCondition{ErrorsErrorCategory::Get(), ErrorsErrorCategory::Value::memory_allocation_failure};
         }
     }
     m_impl->m_extensions[typeid(E)].reset(new(std::nothrow) E());
-    return (bool)m_impl->m_extensions[typeid(E)];
+    return ErrorCondition{};
 }
 
 template<typename E>
@@ -181,6 +197,17 @@ bool Ishiko::Error::Extensions::tryGet(E*& extension) noexcept
     return false;
 }
 
+
+bool Ishiko::Error::Extensions::dynamic() const noexcept
+{
+    return false;
+}
+
+Ishiko::Error::Error(const ErrorCategory& category, int value) noexcept
+    : m_condition{category, value}
+{
+}
+
 const Ishiko::Error::Extensions& Ishiko::Error::extensions() const noexcept
 {
     return m_extensions;
@@ -189,11 +216,6 @@ const Ishiko::Error::Extensions& Ishiko::Error::extensions() const noexcept
 Ishiko::Error::Extensions& Ishiko::Error::extensions() noexcept
 {
     return m_extensions;
-}
-
-Ishiko::Error::Error(const ErrorCategory& category, int value) noexcept
-    : m_condition{category, value}
-{
 }
 
 Ishiko::ErrorCondition Ishiko::Error::condition() const noexcept

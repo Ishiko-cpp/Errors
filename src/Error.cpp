@@ -5,8 +5,8 @@
 */
 
 #include "Error.hpp"
-#include "InfoErrorExtension.hpp"
 #include "Exception.hpp"
+#include "InfoErrorExtension.hpp"
 
 using namespace Ishiko;
 
@@ -27,17 +27,33 @@ bool Error::Extensions::tryGetMessage(std::string& message) const noexcept
     return result;
 }
 
-bool Error::Extensions::tryGetOrigin(const char*& file, int& line) const noexcept
+bool Error::Extensions::tryGetOrigin(ErrorString& file, int& line) const noexcept
 {
-    bool result = false;
-
     const InfoErrorExtension* extension;
     if (tryGet(extension))
     {
-        result = extension->tryGetOrigin(file, line);
+        file = extension->file();
+        line = extension->line();
+        return true;
     }
+    else
+    {
+        return false;
+    }
+}
 
-    return result;
+ErrorCondition Error::Extensions::setDynamic(bool dynamic) noexcept
+{
+    if (!m_impl)
+    {
+        m_impl.reset(new(std::nothrow) Impl);
+        if (!m_impl)
+        {
+            return ErrorCondition{ErrorsErrorCategory::Get(), ErrorsErrorCategory::Value::memory_allocation_failure};
+        }
+    }
+    m_impl->m_dynamic = dynamic;
+    return ErrorCondition{};
 }
 
 Error::operator bool() const noexcept
@@ -72,7 +88,7 @@ bool Error::tryGetMessage(std::string& message) const noexcept
     return result;
 }
 
-bool Error::tryGetOrigin(const char*& file, int& line) const noexcept
+bool Error::tryGetOrigin(ErrorString& file, int& line) const noexcept
 {
     bool result = false;
 
@@ -124,12 +140,12 @@ void Ishiko::ThrowIf(const Error& error)
 {
     if (error)
     {
-        const char* file = nullptr;
-        int line = -1;
+        ErrorString file;
+        int line{-1};
         bool found = error.tryGetOrigin(file, line);
         if (found)
         {
-            throw Exception(error.condition(), file, line);
+            throw Exception(error.condition(), file.toString().c_str(), line);
         }
         else
         {

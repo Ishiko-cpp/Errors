@@ -24,7 +24,7 @@ program IshikoErrorsTests : IshikoErrors, IshikoTestFrameworkCore
     headers
     {
         ../../src/ErrorConditionTests.hpp
-        ../../src/ErrorMessageTests.hpp
+        ../../src/ErrorStringTests.hpp
         ../../src/ErrorTests.hpp
         ../../src/ExceptionTests.hpp
         ../../src/InfoErrorExtensionTests.hpp
@@ -37,7 +37,7 @@ program IshikoErrorsTests : IshikoErrors, IshikoTestFrameworkCore
     {
         ../../src/main.cpp
         ../../src/ErrorConditionTests.cpp
-        ../../src/ErrorMessageTests.cpp
+        ../../src/ErrorStringTests.cpp
         ../../src/ErrorTests.cpp
         ../../src/ExceptionTests.cpp
         ../../src/InfoErrorExtensionTests.cpp
