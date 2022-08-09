@@ -7,7 +7,6 @@
 #include "ErrorTests.hpp"
 #include "helpers/TestErrorCategory1.hpp"
 #include "helpers/TestErrorCategory2.hpp"
-#include "helpers/TestErrorExtension.hpp"
 #include "Ishiko/Errors/Error.hpp"
 #include "Ishiko/Errors/Exception.hpp"
 #include "Ishiko/Errors/InfoErrorExtension.hpp"
@@ -19,7 +18,6 @@ using namespace Ishiko;
 ErrorTests::ErrorTests(const TestNumber& number, const TestContext& context)
     : TestSequence(number, "Error tests", context)
 {
-    append<HeapAllocationErrorsTest>("install test 1", ExtensionsInstallTest1);
     append<HeapAllocationErrorsTest>("Constructor test 1", ConstructorTest1);
     append<HeapAllocationErrorsTest>("Constructor test 2", ConstructorTest2);
     append<HeapAllocationErrorsTest>("operator==() test 1", EqualityOperatorTest1);
@@ -42,21 +40,6 @@ ErrorTests::ErrorTests(const TestNumber& number, const TestContext& context)
     append<HeapAllocationErrorsTest>("ThrowIf test 1", ThrowIfTest1);
     append<HeapAllocationErrorsTest>("ThrowIf test 2", ThrowIfTest2);
     append<HeapAllocationErrorsTest>("ThrowIf test 3", ThrowIfTest3);
-}
-
-void ErrorTests::ExtensionsInstallTest1(Test& test)
-{
-    Error::Extensions extensions;
-
-    ErrorCondition err = extensions.install<TestErrorExtension>();
-
-    ISHIKO_TEST_FAIL_IF(err);
-
-    const TestErrorExtension* extension;
-    bool found = extensions.tryGet(extension);
-
-    ISHIKO_TEST_FAIL_IF_NOT(extension);
-    ISHIKO_TEST_PASS();
 }
 
 void ErrorTests::ConstructorTest1(Test& test)
