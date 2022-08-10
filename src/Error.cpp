@@ -49,7 +49,8 @@ ErrorCondition Error::Extensions::setDynamic(bool dynamic) noexcept
         m_impl.reset(new(std::nothrow) Impl);
         if (!m_impl)
         {
-            return ErrorCondition{ErrorsErrorCategory::Get(), ErrorsErrorCategory::Value::memory_allocation_failure};
+            return ErrorCondition{ErrorsErrorCategory::Get(),
+                static_cast<int>(ErrorsErrorCategory::Value::memory_allocation_error)};
         }
     }
     m_impl->m_dynamic = dynamic;
