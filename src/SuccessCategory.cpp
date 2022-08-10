@@ -21,6 +21,15 @@ const char* SuccessCategory::name() const noexcept
 
 std::ostream& SuccessCategory::streamOut(int value, std::ostream& os) const
 {
-    os << "success";
+    switch (value)
+    {
+    case 0:
+        os << "success";
+        break;
+
+    default:
+        os << "unknown value";
+        break;
+    }
     return os;
 }

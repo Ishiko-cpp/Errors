@@ -23,12 +23,16 @@ std::ostream& ErrorsErrorCategory::streamOut(int value, std::ostream& os) const
 {
     switch (value)
     {
-    case Value::generic:
+    case Value::generic_error:
         os << "generic error";
         break;
 
-    case Value::memory_allocation_failure:
-        os << "memory allocation failure";
+    case Value::memory_allocation_error:
+        os << "memory allocation error";
+        break;
+
+    default:
+        os << "unknown value";
         break;
     }
     return os;
