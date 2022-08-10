@@ -16,13 +16,10 @@ namespace Ishiko
 class ErrorsErrorCategory : public ErrorCategory
 {
 public:
-    struct Value
+    enum class Value
     {
-        enum
-        {
-            generic = -1,
-            memory_allocation_failure = -2
-        };
+        generic_error = -1,
+        memory_allocation_error = -2
     };
 
     static const ErrorsErrorCategory& Get() noexcept;
