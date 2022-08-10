@@ -21,7 +21,7 @@ const char* ErrorsErrorCategory::name() const noexcept
 
 std::ostream& ErrorsErrorCategory::streamOut(int value, std::ostream& os) const
 {
-    switch (value)
+    switch (static_cast<Value>(value))
     {
     case Value::generic_error:
         os << "generic error";
