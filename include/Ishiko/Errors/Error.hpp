@@ -128,6 +128,7 @@ public:
         @param line The line at which the fail() function was called.
     */
     void fail(const ErrorCategory& category, int value, const std::string& message, const char* file, int line) noexcept;
+    void fail(const ErrorCategory& category, int value, const std::wstring& message, const char* file, int line) noexcept;
 
     void fail(const Error& error) noexcept;
 

@@ -18,6 +18,11 @@ InfoErrorExtensionTests::InfoErrorExtensionTests(const TestNumber& number, const
     append<HeapAllocationErrorsTest>("Constructor test 1", ConstructorTest1);
     append<HeapAllocationErrorsTest>("Constructor test 2", ConstructorTest2);
     append<HeapAllocationErrorsTest>("Constructor test 3", ConstructorTest3);
+    append<HeapAllocationErrorsTest>("Constructor test 4", ConstructorTest4);
+    append<HeapAllocationErrorsTest>("Set test 1", SetTest1);
+    append<HeapAllocationErrorsTest>("Set test 2", SetTest2);
+    append<HeapAllocationErrorsTest>("Set test 3", SetTest3);
+    append<HeapAllocationErrorsTest>("Set test 4", SetTest4);
     append<HeapAllocationErrorsTest>("fail test 1", FailTest1);
     append<HeapAllocationErrorsTest>("fail test 2", FailTest2);
     append<HeapAllocationErrorsTest>("operator<< test 1", StreamInsertionTest1);
@@ -45,11 +50,85 @@ void InfoErrorExtensionTests::ConstructorTest2(Test& test)
 
 void InfoErrorExtensionTests::ConstructorTest3(Test& test)
 {
-    InfoErrorExtension infoExtension("erreur syst\xc3\xa8me", "file1", 3);
+    InfoErrorExtension infoExtension("erreur syst\xC3\xA8me", "file1", 3);
 
-    ISHIKO_TEST_FAIL_IF_NEQ(infoExtension.message(), "erreur syst\xc3\xa8me");
+    ISHIKO_TEST_FAIL_IF_NEQ(infoExtension.message(), "erreur syst\xC3\xA8me");
     ISHIKO_TEST_FAIL_IF_NEQ(infoExtension.file(), "file1");
     ISHIKO_TEST_FAIL_IF_NEQ(infoExtension.line(), 3);
+    ISHIKO_TEST_PASS();
+}
+
+void InfoErrorExtensionTests::ConstructorTest4(Test& test)
+{
+    InfoErrorExtension infoExtension(L"erreur syst\xE8me", "file1", 3);
+
+    ISHIKO_TEST_FAIL_IF_NEQ(infoExtension.message(), "erreur syst\xC3\xA8me");
+    ISHIKO_TEST_FAIL_IF_NEQ(infoExtension.file(), "file1");
+    ISHIKO_TEST_FAIL_IF_NEQ(infoExtension.line(), 3);
+    ISHIKO_TEST_PASS();
+}
+
+void InfoErrorExtensionTests::SetTest1(Test& test)
+{
+    Error error;
+
+    InfoErrorExtension::Set(error, "message", "file1", 3);
+
+    const InfoErrorExtension* infoExtension;
+    bool found = error.extensions().tryGet(infoExtension);
+
+    ISHIKO_TEST_FAIL_IF(found);
+    ISHIKO_TEST_PASS();
+}
+
+void InfoErrorExtensionTests::SetTest2(Test& test)
+{
+    Error error;
+    error.extensions().install<InfoErrorExtension>();
+
+    InfoErrorExtension::Set(error, "system error", "file1", 3);
+
+    const InfoErrorExtension* infoExtension;
+    bool found = error.extensions().tryGet(infoExtension);
+
+    ISHIKO_TEST_ABORT_IF_NOT(found);
+    ISHIKO_TEST_FAIL_IF_NEQ(infoExtension->message(), "system error");
+    ISHIKO_TEST_FAIL_IF_NEQ(infoExtension->file(), "file1");
+    ISHIKO_TEST_FAIL_IF_NEQ(infoExtension->line(), 3);
+    ISHIKO_TEST_PASS();
+}
+
+void InfoErrorExtensionTests::SetTest3(Test& test)
+{
+    Error error;
+    error.extensions().install<InfoErrorExtension>();
+
+    InfoErrorExtension::Set(error, "erreur syst\xC3\xA8me", "file1", 3);
+
+    const InfoErrorExtension* infoExtension;
+    bool found = error.extensions().tryGet(infoExtension);
+
+    ISHIKO_TEST_ABORT_IF_NOT(found);
+    ISHIKO_TEST_FAIL_IF_NEQ(infoExtension->message(), "erreur syst\xC3\xA8me");
+    ISHIKO_TEST_FAIL_IF_NEQ(infoExtension->file(), "file1");
+    ISHIKO_TEST_FAIL_IF_NEQ(infoExtension->line(), 3);
+    ISHIKO_TEST_PASS();
+}
+
+void InfoErrorExtensionTests::SetTest4(Test& test)
+{
+    Error error;
+    error.extensions().install<InfoErrorExtension>();
+
+    InfoErrorExtension::Set(error, L"erreur syst\xE8me", "file1", 3);
+
+    const InfoErrorExtension* infoExtension;
+    bool found = error.extensions().tryGet(infoExtension);
+
+    ISHIKO_TEST_ABORT_IF_NOT(found);
+    ISHIKO_TEST_FAIL_IF_NEQ(infoExtension->message(), "erreur syst\xC3\xA8me");
+    ISHIKO_TEST_FAIL_IF_NEQ(infoExtension->file(), "file1");
+    ISHIKO_TEST_FAIL_IF_NEQ(infoExtension->line(), 3);
     ISHIKO_TEST_PASS();
 }
 
