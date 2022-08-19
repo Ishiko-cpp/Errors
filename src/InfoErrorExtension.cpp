@@ -5,6 +5,8 @@
 */
 
 #include "InfoErrorExtension.hpp"
+#include <codecvt>
+#include <locale>
 
 using namespace Ishiko;
 
@@ -20,12 +22,32 @@ InfoErrorExtension::InfoErrorExtension(const std::string& message, const char* f
     m_file.assign(file);
 }
 
+InfoErrorExtension::InfoErrorExtension(const std::wstring& message, const char* file, int line)
+    : m_line(line)
+{
+    std::wstring_convert<std::codecvt_utf8<wchar_t>> converter;
+    m_message.assign(converter.to_bytes(message));
+    m_file.assign(file);
+}
+
 void InfoErrorExtension::Set(Error& error, const std::string& message, const char* file, int line) noexcept
 {
     InfoErrorExtension* extension;
     if (error.extensions().tryGet(extension))
     {
         extension->m_message.assign(message);
+        extension->m_file.assign(file);
+        extension->m_line = line;
+    }
+}
+
+void InfoErrorExtension::Set(Error& error, const std::wstring& message, const char* file, int line) noexcept
+{
+    InfoErrorExtension* extension;
+    if (error.extensions().tryGet(extension))
+    {
+        std::wstring_convert<std::codecvt_utf8<wchar_t>> converter;
+        extension->m_message.assign(converter.to_bytes(message));
         extension->m_file.assign(file);
         extension->m_line = line;
     }
