@@ -119,6 +119,16 @@ void Error::fail(const ErrorCategory& category, int value, const std::string& me
     }
 }
 
+void Error::fail(const ErrorCategory& category, int value, const std::wstring& message, const char* file,
+    int line) noexcept
+{
+    if (!m_condition)
+    {
+        InfoErrorExtension::Set(*this, message, file, line);
+        m_condition.fail(category, value);
+    }
+}
+
 void Error::fail(const Error& error) noexcept
 {
     // TODO: can/should this copy more than the condition and category?

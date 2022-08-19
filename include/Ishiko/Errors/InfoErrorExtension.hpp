@@ -19,8 +19,10 @@ class InfoErrorExtension : public Error::Extension
 public:
     InfoErrorExtension();
     InfoErrorExtension(const std::string& message, const char* file, int line);
+    InfoErrorExtension(const std::wstring& message, const char* file, int line);
 
     static void Set(Error& error, const std::string& message, const char* file, int line) noexcept;
+    static void Set(Error& error, const std::wstring& message, const char* file, int line) noexcept;
 
     std::ostream& streamOut(std::ostream& os) const;
 
