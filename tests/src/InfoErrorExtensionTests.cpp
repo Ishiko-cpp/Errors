@@ -17,6 +17,7 @@ InfoErrorExtensionTests::InfoErrorExtensionTests(const TestNumber& number, const
 {
     append<HeapAllocationErrorsTest>("Constructor test 1", ConstructorTest1);
     append<HeapAllocationErrorsTest>("Constructor test 2", ConstructorTest2);
+    append<HeapAllocationErrorsTest>("Constructor test 3", ConstructorTest3);
     append<HeapAllocationErrorsTest>("fail test 1", FailTest1);
     append<HeapAllocationErrorsTest>("fail test 2", FailTest2);
     append<HeapAllocationErrorsTest>("operator<< test 1", StreamInsertionTest1);
@@ -37,6 +38,16 @@ void InfoErrorExtensionTests::ConstructorTest2(Test& test)
     InfoErrorExtension infoExtension("unknown", "file1", 3);
 
     ISHIKO_TEST_FAIL_IF_NEQ(infoExtension.message(), "unknown");
+    ISHIKO_TEST_FAIL_IF_NEQ(infoExtension.file(), "file1");
+    ISHIKO_TEST_FAIL_IF_NEQ(infoExtension.line(), 3);
+    ISHIKO_TEST_PASS();
+}
+
+void InfoErrorExtensionTests::ConstructorTest3(Test& test)
+{
+    InfoErrorExtension infoExtension("erreur syst\xc3\xa8me", "file1", 3);
+
+    ISHIKO_TEST_FAIL_IF_NEQ(infoExtension.message(), "erreur syst\xc3\xa8me");
     ISHIKO_TEST_FAIL_IF_NEQ(infoExtension.file(), "file1");
     ISHIKO_TEST_FAIL_IF_NEQ(infoExtension.line(), 3);
     ISHIKO_TEST_PASS();
