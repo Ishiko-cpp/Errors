@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2017-2022 Xavier Leclercq
+    Copyright (c) 2017-2023 Xavier Leclercq
     Released under the MIT License
     See https://github.com/ishiko-cpp/errors/blob/main/LICENSE.txt
 */
@@ -10,7 +10,7 @@
 #include "ErrorCondition.hpp"
 #include "ErrorsErrorCategory.hpp"
 #include "ErrorString.hpp"
-#include <Ishiko/BasePlatform.h>
+#include <Ishiko/BasePlatform.hpp>
 #include <map>
 #include <memory>
 #include <ostream>
