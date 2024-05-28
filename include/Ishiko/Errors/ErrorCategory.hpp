@@ -19,7 +19,7 @@ class ErrorCategory : public std::error_category
 {
 public:
     std::string message(int ev) const override;
-    virtual const char* message(int ev, char* buffer, size_t len) const noexcept;
+    virtual const char* message(int ev, char* buffer, size_t len) const noexcept = 0;
 
 protected:
     ErrorCategory() noexcept = default;
