@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2021-2022 Xavier Leclercq
+    Copyright (c) 2021-2024 Xavier Leclercq
     Released under the MIT License
     See https://github.com/ishiko-cpp/errors/blob/main/LICENSE.txt
 */
@@ -17,8 +17,7 @@ const char* TestErrorCategory2::name() const noexcept
     return "TestErrorCategory2";
 }
 
-std::ostream& TestErrorCategory2::streamOut(int value, std::ostream& os) const
+const char* TestErrorCategory2::message(int ev, char* buffer, size_t len) const noexcept
 {
-    os << "generic error";
-    return os;
+    return "generic error";
 }
