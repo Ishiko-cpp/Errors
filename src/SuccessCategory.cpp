@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2020-2022 Xavier Leclercq
+    Copyright (c) 2020-2024 Xavier Leclercq
     Released under the MIT License
     See https://github.com/ishiko-cpp/errors/blob/main/LICENSE.txt
 */
@@ -19,17 +19,7 @@ const char* SuccessCategory::name() const noexcept
     return "Ishiko::SuccessCategory";
 }
 
-std::ostream& SuccessCategory::streamOut(int value, std::ostream& os) const
+const char* SuccessCategory::message(int ev, char* buffer, size_t len) const noexcept
 {
-    switch (value)
-    {
-    case 0:
-        os << "success";
-        break;
-
-    default:
-        os << "unknown value";
-        break;
-    }
-    return os;
+    return ((ev == 0) ? "success" : "unknown value");
 }
