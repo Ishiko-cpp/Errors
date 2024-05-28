@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2020-2022 Xavier Leclercq
+    Copyright (c) 2020-2024 Xavier Leclercq
     Released under the MIT License
     See https://github.com/ishiko-cpp/errors/blob/main/LICENSE.txt
 */
@@ -27,7 +27,7 @@ void ErrorCondition::fail(const ErrorCategory& category, int value) noexcept
 std::ostream& Ishiko::operator<<(std::ostream& os, const ErrorCondition& condition)
 {
     os << condition.category().name() << " " << condition.value() << " (";
-    condition.category().streamOut(condition.value(), os);
+    os << condition.category().message(condition.value());
     os << ")";
     return os;
 }

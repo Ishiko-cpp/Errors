@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2022 Xavier Leclercq
+    Copyright (c) 2022-2024 Xavier Leclercq
     Released under the MIT License
     See https://github.com/ishiko-cpp/errors/blob/main/LICENSE.txt
 */
@@ -9,7 +9,7 @@
 
 using namespace Ishiko;
 
-std::ostream& ErrorCategory::streamOut(const Error& error, std::ostream& os) const
+std::string ErrorCategory::message(int ev) const
 {
-    return streamOut(error.condition().value(), os);
+    return message(ev, nullptr, 0);
 }

@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2022 Xavier Leclercq
+    Copyright (c) 2022-2024 Xavier Leclercq
     Released under the MIT License
     See https://github.com/ishiko-cpp/errors/blob/main/LICENSE.txt
 */
@@ -19,21 +19,17 @@ const char* ErrorsErrorCategory::name() const noexcept
     return "Ishiko::ErrorsErrorCategory";
 }
 
-std::ostream& ErrorsErrorCategory::streamOut(int value, std::ostream& os) const
+const char* ErrorsErrorCategory::message(int ev, char* buffer, size_t len) const noexcept
 {
-    switch (static_cast<Value>(value))
+    switch (static_cast<Value>(ev))
     {
     case Value::generic_error:
-        os << "generic error";
-        break;
+        return "generic error";
 
     case Value::memory_allocation_error:
-        os << "memory allocation error";
-        break;
+        return "memory allocation error";
 
     default:
-        os << "unknown value";
-        break;
+        return "unknown value";
     }
-    return os;
 }
