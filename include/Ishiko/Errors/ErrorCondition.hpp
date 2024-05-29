@@ -32,6 +32,8 @@ public:
     void fail(const ErrorCategory& category, int value) noexcept;
     inline void clear() noexcept;
 
+    inline operator std::error_code() const;
+
 private:
     const ErrorCategory* m_category{&SuccessCategory::Get()};
     int m_value{0};
@@ -70,6 +72,11 @@ void Ishiko::ErrorCondition::clear() noexcept
 {
     m_value = 0;
     m_category = &SuccessCategory::Get();
+}
+
+Ishiko::ErrorCondition::operator std::error_code() const
+{
+    return std::error_code(m_value, *m_category);
 }
 
 #endif

@@ -25,6 +25,7 @@ private:
     static void FailTest1(Ishiko::Test& test);
     static void FailTest2(Ishiko::Test& test);
     static void ClearTest1(Ishiko::Test& test);
+    static void StdErrorCodeOperatorTest1(Ishiko::Test& test);
 };
 
 #endif

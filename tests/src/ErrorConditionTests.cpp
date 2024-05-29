@@ -26,6 +26,7 @@ ErrorConditionTests::ErrorConditionTests(const TestNumber& number, const TestCon
     append<HeapAllocationErrorsTest>("fail test 1", FailTest1);
     append<HeapAllocationErrorsTest>("fail test 2", FailTest2);
     append<HeapAllocationErrorsTest>("clear test 1", ClearTest1);
+    append<HeapAllocationErrorsTest>("operator std::error_code() test 1", StdErrorCodeOperatorTest1);
 }
 
 void ErrorConditionTests::ConstructorTest1(Test& test)
@@ -131,5 +132,15 @@ void ErrorConditionTests::ClearTest1(Test& test)
 
     ISHIKO_TEST_FAIL_IF(error);
     ISHIKO_TEST_FAIL_IF_NEQ(error.value(), 0);
+    ISHIKO_TEST_PASS();
+}
+
+void ErrorConditionTests::StdErrorCodeOperatorTest1(Test& test)
+{
+    ErrorCondition error{TestErrorCategory1::Get(), -1};
+    std::error_code ec = error;
+
+    ISHIKO_TEST_FAIL_IF_NEQ(ec.value(), -1);
+    ISHIKO_TEST_FAIL_IF_NEQ(ec.message(), "generic error");
     ISHIKO_TEST_PASS();
 }
