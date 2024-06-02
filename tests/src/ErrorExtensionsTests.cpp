@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2022-2023 Xavier Leclercq
+    Copyright (c) 2022-2024 Xavier Leclercq
     Released under the MIT License
     See https://github.com/ishiko-cpp/errors/blob/main/LICENSE.txt
 */
@@ -34,7 +34,7 @@ void ErrorExtensionsTests::InstallTest1(Test& test)
 {
     Error::Extensions extensions;
 
-    ErrorCondition err = extensions.install<TestErrorExtension>();
+    ErrorCode err = extensions.install<TestErrorExtension>();
 
     ISHIKO_TEST_FAIL_IF(err);
 
