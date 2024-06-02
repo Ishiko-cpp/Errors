@@ -42,39 +42,39 @@ bool Error::Extensions::tryGetOrigin(ErrorString& file, int& line) const noexcep
     }
 }
 
-ErrorCondition Error::Extensions::setDynamic(bool dynamic) noexcept
+ErrorCode Error::Extensions::setDynamic(bool dynamic) noexcept
 {
     if (!m_impl)
     {
         m_impl.reset(new(std::nothrow) Impl);
         if (!m_impl)
         {
-            return ErrorCondition{ErrorsErrorCategory::Get(),
+            return ErrorCode{ErrorsErrorCategory::Get(),
                 static_cast<int>(ErrorsErrorCategory::Value::memory_allocation_error)};
         }
     }
     m_impl->m_dynamic = dynamic;
-    return ErrorCondition{};
+    return ErrorCode{};
 }
 
 Error::operator bool() const noexcept
 {
-    return (bool)m_condition;
+    return (bool)m_code;
 }
 
 bool Error::operator!() const noexcept
 {
-    return !m_condition;
+    return !m_code;
 }
 
-bool Error::operator==(const ErrorCondition& other) const noexcept
+bool Error::operator==(const ErrorCode& other) const noexcept
 {
-    return (m_condition == other);
+    return (m_code == other);
 }
 
-bool Error::operator!=(const ErrorCondition& other) const noexcept
+bool Error::operator!=(const ErrorCode& other) const noexcept
 {
-    return (m_condition != other);
+    return (m_code != other);
 }
 
 bool Error::tryGetMessage(std::string& message) const noexcept
@@ -103,41 +103,41 @@ bool Error::tryGetOrigin(ErrorString& file, int& line) const noexcept
 
 void Error::fail(const ErrorCategory& category, int value) noexcept
 {
-    if (!m_condition)
+    if (!m_code)
     {
-        m_condition.fail(category, value);
+        m_code.fail(category, value);
     }
 }
 
 void Error::fail(const ErrorCategory& category, int value, const std::string& message, const char* file,
     int line) noexcept
 {
-    if (!m_condition)
+    if (!m_code)
     {
         InfoErrorExtension::Set(*this, message, file, line);
-        m_condition.fail(category, value);
+        m_code.fail(category, value);
     }
 }
 
 void Error::fail(const ErrorCategory& category, int value, const std::wstring& message, const char* file,
     int line) noexcept
 {
-    if (!m_condition)
+    if (!m_code)
     {
         InfoErrorExtension::Set(*this, message, file, line);
-        m_condition.fail(category, value);
+        m_code.fail(category, value);
     }
 }
 
 void Error::fail(const Error& error) noexcept
 {
     // TODO: can/should this copy more than the condition and category?
-    fail(error.condition().category(), error.condition().value());
+    fail(error.code().category(), error.code().value());
 }
 
 std::ostream& Ishiko::operator<<(std::ostream& os, const Error& error)
 {
-    os << error.condition();
+    os << error.code();
     
     const InfoErrorExtension* extension;
     if (error.extensions().tryGet(extension))
@@ -156,11 +156,11 @@ void Ishiko::ThrowIf(const Error& error)
         bool found = error.tryGetOrigin(file, line);
         if (found)
         {
-            throw Exception(error.condition(), file.toString().c_str(), line);
+            throw Exception(error.code(), file.toString().c_str(), line);
         }
         else
         {
-            throw Exception(error.condition(), __FILE__, __LINE__);
+            throw Exception(error.code(), __FILE__, __LINE__);
         }
     }
 }

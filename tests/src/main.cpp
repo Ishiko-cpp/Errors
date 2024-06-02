@@ -1,10 +1,10 @@
 /*
-    Copyright (c) 2019-2022 Xavier Leclercq
+    Copyright (c) 2019-2024 Xavier Leclercq
     Released under the MIT License
     See https://github.com/ishiko-cpp/errors/blob/main/LICENSE.txt
 */
 
-#include "ErrorConditionTests.hpp"
+#include "ErrorCodeTests.hpp"
 #include "ErrorExtensionsTests.hpp"
 #include "ErrorStringTests.hpp"
 #include "ErrorTests.hpp"
@@ -26,7 +26,7 @@ int main(int argc, char* argv[])
         TestHarness theTestHarness("Ishiko/C++ Errors Library Tests", configuration);
 
         TestSequence& theTests = theTestHarness.tests();
-        theTests.append<ErrorConditionTests>();
+        theTests.append<ErrorCodeTests>();
         theTests.append<ErrorStringTests>();
         theTests.append<ErrorExtensionsTests>();
         theTests.append<ErrorTests>();
