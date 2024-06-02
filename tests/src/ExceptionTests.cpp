@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2020-2022 Xavier Leclercq
+    Copyright (c) 2020-2024 Xavier Leclercq
     Released under the MIT License
     See https://github.com/ishiko-cpp/errors/blob/main/LICENSE.txt
 */
@@ -22,10 +22,10 @@ ExceptionTests::ExceptionTests(const TestNumber& number, const TestContext& cont
 
 void ExceptionTests::ConstructorTest1(Test& test)
 {
-    ErrorCondition condition{TestErrorCategory1::Get(), -1};
+    ErrorCode condition{TestErrorCategory1::Get(), -1};
     Exception exception(condition, "file", 5);
 
-    ISHIKO_TEST_FAIL_IF_NEQ(exception.condition().value(), -1);
+    ISHIKO_TEST_FAIL_IF_NEQ(exception.code().value(), -1);
     ISHIKO_TEST_FAIL_IF_STR_NEQ(exception.what(), "");
     ISHIKO_TEST_FAIL_IF_NEQ(exception.file(), "file");
     ISHIKO_TEST_FAIL_IF_NEQ(exception.line(), 5);
@@ -36,7 +36,7 @@ void ExceptionTests::ConstructorTest2(Test& test)
 {
     Exception exception(-1, TestErrorCategory1::Get(), "file", 5);
 
-    ISHIKO_TEST_FAIL_IF_NEQ(exception.condition().value(), -1);
+    ISHIKO_TEST_FAIL_IF_NEQ(exception.code().value(), -1);
     ISHIKO_TEST_FAIL_IF_STR_NEQ(exception.what(), "");
     ISHIKO_TEST_FAIL_IF_NEQ(exception.file(), "file");
     ISHIKO_TEST_FAIL_IF_NEQ(exception.line(), 5);
@@ -47,7 +47,7 @@ void ExceptionTests::ConstructorTest3(Test& test)
 {
     Exception exception(-1, TestErrorCategory1::Get(), "description", "file", 5);
 
-    ISHIKO_TEST_FAIL_IF_NEQ(exception.condition().value(), -1);
+    ISHIKO_TEST_FAIL_IF_NEQ(exception.code().value(), -1);
     ISHIKO_TEST_FAIL_IF_STR_NEQ(exception.what(), "description");
     ISHIKO_TEST_FAIL_IF_NEQ(exception.file(), "file");
     ISHIKO_TEST_FAIL_IF_NEQ(exception.line(), 5);
@@ -59,7 +59,7 @@ void ExceptionTests::ConstructorTest4(Test& test)
     Exception exception1(-1, TestErrorCategory1::Get(), "file", 5);
     Exception exception2(exception1);
 
-    ISHIKO_TEST_FAIL_IF_NEQ(exception2.condition().value(), -1);
+    ISHIKO_TEST_FAIL_IF_NEQ(exception2.code().value(), -1);
     ISHIKO_TEST_FAIL_IF_STR_NEQ(exception2.what(), "");
     ISHIKO_TEST_FAIL_IF_NEQ(exception2.file(), "file");
     ISHIKO_TEST_FAIL_IF_NEQ(exception2.line(), 5);
@@ -71,7 +71,7 @@ void ExceptionTests::ConstructorTest5(Test& test)
     Exception exception1(-1, TestErrorCategory1::Get(), "description", "file", 5);
     Exception exception2(exception1);
 
-    ISHIKO_TEST_FAIL_IF_NEQ(exception2.condition().value(), -1);
+    ISHIKO_TEST_FAIL_IF_NEQ(exception2.code().value(), -1);
     ISHIKO_TEST_FAIL_IF_STR_NEQ(exception2.what(), "description");
     ISHIKO_TEST_FAIL_IF_NEQ(exception2.file(), "file");
     ISHIKO_TEST_FAIL_IF_NEQ(exception2.line(), 5);

@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2019-2022 Xavier Leclercq
+    Copyright (c) 2019-2024 Xavier Leclercq
     Released under the MIT License
     See https://github.com/ishiko-cpp/errors/blob/main/LICENSE.txt
 */
@@ -48,8 +48,8 @@ void ErrorTests::ConstructorTest1(Test& test)
 
     ISHIKO_TEST_FAIL_IF_NEQ(sizeof(error), 24);
     ISHIKO_TEST_FAIL_IF(error);
-    ISHIKO_TEST_FAIL_IF_NEQ(error.condition().value(), 0);
-    ISHIKO_TEST_FAIL_IF_NEQ(&error.condition().category(), &Ishiko::SuccessCategory::Get());
+    ISHIKO_TEST_FAIL_IF_NEQ(error.code().value(), 0);
+    ISHIKO_TEST_FAIL_IF_NEQ(&error.code().category(), &Ishiko::SuccessCategory::Get());
     ISHIKO_TEST_PASS();
 }
 
@@ -58,15 +58,15 @@ void ErrorTests::ConstructorTest2(Test& test)
     Error error{TestErrorCategory1::Get(), -2};
     
     ISHIKO_TEST_FAIL_IF_NOT(error);
-    ISHIKO_TEST_FAIL_IF_NEQ(error.condition().value(), -2);
-    ISHIKO_TEST_FAIL_IF_NEQ(&error.condition().category(), &TestErrorCategory1::Get());
+    ISHIKO_TEST_FAIL_IF_NEQ(error.code().value(), -2);
+    ISHIKO_TEST_FAIL_IF_NEQ(&error.code().category(), &TestErrorCategory1::Get());
     ISHIKO_TEST_PASS();
 }
 
 void ErrorTests::EqualityOperatorTest1(Test& test)
 {
     Error error1{TestErrorCategory1::Get(), -1};
-    ErrorCondition error2{TestErrorCategory1::Get(), -1};
+    ErrorCode error2{TestErrorCategory1::Get(), -1};
 
     ISHIKO_TEST_FAIL_IF_NOT(error1 == error2);
     ISHIKO_TEST_PASS();
@@ -75,12 +75,12 @@ void ErrorTests::EqualityOperatorTest1(Test& test)
 void ErrorTests::EqualityOperatorTest2(Test& test)
 {
     Error error1{TestErrorCategory1::Get(), -1};
-    ErrorCondition error2{TestErrorCategory1::Get(), -3};
+    ErrorCode error2{TestErrorCategory1::Get(), -3};
 
     ISHIKO_TEST_FAIL_IF(error1 == error2);
 
     Error error3{TestErrorCategory1::Get(), -1};
-    ErrorCondition error4{TestErrorCategory2::Get(), -1};
+    ErrorCode error4{TestErrorCategory2::Get(), -1};
 
     ISHIKO_TEST_FAIL_IF(error3 == error4);
 
@@ -90,7 +90,7 @@ void ErrorTests::EqualityOperatorTest2(Test& test)
 void ErrorTests::InequalityOperatorTest1(Test& test)
 {
     Error error1{TestErrorCategory1::Get(), -1};
-    ErrorCondition error2{TestErrorCategory1::Get(), -1};
+    ErrorCode error2{TestErrorCategory1::Get(), -1};
 
     ISHIKO_TEST_FAIL_IF(error1 != error2);
     ISHIKO_TEST_PASS();
@@ -99,12 +99,12 @@ void ErrorTests::InequalityOperatorTest1(Test& test)
 void ErrorTests::InequalityOperatorTest2(Test& test)
 {
     Error error1{TestErrorCategory1::Get(), -1};
-    ErrorCondition error2{TestErrorCategory1::Get(), -3};
+    ErrorCode error2{TestErrorCategory1::Get(), -3};
 
     ISHIKO_TEST_FAIL_IF_NOT(error1 != error2);
 
     Error error3{TestErrorCategory1::Get(), -1};
-    ErrorCondition error4{TestErrorCategory2::Get(), -1};
+    ErrorCode error4{TestErrorCategory2::Get(), -1};
 
     ISHIKO_TEST_FAIL_IF_NOT(error3 != error4);
 
@@ -117,8 +117,8 @@ void ErrorTests::FailTest1(Test& test)
     error.fail(TestErrorCategory1::Get(), -3);
 
     ISHIKO_TEST_FAIL_IF_NOT(error);
-    ISHIKO_TEST_FAIL_IF_NEQ(error.condition().value(), -3);
-    ISHIKO_TEST_FAIL_IF_NEQ(&error.condition().category(), &TestErrorCategory1::Get());
+    ISHIKO_TEST_FAIL_IF_NEQ(error.code().value(), -3);
+    ISHIKO_TEST_FAIL_IF_NEQ(&error.code().category(), &TestErrorCategory1::Get());
     ISHIKO_TEST_PASS();
 }
 
@@ -128,8 +128,8 @@ void ErrorTests::FailTest2(Test& test)
     error.fail(TestErrorCategory1::Get(), -3);
 
     ISHIKO_TEST_FAIL_IF_NOT(error);
-    ISHIKO_TEST_FAIL_IF_NEQ(error.condition().value(), 4);
-    ISHIKO_TEST_FAIL_IF_NEQ(&error.condition().category(), &TestErrorCategory1::Get());
+    ISHIKO_TEST_FAIL_IF_NEQ(error.code().value(), 4);
+    ISHIKO_TEST_FAIL_IF_NEQ(&error.code().category(), &TestErrorCategory1::Get());
     ISHIKO_TEST_PASS();
 }
 
@@ -141,8 +141,8 @@ void ErrorTests::FailTest3(Test& test)
     error2.fail(error1);
 
     ISHIKO_TEST_FAIL_IF_NOT(error2);
-    ISHIKO_TEST_FAIL_IF_NEQ(error2.condition().value(), 4);
-    ISHIKO_TEST_FAIL_IF_NEQ(&error2.condition().category(), &TestErrorCategory1::Get());
+    ISHIKO_TEST_FAIL_IF_NEQ(error2.code().value(), 4);
+    ISHIKO_TEST_FAIL_IF_NEQ(&error2.code().category(), &TestErrorCategory1::Get());
     ISHIKO_TEST_PASS();
 }
 
@@ -152,8 +152,8 @@ void ErrorTests::ClearTest1(Test& test)
     error.clear();
 
     ISHIKO_TEST_FAIL_IF(error);
-    ISHIKO_TEST_FAIL_IF_NEQ(error.condition().value(), 0);
-    ISHIKO_TEST_FAIL_IF_NEQ(&error.condition().category(), &SuccessCategory::Get());
+    ISHIKO_TEST_FAIL_IF_NEQ(error.code().value(), 0);
+    ISHIKO_TEST_FAIL_IF_NEQ(&error.code().category(), &SuccessCategory::Get());
     ISHIKO_TEST_PASS();
 }
 
@@ -296,8 +296,8 @@ void ErrorTests::ThrowIfTest2(Test& test)
     }
     catch (const Exception& e)
     {
-        ISHIKO_TEST_FAIL_IF_NEQ(e.condition().value(), -1);
-        ISHIKO_TEST_FAIL_IF_NEQ(&e.condition().category(), &TestErrorCategory1::Get());
+        ISHIKO_TEST_FAIL_IF_NEQ(e.code().value(), -1);
+        ISHIKO_TEST_FAIL_IF_NEQ(&e.code().category(), &TestErrorCategory1::Get());
         ISHIKO_TEST_PASS();
     }
 }
@@ -316,8 +316,8 @@ void ErrorTests::ThrowIfTest3(Test& test)
     }
     catch (const Exception& e)
     {
-        ISHIKO_TEST_FAIL_IF_NEQ(e.condition().value(), -1);
-        ISHIKO_TEST_FAIL_IF_NEQ(&e.condition().category(), &TestErrorCategory1::Get());
+        ISHIKO_TEST_FAIL_IF_NEQ(e.code().value(), -1);
+        ISHIKO_TEST_FAIL_IF_NEQ(&e.code().category(), &TestErrorCategory1::Get());
         ISHIKO_TEST_FAIL_IF_NEQ(e.file(), "file1");
         ISHIKO_TEST_FAIL_IF_NEQ(e.line(), 3);
         ISHIKO_TEST_PASS();
