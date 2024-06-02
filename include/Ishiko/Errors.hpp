@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2016-2022 Xavier Leclercq
+    Copyright (c) 2016-2024 Xavier Leclercq
     Released under the MIT License
     See https://github.com/ishiko-cpp/errors/blob/main/LICENSE.txt
 */
@@ -9,7 +9,7 @@
 
 #include "Errors/Error.hpp"
 #include "Errors/ErrorCategory.hpp"
-#include "Errors/ErrorCondition.hpp"
+#include "Errors/ErrorCode.hpp"
 #include "Errors/ErrorsErrorCategory.hpp"
 #include "Errors/ErrorString.hpp"
 #include "Errors/Exception.hpp"

@@ -1,10 +1,10 @@
 /*
-    Copyright (c) 2019-2022 Xavier Leclercq
+    Copyright (c) 2019-2024 Xavier Leclercq
     Released under the MIT License
     See https://github.com/ishiko-cpp/errors/blob/main/LICENSE.txt
 */
 
-#include "ErrorConditionTests.hpp"
+#include "ErrorCodeTests.hpp"
 #include "helpers/TestErrorCategory1.hpp"
 #include "helpers/TestErrorCategory2.hpp"
 #include "Ishiko/Errors/ErrorCondition.hpp"
@@ -13,8 +13,8 @@
 
 using namespace Ishiko;
 
-ErrorConditionTests::ErrorConditionTests(const TestNumber& number, const TestContext& context)
-    : TestSequence(number, "ErrorCondition tests", context)
+ErrorCodeTests::ErrorCodeTests(const TestNumber& number, const TestContext& context)
+    : TestSequence(number, "ErrorCode tests", context)
 {
     append<HeapAllocationErrorsTest>("Constructor test 1", ConstructorTest1);
     append<HeapAllocationErrorsTest>("Constructor test 2", ConstructorTest2);
@@ -26,9 +26,10 @@ ErrorConditionTests::ErrorConditionTests(const TestNumber& number, const TestCon
     append<HeapAllocationErrorsTest>("fail test 1", FailTest1);
     append<HeapAllocationErrorsTest>("fail test 2", FailTest2);
     append<HeapAllocationErrorsTest>("clear test 1", ClearTest1);
+    append<HeapAllocationErrorsTest>("operator std::error_code() test 1", StdErrorCodeOperatorTest1);
 }
 
-void ErrorConditionTests::ConstructorTest1(Test& test)
+void ErrorCodeTests::ConstructorTest1(Test& test)
 {
     ErrorCondition error;
 
@@ -38,7 +39,7 @@ void ErrorConditionTests::ConstructorTest1(Test& test)
     ISHIKO_TEST_PASS();
 }
 
-void ErrorConditionTests::ConstructorTest2(Test& test)
+void ErrorCodeTests::ConstructorTest2(Test& test)
 {
     ErrorCondition error{SuccessCategory::Get(), 0};
 
@@ -47,7 +48,7 @@ void ErrorConditionTests::ConstructorTest2(Test& test)
     ISHIKO_TEST_PASS();
 }
 
-void ErrorConditionTests::ConstructorTest3(Test& test)
+void ErrorCodeTests::ConstructorTest3(Test& test)
 {
     ErrorCondition error{TestErrorCategory1::Get(), -1};
 
@@ -56,7 +57,7 @@ void ErrorConditionTests::ConstructorTest3(Test& test)
     ISHIKO_TEST_PASS();
 }
 
-void ErrorConditionTests::EqualityOperatorTest1(Test& test)
+void ErrorCodeTests::EqualityOperatorTest1(Test& test)
 {
     ErrorCondition error1{TestErrorCategory1::Get(), -1};
     ErrorCondition error2{TestErrorCategory1::Get(), -1};
@@ -65,7 +66,7 @@ void ErrorConditionTests::EqualityOperatorTest1(Test& test)
     ISHIKO_TEST_PASS();
 }
 
-void ErrorConditionTests::EqualityOperatorTest2(Test& test)
+void ErrorCodeTests::EqualityOperatorTest2(Test& test)
 {
     ErrorCondition error1{TestErrorCategory1::Get(), -1};
     ErrorCondition error2{TestErrorCategory1::Get(), -3};
@@ -80,7 +81,7 @@ void ErrorConditionTests::EqualityOperatorTest2(Test& test)
     ISHIKO_TEST_PASS();
 }
 
-void ErrorConditionTests::InequalityOperatorTest1(Test& test)
+void ErrorCodeTests::InequalityOperatorTest1(Test& test)
 {
     ErrorCondition error1{TestErrorCategory1::Get(), -1};
     ErrorCondition error2{TestErrorCategory1::Get(), -1};
@@ -89,7 +90,7 @@ void ErrorConditionTests::InequalityOperatorTest1(Test& test)
     ISHIKO_TEST_PASS();
 }
 
-void ErrorConditionTests::InequalityOperatorTest2(Test& test)
+void ErrorCodeTests::InequalityOperatorTest2(Test& test)
 {
     ErrorCondition error1{TestErrorCategory1::Get(), -1};
     ErrorCondition error2{TestErrorCategory1::Get(), -3};
@@ -104,7 +105,7 @@ void ErrorConditionTests::InequalityOperatorTest2(Test& test)
     ISHIKO_TEST_PASS();
 }
 
-void ErrorConditionTests::FailTest1(Test& test)
+void ErrorCodeTests::FailTest1(Test& test)
 {
     ErrorCondition error;
     error.fail(TestErrorCategory1::Get(), -3);
@@ -114,7 +115,7 @@ void ErrorConditionTests::FailTest1(Test& test)
     ISHIKO_TEST_PASS();
 }
 
-void ErrorConditionTests::FailTest2(Test& test)
+void ErrorCodeTests::FailTest2(Test& test)
 {
     ErrorCondition error{TestErrorCategory1::Get(), 4};
     error.fail(TestErrorCategory1::Get(), -3);
@@ -124,12 +125,22 @@ void ErrorConditionTests::FailTest2(Test& test)
     ISHIKO_TEST_PASS();
 }
 
-void ErrorConditionTests::ClearTest1(Test& test)
+void ErrorCodeTests::ClearTest1(Test& test)
 {
     ErrorCondition error{TestErrorCategory1::Get(), -1};
     error.clear();
 
     ISHIKO_TEST_FAIL_IF(error);
     ISHIKO_TEST_FAIL_IF_NEQ(error.value(), 0);
+    ISHIKO_TEST_PASS();
+}
+
+void ErrorCodeTests::StdErrorCodeOperatorTest1(Test& test)
+{
+    ErrorCondition error{TestErrorCategory1::Get(), -1};
+    std::error_code ec = error;
+
+    ISHIKO_TEST_FAIL_IF_NEQ(ec.value(), -1);
+    ISHIKO_TEST_FAIL_IF_NEQ(ec.message(), "generic error");
     ISHIKO_TEST_PASS();
 }

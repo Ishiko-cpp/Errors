@@ -1,18 +1,18 @@
 /*
-    Copyright (c) 2020-2022 Xavier Leclercq
+    Copyright (c) 2020-2024 Xavier Leclercq
     Released under the MIT License
     See https://github.com/ishiko-cpp/errors/blob/main/LICENSE.txt
 */
 
-#ifndef GUARD_ISHIKO_CPP_ERRORS_TESTS_ERRORCONDITIONTESTS_HPP
-#define GUARD_ISHIKO_CPP_ERRORS_TESTS_ERRORCONDITIONTESTS_HPP
+#ifndef GUARD_ISHIKO_CPP_ERRORS_TESTS_ERRORCODETESTS_HPP
+#define GUARD_ISHIKO_CPP_ERRORS_TESTS_ERRORCODETESTS_HPP
 
 #include <Ishiko/TestFramework/Core.hpp>
 
-class ErrorConditionTests : public Ishiko::TestSequence
+class ErrorCodeTests : public Ishiko::TestSequence
 {
 public:
-    ErrorConditionTests(const Ishiko::TestNumber& number, const Ishiko::TestContext& context);
+    ErrorCodeTests(const Ishiko::TestNumber& number, const Ishiko::TestContext& context);
 
 private:
     static void ConstructorTest1(Ishiko::Test& test);
@@ -25,6 +25,7 @@ private:
     static void FailTest1(Ishiko::Test& test);
     static void FailTest2(Ishiko::Test& test);
     static void ClearTest1(Ishiko::Test& test);
+    static void StdErrorCodeOperatorTest1(Ishiko::Test& test);
 };
 
 #endif

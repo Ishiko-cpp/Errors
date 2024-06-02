@@ -17,7 +17,7 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\src\ErrorConditionTests.hpp">
+    <ClInclude Include="..\..\src\ErrorCodeTests.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\src\ErrorExtensionsTests.hpp">
@@ -49,7 +49,7 @@
     <ClCompile Include="..\..\src\main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\ErrorConditionTests.cpp">
+    <ClCompile Include="..\..\src\ErrorCodeTests.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\ErrorExtensionsTests.cpp">
