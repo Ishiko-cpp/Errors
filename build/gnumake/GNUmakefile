@@ -71,8 +71,8 @@ ISHIKO_CPP_BASEPLATFORM_ROOT ?= $(ISHIKO_CPP_ROOT)/base-platform
 
 all: ../bakefile/../../lib/lib$(if $(call _equal,$(config),Debug),IshikoErrors-d,IshikoErrors).a
 
-../bakefile/../../lib/lib$(if $(call _equal,$(config),Debug),IshikoErrors-d,IshikoErrors).a: $(_builddir)IshikoErrors_Error.o $(_builddir)IshikoErrors_ErrorCategory.o $(_builddir)IshikoErrors_ErrorCondition.o $(_builddir)IshikoErrors_ErrorsErrorCategory.o $(_builddir)IshikoErrors_ErrorString.o $(_builddir)IshikoErrors_Exception.o $(_builddir)IshikoErrors_InfoErrorExtension.o $(_builddir)IshikoErrors_SuccessCategory.o
-	$(AR) rc $@ $(_builddir)IshikoErrors_Error.o $(_builddir)IshikoErrors_ErrorCategory.o $(_builddir)IshikoErrors_ErrorCondition.o $(_builddir)IshikoErrors_ErrorsErrorCategory.o $(_builddir)IshikoErrors_ErrorString.o $(_builddir)IshikoErrors_Exception.o $(_builddir)IshikoErrors_InfoErrorExtension.o $(_builddir)IshikoErrors_SuccessCategory.o
+../bakefile/../../lib/lib$(if $(call _equal,$(config),Debug),IshikoErrors-d,IshikoErrors).a: $(_builddir)IshikoErrors_Error.o $(_builddir)IshikoErrors_ErrorCategory.o $(_builddir)IshikoErrors_ErrorCode.o $(_builddir)IshikoErrors_ErrorsErrorCategory.o $(_builddir)IshikoErrors_ErrorString.o $(_builddir)IshikoErrors_Exception.o $(_builddir)IshikoErrors_InfoErrorExtension.o $(_builddir)IshikoErrors_SuccessCategory.o
+	$(AR) rc $@ $(_builddir)IshikoErrors_Error.o $(_builddir)IshikoErrors_ErrorCategory.o $(_builddir)IshikoErrors_ErrorCode.o $(_builddir)IshikoErrors_ErrorsErrorCategory.o $(_builddir)IshikoErrors_ErrorString.o $(_builddir)IshikoErrors_Exception.o $(_builddir)IshikoErrors_InfoErrorExtension.o $(_builddir)IshikoErrors_SuccessCategory.o
 	$(RANLIB) $@
 
 $(_builddir)IshikoErrors_Error.o: ../../src/Error.cpp
@@ -81,8 +81,8 @@ $(_builddir)IshikoErrors_Error.o: ../../src/Error.cpp
 $(_builddir)IshikoErrors_ErrorCategory.o: ../../src/ErrorCategory.cpp
 	$(CXX) -c -o $@ $(CPPFLAGS) $(CXXFLAGS) -MD -MP -fPIC -DPIC -pthread -I$(ISHIKO_CPP_BASEPLATFORM_ROOT)/include -I../../include/Ishiko/Errors -std=c++11 ../../src/ErrorCategory.cpp
 
-$(_builddir)IshikoErrors_ErrorCondition.o: ../../src/ErrorCondition.cpp
-	$(CXX) -c -o $@ $(CPPFLAGS) $(CXXFLAGS) -MD -MP -fPIC -DPIC -pthread -I$(ISHIKO_CPP_BASEPLATFORM_ROOT)/include -I../../include/Ishiko/Errors -std=c++11 ../../src/ErrorCondition.cpp
+$(_builddir)IshikoErrors_ErrorCode.o: ../../src/ErrorCode.cpp
+	$(CXX) -c -o $@ $(CPPFLAGS) $(CXXFLAGS) -MD -MP -fPIC -DPIC -pthread -I$(ISHIKO_CPP_BASEPLATFORM_ROOT)/include -I../../include/Ishiko/Errors -std=c++11 ../../src/ErrorCode.cpp
 
 $(_builddir)IshikoErrors_ErrorsErrorCategory.o: ../../src/ErrorsErrorCategory.cpp
 	$(CXX) -c -o $@ $(CPPFLAGS) $(CXXFLAGS) -MD -MP -fPIC -DPIC -pthread -I$(ISHIKO_CPP_BASEPLATFORM_ROOT)/include -I../../include/Ishiko/Errors -std=c++11 ../../src/ErrorsErrorCategory.cpp

@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2017-2023 Xavier Leclercq
+    Copyright (c) 2017-2024 Xavier Leclercq
     Released under the MIT License
     See https://github.com/ishiko-cpp/errors/blob/main/LICENSE.txt
 */
@@ -7,7 +7,7 @@
 #ifndef GUARD_ISHIKO_CPP_ERRORS_ERROR_HPP
 #define GUARD_ISHIKO_CPP_ERRORS_ERROR_HPP
 
-#include "ErrorCondition.hpp"
+#include "ErrorCode.hpp"
 #include "ErrorsErrorCategory.hpp"
 #include "ErrorString.hpp"
 #include <Ishiko/BasePlatform.hpp>
@@ -38,7 +38,7 @@ public:
     public:
         inline Extensions() noexcept;
 
-        template<typename E> ErrorCondition install() noexcept;
+        template<typename E> ErrorCode install() noexcept;
 
         template<typename E> bool tryGet(const E*& extension) const noexcept;
         template<typename E> bool tryGet(E*& extension) noexcept;
@@ -49,7 +49,7 @@ public:
         bool tryGetOrigin(ErrorString& file, int& line) const noexcept;
 
         inline bool dynamic() const noexcept;
-        ErrorCondition setDynamic(bool dynamic) noexcept;
+        ErrorCode setDynamic(bool dynamic) noexcept;
 
     private:
         class Impl
@@ -92,14 +92,14 @@ public:
     */
     bool operator!() const noexcept;
 
-    bool operator==(const ErrorCondition& other) const noexcept;
-    bool operator!=(const ErrorCondition& other) const noexcept;
+    bool operator==(const ErrorCode& other) const noexcept;
+    bool operator!=(const ErrorCode& other) const noexcept;
 
     /// Gets the error condition.
     /**
         @returns The error condition.
     */
-    inline ErrorCondition condition() const noexcept;
+    inline ErrorCode code() const noexcept;
 
     bool tryGetMessage(std::string& message) const noexcept;
 
@@ -136,7 +136,7 @@ public:
     inline void clear() noexcept;
 
 private:
-    ErrorCondition m_condition;
+    ErrorCode m_code;
     Extensions m_extensions;
 };
 
@@ -154,7 +154,7 @@ Ishiko::Error::Extensions::Extensions() noexcept
 }
 
 template<typename E>
-Ishiko::ErrorCondition Ishiko::Error::Extensions::install() noexcept
+Ishiko::ErrorCode Ishiko::Error::Extensions::install() noexcept
 {
     if (!m_impl)
     {
@@ -205,7 +205,7 @@ bool Ishiko::Error::Extensions::dynamic() const noexcept
 }
 
 Ishiko::Error::Error(const ErrorCategory& category, int value) noexcept
-    : m_condition{category, value}
+    : m_code{category, value}
 {
 }
 
@@ -219,14 +219,14 @@ Ishiko::Error::Extensions& Ishiko::Error::extensions() noexcept
     return m_extensions;
 }
 
-Ishiko::ErrorCondition Ishiko::Error::condition() const noexcept
+Ishiko::ErrorCode Ishiko::Error::code() const noexcept
 {
-    return m_condition;
+    return m_code;
 }
 
 void Ishiko::Error::clear() noexcept
 {
-    m_condition.clear();
+    m_code.clear();
 }
 
 #endif

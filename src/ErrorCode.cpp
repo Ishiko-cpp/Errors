@@ -4,27 +4,27 @@
     See https://github.com/ishiko-cpp/errors/blob/main/LICENSE.txt
 */
 
-#include "ErrorCondition.hpp"
+#include "ErrorCode.hpp"
 
 using namespace Ishiko;
 
-int ErrorCondition::value() const noexcept
+int ErrorCode::value() const noexcept
 {
     return m_value;
 }
 
-const ErrorCategory& ErrorCondition::category() const noexcept
+const ErrorCategory& ErrorCode::category() const noexcept
 {
     return *m_category;
 }
 
-void ErrorCondition::fail(const ErrorCategory& category, int value) noexcept
+void ErrorCode::fail(const ErrorCategory& category, int value) noexcept
 {
     m_category = &category;
     m_value = value;
 }
 
-std::ostream& Ishiko::operator<<(std::ostream& os, const ErrorCondition& condition)
+std::ostream& Ishiko::operator<<(std::ostream& os, const ErrorCode& condition)
 {
     os << condition.category().name() << " " << condition.value() << " (";
     os << condition.category().message(condition.value());
