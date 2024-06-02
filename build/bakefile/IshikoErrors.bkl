@@ -36,7 +36,7 @@ library IshikoErrors : IshikoBasePlatform
     {
         ../../include/Ishiko/Errors.hpp
         ../../include/Ishiko/Errors/Error.hpp
-        ../../include/Ishiko/Errors/ErrorCondition.hpp
+        ../../include/Ishiko/Errors/ErrorCode.hpp
         ../../include/Ishiko/Errors/ErrorCategory.hpp
         ../../include/Ishiko/Errors/ErrorsErrorCategory.hpp
         ../../include/Ishiko/Errors/ErrorString.hpp
@@ -50,7 +50,7 @@ library IshikoErrors : IshikoBasePlatform
     {
         ../../src/Error.cpp
         ../../src/ErrorCategory.cpp
-        ../../src/ErrorCondition.cpp
+        ../../src/ErrorCode.cpp
         ../../src/ErrorsErrorCategory.cpp
         ../../src/ErrorString.cpp
         ../../src/Exception.cpp
